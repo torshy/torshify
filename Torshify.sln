@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torshify", "src\Torshify\Torshify.csproj", "{FD9C7812-7F81-4E27-95B7-C36F2140EF57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torshify.Server", "..\..\Torshify\src\Torshify.Server\Torshify.Server.csproj", "{8F027711-A701-4084-892C-2E42E4253AF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torshify.Server", "src\Torshify.Server\Torshify.Server.csproj", "{8F027711-A701-4084-892C-2E42E4253AF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torshify.Server.Contracts", "..\..\Torshify\src\Torshify.Server.Contracts\Torshify.Server.Contracts.csproj", "{CC5E372F-CCCD-42DC-BCE4-045698EFFA46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torshify.Server.Contracts", "src\Torshify.Server.Contracts\Torshify.Server.Contracts.csproj", "{CC5E372F-CCCD-42DC-BCE4-045698EFFA46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
