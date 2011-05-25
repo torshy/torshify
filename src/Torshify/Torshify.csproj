@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FD9C7812-7F81-4E27-95B7-C36F2140EF57}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Torshify</RootNamespace>
+    <AssemblyName>Torshify</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\Torshify.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Torshify.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugVerbose|x86'">
+    <OutputPath>bin\x86\DebugVerbose\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DEBUG_VERBOSE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\DebugVerbose\Torshify.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlbumExtensions.cs" />
+    <Compile Include="ArtistExtensions.cs" />
+    <Compile Include="ConnectionRule.cs" />
+    <Compile Include="ConnectionType.cs" />
+    <Compile Include="Core\DelegateArray.cs" />
+    <Compile Include="Core\DelegateInvoker.cs" />
+    <Compile Include="Core\DelegateList.cs" />
+    <Compile Include="Core\EventExtensions.cs" />
+    <Compile Include="Core\IManagedObject.cs" />
+    <Compile Include="Core\INativeObject.cs" />
+    <Compile Include="Core\ManagedObject.cs" />
+    <Compile Include="Core\Managers\AlbumManager.cs" />
+    <Compile Include="Core\Managers\ArtistManager.cs" />
+    <Compile Include="Core\Managers\ContainerPlaylistManager.cs" />
+    <Compile Include="Core\Managers\LinkManager.cs" />
+    <Compile Include="Core\Managers\PlaylistContainerManager.cs" />
+    <Compile Include="Core\Managers\PlaylistManager.cs" />
+    <Compile Include="Core\Managers\PlaylistTrackManager.cs" />
+    <Compile Include="Core\Managers\SessionManager.cs" />
+    <Compile Include="Core\Managers\TrackManager.cs" />
+    <Compile Include="Core\Managers\UserManager.cs" />
+    <Compile Include="Core\NativeObject.cs" />
+    <Compile Include="Core\Native\ErroneousAlbum.cs" />
+    <Compile Include="Core\Native\ErroneousArtist.cs" />
+    <Compile Include="Core\Native\ErroneousTrack.cs" />
+    <Compile Include="Core\Native\NativeRadioSearch.cs" />
+    <Compile Include="Core\Native\NativeSearchLink.cs" />
+    <Compile Include="Core\Native\NativeUser.cs" />
+    <Compile Include="Core\Native\NativeAlbum.cs" />
+    <Compile Include="Core\Native\NativeAlbumBrowse.cs" />
+    <Compile Include="Core\Native\NativeAlbumLink.cs" />
+    <Compile Include="Core\Native\NativeArtist.cs" />
+    <Compile Include="Core\Native\NativeArtistBrowse.cs" />
+    <Compile Include="Core\Native\NativeArtistLink.cs" />
+    <Compile Include="Core\Native\NativeContainerPlaylist.cs" />
+    <Compile Include="Core\Native\NativeImage.cs" />
+    <Compile Include="Core\Native\NativeLink.cs" />
+    <Compile Include="Core\Native\NativePlaylist.cs" />
+    <Compile Include="Core\Native\NativePlaylistCallbacks.cs" />
+    <Compile Include="Core\Native\NativePlaylistContainer.cs" />
+    <Compile Include="Core\Native\NativePlaylistContainerCallbacks.cs" />
+    <Compile Include="Core\Native\NativePlaylistLink.cs" />
+    <Compile Include="Core\Native\NativePlaylistTrack.cs" />
+    <Compile Include="Core\Native\NativeSearch.cs" />
+    <Compile Include="Core\Native\NativeSearchCallbacks.cs" />
+    <Compile Include="Core\Native\NativeSession.cs" />
+    <Compile Include="Core\Native\NativeSessionCallbacks.cs" />
+    <Compile Include="Core\Native\NativeTrack.cs" />
+    <Compile Include="Core\Native\NativeTrackAndOffsetLink.cs" />
+    <Compile Include="Core\Native\NativeUserLink.cs" />
+    <Compile Include="Core\Native\NativeToplistBrowse.cs" />
+    <Compile Include="Core\SessionExtensions.cs" />
+    <Compile Include="Core\Native\Spotify.Toplists.cs">
+      <DependentUpon>Spotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Native\Spotify.Album.cs">
+      <DependentUpon>Spotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Native\Spotify.Artist.cs">
+      <DependentUpon>Spotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Native\Spotify.cs" />
+    <Compile Include="Core\Native\Spotify.Error.cs">
+      <DependentUpon>Spotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Native\Spotify.Image.cs">
+      <DependentUpon>Spotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Native\Spotify.Links.cs">
+      <DependentUpon>Spotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Native\Spotify.Playlist.cs">
+      <DependentUpon>Spotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Native\Spotify.PlaylistContainer.cs">
+      <DependentUpon>Spotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Native\Spotify.Search.cs">
+      <DependentUpon>Spotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Native\Spotify.Session.cs">
+      <DependentUpon>Spotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Native\Spotify.Tracks.cs">
+      <DependentUpon>Spotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Native\Spotify.Users.cs">
+      <DependentUpon>Spotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IArtistBrowse.cs" />
+    <Compile Include="IInbox.cs" />
+    <Compile Include="IToplistBrowse.cs" />
+    <Compile Include="IUser.cs" />
+    <Compile Include="PlaylistOfflineStatus.cs" />
+    <Compile Include="RelationType.cs" />
+    <Compile Include="SessionExtensions.cs" />
+    <Compile Include="SessionFactory.cs" />
+    <Compile Include="Core\SpotifyLibExtractor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DescriptionEventArgs.cs" />
+    <Compile Include="IAlbum.cs" />
+    <Compile Include="IAlbumBrowse.cs" />
+    <Compile Include="IArray.cs" />
+    <Compile Include="IArtist.cs" />
+    <Compile Include="IContainerPlaylist.cs" />
+    <Compile Include="IEditableArray.cs" />
+    <Compile Include="IImage.cs" />
+    <Compile Include="ILink.cs" />
+    <Compile Include="ImageEventArgs.cs" />
+    <Compile Include="IPlaylistTrack.cs" />
+    <Compile Include="ISearch.cs" />
+    <Compile Include="ISessionObject.cs" />
+    <Compile Include="ITrackAndOffset.cs" />
+    <Compile Include="LinkExtensions.cs" />
+    <Compile Include="PlaylistUpdateEventArgs.cs" />
+    <Compile Include="SearchEventArgs.cs" />
+    <Compile Include="IPlaylist.cs" />
+    <Compile Include="IPlaylistContainer.cs" />
+    <Compile Include="ISession.cs" />
+    <Compile Include="ITrack.cs" />
+    <Compile Include="MusicDeliveryEventArgs.cs" />
+    <Compile Include="PlaylistEventArgs.cs" />
+    <Compile Include="PlaylistMovedEventArgs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AlbumType.cs" />
+    <Compile Include="Bitrate.cs" />
+    <Compile Include="ConnectionState.cs" />
+    <Compile Include="Error.cs" />
+    <Compile Include="ImageFormat.cs" />
+    <Compile Include="LinkType.cs" />
+    <Compile Include="PlaylistType.cs" />
+    <Compile Include="RadioGenre.cs" />
+    <Compile Include="SessionEventArgs.cs" />
+    <Compile Include="ToplistRegion.cs" />
+    <Compile Include="ToplistType.cs" />
+    <Compile Include="TrackCreatedChangedEventArgs.cs" />
+    <Compile Include="TrackExtensions.cs" />
+    <Compile Include="TracksAddedEventArgs.cs" />
+    <Compile Include="TrackSeenEventArgs.cs" />
+    <Compile Include="TracksMovedEventArgs.cs" />
+    <Compile Include="TracksRemovedEventArgs.cs" />
+    <Compile Include="UserDataEventArgs.cs" />
+    <Compile Include="UserExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\lib\Spotify\libspotify.dll">
+      <Link>Core\libspotify.dll</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
