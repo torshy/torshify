@@ -10,7 +10,6 @@ namespace Torshify.Core.Native
 
         private Lazy<DelegateList<IContainerPlaylist>> _playlists;
         private NativePlaylistContainerCallbacks _callbacks;
-        private bool _isLoaded;
 
         #endregion Fields
 
@@ -52,7 +51,15 @@ namespace Torshify.Core.Native
 
         public bool IsLoaded
         {
-            get { return _isLoaded; }
+            get
+            {
+                AssertHandle();
+
+                lock(Spotify.Mutex)
+                {
+                    return Spotify.sp_playlistcontainer_is_loaded(Handle);
+                }
+            }
         }
 
         public IEditableArray<IContainerPlaylist> Playlists
@@ -91,8 +98,6 @@ namespace Torshify.Core.Native
 
         internal virtual void OnLoaded(EventArgs e)
         {
-            _isLoaded = true;
-
             Loaded.RaiseEvent(this, e);
         }
 
