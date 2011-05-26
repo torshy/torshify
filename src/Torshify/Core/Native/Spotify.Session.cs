@@ -216,7 +216,7 @@ namespace Torshify.Core.Native
         /// <param name="sessionPtr">Session object</param>
         /// <param name="connectionType">Connection type</param>
         [DllImport("libspotify")]
-        internal static extern void sp_session_preferred_bitrate(IntPtr sessionPtr, ConnectionType connectionType);
+        internal static extern void sp_session_set_connection_type(IntPtr sessionPtr, ConnectionType connectionType);
 
         /// <summary>
         /// Set rules for how libspotify connects to Spotify servers and synchronizes offline content.

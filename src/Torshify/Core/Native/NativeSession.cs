@@ -82,7 +82,9 @@ namespace Torshify.Core.Native
         {
             get
             {
-                if (ConnectionState != ConnectionState.LoggedIn)
+                ConnectionState connectionState = ConnectionState;
+
+                if (connectionState == ConnectionState.Disconnected || connectionState == ConnectionState.LoggedOut)
                 {
                     return null;
                 }
@@ -401,13 +403,49 @@ namespace Torshify.Core.Native
             return image;
         }
 
-        public ISession SetPrefferedBitrate(Bitrate bitrate)
+        public ISession SetPreferredBitrate(Bitrate bitrate)
         {
             AssertHandle();
 
             lock (Spotify.Mutex)
             {
                 Spotify.sp_session_preferred_bitrate(Handle, bitrate);
+            }
+
+            return this;
+        }
+
+        public ISession SetPreferredOfflineBitrate(Bitrate bitrate, bool resync)
+        {
+            AssertHandle();
+
+            lock(Spotify.Mutex)
+            {
+                Spotify.sp_session_preferred_offline_bitrate(Handle, bitrate, resync);
+            }
+
+            return this;
+        }
+
+        public ISession SetConnectionType(ConnectionType connectionType)
+        {
+            AssertHandle();
+
+            lock(Spotify.Mutex)
+            {
+                Spotify.sp_session_set_connection_type(Handle, connectionType);
+            }
+
+            return this;
+        }
+
+        public ISession SetConnectionRules(ConnectionRule connectionRule)
+        {
+            AssertHandle();
+
+            lock(Spotify.Mutex)
+            {
+                Spotify.sp_session_set_connection_rules(Handle, connectionRule);
             }
 
             return this;

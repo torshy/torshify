@@ -183,6 +183,19 @@ namespace Torshify.Core.Native
             }
         }
 
+        public PlaylistOfflineStatus OfflineStatus
+        {
+            get
+            {
+                AssertHandle();
+
+                lock(Spotify.Mutex)
+                {
+                    return Spotify.sp_playlist_get_offline_status(Session.GetHandle(), Handle);
+                }
+            }
+        }
+
         #endregion Properties
 
         #region Public Methods
@@ -211,6 +224,26 @@ namespace Torshify.Core.Native
             lock (Spotify.Mutex)
             {
                 Spotify.sp_playlist_set_autolink_tracks(Handle, autoLink);
+            }
+        }
+
+        public void SetOfflineMode(bool offline)
+        {
+            AssertHandle();
+
+            lock(Spotify.Mutex)
+            {
+                Spotify.sp_playlist_set_offline_mode(Session.GetHandle(), Handle, offline);
+            }
+        }
+
+        public int GetOfflineDownloadCompleted()
+        {
+            AssertHandle();
+
+            lock(Spotify.Mutex)
+            {
+                return Spotify.sp_playlist_get_offline_download_completed(Session.GetHandle(), Handle);
             }
         }
 

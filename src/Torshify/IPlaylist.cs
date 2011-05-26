@@ -69,11 +69,34 @@ namespace Torshify
             get;
         }
 
+        /// <summary>
+        /// Get offline status
+        /// </summary>
+        /// <remarks>
+        /// When in Downloading mode, the GetOfflineDownloadCompleted() can be used to query progress of the download
+        /// </remarks>
+        PlaylistOfflineStatus OfflineStatus
+        {
+            get;
+        }
+
         #endregion Properties
 
         #region Methods
 
         void AutoLinkTracks(bool autoLink);
+
+        /// <summary>
+        /// Mark a playlist to be synchronized for offline playback
+        /// </summary>
+        /// <param name="offline"></param>
+        void SetOfflineMode(bool offline);
+
+        /// <summary>
+        /// Get download progress for an offline playlist
+        /// </summary>
+        /// <returns>Value from 0 - 100 that indicates amount of playlist that is downloaded</returns>
+        int GetOfflineDownloadCompleted();
 
         #endregion Methods
     }

@@ -115,7 +115,38 @@ namespace Torshify
 
         IImage GetImage(string id);
 
-        ISession SetPrefferedBitrate(Bitrate bitrate);
+        /// <summary>
+        /// Set preferred bitrate for music streaming
+        /// </summary>
+        /// <param name="bitrate">Preferred bitrate</param>
+        /// <returns>Current session</returns>
+        ISession SetPreferredBitrate(Bitrate bitrate);
+
+        /// <summary>
+        /// Set preferred bitrate for offline sync
+        /// </summary>
+        /// <param name="bitrate">Preferred bitrat</param>
+        /// <param name="resync">Set to true if libspotify should resynchronize already synchronized tracks. Usually you should set this to false.</param>
+        /// <returns>Current session</returns>
+        ISession SetPreferredOfflineBitrate(Bitrate bitrate, bool resync);
+
+        /// <summary>
+        /// Set current connection type
+        /// </summary>
+        /// <remarks>Used in conjunction with SetConnectionRules to control
+        /// how libspotify should behave in respect to network activity and offline synchronization.</remarks>
+        /// <param name="connectionType">Connection type</param>
+        /// <returns></returns>
+        ISession SetConnectionType(ConnectionType connectionType);
+
+        /// <summary>
+        /// Set rules for how libspotify connects to Spotify servers and synchronizes offline content
+        /// </summary>
+        /// <remarks>Used in conjunction with SetConnectionType to control
+        /// how libspotify should behave in respect to network activity and offline synchronization.</remarks>
+        /// <param name="connectionRule">Connection rules</param>
+        /// <returns>Current session</returns>
+        ISession SetConnectionRules(ConnectionRule connectionRule);
 
         #endregion Methods
     }
