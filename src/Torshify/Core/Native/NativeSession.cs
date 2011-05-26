@@ -451,6 +451,26 @@ namespace Torshify.Core.Native
             return this;
         }
 
+        public int GetNumberOfOfflineTracksRemainingToSync()
+        {
+            AssertHandle();
+
+            lock(Spotify.Mutex)
+            {
+                return Spotify.sp_offline_tracks_to_sync(Handle);
+            }
+        }
+
+        public int GetNumberOfOfflinePlaylists()
+        {
+            AssertHandle();
+
+            lock(Spotify.Mutex)
+            {
+                return Spotify.sp_offline_num_playlists(Handle);
+            }
+        }
+
         public override void Initialize()
         {
             _callbacks = new NativeSessionCallbacks(this);

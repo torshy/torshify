@@ -148,6 +148,19 @@ namespace Torshify
         /// <returns>Current session</returns>
         ISession SetConnectionRules(ConnectionRule connectionRule);
 
+        /// <summary>
+        /// Get total number of tracks that needs download before everything
+        /// from all playlists that is marked for offline is fully synchronized
+        /// </summary>
+        /// <returns></returns>
+        int GetNumberOfOfflineTracksRemainingToSync();
+
+        /// <summary>
+        /// Return number of playlisys that is marked for offline synchronization
+        /// </summary>
+        /// <returns></returns>
+        int GetNumberOfOfflinePlaylists();
+
         #endregion Methods
     }
 }
