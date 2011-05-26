@@ -262,7 +262,7 @@ namespace Torshify.Server
                         Constants.CacheFolder,
                         Constants.SettingsFolder,
                         Constants.UserAgent)
-                    .SetPrefferedBitrate(Bitrate.Bitrate320k);
+                    .SetPreferredBitrate(Bitrate.Bitrate320k);
 
             session.ConnectionError += (sender, e) => Logger.Debug(e.Status + " - " + e.Message);
             session.EndOfTrack += (sender, e) => Logger.Debug(e.Status + " - " + e.Message);
