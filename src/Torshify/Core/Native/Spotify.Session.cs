@@ -255,7 +255,7 @@ namespace Torshify.Core.Native
         /// <param name="sessionPtr">Session object</param>
         /// <param name="connectionRule">Status object that will be filled with info</param>
         [DllImport("libspotify")]
-        internal static extern void sp_offline_sync_get_status(IntPtr sessionPtr, out PlaylistOfflineStatus connectionRule);
+        internal static extern void sp_offline_sync_get_status(IntPtr sessionPtr, ref SpotifyOfflineSyncStatus offlineStatus);
 
         /// <summary>
         /// Get currently logged in users country

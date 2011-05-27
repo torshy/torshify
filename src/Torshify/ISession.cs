@@ -161,6 +161,12 @@ namespace Torshify
         /// <returns></returns>
         int GetNumberOfOfflinePlaylists();
 
+        /// <summary>
+        /// Return offline synchronization status.
+        /// </summary>
+        /// <returns>Sync status</returns>
+        OfflineSyncStatus GetOfflineSyncStatus();
+
         #endregion Methods
     }
 }

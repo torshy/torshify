@@ -53,7 +53,7 @@ namespace Torshify.Server
 
         public string WebsitePath
         {
-            get; 
+            get;
             set;
         }
 
@@ -77,13 +77,13 @@ namespace Torshify.Server
 
         public string UserName
         {
-            get; 
+            get;
             set;
         }
 
         public string Password
         {
-            get; 
+            get;
             set;
         }
 
@@ -276,7 +276,29 @@ namespace Torshify.Server
                                          };
             session.LogoutComplete += (sender, e) => Logger.Debug(e.Status + " - " + e.Message);
             session.MessageToUser += (sender, e) => Logger.Debug(e.Status + " - " + e.Message);
+            session.OfflineStatusUpdated += (sender, e) =>
+                                                {
+                                                    var offlineStatus = session.GetOfflineSyncStatus();
 
+                                                    Console.ForegroundColor = ConsoleColor.Cyan;
+
+                                                    Console.WriteLine(
+                                                        "Queued/Copied/Done : {0}/{1}/{2}", 
+                                                        offlineStatus.QueuedTracks, 
+                                                        offlineStatus.CopiedTracks, 
+                                                        offlineStatus.DoneTracks);
+                                                    Console.WriteLine(
+                                                        "Queued/Copied/Done : {0}/{1}/{2}",
+                                                        (offlineStatus.QueuedBytes / (8 * 1024)),
+                                                        (offlineStatus.CopiedBytes / (8 * 1024)),
+                                                        (offlineStatus.DoneBytes / (8 * 1024)));
+
+                                                    Console.WriteLine("Sync   : " + offlineStatus.IsSyncing);
+                                                    Console.WriteLine("Errors : " + offlineStatus.ErrorTracks);
+                                                    Console.WriteLine("NotCopy: " + offlineStatus.WillNotCopyTracks);
+
+                                                    Console.ForegroundColor = ConsoleColor.Gray;
+                                                };
             // Set up basic spotify logging
             session.LogMessage += (s, e) => Logger.Debug(e.Message);
             session.Exception += (s, e) => Logger.Error(e.Status.GetMessage() + " - " + e.Message);

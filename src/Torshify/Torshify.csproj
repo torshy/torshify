@@ -155,6 +155,7 @@
     <Compile Include="IInbox.cs" />
     <Compile Include="IToplistBrowse.cs" />
     <Compile Include="IUser.cs" />
+    <Compile Include="OfflineSyncStatus.cs" />
     <Compile Include="PlaylistOfflineStatus.cs" />
     <Compile Include="RelationType.cs" />
     <Compile Include="SessionExtensions.cs" />

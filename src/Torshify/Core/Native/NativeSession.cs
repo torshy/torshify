@@ -471,6 +471,30 @@ namespace Torshify.Core.Native
             }
         }
 
+        public OfflineSyncStatus GetOfflineSyncStatus()
+        {
+            AssertHandle();
+
+            var syncStatus = new OfflineSyncStatus();
+
+            lock(Spotify.Mutex)
+            {
+                Spotify.SpotifyOfflineSyncStatus offlineSyncStatus = new Spotify.SpotifyOfflineSyncStatus();
+                Spotify.sp_offline_sync_get_status(Handle, ref offlineSyncStatus);
+
+                syncStatus.CopiedBytes = offlineSyncStatus.CopiedBytes;
+                syncStatus.CopiedTracks = offlineSyncStatus.CopiedTracks;
+                syncStatus.DoneBytes = offlineSyncStatus.DoneBytes;
+                syncStatus.DoneTracks = offlineSyncStatus.DoneTracks;
+                syncStatus.ErrorTracks = offlineSyncStatus.ErrorTracks;
+                syncStatus.IsSyncing = offlineSyncStatus.Syncing;
+                syncStatus.QueuedBytes = offlineSyncStatus.QueuedBytes;
+                syncStatus.QueuedTracks = offlineSyncStatus.QueuedTracks;
+            }
+            
+            return syncStatus;
+        }
+
         public override void Initialize()
         {
             _callbacks = new NativeSessionCallbacks(this);

@@ -109,14 +109,14 @@ namespace Torshify.Core.Native
 
         #region Nested Types
 
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
         internal struct SpotifyAudioBufferStats
         {
             internal int Samples;
             internal int Stutter;
         }
 
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
         internal struct SpotifyAudioFormat
         {
             internal IntPtr SampleType;
@@ -161,24 +161,33 @@ namespace Torshify.Core.Native
             internal bool InitiallyUnloadPlaylists;
         }
 
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
         internal struct SpotifySubscribers
         {
-            internal UInt32 Count;
+            internal int Count;
             internal IntPtr Subscribers;
         }
 
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
         internal struct SpotifyOfflineSyncStatus
         {
             /**
-            * Queued tracks/bytes is things left to sync in current sync
+            * Queued tracks is things left to sync in current sync
             * operation
             */
             internal int QueuedTracks;
+            /**
+            * Queued bytes is things left to sync in current sync
+            * operation
+            */
             internal ulong QueuedBytes;
             /**
-            * Done tracks/bytes is things marked for sync that existed on
+            * Done tracks is things marked for sync that existed on
+            * device before current sync operation
+            */
+            internal int DoneTracks;
+            /**
+            * Done bytes is things marked for sync that existed on
             * device before current sync operation
             */
             internal ulong DoneBytes;
@@ -187,6 +196,10 @@ namespace Torshify.Core.Native
              * current sync operation
              */
             internal int CopiedTracks;
+            /**
+             * Copied bytes is things that has been copied in
+             * current sync operation
+             */
             internal ulong CopiedBytes;
 
             /**
@@ -204,6 +217,7 @@ namespace Torshify.Core.Native
             /**
              * Set if sync operation is in progress
              */
+            [MarshalAsAttribute(UnmanagedType.I1)]
             internal bool Syncing;
         }
 
