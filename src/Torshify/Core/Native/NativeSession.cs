@@ -174,6 +174,19 @@ namespace Torshify.Core.Native
             }
         }
 
+        public int LoggedInUserCountry
+        {
+            get
+            {
+                AssertHandle();
+
+                lock(Spotify.Mutex)
+                {
+                    return Spotify.sp_session_user_country(Handle);
+                }
+            }
+        }
+
         public override ISession Session
         {
             get

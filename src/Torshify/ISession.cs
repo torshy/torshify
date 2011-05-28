@@ -65,6 +65,17 @@ namespace Torshify
             get;
         }
 
+        /// <summary>
+        ///  Get currently logged in users country
+        /// <remarks>
+        ///  Country encoded in an integer 'SE' = 'S' << 8 | 'E'
+        /// </remarks>
+        /// </summary>
+        int LoggedInUserCountry
+        {
+            get;
+        }
+
         #endregion Properties
 
         #region Methods
