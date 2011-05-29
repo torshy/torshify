@@ -154,6 +154,7 @@
     </Compile>
     <Compile Include="IArtistBrowse.cs" />
     <Compile Include="IInbox.cs" />
+    <Compile Include="ILink of T.cs" />
     <Compile Include="IToplistBrowse.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="OfflineSyncStatus.cs" />

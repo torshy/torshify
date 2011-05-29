@@ -2,14 +2,9 @@
 
 namespace Torshify
 {
-    public interface ILink 
+    public interface ILink : IDisposable
     {
         LinkType Type { get; }
         object Object { get; }
-    }
-
-    public interface ILink<out T> : ILink, IDisposable
-    {
-        new T Object { get; }
     }
 }
