@@ -43,8 +43,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return new NativeImageFromLink(Session,
-                                                   Spotify.sp_image_create_from_link(Session.GetHandle(), Handle));
+                    return new NativeImageFromLink(Session, Handle);
                 }
             });
         }

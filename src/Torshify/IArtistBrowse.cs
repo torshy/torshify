@@ -2,7 +2,7 @@ using System;
 
 namespace Torshify
 {
-    public interface IArtistBrowse : IDisposable
+    public interface IArtistBrowse : ISessionObject
     {
         bool IsLoaded { get; }
         Error Error { get; }
