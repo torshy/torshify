@@ -7,17 +7,22 @@ namespace Torshify
 {
     public static class LinkExtensions
     {
-        public static string ToLink(this IImage image)
+        public static string AsUri(this ILink link)
+        {
+            return link == null ? string.Empty : link.ToString();
+        }
+
+        public static ILink<IImage> ToLink(this IImage image)
         {
             return CreateLink(image, Spotify.sp_link_create_from_image);
         }
 
-        public static string ToLink(this IArtist artist)
+        public static ILink<IArtist> ToLink(this IArtist artist)
         {
             return CreateLink(artist, Spotify.sp_link_create_from_artist);
         }
 
-        public static string ToLink(this ITrack track)
+        public static ILink<ITrackAndOffset> ToLink(this ITrack track)
         {
             return CreateLink<ITrackAndOffset>(() =>
                                                 {
@@ -28,7 +33,7 @@ namespace Torshify
                                                 h => Spotify.sp_link_create_from_track(h, 0));
         }
 
-        public static string ToLink(this ITrack track, TimeSpan offset)
+        public static ILink<ITrackAndOffset> ToLink(this ITrack track, TimeSpan offset)
         {
             return CreateLink<ITrackAndOffset>(() =>
                                                 {
@@ -39,12 +44,12 @@ namespace Torshify
                                                 h => Spotify.sp_link_create_from_track(h, (int)offset.TotalMilliseconds));
         }
 
-        public static string ToLink(this IAlbum album)
+        public static ILink<IAlbum> ToLink(this IAlbum album)
         {
             return CreateLink(album, Spotify.sp_link_create_from_album);
         }
 
-        public static string AlbumCoverToLink(this IAlbum album)
+        public static ILink<IImage> AlbumCoverToLink(this IAlbum album)
         {
             return CreateLink<IImage>(() =>
                                           {
@@ -55,7 +60,7 @@ namespace Torshify
                                           Spotify.sp_link_create_from_album_cover);
         }
 
-        public static string ArtistPortraitToLink(this IArtistBrowse artistBrowse, int artistIndex)
+        public static ILink<IImage> ArtistPortraitToLink(this IArtistBrowse artistBrowse, int artistIndex)
         {
             return CreateLink<IImage>(() =>
                                         {
@@ -66,23 +71,23 @@ namespace Torshify
                                         h => Spotify.sp_link_create_from_artist_portrait(h, artistIndex));
         }
 
-        public static string ToLink(this IPlaylist playlist)
+        public static ILink<IPlaylist> ToLink(this IPlaylist playlist)
         {
             return CreateLink(playlist, Spotify.sp_link_create_from_playlist);
         }
 
-        public static string ToLink(this IUser user)
+        public static ILink<IUser> ToLink(this IUser user)
         {
             return CreateLink(user, Spotify.sp_link_create_from_user);
         }
 
-        public static string ToLink(this ISearch search)
+        public static ILink<ISearch> ToLink(this ISearch search)
         {
             var wrapper = search as INativeObject;
 
             if (wrapper == null)
             {
-                return string.Empty;
+                return null;
             }
 
             IntPtr linkPtr;
@@ -92,27 +97,30 @@ namespace Torshify
                 linkPtr = Spotify.sp_link_create_from_search(wrapper.Handle);
             }
 
-            using (var link = (ILink<ISearch>)LinkManager.Get(wrapper.Session, linkPtr, search))
-            {
-                return link.ToString();
-            }
+            return (ILink<ISearch>) LinkManager.Get(wrapper.Session, linkPtr, search);
         }
 
-        private static string CreateLink<T>(T instance, Func<IntPtr, IntPtr> create)
+        private static ILink<T> CreateLink<T>(T instance, Func<IntPtr, IntPtr> create)
         {
             var wrapper = instance as INativeObject;
 
             if (wrapper == null)
             {
-                return string.Empty;
+                return null;
             }
 
             return CreateLink<T>(() => wrapper.GetHandle(), wrapper.Session, create);
         }
 
-        private static string CreateLink<T>(Func<IntPtr> getInstanceHandle, ISession session, Func<IntPtr, IntPtr> create)
+        private static ILink<T> CreateLink<T>(Func<IntPtr> getInstanceHandle, ISession session, Func<IntPtr, IntPtr> create)
         {
             IntPtr handle = getInstanceHandle();
+
+            if (handle == IntPtr.Zero)
+            {
+                return null;
+            }
+
             IntPtr linkPtr;
 
             lock (Spotify.Mutex)
@@ -120,10 +128,7 @@ namespace Torshify
                 linkPtr = create(handle);
             }
 
-            using (var link = (ILink<T>)LinkManager.Get(session, linkPtr))
-            {
-                return link.ToString();
-            }
+            return (ILink<T>)LinkManager.Get(session, linkPtr);
         }
     }
 }

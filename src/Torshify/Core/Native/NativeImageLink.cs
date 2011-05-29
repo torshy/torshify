@@ -41,10 +41,9 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                lock (Spotify.Mutex)
-                {
-                    return new NativeImageFromLink(Session, Handle);
-                }
+                var image = new NativeImageFromLink(Session, Handle);
+                image.Initialize();
+                return image;
             });
         }
 
