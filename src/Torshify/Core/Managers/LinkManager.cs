@@ -54,6 +54,9 @@ namespace Torshify.Core.Managers
                         case LinkType.LocalTrack:
                             instance = new NativeTrackAndOffsetLink(session, handle);
                             break;
+                        case LinkType.Image:
+                            instance = new NativeImageLink(session, handle);
+                            break;
                         default:
                             throw new ArgumentException("Invalid link.");
                     }

@@ -7,10 +7,10 @@ namespace Torshify.Core.Native
     {
         #region Fields
 
-        private readonly string _id;
+        protected ImageLoadedCallback _imageLoaded;
+        protected Lazy<byte[]> _data;
 
-        private ImageLoadedCallback _imageLoaded;
-        private Lazy<byte[]> _data;
+        private readonly string _id;
 
         #endregion Fields
 
@@ -168,11 +168,7 @@ namespace Torshify.Core.Native
             base.Dispose(disposing);
         }
 
-        #endregion Protected Methods
-
-        #region Private Methods
-
-        private byte[] GetImageData()
+        protected byte[] GetImageData()
         {
             try
             {
@@ -200,7 +196,7 @@ namespace Torshify.Core.Native
             }
         }
 
-        private void OnImageLoadedCallback(IntPtr imageptr, IntPtr userdataptr)
+        protected void OnImageLoadedCallback(IntPtr imageptr, IntPtr userdataptr)
         {
             if (imageptr != Handle) return;
 
@@ -209,6 +205,10 @@ namespace Torshify.Core.Native
                 this,
                 EventArgs.Empty);
         }
+
+        #endregion Protected Methods
+
+        #region Private Methods
 
         private void OnImageLoaded(EventArgs e)
         {

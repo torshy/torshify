@@ -87,6 +87,7 @@
     <Compile Include="Core\Native\ErroneousAlbum.cs" />
     <Compile Include="Core\Native\ErroneousArtist.cs" />
     <Compile Include="Core\Native\ErroneousTrack.cs" />
+    <Compile Include="Core\Native\NativeImageLink.cs" />
     <Compile Include="Core\Native\NativeRadioSearch.cs" />
     <Compile Include="Core\Native\NativeSearchLink.cs" />
     <Compile Include="Core\Native\NativeUser.cs" />

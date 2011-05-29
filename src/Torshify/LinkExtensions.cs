@@ -7,6 +7,11 @@ namespace Torshify
 {
     public static class LinkExtensions
     {
+        public static string ToLink(this IImage image)
+        {
+            return CreateLink(image, Spotify.sp_link_create_from_image);
+        }
+
         public static string ToLink(this IArtist artist)
         {
             return CreateLink(artist, Spotify.sp_link_create_from_artist);

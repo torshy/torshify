@@ -23,7 +23,7 @@ namespace Torshify.Core.Native
       /// <param name="linkPtr">Spotify link object. This must be of SP_LINKTYPE_IMAGE type</param>
       /// <returns>Pointer to an image object. To free the object, use sp_image_release()</returns>
       [DllImport("libspotify")]
-      internal static extern bool sp_image_create_from_link(IntPtr sessionptr, IntPtr linkPtr);
+      internal static extern IntPtr sp_image_create_from_link(IntPtr sessionptr, IntPtr linkPtr);
 
       /// <summary>
       /// Add a callback that will be invoked when the image is loaded.
