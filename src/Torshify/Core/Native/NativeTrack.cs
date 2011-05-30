@@ -114,7 +114,8 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.sp_track_is_starred(Session.GetHandle(), Handle);
+                    byte result = Spotify.sp_track_is_starred(Session.GetHandle(), Handle);
+                    return result == 1;
                 }
             }
             set

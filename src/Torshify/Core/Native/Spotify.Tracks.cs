@@ -67,8 +67,7 @@ namespace Torshify.Core.Native
         /// </remarks>
         /// <returns>True if track is a starred file, otherwise false.</returns>
         [DllImport("libspotify")]
-        internal static extern bool sp_track_is_starred(IntPtr sessionPtr, IntPtr trackPtr);
-
+        internal static extern byte sp_track_is_starred(IntPtr sessionPtr, IntPtr trackPtr);
 
         /// <summary>
         /// Star/Unstar the specified tracks.
