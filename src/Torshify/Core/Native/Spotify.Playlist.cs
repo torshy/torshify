@@ -251,7 +251,7 @@ namespace Torshify.Core.Native
         /// <summary>
         /// Free object returned from sp_playlist_subscribers()
         /// </summary>
-        /// <param name="subscribers">The Subscribers object.</param>
+        /// <param name="subscribersPtr">The Subscribers object.</param>
         [DllImport("libspotify")]
         internal static extern void sp_playlist_subscribers_free(IntPtr subscribersPtr);
 

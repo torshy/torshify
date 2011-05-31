@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
@@ -12,6 +14,7 @@ namespace Torshify.Core.Native
 
         private NativePlaylistCallbacks _callbacks;
         private Lazy<DelegateList<IPlaylistTrack>> _tracks;
+        private List<string> _subscribers;
 
         #endregion Fields
 
@@ -20,6 +23,7 @@ namespace Torshify.Core.Native
         public NativePlaylist(ISession session, IntPtr handle)
             : base(session, handle)
         {
+            _subscribers = new List<string>();
         }
 
         #endregion Constructors
@@ -57,7 +61,7 @@ namespace Torshify.Core.Native
         public bool IsLoaded
         {
             get
-            { 
+            {
                 AssertHandle();
 
                 lock (Spotify.Mutex)
@@ -189,10 +193,18 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                lock(Spotify.Mutex)
+                lock (Spotify.Mutex)
                 {
                     return Spotify.sp_playlist_get_offline_status(Session.GetHandle(), Handle);
                 }
+            }
+        }
+
+        public ReadOnlyCollection<string> Subscribers
+        {
+            get
+            {
+                return _subscribers.AsReadOnly();
             }
         }
 
@@ -202,12 +214,6 @@ namespace Torshify.Core.Native
 
         public override void Initialize()
         {
-            lock (Spotify.Mutex)
-            {
-                Spotify.sp_playlist_add_ref(Handle);
-                Spotify.sp_playlist_update_subscribers(Session.GetHandle(), Handle);
-            }
-
             _callbacks = new NativePlaylistCallbacks(this);
             _tracks = new Lazy<DelegateList<IPlaylistTrack>>(() => new DelegateList<IPlaylistTrack>(
                 GetNumberOfTracks,
@@ -215,6 +221,12 @@ namespace Torshify.Core.Native
                 AddTrack,
                 RemoveTrack,
                 () => false));
+
+            lock (Spotify.Mutex)
+            {
+                Spotify.sp_playlist_add_ref(Handle);
+                Spotify.sp_playlist_update_subscribers(Session.GetHandle(), Handle);
+            }
         }
 
         public void AutoLinkTracks(bool autoLink)
@@ -231,7 +243,7 @@ namespace Torshify.Core.Native
         {
             AssertHandle();
 
-            lock(Spotify.Mutex)
+            lock (Spotify.Mutex)
             {
                 Spotify.sp_playlist_set_offline_mode(Session.GetHandle(), Handle, offline);
             }
@@ -241,7 +253,7 @@ namespace Torshify.Core.Native
         {
             AssertHandle();
 
-            lock(Spotify.Mutex)
+            lock (Spotify.Mutex)
             {
                 return Spotify.sp_playlist_get_offline_download_completed(Session.GetHandle(), Handle);
             }
@@ -253,19 +265,16 @@ namespace Torshify.Core.Native
 
         internal void OnTracksMoved(TracksMovedEventArgs e)
         {
-            //SpotifyPlaylistTrackHandler.Update(this, e.TrackIndices, e.NewPosition);
             TracksMoved.RaiseEvent(this, e);
         }
 
         internal void OnTracksRemoved(TracksRemovedEventArgs e)
         {
-            //SpotifyPlaylistTrackHandler.Update(this, aditions: e.TrackIndices);
             TracksRemoved.RaiseEvent(this, e);
         }
 
         internal void OnTracksAdded(TracksAddedEventArgs e)
         {
-            //SpotifyPlaylistTrackHandler.Update(this, aditions: e.TrackIndices);
             TracksAdded.RaiseEvent(this, e);
         }
 
@@ -311,7 +320,37 @@ namespace Torshify.Core.Native
 
         internal void OnSubscribersChanged(EventArgs e)
         {
+            GetSubscribers();
             SubscribersChanged.RaiseEvent(this, e);
+        }
+
+        private void GetSubscribers()
+        {
+            lock (Spotify.Mutex)
+            {
+                // NOTE: Something isn't correct with the sp_playlist_subscribers marshalling. The 'count' field is not correct at all, but the array of user pointers are.
+                var subscribersPtr = Spotify.sp_playlist_subscribers(Handle);
+                var numberOfSubscribers = Spotify.sp_playlist_num_subscribers(Handle);
+
+                var arrayPtr = IntPtr.Add(subscribersPtr, sizeof (uint));
+                var arrayPtrs = new IntPtr[numberOfSubscribers];
+                Marshal.Copy(arrayPtr, arrayPtrs, 0, arrayPtrs.Length);
+
+                _subscribers.Clear();
+
+                for (int i = 0; i < Math.Min(numberOfSubscribers, 500); i++)
+                {
+                    string userName = Spotify.GetString(arrayPtrs[i], string.Empty);
+
+                    if (!string.IsNullOrEmpty(userName))
+                    {
+                        _subscribers.Add(userName);
+                    }
+                }
+
+                // TODO : Throws AccessViolationException. 
+                // Spotify.sp_playlist_subscribers_free(subscribersPtr);
+            }
         }
 
         #endregion Internal Methods

@@ -161,10 +161,21 @@ namespace Torshify.Core.Native
             internal bool InitiallyUnloadPlaylists;
         }
 
+        // HACK: Sort of works, but we're left with a lot of junk in the Subscribers array.
+        //[StructLayout(LayoutKind.Sequential, Pack = 1)]
+        //internal struct SpotifySubscribers
+        //{
+        //    [MarshalAs(UnmanagedType.U4)]
+        //    internal uint Count;
+        //    [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.U4, SizeConst = 500)]
+        //    internal IntPtr[] Subscribers;
+        //}
+
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         internal struct SpotifySubscribers
         {
-            internal int Count;
+            [MarshalAs(UnmanagedType.U4)]
+            internal uint Count; // Count is never correct. Using sp_playlist_num_subscribers instead
             internal IntPtr Subscribers;
         }
 
