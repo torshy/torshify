@@ -62,6 +62,7 @@ namespace Torshify.Shell
                     Console.WriteLine("3: Playlists");
                     Console.WriteLine("4: Friends");
                     Console.WriteLine("5: Radio");
+                    Console.WriteLine("6: Current user info");
                     Console.WriteLine("=================");
                 }
 
@@ -85,6 +86,9 @@ namespace Torshify.Shell
                         break;
                     case ConsoleKey.D5:
                         RadioMenu();
+                        break;
+                    case ConsoleKey.D6:
+                        CurrentUserInfoMenu();
                         break;
                 }
 
@@ -193,7 +197,7 @@ namespace Torshify.Shell
             ConsoleEx.WriteLine("=== Radio ===", ConsoleColor.Cyan);
 
             string[] genres = Enum.GetNames(typeof (RadioGenre));
-            
+
             for (int i = 0; i < genres.Length; i++)
             {
                 string genre = genres[i];
@@ -207,9 +211,9 @@ namespace Torshify.Shell
 
             int index = int.Parse(keyInfo.KeyChar.ToString());
             RadioGenre radioGenre;
-            RadioGenre.TryParse(genres[index], out radioGenre);
+            Enum.TryParse(genres[index], out radioGenre);
 
-            ISearch search = 
+            ISearch search =
                 Session
                     .Search(1990, DateTime.Now.Year, radioGenre)
                     .WaitForCompletion();
@@ -222,6 +226,26 @@ namespace Torshify.Shell
                 ConsoleEx.Write(" {0,-16}", ConsoleColor.Gray, ConsoleEx.Truncate(track.Album.Artist.Name, 15));
                 ConsoleEx.WriteLine(" {0,-16}", ConsoleColor.DarkGray, ConsoleEx.Truncate(track.Album.Name, 15));
             }
+        }
+
+        protected void CurrentUserInfoMenu()
+        {
+            ConsoleEx.WriteLine("=== Current user info ===", ConsoleColor.Cyan);
+
+            ConsoleEx.Write("Username:     ", ConsoleColor.DarkYellow);
+            ConsoleEx.WriteLine(Session.LoggedInUser.CanonicalName, ConsoleColor.White);
+
+            ConsoleEx.Write("Display name: ", ConsoleColor.DarkYellow);
+            ConsoleEx.WriteLine(Session.LoggedInUser.DisplayName, ConsoleColor.White);
+
+            ConsoleEx.Write("Full name:    ", ConsoleColor.DarkYellow);
+            ConsoleEx.WriteLine(Session.LoggedInUser.FullName, ConsoleColor.White);
+
+            ConsoleEx.Write("Picture ID:   ", ConsoleColor.DarkYellow);
+            ConsoleEx.WriteLine(Session.LoggedInUser.Picture, ConsoleColor.White);
+
+            ConsoleEx.Write("Country code: ", ConsoleColor.DarkYellow);
+            ConsoleEx.WriteLine(Session.LoggedInUserCountry.ToString(), ConsoleColor.White);
         }
 
         #endregion Protected Methods
