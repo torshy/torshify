@@ -8,11 +8,6 @@ namespace Torshify.Core.Native
     {
         #region Fields
 
-        protected NativeSearchCallbacks _callbacks;
-        protected Lazy<DelegateArray<IArtist>> _artists;
-        protected Lazy<DelegateArray<ITrack>> _tracks;
-        protected Lazy<DelegateArray<IAlbum>> _albums;
-
         private readonly string _query;
         private readonly int _trackOffset;
         private readonly int _trackCount;
@@ -21,6 +16,11 @@ namespace Torshify.Core.Native
         private readonly int _artistOffset;
         private readonly int _artistCount;
         private readonly object _userData;
+
+        private NativeSearchCallbacks _callbacks;
+        private Lazy<DelegateArray<IArtist>> _artistsLazyLoad;
+        private Lazy<DelegateArray<ITrack>> _tracksLazyLoad;
+        private Lazy<DelegateArray<IAlbum>> _albumsLazyLoad;
 
         #endregion Fields
 
@@ -64,7 +64,7 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                return _albums.Value;
+                return _albumsLazyLoad.Value;
             }
         }
 
@@ -74,7 +74,7 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                return _artists.Value;
+                return _artistsLazyLoad.Value;
             }
         }
 
@@ -86,7 +86,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_search_did_you_mean(Handle), String.Empty);
+                    return Spotify.GetString(Spotify.sp_search_did_you_mean(Handle), string.Empty);
                 }
             }
         }
@@ -112,7 +112,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_search_query(Handle), String.Empty);
+                    return Spotify.GetString(Spotify.sp_search_query(Handle), string.Empty);
                 }
             }
         }
@@ -158,7 +158,7 @@ namespace Torshify.Core.Native
 
         public bool IsComplete
         {
-            get; 
+            get;
             private set;
         }
 
@@ -168,7 +168,55 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                return _tracks.Value;
+                return _tracksLazyLoad.Value;
+            }
+        }
+
+        protected NativeSearchCallbacks Callbacks
+        {
+            get
+            {
+                return _callbacks;
+            }
+            set
+            {
+                _callbacks = value;
+            }
+        }
+
+        protected Lazy<DelegateArray<IArtist>> ArtistsLazyLoad
+        {
+            get
+            {
+                return _artistsLazyLoad;
+            }
+            set
+            {
+                _artistsLazyLoad = value;
+            }
+        }
+
+        protected Lazy<DelegateArray<ITrack>> TracksLazyLoad
+        {
+            get
+            {
+                return _tracksLazyLoad;
+            }
+            set
+            {
+                _tracksLazyLoad = value;
+            }
+        }
+
+        protected Lazy<DelegateArray<IAlbum>> AlbumsLazyLoad
+        {
+            get
+            {
+                return _albumsLazyLoad;
+            }
+            set
+            {
+                _albumsLazyLoad = value;
             }
         }
 
@@ -179,9 +227,9 @@ namespace Torshify.Core.Native
         public override void Initialize()
         {
             _callbacks = new NativeSearchCallbacks(this, _userData);
-            _tracks = new Lazy<DelegateArray<ITrack>>(() => new DelegateArray<ITrack>(GetNumberOfTracks, GetTrackIndex));
-            _albums = new Lazy<DelegateArray<IAlbum>>(() => new DelegateArray<IAlbum>(GetNumberOfAlbums, GetAlbumIndex));
-            _artists = new Lazy<DelegateArray<IArtist>>(() => new DelegateArray<IArtist>(GetNumberOfArtists, GetArtistIndex));
+            _tracksLazyLoad = new Lazy<DelegateArray<ITrack>>(() => new DelegateArray<ITrack>(GetNumberOfTracks, GetTrackIndex));
+            _albumsLazyLoad = new Lazy<DelegateArray<IAlbum>>(() => new DelegateArray<IAlbum>(GetNumberOfAlbums, GetAlbumIndex));
+            _artistsLazyLoad = new Lazy<DelegateArray<IArtist>>(() => new DelegateArray<IArtist>(GetNumberOfArtists, GetArtistIndex));
 
             lock (Spotify.Mutex)
             {
@@ -221,19 +269,16 @@ namespace Torshify.Core.Native
             if (disposing)
             {
                 // Dispose managed
-                if (_artists.IsValueCreated)
+                if (_artistsLazyLoad.IsValueCreated)
                 {
-
                 }
 
-                if (_albums.IsValueCreated)
+                if (_albumsLazyLoad.IsValueCreated)
                 {
-
                 }
 
-                if (_tracks.IsValueCreated)
+                if (_tracksLazyLoad.IsValueCreated)
                 {
-
                 }
             }
 
@@ -253,7 +298,6 @@ namespace Torshify.Core.Native
             }
             catch
             {
-
             }
             finally
             {

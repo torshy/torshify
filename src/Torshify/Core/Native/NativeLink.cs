@@ -41,7 +41,7 @@ namespace Torshify.Core.Native
 
         public override void Initialize()
         {
-            lock(Spotify.Mutex)
+            lock (Spotify.Mutex)
             {
                 Spotify.sp_link_add_ref(Handle);
             }
@@ -50,7 +50,9 @@ namespace Torshify.Core.Native
         public override string ToString()
         {
             if (IsInvalid)
+            {
                 return string.Empty;
+            }
 
             IntPtr bufferPtr = IntPtr.Zero;
             try
@@ -62,7 +64,7 @@ namespace Torshify.Core.Native
                     Spotify.sp_link_as_string(Handle, bufferPtr, size);
                 }
 
-                return Spotify.GetString(bufferPtr, String.Empty);
+                return Spotify.GetString(bufferPtr, string.Empty);
             }
             finally
             {
@@ -72,7 +74,6 @@ namespace Torshify.Core.Native
                 }
                 catch
                 {
-
                 }
             }
         }
@@ -83,10 +84,9 @@ namespace Torshify.Core.Native
 
         protected override void Dispose(bool disposing)
         {
+            // Dipose managed
             if (disposing)
             {
-                // Dipose managed
-
             }
 
             if (!IsInvalid)
@@ -101,7 +101,6 @@ namespace Torshify.Core.Native
                 }
                 catch
                 {
-
                 }
                 finally
                 {

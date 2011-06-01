@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Torshify.Core.Native;
 
 namespace Torshify.Core.Managers
@@ -9,10 +10,13 @@ namespace Torshify.Core.Managers
     {
         #region Fields
 
-        private static Dictionary<IntPtr, NativeLink> _instances = new Dictionary<IntPtr, NativeLink>();
         private static readonly object _instanceLock = new object();
 
+        private static Dictionary<IntPtr, NativeLink> _instances = new Dictionary<IntPtr, NativeLink>();
+
         #endregion Fields
+
+        #region Internal Static Methods
 
         internal static ILink Get(ISession session, IntPtr handle, ISearch search = null)
         {
@@ -96,5 +100,7 @@ namespace Torshify.Core.Managers
                 }
             }
         }
+
+        #endregion Internal Static Methods
     }
 }

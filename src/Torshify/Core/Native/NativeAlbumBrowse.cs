@@ -169,7 +169,6 @@ namespace Torshify.Core.Native
                 }
                 catch
                 {
-
                 }
                 finally
                 {
@@ -226,7 +225,10 @@ namespace Torshify.Core.Native
 
         private void OnBrowseCompleteCallback(IntPtr albumbrowseptr, IntPtr userdataptr)
         {
-            if (albumbrowseptr != Handle) return;
+            if (albumbrowseptr != Handle)
+            {
+                return;
+            }
 
             object userData = null;
 

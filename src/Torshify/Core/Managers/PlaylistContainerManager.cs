@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Torshify.Core.Native;
 
 namespace Torshify.Core.Managers
@@ -9,14 +10,17 @@ namespace Torshify.Core.Managers
     {
         #region Fields
 
-        private static Dictionary<IntPtr, NativePlaylistContainer> _instances = new Dictionary<IntPtr, NativePlaylistContainer>();
         private static readonly object _instanceLock = new object();
+
+        private static Dictionary<IntPtr, NativePlaylistContainer> _instances = new Dictionary<IntPtr, NativePlaylistContainer>();
 
         #endregion Fields
 
+        #region Internal Static Methods
+
         internal static IPlaylistContainer Get(ISession session, IntPtr handle)
         {
-            lock(_instanceLock)
+            lock (_instanceLock)
             {
                 NativePlaylistContainer instance;
 
@@ -58,5 +62,7 @@ namespace Torshify.Core.Managers
                 }
             }
         }
+
+        #endregion Internal Static Methods
     }
 }

@@ -11,7 +11,6 @@ namespace Torshify.Core.Native
         public NativeArtist(ISession session, IntPtr handle)
             : base(session, handle)
         {
-
         }
 
         #endregion Constructors
@@ -26,7 +25,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_artist_name(Handle), String.Empty);
+                    return Spotify.GetString(Spotify.sp_artist_name(Handle), string.Empty);
                 }
             }
         }
@@ -37,7 +36,7 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                lock(Spotify.Mutex)
+                lock (Spotify.Mutex)
                 {
                     return Spotify.sp_artist_is_loaded(Handle);
                 }
@@ -62,10 +61,9 @@ namespace Torshify.Core.Native
 
         protected override void Dispose(bool disposing)
         {
+            // Dispose managed
             if (disposing)
             {
-                // Dispose managed
-
             }
 
             // Dispose unmanaged
@@ -73,14 +71,13 @@ namespace Torshify.Core.Native
             {
                 try
                 {
-                    lock(Spotify.Mutex)
+                    lock (Spotify.Mutex)
                     {
                         Spotify.sp_artist_release(Handle);
                     }
                 }
                 catch
                 {
-
                 }
                 finally
                 {

@@ -68,10 +68,7 @@ namespace Torshify.Core.Native
         public bool IsStarred
         {
             get { return false; }
-            set
-            {
-
-            }
+            set { }
         }
 
         public string Name

@@ -1,0 +1,1095 @@
+<stylecopresultscache>
+  <version>11</version>
+  <sourcecode name="ArtistExtensions.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/20/2011 21:08:28</timestamp>
+    <milliseconds>709</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AlbumExtensions.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/20/2011 21:08:28</timestamp>
+    <milliseconds>709</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ConnectionRule.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 22:46:25</timestamp>
+    <milliseconds>838</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ConnectionType.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 22:46:39</timestamp>
+    <milliseconds>164</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="EventExtensions.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:17:00</timestamp>
+    <milliseconds>175</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IManagedObject.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/18/2011 22:33:26</timestamp>
+    <milliseconds>439</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="INativeObject.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/19/2011 20:11:49</timestamp>
+    <milliseconds>516</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="DelegateList.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:10:49</timestamp>
+    <milliseconds>519</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ManagedObject.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/19/2011 19:14:26</timestamp>
+    <milliseconds>752</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AlbumManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:17:18</timestamp>
+    <milliseconds>542</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ArtistManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:17:27</timestamp>
+    <milliseconds>622</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LinkManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:17:36</timestamp>
+    <milliseconds>446</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PlaylistManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/20/2011 21:27:43</timestamp>
+    <milliseconds>512</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="SessionManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 22:58:18</timestamp>
+    <milliseconds>593</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PlaylistTrackManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:03:29</timestamp>
+    <milliseconds>521</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TrackManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:09:39</timestamp>
+    <milliseconds>650</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="UserManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:09:39</timestamp>
+    <milliseconds>659</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ErroneousAlbum.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/22/2011 00:28:42</timestamp>
+    <milliseconds>694</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeObject.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/25/2011 18:01:30</timestamp>
+    <milliseconds>85</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ErroneousArtist.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/22/2011 00:28:42</timestamp>
+    <milliseconds>694</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ErroneousTrack.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:01:37</timestamp>
+    <milliseconds>271</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeSearchLink.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:03:58</timestamp>
+    <milliseconds>18</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeAlbumBrowse.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:11:02</timestamp>
+    <milliseconds>664</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeContainerPlaylist.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:21:52</timestamp>
+    <milliseconds>671</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeArtistBrowse.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:18:14</timestamp>
+    <milliseconds>875</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativePlaylist.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:24:57</timestamp>
+    <milliseconds>760</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativePlaylistLink.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/20/2011 17:53:10</timestamp>
+    <milliseconds>75</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativePlaylistCallbacks.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:17:51</timestamp>
+    <milliseconds>92</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativePlaylistContainerCallbacks.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:25:01</timestamp>
+    <milliseconds>504</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativePlaylistTrack.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:13:41</timestamp>
+    <milliseconds>577</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeTrackAndOffsetLink.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/20/2011 17:53:10</timestamp>
+    <milliseconds>75</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeSessionCallbacks.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:14:39</timestamp>
+    <milliseconds>555</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeUserLink.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/22/2011 00:15:21</timestamp>
+    <milliseconds>322</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeToplistBrowse.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:15:10</timestamp>
+    <milliseconds>304</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IInbox.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/22/2011 01:00:04</timestamp>
+    <milliseconds>662</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ILink of T.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/29/2011 10:27:56</timestamp>
+    <milliseconds>837</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IArtistBrowse.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:18:53</timestamp>
+    <milliseconds>950</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IUser.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/20/2011 21:08:28</timestamp>
+    <milliseconds>709</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IToplistBrowse.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:19:03</timestamp>
+    <milliseconds>303</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PlaylistOfflineStatus.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 22:59:10</timestamp>
+    <milliseconds>882</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="RelationType.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:24:25</timestamp>
+    <milliseconds>950</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="OfflineSyncStatus.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 22:59:42</timestamp>
+    <milliseconds>239</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="SessionFactory.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/20/2011 21:45:23</timestamp>
+    <milliseconds>136</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="DescriptionEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:07:14</timestamp>
+    <milliseconds>934</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="SpotifyLibExtractor.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:16:15</timestamp>
+    <milliseconds>870</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IAlbum.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/22/2011 00:28:42</timestamp>
+    <milliseconds>694</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IArray.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/16/2011 12:13:23</timestamp>
+    <milliseconds>950</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IAlbumBrowse.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:19:09</timestamp>
+    <milliseconds>73</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IArtist.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/22/2011 00:28:42</timestamp>
+    <milliseconds>694</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IContainerPlaylist.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/16/2011 12:25:09</timestamp>
+    <milliseconds>538</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IEditableArray.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:20:49</timestamp>
+    <milliseconds>782</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IImage.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:19:32</timestamp>
+    <milliseconds>997</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ILink.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/29/2011 10:28:05</timestamp>
+    <milliseconds>199</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ImageEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:07:33</timestamp>
+    <milliseconds>878</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IPlaylistTrack.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 22:58:58</timestamp>
+    <milliseconds>431</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ISessionObject.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/18/2011 19:29:37</timestamp>
+    <milliseconds>816</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ISearch.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:20:01</timestamp>
+    <milliseconds>597</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ITrackAndOffset.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/16/2011 20:47:14</timestamp>
+    <milliseconds>199</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PlaylistUpdateEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:08:04</timestamp>
+    <milliseconds>326</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="SearchEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/20/2011 20:14:19</timestamp>
+    <milliseconds>312</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IPlaylistContainer.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:20:11</timestamp>
+    <milliseconds>294</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LinkExtensions.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:24:53</timestamp>
+    <milliseconds>863</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ITrack.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/22/2011 00:28:42</timestamp>
+    <milliseconds>694</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IPlaylist.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:23:41</timestamp>
+    <milliseconds>4</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="MusicDeliveryEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/16/2011 19:44:35</timestamp>
+    <milliseconds>442</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PlaylistEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/17/2011 17:48:32</timestamp>
+    <milliseconds>810</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ISession.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/28/2011 12:17:19</timestamp>
+    <milliseconds>393</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PlaylistMovedEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/17/2011 17:48:32</timestamp>
+    <milliseconds>810</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/21/2011 10:00:29</timestamp>
+    <milliseconds>964</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AlbumType.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/16/2011 22:53:26</timestamp>
+    <milliseconds>985</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Bitrate.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/25/2011 17:51:53</timestamp>
+    <milliseconds>56</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ConnectionState.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/16/2011 22:53:26</timestamp>
+    <milliseconds>985</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ImageFormat.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/16/2011 22:53:26</timestamp>
+    <milliseconds>985</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LinkType.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/25/2011 17:51:53</timestamp>
+    <milliseconds>56</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Error.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/21/2011 12:06:47</timestamp>
+    <milliseconds>537</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PlaylistType.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 22:59:52</timestamp>
+    <milliseconds>266</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="RadioGenre.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/16/2011 22:53:26</timestamp>
+    <milliseconds>985</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="SessionEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/21/2011 10:00:29</timestamp>
+    <milliseconds>964</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ToplistRegion.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/20/2011 20:47:29</timestamp>
+    <milliseconds>780</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ToplistType.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/20/2011 20:09:35</timestamp>
+    <milliseconds>943</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TrackCreatedChangedEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:09:06</timestamp>
+    <milliseconds>726</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TrackExtensions.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/23/2011 21:41:48</timestamp>
+    <milliseconds>308</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TracksAddedEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:20:24</timestamp>
+    <milliseconds>264</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TrackSeenEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:08:34</timestamp>
+    <milliseconds>994</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TracksMovedEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:20:31</timestamp>
+    <milliseconds>23</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TracksRemovedEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:20:41</timestamp>
+    <milliseconds>182</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="UserDataEventArgs.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/20/2011 20:59:45</timestamp>
+    <milliseconds>256</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="UserExtensions.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/20/2011 21:37:29</timestamp>
+    <milliseconds>671</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name=".NETFramework,Version=v4.0.AssemblyAttributes.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/01/2011 12:53:51</timestamp>
+    <milliseconds>118</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Spotify.Toplists.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/20/2011 20:46:17</timestamp>
+    <milliseconds>597</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Spotify.Album.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/20/2011 20:09:35</timestamp>
+    <milliseconds>943</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Spotify.Artist.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/21/2011 22:32:00</timestamp>
+    <milliseconds>915</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Spotify.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:15:38</timestamp>
+    <milliseconds>712</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Spotify.Error.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>04/18/2011 19:29:37</timestamp>
+    <milliseconds>816</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Spotify.Image.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 22:58:34</timestamp>
+    <milliseconds>546</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Spotify.Links.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/25/2011 17:51:53</timestamp>
+    <milliseconds>56</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Spotify.PlaylistContainer.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:09:39</timestamp>
+    <milliseconds>700</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Spotify.Search.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:22:50</timestamp>
+    <milliseconds>423</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Spotify.Users.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 12:43:50</timestamp>
+    <milliseconds>171</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Spotify.Tracks.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/30/2011 23:15:21</timestamp>
+    <milliseconds>858</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Spotify.Session.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/26/2011 18:48:58</timestamp>
+    <milliseconds>269</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeAlbumLink.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:25:09</timestamp>
+    <milliseconds>191</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeArtistLink.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:25:12</timestamp>
+    <milliseconds>15</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Spotify.Playlist.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:25:23</timestamp>
+    <milliseconds>800</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeSearchCallbacks.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:25:30</timestamp>
+    <milliseconds>367</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PlaylistContainerManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:25:36</timestamp>
+    <milliseconds>239</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeUser.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:25:42</timestamp>
+    <milliseconds>751</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeArtist.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:25:57</timestamp>
+    <milliseconds>953</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ContainerPlaylistManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:25:49</timestamp>
+    <milliseconds>348</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeLink.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:26:01</timestamp>
+    <milliseconds>159</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeAlbum.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:25:52</timestamp>
+    <milliseconds>212</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativePlaylistContainer.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:26:04</timestamp>
+    <milliseconds>288</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeSession.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:26:11</timestamp>
+    <milliseconds>870</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="DelegateInvoker.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:26:22</timestamp>
+    <milliseconds>599</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeTrack.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:26:19</timestamp>
+    <milliseconds>173</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeImageLink.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:29:31</timestamp>
+    <milliseconds>775</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeImage.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:29:53</timestamp>
+    <milliseconds>56</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="DelegateArray.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:30:06</timestamp>
+    <milliseconds>380</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeRadioSearch.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:32:17</timestamp>
+    <milliseconds>294</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-1101186369">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="SessionExtensions.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>05/22/2011 13:51:05</timestamp>
+    <milliseconds>468</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeSearch.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/01/2011 23:21:35</timestamp>
+      <milliseconds>621</milliseconds>
+    </settings>
+    <timestamp>06/01/2011 23:32:30</timestamp>
+    <milliseconds>407</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>

@@ -39,15 +39,16 @@ namespace Torshify.Core.Native
 
         public override void Initialize()
         {
-            _album = new Lazy<IAlbum>(()=>
-                                          {
-                                              AssertHandle();
+            _album = new Lazy<IAlbum>(
+                () =>
+                {
+                    AssertHandle();
 
-                                              lock (Spotify.Mutex)
-                                              {
-                                                  return AlbumManager.Get(Session, Spotify.sp_link_as_album(Handle));
-                                              }
-                                          });
+                    lock (Spotify.Mutex)
+                    {
+                        return AlbumManager.Get(Session, Spotify.sp_link_as_album(Handle));
+                    }
+                });
         }
 
         #endregion Public Methods

@@ -37,7 +37,6 @@ namespace Torshify.Core.Native
         /// <param name="callbacksPtr">Callbacks, see sp_playlistcontainer_callbacks.</param>
         /// <param name="userdataPtr">Opaque value passed to callbacks.</param>
         [DllImport("libspotify")]
-        //internal static extern void sp_playlistcontainer_add_callbacks(IntPtr pcPtr, IntPtr callbacksPtr, IntPtr userdataPtr);
         internal static extern void sp_playlistcontainer_add_callbacks(IntPtr pcPtr, ref NativePlaylistContainerCallbacks.PlaylistContainerCallbacks callbacksPtr, IntPtr userdataPtr);
 
         /// <summary>
@@ -47,7 +46,6 @@ namespace Torshify.Core.Native
         /// <param name="callbacksPtr">Callbacks, see sp_playlistcontainer_callbacks</param>
         /// <param name="userdataPtr">Opaque value passed to callbacks.</param>
         [DllImport("libspotify")]
-        //internal static extern void sp_playlistcontainer_remove_callbacks(IntPtr pcPtr, IntPtr callbacksPtr, IntPtr userdataPtr);
         internal static extern void sp_playlistcontainer_remove_callbacks(IntPtr pcPtr, ref NativePlaylistContainerCallbacks.PlaylistContainerCallbacks callbacksPtr, IntPtr userdataPtr);
 
         /// <summary>
@@ -75,7 +73,6 @@ namespace Torshify.Core.Native
         /// <returns>Type of the playlist.</returns>
         [DllImport("libspotify")]
         internal static extern PlaylistType sp_playlistcontainer_playlist_type(IntPtr pcPtr, int index);
-
 
         /// <summary>
         /// Gets the name of the playlist folder.

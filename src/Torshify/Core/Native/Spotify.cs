@@ -42,7 +42,9 @@ namespace Torshify.Core.Native
         internal static string GetString(IntPtr ptr, string defaultValue)
         {
             if (ptr == IntPtr.Zero)
+            {
                 return defaultValue;
+            }
 
             var l = new List<byte>();
             byte read = 0;
@@ -64,7 +66,9 @@ namespace Torshify.Core.Native
         internal static string ImageIdToString(IntPtr idPtr)
         {
             if (idPtr == IntPtr.Zero)
+            {
                 return string.Empty;
+            }
 
             byte[] id = new byte[20];
             Marshal.Copy(idPtr, id, 0, 20);
@@ -75,7 +79,9 @@ namespace Torshify.Core.Native
         internal static string ImageIdToString(byte[] id)
         {
             if (id == null)
+            {
                 return string.Empty;
+            }
 
             StringBuilder sb = new StringBuilder();
             foreach (byte b in id)
@@ -89,7 +95,10 @@ namespace Torshify.Core.Native
         internal static byte[] StringToImageId(string id)
         {
             if (string.IsNullOrEmpty(id) || id.Length != 40)
+            {
                 return null;
+            }
+
             byte[] ret = new byte[20];
             try
             {
@@ -97,6 +106,7 @@ namespace Torshify.Core.Native
                 {
                     ret[i] = byte.Parse(id.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
                 }
+
                 return ret;
             }
             catch
@@ -160,16 +170,6 @@ namespace Torshify.Core.Native
             internal bool DontSaveMetadataForPlaylists;
             internal bool InitiallyUnloadPlaylists;
         }
-
-        // HACK: Sort of works, but we're left with a lot of junk in the Subscribers array.
-        //[StructLayout(LayoutKind.Sequential, Pack = 1)]
-        //internal struct SpotifySubscribers
-        //{
-        //    [MarshalAs(UnmanagedType.U4)]
-        //    internal uint Count;
-        //    [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.U4, SizeConst = 500)]
-        //    internal IntPtr[] Subscribers;
-        //}
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         internal struct SpotifySubscribers

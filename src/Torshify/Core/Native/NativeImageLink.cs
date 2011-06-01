@@ -80,18 +80,17 @@ namespace Torshify.Core.Native
                         Handle = Spotify.sp_image_create_from_link(Session.GetHandle(), _linkHandle);
                     }
 
-                    _data = new Lazy<byte[]>(GetImageData);
-                    _imageLoaded = OnImageLoadedCallback;
+                    DataLoadLazy = new Lazy<byte[]>(GetImageData);
+                    ImageLoaded = OnImageLoadedCallback;
 
                     lock (Spotify.Mutex)
                     {
                         Spotify.sp_image_add_ref(Handle);
-                        Spotify.sp_image_add_load_callback(Handle, _imageLoaded, IntPtr.Zero);
+                        Spotify.sp_image_add_load_callback(Handle, ImageLoaded, IntPtr.Zero);
                     }
                 }
                 catch
                 {
-
                 }
             }
 

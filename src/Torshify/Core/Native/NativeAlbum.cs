@@ -21,11 +21,11 @@ namespace Torshify.Core.Native
 
         public bool IsLoaded
         {
-            get 
-            { 
+            get
+            {
                 AssertHandle();
 
-                lock(Spotify.Mutex)
+                lock (Spotify.Mutex)
                 {
                     return Spotify.sp_album_is_loaded(Handle);
                 }
@@ -154,11 +154,9 @@ namespace Torshify.Core.Native
                 }
                 catch
                 {
-
                 }
                 finally
                 {
-
                     AlbumManager.Remove(Handle);
                     Handle = IntPtr.Zero;
                 }

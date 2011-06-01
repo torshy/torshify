@@ -42,7 +42,7 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                lock(Spotify.Mutex)
+                lock (Spotify.Mutex)
                 {
                     return UserManager.Get(Session, Spotify.sp_playlistcontainer_owner(Handle));
                 }
@@ -55,7 +55,7 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                lock(Spotify.Mutex)
+                lock (Spotify.Mutex)
                 {
                     return Spotify.sp_playlistcontainer_is_loaded(Handle);
                 }
@@ -81,8 +81,8 @@ namespace Torshify.Core.Native
             lock (Spotify.Mutex)
             {
                 Spotify.sp_playlistcontainer_add_ref(Handle);
-            } 
-            
+            }
+
             _callbacks = new NativePlaylistContainerCallbacks(this);
             _playlists = new Lazy<DelegateList<IContainerPlaylist>>(() => new DelegateList<IContainerPlaylist>(
                 GetContainerLength,
@@ -122,13 +122,13 @@ namespace Torshify.Core.Native
 
         protected override void Dispose(bool disposing)
         {
+            // Dispose managed
             if (disposing)
             {
-                // Dispose managed
             }
 
             if (!IsInvalid)
-            {              
+            {
                 if (_callbacks != null)
                 {
                     _callbacks.Dispose();
@@ -144,7 +144,6 @@ namespace Torshify.Core.Native
                 }
                 catch
                 {
-
                 }
                 finally
                 {

@@ -2,9 +2,24 @@ namespace Torshify
 {
     public enum RelationType
     {
-        Unknown = 0,          /// Not yet known
-        None = 1,             /// No relation
-        Unidirectional = 2,   /// The currently logged in user is following this user
-        Bidirectional = 3     /// Bidirectional friendship established            
+        /// <summary>
+        /// Not yet known
+        /// </summary>
+        Unknown = 0,
+
+        /// <summary>
+        /// No relation
+        /// </summary>
+        None = 1,
+
+        /// <summary>
+        /// The currently logged in user is following this user
+        /// </summary>
+        Unidirectional = 2,
+
+        /// <summary>
+        /// Bidirectional friendship established
+        /// </summary>
+        Bidirectional = 3
     }
 }

@@ -1,6 +1,6 @@
 using System;
-using System.Runtime.InteropServices;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace Torshify.Core.Native
 {
@@ -8,7 +8,7 @@ namespace Torshify.Core.Native
     {
         #region Fields
 
-        internal static readonly int CallbacksSize = Marshal.SizeOf(typeof (PlaylistContainerCallbacks));
+        internal static readonly int CallbacksSize = Marshal.SizeOf(typeof(PlaylistContainerCallbacks));
 
         private readonly NativePlaylistContainer _container;
 
@@ -26,7 +26,7 @@ namespace Torshify.Core.Native
         {
             _container = container;
             _playlistAdded = OnPlaylistAddedCallback;
-            _playlistRemoved = OnPlaylistRemovedCallback; 
+            _playlistRemoved = OnPlaylistRemovedCallback;
             _playlistMoved = OnPlaylistMovedCallback;
             _containerLoaded = OnLoadedCallback;
 
@@ -36,8 +36,8 @@ namespace Torshify.Core.Native
                 _callbacks.container_loaded = Marshal.GetFunctionPointerForDelegate(_containerLoaded);
                 _callbacks.playlist_added = Marshal.GetFunctionPointerForDelegate(_playlistAdded);
                 _callbacks.playlist_moved = Marshal.GetFunctionPointerForDelegate(_playlistMoved);
-                _callbacks.playlist_removed = Marshal.GetFunctionPointerForDelegate(_playlistRemoved);   
- 
+                _callbacks.playlist_removed = Marshal.GetFunctionPointerForDelegate(_playlistRemoved);
+
                 Spotify.sp_playlistcontainer_add_callbacks(container.Handle, ref _callbacks, IntPtr.Zero);
             }
         }
@@ -83,7 +83,10 @@ namespace Torshify.Core.Native
 
         private void OnLoadedCallback(IntPtr containerPointer, IntPtr userdataptr)
         {
-            if (containerPointer != _container.Handle) return;
+            if (containerPointer != _container.Handle)
+            {
+                return;
+            }
 
             _container.QueueThis<NativePlaylistContainer, EventArgs>(
                 pc => pc.OnLoaded,
@@ -93,7 +96,10 @@ namespace Torshify.Core.Native
 
         private void OnPlaylistAddedCallback(IntPtr containerPointer, IntPtr playlistptr, int position, IntPtr userdataptr)
         {
-            if (containerPointer != _container.Handle) return;
+            if (containerPointer != _container.Handle)
+            {
+                return;
+            }
 
             _container.QueueThis<NativePlaylistContainer, PlaylistEventArgs>(
                 pc => pc.OnPlaylistAdded,
@@ -103,7 +109,10 @@ namespace Torshify.Core.Native
 
         private void OnPlaylistRemovedCallback(IntPtr containerPointer, IntPtr playlistptr, int position, IntPtr userdataptr)
         {
-            if (containerPointer != _container.Handle) return;
+            if (containerPointer != _container.Handle)
+            {
+                return;
+            }
 
             _container.QueueThis<NativePlaylistContainer, PlaylistEventArgs>(
                 pc => pc.OnPlaylistRemoved,
@@ -113,9 +122,12 @@ namespace Torshify.Core.Native
 
         private void OnPlaylistMovedCallback(IntPtr containerPointer, IntPtr playlistptr, int position, int newposition, IntPtr userdataptr)
         {
-            if (containerPointer != _container.Handle) return;
+            if (containerPointer != _container.Handle)
+            {
+                return;
+            }
 
-            IContainerPlaylist playlist = _container.Playlists.FirstOrDefault(p=>p.GetHandle() == playlistptr);
+            IContainerPlaylist playlist = _container.Playlists.FirstOrDefault(p => p.GetHandle() == playlistptr);
             _container.QueueThis<NativePlaylistContainer, PlaylistMovedEventArgs>(
                 pc => pc.OnPlaylistMoved,
                 _container,
@@ -129,14 +141,10 @@ namespace Torshify.Core.Native
         [StructLayout(LayoutKind.Sequential)]
         internal struct PlaylistContainerCallbacks
         {
-            #region Fields
-
             internal IntPtr playlist_added;
             internal IntPtr playlist_removed;
             internal IntPtr playlist_moved;
             internal IntPtr container_loaded;
-
-            #endregion Fields
         }
 
         #endregion Nested Types

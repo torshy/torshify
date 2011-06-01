@@ -66,7 +66,7 @@ namespace Torshify
         /// Gets or sets a value indicating whether this playlist is collaborative.
         /// </summary>
         /// <value>
-        /// 	<c>true</c> if this playlist is collaborative; otherwise, <c>false</c>.
+        /// <c>true</c> if this playlist is collaborative; otherwise, <c>false</c>.
         /// </value>
         bool IsCollaborative
         {
@@ -117,7 +117,6 @@ namespace Torshify
         /// <summary>
         /// Returns a collection of canonical usernames of who are subscribing to this playlist
         /// </summary>
-        
         ReadOnlyCollection<string> Subscribers
         {
             get;

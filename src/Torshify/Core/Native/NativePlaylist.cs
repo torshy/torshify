@@ -40,6 +40,8 @@ namespace Torshify.Core.Native
 
         public event EventHandler StateChanged;
 
+        public event EventHandler SubscribersChanged;
+
         public event EventHandler<TrackCreatedChangedEventArgs> TrackCreatedChanged;
 
         public event EventHandler<TracksAddedEventArgs> TracksAdded;
@@ -51,8 +53,6 @@ namespace Torshify.Core.Native
         public event EventHandler<TracksRemovedEventArgs> TracksRemoved;
 
         public event EventHandler<PlaylistUpdateEventArgs> UpdateInProgress;
-
-        public event EventHandler SubscribersChanged;
 
         #endregion Events
 
@@ -79,7 +79,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_playlist_get_description(Handle), String.Empty);
+                    return Spotify.GetString(Spotify.sp_playlist_get_description(Handle), string.Empty);
                 }
             }
         }
@@ -145,7 +145,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_playlist_name(Handle), String.Empty);
+                    return Spotify.GetString(Spotify.sp_playlist_name(Handle), string.Empty);
                 }
             }
             set
@@ -324,35 +324,6 @@ namespace Torshify.Core.Native
             SubscribersChanged.RaiseEvent(this, e);
         }
 
-        private void GetSubscribers()
-        {
-            lock (Spotify.Mutex)
-            {
-                // NOTE: Something isn't correct with the sp_playlist_subscribers marshalling. The 'count' field is not correct at all, but the array of user pointers are.
-                var subscribersPtr = Spotify.sp_playlist_subscribers(Handle);
-                var numberOfSubscribers = Spotify.sp_playlist_num_subscribers(Handle);
-
-                var arrayPtr = IntPtr.Add(subscribersPtr, sizeof (uint));
-                var arrayPtrs = new IntPtr[Math.Min(numberOfSubscribers, 500)];
-                Marshal.Copy(arrayPtr, arrayPtrs, 0, arrayPtrs.Length);
-
-                _subscribers.Clear();
-
-                for (int i = 0; i < arrayPtrs.Length; i++)
-                {
-                    string userName = Spotify.GetString(arrayPtrs[i], string.Empty);
-
-                    if (!string.IsNullOrEmpty(userName))
-                    {
-                        _subscribers.Add(userName);
-                    }
-                }
-
-                // TODO : Throws AccessViolationException. 
-                // Spotify.sp_playlist_subscribers_free(subscribersPtr);
-            }
-        }
-
         #endregion Internal Methods
 
         #region Protected Methods
@@ -361,7 +332,6 @@ namespace Torshify.Core.Native
         {
             if (disposing)
             {
-
             }
 
             if (!IsInvalid)
@@ -397,6 +367,35 @@ namespace Torshify.Core.Native
         #endregion Protected Methods
 
         #region Private Methods
+
+        private void GetSubscribers()
+        {
+            lock (Spotify.Mutex)
+            {
+                // NOTE: Something isn't correct with the sp_playlist_subscribers marshalling. The 'count' field is not correct at all, but the array of user pointers are.
+                var subscribersPtr = Spotify.sp_playlist_subscribers(Handle);
+                var numberOfSubscribers = Spotify.sp_playlist_num_subscribers(Handle);
+
+                var arrayPtr = IntPtr.Add(subscribersPtr, sizeof(uint));
+                var arrayPtrs = new IntPtr[Math.Min(numberOfSubscribers, 500)];
+                Marshal.Copy(arrayPtr, arrayPtrs, 0, arrayPtrs.Length);
+
+                _subscribers.Clear();
+
+                for (int i = 0; i < arrayPtrs.Length; i++)
+                {
+                    string userName = Spotify.GetString(arrayPtrs[i], string.Empty);
+
+                    if (!string.IsNullOrEmpty(userName))
+                    {
+                        _subscribers.Add(userName);
+                    }
+                }
+
+                // TODO : Throws AccessViolationException.
+                // Spotify.sp_playlist_subscribers_free(subscribersPtr);
+            }
+        }
 
         private void RemoveTrack(int index)
         {

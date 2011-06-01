@@ -37,15 +37,24 @@ namespace Torshify.Core.Native
             get
             {
                 if (Type == PlaylistType.Playlist)
+                {
                     return base.Name;
+                }
+
                 if (Type == PlaylistType.StartFolder)
+                {
                     return GetFolderName();
+                }
+
                 return null;
             }
             set
             {
                 if (Type == PlaylistType.Playlist)
+                {
                     base.Name = value;
+                }
+
                 throw new InvalidOperationException("Can't set the name of folders.");
             }
         }
@@ -100,7 +109,7 @@ namespace Torshify.Core.Native
                     error = Spotify.sp_playlistcontainer_playlist_folder_name(_container.GetHandle(), index, bufferPtr, bufferSize);
                 }
 
-                return error == Error.OK ? Spotify.GetString(bufferPtr, String.Empty) : String.Empty;
+                return error == Error.OK ? Spotify.GetString(bufferPtr, string.Empty) : string.Empty;
             }
             finally
             {
@@ -112,7 +121,6 @@ namespace Torshify.Core.Native
                     }
                     catch
                     {
-
                     }
                 }
             }

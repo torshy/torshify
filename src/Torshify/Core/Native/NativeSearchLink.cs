@@ -1,5 +1,4 @@
 using System;
-using Torshify.Core.Managers;
 
 namespace Torshify.Core.Native
 {
@@ -39,7 +38,6 @@ namespace Torshify.Core.Native
 
         public override void Initialize()
         {
-
         }
 
         #endregion Public Methods
@@ -50,7 +48,6 @@ namespace Torshify.Core.Native
         {
             if (disposing)
             {
-
             }
 
             base.Dispose(disposing);

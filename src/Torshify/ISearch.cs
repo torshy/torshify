@@ -4,16 +4,64 @@ namespace Torshify
 {
     public interface ISearch : ISessionObject
     {
-        IArray<IAlbum> Albums { get; }
-        IArray<IArtist> Artists { get; }
+        #region Events
+
         event EventHandler<SearchEventArgs> Completed;
-        string DidYouMean { get; }
-        Error Error { get; }
-        string Query { get; }
-        int TotalAlbums { get; }
-        int TotalArtists { get; }
-        int TotalTracks { get; }
-        bool IsComplete { get; }
-        IArray<ITrack> Tracks { get; }
+
+        #endregion Events
+
+        #region Properties
+
+        IArray<IAlbum> Albums
+        {
+            get;
+        }
+
+        IArray<IArtist> Artists
+        {
+            get;
+        }
+
+        string DidYouMean
+        {
+            get;
+        }
+
+        Error Error
+        {
+            get;
+        }
+
+        bool IsComplete
+        {
+            get;
+        }
+
+        string Query
+        {
+            get;
+        }
+
+        int TotalAlbums
+        {
+            get;
+        }
+
+        int TotalArtists
+        {
+            get;
+        }
+
+        int TotalTracks
+        {
+            get;
+        }
+
+        IArray<ITrack> Tracks
+        {
+            get;
+        }
+
+        #endregion Properties
     }
 }

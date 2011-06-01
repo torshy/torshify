@@ -1,17 +1,24 @@
+using System.IO;
+using System.Reflection;
+
 namespace Torshify.Core
 {
     internal class SpotifyLibExtractor
     {
         internal static void ExtractResourceToFile(string resourceName, string filename)
         {
-            if (!System.IO.File.Exists(filename))
-                using (System.IO.Stream s = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
-                using (System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Create))
+            if (!File.Exists(filename))
+            {
+                using (Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
                 {
-                    byte[] b = new byte[s.Length];
-                    s.Read(b, 0, b.Length);
-                    fs.Write(b, 0, b.Length);
+                    using (FileStream fs = new FileStream(filename, FileMode.Create))
+                    {
+                        byte[] b = new byte[s.Length];
+                        s.Read(b, 0, b.Length);
+                        fs.Write(b, 0, b.Length);
+                    }
                 }
+            }
         }
     }
 }

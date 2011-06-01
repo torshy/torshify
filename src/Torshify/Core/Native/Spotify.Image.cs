@@ -12,7 +12,6 @@ namespace Torshify.Core.Native
       /// <param name="idPtr">Spotify image ID.</param>
       /// <returns>Pointer to an image object. To free the object, use <c>sp_image_release()</c>.</returns>
       [DllImport("libspotify")]
-      //internal static extern IntPtr sp_image_create(IntPtr sessionPtr, IntPtr idPtr);
       internal static extern IntPtr sp_image_create(IntPtr sessionPtr, byte[] idPtr);
 
       /// <summary>
@@ -33,7 +32,6 @@ namespace Torshify.Core.Native
       /// <param name="callbackPtr">Callback that will be called when image has been fetched.</param>
       /// <param name="userdataPtr">Opaque pointer passed to <c>callback</c>.</param>
       [DllImport("libspotify")]
-      //internal static extern void sp_image_add_load_callback(IntPtr imagePtr, IntPtr callbackPtr, IntPtr userdataPtr);
       internal static extern void sp_image_add_load_callback(IntPtr imagePtr, NativeImage.ImageLoadedCallback loadedCallback, IntPtr userdataPtr);
 
       /// <summary>
@@ -43,7 +41,6 @@ namespace Torshify.Core.Native
       /// <param name="callbackPtr">Callback that will not be called when image has been fetched.</param>
       /// <param name="userdataPtr">Opaque pointer passed to <c>callback</c></param>
       [DllImport("libspotify")]
-      //internal static extern void sp_image_remove_load_callback(IntPtr imagePtr, IntPtr callbackPtr, IntPtr userdataPtr);
       internal static extern void sp_image_remove_load_callback(IntPtr imagePtr, NativeImage.ImageLoadedCallback loadedCallback, IntPtr userdataPtr);
 
       /// <summary>

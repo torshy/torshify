@@ -61,7 +61,6 @@ namespace Torshify.Core.Managers
                 }
             }
         }
-        
 
         #endregion Internal Static Methods
     }

@@ -5,23 +5,7 @@ namespace Torshify.Core.Native
 {
     internal partial class Spotify
     {
-        [StructLayout(LayoutKind.Sequential)]
-        public struct PlaylistCallbacks
-        {
-            internal IntPtr tracks_added;
-            internal IntPtr tracks_removed;
-            internal IntPtr tracks_moved;
-            internal IntPtr playlist_renamed;
-            internal IntPtr playlist_state_changed;
-            internal IntPtr playlist_update_in_progress;
-            internal IntPtr playlist_metadata_updated;
-            internal IntPtr track_created_changed;
-            internal IntPtr track_seen_changed;
-            internal IntPtr description_changed;
-            internal IntPtr image_changed;
-            internal IntPtr track_message_changed; //TODO: Implement
-            internal IntPtr subscribers_changed; // TODO: Implement
-        }
+        #region Delegates
 
         public delegate void DescriptionChangedCallback(IntPtr playlistPtr, IntPtr descPtr, IntPtr userdataPtr);
 
@@ -35,6 +19,8 @@ namespace Torshify.Core.Native
 
         public delegate void PlaylistUpdateInProgressCallback(IntPtr playlistPtr, bool done, IntPtr userdataPtr);
 
+        public delegate void SubscribersChangedCallback(IntPtr playlistPtr, IntPtr userdataPtr);
+
         public delegate void TrackCreatedChangedCallback(IntPtr playlistPtr, int position, IntPtr userPtr, int when, IntPtr userdataPtr);
 
         public delegate void TracksAddedCallback(IntPtr playlistPtr, IntPtr tracksPtr, int numTracks, int position, IntPtr userdataPtr);
@@ -44,8 +30,10 @@ namespace Torshify.Core.Native
         public delegate void TracksMovedCallback(IntPtr playlistPtr, IntPtr trackIndicesPtr, int numTracks, int newPosition, IntPtr userdataPtr);
 
         public delegate void TracksRemovedCallback(IntPtr playlistPtr, IntPtr trackIndicesPtr, int numTracks, IntPtr userdataPtr);
-        
-        public delegate void SubscribersChangedCallback(IntPtr playlistPtr, IntPtr userdataPtr);
+
+        #endregion Delegates
+
+        #region Internal Static Methods
 
         /// <summary>
         /// Get load status for the specified playlist. If it's false, you have to wait until playlist_state_changed happens,
@@ -322,5 +310,29 @@ namespace Torshify.Core.Native
         /// <returns>Value from 0 - 100 that indicates amount of playlist that is downloaded</returns>
         [DllImport("libspotify")]
         internal static extern int sp_playlist_get_offline_download_completed(IntPtr sessionPtr, IntPtr playlistPtr);
+
+        #endregion Internal Static Methods
+
+        #region Nested Types
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct PlaylistCallbacks
+        {
+            internal IntPtr tracks_added;
+            internal IntPtr tracks_removed;
+            internal IntPtr tracks_moved;
+            internal IntPtr playlist_renamed;
+            internal IntPtr playlist_state_changed;
+            internal IntPtr playlist_update_in_progress;
+            internal IntPtr playlist_metadata_updated;
+            internal IntPtr track_created_changed;
+            internal IntPtr track_seen_changed;
+            internal IntPtr description_changed;
+            internal IntPtr image_changed;
+            internal IntPtr track_message_changed;
+            internal IntPtr subscribers_changed;
+        }
+
+        #endregion Nested Types
     }
 }

@@ -23,7 +23,6 @@ namespace Torshify.Core.Native
 
         #region Constructor
 
-
         public NativeToplistBrowse(ISession session, ToplistType toplistType, int region, object userData = null)
             : base(session, IntPtr.Zero)
         {
@@ -35,7 +34,6 @@ namespace Torshify.Core.Native
         public NativeToplistBrowse(ISession session, ToplistType toplistType, object userData = null)
             : this(session, toplistType, (int)ToplistSpecialRegion.Everywhere, userData)
         {
-
         }
 
         public NativeToplistBrowse(ISession session, ToplistType toplistType, string userName, object userData = null)
@@ -152,9 +150,9 @@ namespace Torshify.Core.Native
 
         protected override void Dispose(bool disposing)
         {
+            // Dispose managed
             if (disposing)
             {
-                // Dispose managed
             }
 
             if (!IsInvalid)
@@ -168,7 +166,6 @@ namespace Torshify.Core.Native
                 }
                 catch
                 {
-
                 }
                 finally
                 {
@@ -245,7 +242,10 @@ namespace Torshify.Core.Native
 
         private void OnBrowseCompleteCallback(IntPtr toplisthandle, IntPtr userdataptr)
         {
-            if (toplisthandle != Handle) return;
+            if (toplisthandle != Handle)
+            {
+                return;
+            }
 
             object userData = null;
 

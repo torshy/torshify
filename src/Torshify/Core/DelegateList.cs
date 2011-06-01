@@ -47,7 +47,9 @@ namespace Torshify.Core
         public void Clear()
         {
             while (Count > 0)
+            {
                 _removeFunc(0);
+            }
         }
 
         public bool Contains(T item)
@@ -58,11 +60,19 @@ namespace Torshify.Core
         public void CopyTo(T[] array, int arrayIndex)
         {
             if (array == null)
+            {
                 throw new ArgumentNullException("array");
+            }
+
             if (arrayIndex < 0)
+            {
                 throw new ArgumentOutOfRangeException("arrayIndex");
+            }
+
             if (Count > array.Length - arrayIndex)
+            {
                 throw new ArgumentException("Array to small");
+            }
 
             int i = arrayIndex;
             foreach (T item in this)
@@ -91,9 +101,13 @@ namespace Torshify.Core
             while (!found && i < size)
             {
                 if (!this[i].Equals(item))
+                {
                     i++;
+                }
                 else
+                {
                     found = true;
+                }
             }
 
             if (!found)

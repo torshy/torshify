@@ -4,14 +4,44 @@ namespace Torshify
 {
     public interface IToplistBrowse
     {
-        bool IsLoaded { get; }
-        Error Error { get; }
+        #region Events
 
-        IArray<IArtist> Artists { get; }
-        IArray<IAlbum> Albums { get; }
-        IArray<ITrack> Tracks { get; }
-
-        bool IsComplete { get; }
         event EventHandler<UserDataEventArgs> Completed;
+
+        #endregion Events
+
+        #region Properties
+
+        IArray<IAlbum> Albums
+        {
+            get;
+        }
+
+        IArray<IArtist> Artists
+        {
+            get;
+        }
+
+        Error Error
+        {
+            get;
+        }
+
+        bool IsComplete
+        {
+            get;
+        }
+
+        bool IsLoaded
+        {
+            get;
+        }
+
+        IArray<ITrack> Tracks
+        {
+            get;
+        }
+
+        #endregion Properties
     }
 }

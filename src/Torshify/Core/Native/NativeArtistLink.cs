@@ -38,15 +38,16 @@ namespace Torshify.Core.Native
 
         public override void Initialize()
         {
-            _artist = new Lazy<IArtist>(()=>
-                                            {
-                                                AssertHandle();
+            _artist = new Lazy<IArtist>(
+                () =>
+                {
+                    AssertHandle();
 
-                                                lock (Spotify.Mutex)
-                                                {
-                                                    return ArtistManager.Get(Session, Spotify.sp_link_as_artist(Handle));
-                                                }
-                                            });
+                    lock (Spotify.Mutex)
+                    {
+                        return ArtistManager.Get(Session, Spotify.sp_link_as_artist(Handle));
+                    }
+                });
         }
 
         #endregion Public Methods

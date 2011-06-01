@@ -35,10 +35,10 @@ namespace Torshify.Core.Native
 
         public override void Initialize()
         {
-            _callbacks = new NativeSearchCallbacks(this, _userData);
-            _tracks = new Lazy<DelegateArray<ITrack>>(() => new DelegateArray<ITrack>(GetNumberOfTracks, GetTrackIndex));
-            _albums = new Lazy<DelegateArray<IAlbum>>(() => new DelegateArray<IAlbum>(GetNumberOfAlbums, GetAlbumIndex));
-            _artists = new Lazy<DelegateArray<IArtist>>(() => new DelegateArray<IArtist>(GetNumberOfArtists, GetArtistIndex));
+            Callbacks = new NativeSearchCallbacks(this, _userData);
+            TracksLazyLoad = new Lazy<DelegateArray<ITrack>>(() => new DelegateArray<ITrack>(GetNumberOfTracks, GetTrackIndex));
+            AlbumsLazyLoad = new Lazy<DelegateArray<IAlbum>>(() => new DelegateArray<IAlbum>(GetNumberOfAlbums, GetAlbumIndex));
+            ArtistsLazyLoad = new Lazy<DelegateArray<IArtist>>(() => new DelegateArray<IArtist>(GetNumberOfArtists, GetArtistIndex));
 
             lock (Spotify.Mutex)
             {
@@ -47,8 +47,8 @@ namespace Torshify.Core.Native
                     (uint)_fromYear,
                     (uint)_toYear,
                     _genre,
-                    _callbacks.CallbackHandle,
-                    _callbacks.UserDataHandle);
+                    Callbacks.CallbackHandle,
+                    Callbacks.UserDataHandle);
 
                 Spotify.sp_search_add_ref(Handle);
             }

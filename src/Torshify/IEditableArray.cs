@@ -2,12 +2,29 @@
 {
     public interface IEditableArray<T> : IArray<T>
     {
-        int IndexOf(T item);
+        #region Properties
+
+        bool IsReadOnly
+        {
+            get;
+        }
+
+        #endregion Properties
+
+        #region Methods
+
         void Add(T item);
+
         void Clear();
+
         bool Contains(T item);
+
         void CopyTo(T[] array, int arrayIndex);
-        bool IsReadOnly { get; }
+
+        int IndexOf(T item);
+
         bool Remove(T item);
+
+        #endregion Methods
     }
 }

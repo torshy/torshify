@@ -1,18 +1,23 @@
 using System;
 using System.Runtime.InteropServices;
+
 using Torshify.Core;
 
 namespace Torshify.Core.Native
 {
     internal class NativeSearchCallbacks : IDisposable
     {
-        private readonly NativeSearch _search;
+        #region Fields
 
-        private delegate void SearchCompleteCallback(IntPtr searchPtr, IntPtr userdataPtr);
+        private readonly NativeSearch _search;
 
         private SearchCompleteCallback _searchComplete;
         private IntPtr _callbackHandle;
         private GCHandle _userDataHandle;
+
+        #endregion Fields
+
+        #region Constructors
 
         public NativeSearchCallbacks(NativeSearch search, object userData)
         {
@@ -26,6 +31,16 @@ namespace Torshify.Core.Native
             }
         }
 
+        #endregion Constructors
+
+        #region Delegates
+
+        private delegate void SearchCompleteCallback(IntPtr searchPtr, IntPtr userdataPtr);
+
+        #endregion Delegates
+
+        #region Properties
+
         public IntPtr UserDataHandle
         {
             get { return _userDataHandle.IsAllocated ? GCHandle.ToIntPtr(_userDataHandle) : IntPtr.Zero; }
@@ -35,6 +50,28 @@ namespace Torshify.Core.Native
         {
             get { return _callbackHandle; }
         }
+
+        #endregion Properties
+
+        #region Public Methods
+
+        public void Dispose()
+        {
+            try
+            {
+                if (_userDataHandle.IsAllocated)
+                {
+                    _userDataHandle.Free();
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        #endregion Public Methods
+
+        #region Private Methods
 
         private void OnSearchCompleteCallback(IntPtr searchptr, IntPtr userdataptr)
         {
@@ -53,23 +90,11 @@ namespace Torshify.Core.Native
             }
 
             _search.QueueThis<NativeSearch, SearchEventArgs>(
-                s=>s.OnComplete,
+                s => s.OnComplete,
                 _search,
                 new SearchEventArgs(userData));
         }
 
-        public void Dispose()
-        {
-            try
-            {
-                if (_userDataHandle.IsAllocated)
-                {
-                    _userDataHandle.Free();
-                }
-            }
-            catch
-            {
-            }
-        }
+        #endregion Private Methods
     }
 }

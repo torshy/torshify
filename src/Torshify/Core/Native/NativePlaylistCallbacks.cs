@@ -1,13 +1,17 @@
 using System;
 using System.Runtime.InteropServices;
+
 using Torshify.Core.Managers;
 
 namespace Torshify.Core.Native
 {
     internal class NativePlaylistCallbacks : IDisposable
     {
+        #region Fields
+
         private readonly NativePlaylist _playlist;
         private readonly bool _registerCallbacks;
+
         private Spotify.PlaylistCallbacks _callbacks;
         private Spotify.TracksAddedCallback _tracksAdded;
         private Spotify.TracksRemovedCallback _tracksRemoved;
@@ -21,6 +25,10 @@ namespace Torshify.Core.Native
         private Spotify.DescriptionChangedCallback _descriptionChanged;
         private Spotify.ImageChangedCallback _imageChanged;
         private Spotify.SubscribersChangedCallback _subscribersChanged;
+
+        #endregion Fields
+
+        #region Constructors
 
         public NativePlaylistCallbacks(NativePlaylist playlist, bool registerCallbacks = true)
         {
@@ -58,9 +66,6 @@ namespace Torshify.Core.Native
                     subscribers_changed = Marshal.GetFunctionPointerForDelegate(_subscribersChanged)
                 };
 
-                //_callbacksHandle = Marshal.AllocHGlobal(CallbacksSize);
-                //Marshal.StructureToPtr(_callbacks, _callbacksHandle, true);
-
                 lock (Spotify.Mutex)
                 {
                     Spotify.sp_playlist_add_callbacks(_playlist.Handle, ref _callbacks, IntPtr.Zero);
@@ -68,10 +73,37 @@ namespace Torshify.Core.Native
             }
         }
 
+        #endregion Constructors
+
+        #region Public Methods
+
+        public void Dispose()
+        {
+            if (_registerCallbacks)
+            {
+                try
+                {
+                    lock (Spotify.Mutex)
+                    {
+                        Spotify.sp_playlist_remove_callbacks(_playlist.Handle, ref _callbacks, IntPtr.Zero);
+                    }
+                }
+                catch
+                {
+                }
+            }
+        }
+
+        #endregion Public Methods
+
+        #region Private Methods
+
         private void OnImageChangedCallback(IntPtr playlistPtr, IntPtr imgidptr, IntPtr userdataptr)
         {
             if (playlistPtr != _playlist.Handle)
+            {
                 return;
+            }
 
             string imageId = Spotify.ImageIdToString(imgidptr);
 
@@ -84,7 +116,9 @@ namespace Torshify.Core.Native
         private void OnDescriptionChangedCallback(IntPtr playlistPtr, IntPtr descptr, IntPtr userdataptr)
         {
             if (playlistPtr != _playlist.Handle)
+            {
                 return;
+            }
 
             string description = Spotify.GetString(descptr, string.Empty);
 
@@ -97,7 +131,9 @@ namespace Torshify.Core.Native
         private void OnTrackSeenChangedCallback(IntPtr playlistPtr, int position, bool seen, IntPtr userdataptr)
         {
             if (playlistPtr != _playlist.Handle)
+            {
                 return;
+            }
 
             ITrack track = TrackManager.Get(_playlist.Session, Spotify.sp_playlist_track(playlistPtr, position));
 
@@ -110,7 +146,9 @@ namespace Torshify.Core.Native
         private void OnTrackCreatedChangedCallback(IntPtr playlistPtr, int position, IntPtr userptr, int when, IntPtr userdataptr)
         {
             if (playlistPtr != _playlist.Handle)
+            {
                 return;
+            }
 
             ITrack track = TrackManager.Get(_playlist.Session, Spotify.sp_playlist_track(playlistPtr, position));
             DateTime dtWhen = new DateTime(TimeSpan.FromSeconds(when).Ticks, DateTimeKind.Utc);
@@ -124,7 +162,9 @@ namespace Torshify.Core.Native
         private void OnMetadataUpdatedCallback(IntPtr playlistPtr, IntPtr userdataptr)
         {
             if (playlistPtr != _playlist.Handle)
+            {
                 return;
+            }
 
             _playlist.QueueThis<NativePlaylist, EventArgs>(
                     pc => pc.OnMetadataUpdated,
@@ -135,7 +175,9 @@ namespace Torshify.Core.Native
         private void OnUpdateInProgressCallback(IntPtr playlistPtr, bool done, IntPtr userdataptr)
         {
             if (playlistPtr != _playlist.Handle)
+            {
                 return;
+            }
 
             _playlist.QueueThis<NativePlaylist, PlaylistUpdateEventArgs>(
                     pc => pc.OnUpdateInProgress,
@@ -146,7 +188,9 @@ namespace Torshify.Core.Native
         private void OnStateChangedCallback(IntPtr playlistPtr, IntPtr userdataptr)
         {
             if (playlistPtr != _playlist.Handle)
+            {
                 return;
+            }
 
             _playlist.QueueThis<NativePlaylist, EventArgs>(
                     pc => pc.OnStateChanged,
@@ -157,7 +201,9 @@ namespace Torshify.Core.Native
         private void OnRenamedCallback(IntPtr playlistPtr, IntPtr userdataptr)
         {
             if (playlistPtr != _playlist.Handle)
+            {
                 return;
+            }
 
             _playlist.QueueThis<NativePlaylist, EventArgs>(
                     pc => pc.OnRenamed,
@@ -168,7 +214,9 @@ namespace Torshify.Core.Native
         private void OnTracksMovedCallback(IntPtr playlistPtr, IntPtr trackIndicesPtr, int numTracks, int newPosition, IntPtr userdataptr)
         {
             if (playlistPtr != _playlist.Handle)
+            {
                 return;
+            }
 
             int[] trackIndices = new int[numTracks];
             Marshal.Copy(trackIndicesPtr, trackIndices, 0, numTracks);
@@ -182,7 +230,9 @@ namespace Torshify.Core.Native
         private void OnTracksRemovedCallback(IntPtr playlistPtr, IntPtr trackIndicesPtr, int numTracks, IntPtr userdataptr)
         {
             if (playlistPtr != _playlist.Handle)
+            {
                 return;
+            }
 
             int[] trackIndices = new int[numTracks];
             Marshal.Copy(trackIndicesPtr, trackIndices, 0, numTracks);
@@ -196,7 +246,9 @@ namespace Torshify.Core.Native
         private void OnTracksAddedCallback(IntPtr playlistPtr, IntPtr tracksPtr, int numTracks, int position, IntPtr userdataptr)
         {
             if (playlistPtr != _playlist.Handle)
+            {
                 return;
+            }
 
             var trackIndices = new int[numTracks];
             var tracks = new ITrack[numTracks];
@@ -218,7 +270,9 @@ namespace Torshify.Core.Native
         private void OnSubscribersChangedCallback(IntPtr playlistPtr, IntPtr userdataptr)
         {
             if (playlistPtr != _playlist.Handle)
+            {
                 return;
+            }
 
             _playlist.QueueThis<NativePlaylist, EventArgs>(
                     pc => pc.OnSubscribersChanged,
@@ -226,26 +280,6 @@ namespace Torshify.Core.Native
                     EventArgs.Empty);
         }
 
-        public void Dispose()
-        {
-            if (_registerCallbacks)
-            {
-                try
-                {
-                    lock (Spotify.Mutex)
-                    {
-                        Spotify.sp_playlist_remove_callbacks(_playlist.Handle, ref _callbacks, IntPtr.Zero);
-                    }
-                }
-                catch
-                {
-                    // Ignore
-                }
-                finally
-                {
-
-                }
-            }
-        }
+        #endregion Private Methods
     }
 }

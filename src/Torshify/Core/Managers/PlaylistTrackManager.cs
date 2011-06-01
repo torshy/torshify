@@ -86,13 +86,11 @@ namespace Torshify.Core.Managers
                     }
                     catch
                     {
-
                     }
                     finally
                     {
                         _instances.Remove(keyGen);
                     }
-
                 }
             }
         }

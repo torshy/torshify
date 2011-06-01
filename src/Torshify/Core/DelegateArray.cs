@@ -7,8 +7,8 @@ namespace Torshify.Core
     {
         #region Fields
 
-        protected Func<int> GetLength;
-        protected Func<int, T> GetIndex;
+        private Func<int> _getLength;
+        private Func<int, T> _getIndex;
 
         #endregion Fields
 
@@ -32,6 +32,30 @@ namespace Torshify.Core
             }
         }
 
+        protected Func<int> GetLength
+        {
+            get
+            {
+                return _getLength;
+            }
+            set
+            {
+                _getLength = value;
+            }
+        }
+
+        protected Func<int, T> GetIndex
+        {
+            get
+            {
+                return _getIndex;
+            }
+            set
+            {
+                _getIndex = value;
+            }
+        }
+
         #endregion Properties
 
         #region Indexers
@@ -41,7 +65,9 @@ namespace Torshify.Core
             get
             {
                 if (index >= GetLength() || index < 0)
+                {
                     throw new IndexOutOfRangeException();
+                }
 
                 return GetIndex(index);
             }
@@ -101,10 +127,14 @@ namespace Torshify.Core
                 get
                 {
                     if (_currentIndex == -1 || _currentIndex == int.MaxValue)
+                    {
                         throw new Exception("Before first element");
+                    }
 
                     if (_current == null)
+                    {
                         _current = _getIndex(_currentIndex);
+                    }
 
                     return _current;
                 }

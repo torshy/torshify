@@ -11,7 +11,6 @@ namespace Torshify.Core.Native
         private readonly IArtist _artistToBrowse;
 
         private Spotify.ArtistBrowseCompleteCallback _browseCompleteCallback;
-
         private DelegateArray<ITrack> _tracks;
         private DelegateArray<IAlbum> _albums;
         private DelegateArray<IArtist> _similarArtists;
@@ -39,7 +38,7 @@ namespace Torshify.Core.Native
 
         public bool IsComplete
         {
-            get; 
+            get;
             private set;
         }
 
@@ -159,6 +158,43 @@ namespace Torshify.Core.Native
             }
         }
 
+        #endregion Public Methods
+
+        #region Protected Methods
+
+        protected override void Dispose(bool disposing)
+        {
+            // Dispose managed
+            if (disposing)
+            {
+            }
+
+            // Dispose unmanaged
+            if (!IsInvalid)
+            {
+                try
+                {
+                    lock (Spotify.Mutex)
+                    {
+                        Spotify.sp_artistbrowse_release(Handle);
+                    }
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    Handle = IntPtr.Zero;
+                }
+            }
+
+            base.Dispose(disposing);
+        }
+
+        #endregion Protected Methods
+
+        #region Private Methods
+
         private IImage GetPortraitAtIndex(int index)
         {
             AssertHandle();
@@ -241,47 +277,12 @@ namespace Torshify.Core.Native
             }
         }
 
-        #endregion Public Methods
-
-        #region Protected Methods
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // Dispose managed
-            }
-
-            // Dispose unmanaged
-            if (!IsInvalid)
-            {
-                try
-                {
-                    lock (Spotify.Mutex)
-                    {
-                        Spotify.sp_artistbrowse_release(Handle);
-                    }
-                }
-                catch
-                {
-
-                }
-                finally
-                {
-                    Handle = IntPtr.Zero;
-                }
-            }
-
-            base.Dispose(disposing);
-        }
-
-        #endregion Protected Methods
-
-        #region Private Methods
-
         private void OnBrowseCompleteCallback(IntPtr browseptr, IntPtr userdataptr)
         {
-            if (browseptr != Handle) return;
+            if (browseptr != Handle)
+            {
+                return;
+            }
 
             this.QueueThis<NativeArtistBrowse, EventArgs>(
                 image => image.OnBrowseComplete,

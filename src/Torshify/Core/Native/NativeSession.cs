@@ -180,7 +180,7 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                lock(Spotify.Mutex)
+                lock (Spotify.Mutex)
                 {
                     return Spotify.sp_session_user_country(Handle);
                 }
@@ -406,10 +406,14 @@ namespace Torshify.Core.Native
             AssertHandle();
 
             if (id == null)
+            {
                 throw new ArgumentNullException("id");
+            }
 
             if (id.Length != 40)
+            {
                 throw new ArgumentException("invalid id", "id");
+            }
 
             var image = new NativeImage(this, id);
             image.Initialize();
@@ -432,7 +436,7 @@ namespace Torshify.Core.Native
         {
             AssertHandle();
 
-            lock(Spotify.Mutex)
+            lock (Spotify.Mutex)
             {
                 Spotify.sp_session_preferred_offline_bitrate(Handle, bitrate, resync);
             }
@@ -444,7 +448,7 @@ namespace Torshify.Core.Native
         {
             AssertHandle();
 
-            lock(Spotify.Mutex)
+            lock (Spotify.Mutex)
             {
                 Spotify.sp_session_set_connection_type(Handle, connectionType);
             }
@@ -456,7 +460,7 @@ namespace Torshify.Core.Native
         {
             AssertHandle();
 
-            lock(Spotify.Mutex)
+            lock (Spotify.Mutex)
             {
                 Spotify.sp_session_set_connection_rules(Handle, connectionRule);
             }
@@ -468,7 +472,7 @@ namespace Torshify.Core.Native
         {
             AssertHandle();
 
-            lock(Spotify.Mutex)
+            lock (Spotify.Mutex)
             {
                 return Spotify.sp_offline_tracks_to_sync(Handle);
             }
@@ -478,7 +482,7 @@ namespace Torshify.Core.Native
         {
             AssertHandle();
 
-            lock(Spotify.Mutex)
+            lock (Spotify.Mutex)
             {
                 return Spotify.sp_offline_num_playlists(Handle);
             }
@@ -490,7 +494,7 @@ namespace Torshify.Core.Native
 
             var syncStatus = new OfflineSyncStatus();
 
-            lock(Spotify.Mutex)
+            lock (Spotify.Mutex)
             {
                 Spotify.SpotifyOfflineSyncStatus offlineSyncStatus = new Spotify.SpotifyOfflineSyncStatus();
                 Spotify.sp_offline_sync_get_status(Handle, ref offlineSyncStatus);
@@ -504,7 +508,7 @@ namespace Torshify.Core.Native
                 syncStatus.QueuedBytes = offlineSyncStatus.QueuedBytes;
                 syncStatus.QueuedTracks = offlineSyncStatus.QueuedTracks;
             }
-            
+
             return syncStatus;
         }
 
@@ -722,7 +726,6 @@ namespace Torshify.Core.Native
                             }
                             catch
                             {
-
                             }
                         }
 

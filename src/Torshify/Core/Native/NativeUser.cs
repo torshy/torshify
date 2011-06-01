@@ -21,7 +21,7 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                lock(Spotify.Mutex)
+                lock (Spotify.Mutex)
                 {
                     return Spotify.GetString(Spotify.sp_user_canonical_name(Handle), string.Empty);
                 }
@@ -34,7 +34,7 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                lock(Spotify.Mutex)
+                lock (Spotify.Mutex)
                 {
                     return Spotify.GetString(Spotify.sp_user_display_name(Handle), string.Empty);
                 }
@@ -47,7 +47,7 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                lock(Spotify.Mutex)
+                lock (Spotify.Mutex)
                 {
                     return Spotify.sp_user_is_loaded(Handle);
                 }
@@ -99,7 +99,7 @@ namespace Torshify.Core.Native
 
         public override void Initialize()
         {
-            lock(Spotify.Mutex)
+            lock (Spotify.Mutex)
             {
                 Spotify.sp_user_add_ref(Handle);
             }
@@ -120,14 +120,13 @@ namespace Torshify.Core.Native
             {
                 try
                 {
-                    lock(Spotify.Mutex)
+                    lock (Spotify.Mutex)
                     {
                         Spotify.sp_user_release(Handle);
                     }
                 }
                 catch
                 {
-
                 }
                 finally
                 {

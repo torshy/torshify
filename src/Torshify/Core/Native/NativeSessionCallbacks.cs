@@ -153,7 +153,10 @@ namespace Torshify.Core.Native
 
         private void ConnectionErrorCallback(IntPtr sessionPtr, Error error)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.QueueThis<NativeSession, SessionEventArgs>(
                 pc => pc.OnConnectionError,
@@ -163,7 +166,10 @@ namespace Torshify.Core.Native
 
         private void EndOfTrackCallback(IntPtr sessionPtr)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.QueueThis<NativeSession, SessionEventArgs>(
                 pc => pc.OnEndOfTrack,
@@ -173,12 +179,18 @@ namespace Torshify.Core.Native
 
         private void GetAudioBufferStatsCallback(IntPtr sessionPtr, IntPtr statsPtr)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
         }
 
         private void LoggedInCallback(IntPtr sessionPtr, Error error)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.QueueThis<NativeSession, SessionEventArgs>(
                 pc => pc.OnLoginComplete,
@@ -188,7 +200,10 @@ namespace Torshify.Core.Native
 
         private void LoggedOutCallback(IntPtr sessionPtr)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.QueueThis<NativeSession, SessionEventArgs>(
                 pc => pc.OnLogoutComplete,
@@ -198,7 +213,10 @@ namespace Torshify.Core.Native
 
         private void LogMessageCallback(IntPtr sessionPtr, string data)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.QueueThis<NativeSession, SessionEventArgs>(
                 pc => pc.OnLogMessage,
@@ -208,7 +226,10 @@ namespace Torshify.Core.Native
 
         private void MessageToUserCallback(IntPtr sessionPtr, string message)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.QueueThis<NativeSession, SessionEventArgs>(
                 pc => pc.OnMessageToUser,
@@ -218,7 +239,10 @@ namespace Torshify.Core.Native
 
         private void MetadataUpdatedCallback(IntPtr sessionPtr)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.QueueThis<NativeSession, SessionEventArgs>(
                 pc => pc.OnMetadataUpdated,
@@ -228,7 +252,10 @@ namespace Torshify.Core.Native
 
         private int MusicDeliveryCallback(IntPtr sessionPtr, IntPtr formatPtr, IntPtr framesPtr, int numFrames)
         {
-            if (sessionPtr != _session.Handle) return 0;
+            if (sessionPtr != _session.Handle)
+            {
+                return 0;
+            }
 
             byte[] samplesBytes = new byte[0];
             Spotify.SpotifyAudioFormat format = (Spotify.SpotifyAudioFormat)Marshal.PtrToStructure(formatPtr, typeof(Spotify.SpotifyAudioFormat));
@@ -247,14 +274,20 @@ namespace Torshify.Core.Native
 
         private void NotifyMainThreadCallback(IntPtr sessionPtr)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.OnNotifyMainThread();
         }
 
         private void PlayTokenLostCallback(IntPtr sessionPtr)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.QueueThis<NativeSession, SessionEventArgs>(
                 pc => pc.OnPlayTokenLost,
@@ -264,7 +297,10 @@ namespace Torshify.Core.Native
 
         private void StartPlaybackCallback(IntPtr sessionPtr)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.QueueThis<NativeSession, SessionEventArgs>(
                 pc => pc.OnStartPlayback,
@@ -274,7 +310,10 @@ namespace Torshify.Core.Native
 
         private void StopPlaybackCallback(IntPtr sessionPtr)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.QueueThis<NativeSession, SessionEventArgs>(
                 pc => pc.OnStopPlayback,
@@ -284,7 +323,10 @@ namespace Torshify.Core.Native
 
         private void StreamingErrorCallback(IntPtr sessionPtr, Error error)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.QueueThis<NativeSession, SessionEventArgs>(
                 pc => pc.OnStreamingError,
@@ -294,7 +336,10 @@ namespace Torshify.Core.Native
 
         private void UserinfoUpdatedCallback(IntPtr sessionPtr)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.QueueThis<NativeSession, SessionEventArgs>(
                 pc => pc.OnUserinfoUpdated,
@@ -304,7 +349,10 @@ namespace Torshify.Core.Native
 
         private void OfflineStatusUpdatedCallback(IntPtr sessionPtr)
         {
-            if (sessionPtr != _session.Handle) return;
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
 
             _session.QueueThis<NativeSession, SessionEventArgs>(
                 pc => pc.OnOfflineStatusUpdated,

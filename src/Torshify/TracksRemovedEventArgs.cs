@@ -4,11 +4,22 @@ namespace Torshify
 {
     public class TracksRemovedEventArgs : EventArgs
     {
-        public int[] TrackIndices { get; private set; }
+        #region Constructors
 
         public TracksRemovedEventArgs(int[] trackIndices)
         {
             TrackIndices = trackIndices;
         }
+
+        #endregion Constructors
+
+        #region Properties
+
+        public int[] TrackIndices
+        {
+            get; private set;
+        }
+
+        #endregion Properties
     }
 }

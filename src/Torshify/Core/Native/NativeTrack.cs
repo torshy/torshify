@@ -139,7 +139,6 @@ namespace Torshify.Core.Native
                     }
                     catch
                     {
-
                     }
                 }
             }
@@ -177,7 +176,7 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                lock(Spotify.Mutex)
+                lock (Spotify.Mutex)
                 {
                     return Spotify.sp_track_is_loaded(Handle);
                 }
@@ -235,7 +234,6 @@ namespace Torshify.Core.Native
                 {
                     _album.Value.Dispose();
                 }
-
             }
 
             // Dispose unmanaged
@@ -250,7 +248,6 @@ namespace Torshify.Core.Native
                 }
                 catch
                 {
-
                 }
                 finally
                 {

@@ -7,10 +7,10 @@ namespace Torshify.Core.Native
     {
         #region Fields
 
-        protected ImageLoadedCallback _imageLoaded;
-        protected Lazy<byte[]> _data;
-
         private readonly string _id;
+
+        private ImageLoadedCallback _imageLoaded;
+        private Lazy<byte[]> _dataLoadLazy;
 
         #endregion Fields
 
@@ -57,7 +57,7 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                return _data.Value;
+                return _dataLoadLazy.Value;
             }
         }
 
@@ -100,6 +100,30 @@ namespace Torshify.Core.Native
             }
         }
 
+        protected ImageLoadedCallback ImageLoaded
+        {
+            get
+            {
+                return _imageLoaded;
+            }
+            set
+            {
+                _imageLoaded = value;
+            }
+        }
+
+        protected Lazy<byte[]> DataLoadLazy
+        {
+            get
+            {
+                return _dataLoadLazy;
+            }
+            set
+            {
+                _dataLoadLazy = value;
+            }
+        }
+
         #endregion Properties
 
         #region Public Methods
@@ -109,7 +133,9 @@ namespace Torshify.Core.Native
             byte[] idArray = Spotify.StringToImageId(_id);
 
             if (idArray.Length != 20)
+            {
                 throw new Exception("Internal error in FromId");
+            }
 
             try
             {
@@ -118,7 +144,7 @@ namespace Torshify.Core.Native
                     Handle = Spotify.sp_image_create(Session.GetHandle(), idArray);
                 }
 
-                _data = new Lazy<byte[]>(GetImageData);
+                _dataLoadLazy = new Lazy<byte[]>(GetImageData);
                 _imageLoaded = OnImageLoadedCallback;
 
                 lock (Spotify.Mutex)
@@ -129,7 +155,6 @@ namespace Torshify.Core.Native
             }
             catch
             {
-
             }
         }
 
@@ -139,9 +164,9 @@ namespace Torshify.Core.Native
 
         protected override void Dispose(bool disposing)
         {
+            // Dipose managed
             if (disposing)
             {
-                // Dipose managed
             }
 
             if (!IsInvalid)
@@ -153,11 +178,9 @@ namespace Torshify.Core.Native
                         Spotify.sp_image_remove_load_callback(Handle, _imageLoaded, IntPtr.Zero);
                         Spotify.sp_image_release(Handle);
                     }
-
                 }
                 catch
                 {
-
                 }
                 finally
                 {
@@ -182,9 +205,14 @@ namespace Torshify.Core.Native
                 int length = lengthPtr.ToInt32();
 
                 if (dataPtr == IntPtr.Zero)
+                {
                     return null;
+                }
+
                 if (length == 0)
+                {
                     return new byte[0];
+                }
 
                 byte[] imageData = new byte[length];
                 Marshal.Copy(dataPtr, imageData, 0, length);
@@ -198,7 +226,10 @@ namespace Torshify.Core.Native
 
         protected void OnImageLoadedCallback(IntPtr imageptr, IntPtr userdataptr)
         {
-            if (imageptr != Handle) return;
+            if (imageptr != Handle)
+            {
+                return;
+            }
 
             this.QueueThis<NativeImage, EventArgs>(
                 image => image.OnImageLoaded,

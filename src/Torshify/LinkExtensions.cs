@@ -24,24 +24,26 @@ namespace Torshify
 
         public static ILink<ITrackAndOffset> ToLink(this ITrack track)
         {
-            return CreateLink<ITrackAndOffset>(() =>
-                                                {
-                                                    var wrapper = track as INativeObject;
-                                                    return wrapper == null ? IntPtr.Zero : wrapper.Handle;
-                                                },
-                                                track.Session,
-                                                h => Spotify.sp_link_create_from_track(h, 0));
+            return CreateLink<ITrackAndOffset>(
+                () =>
+                {
+                    var wrapper = track as INativeObject;
+                    return wrapper == null ? IntPtr.Zero : wrapper.Handle;
+                },
+                track.Session,
+                h => Spotify.sp_link_create_from_track(h, 0));
         }
 
         public static ILink<ITrackAndOffset> ToLink(this ITrack track, TimeSpan offset)
         {
-            return CreateLink<ITrackAndOffset>(() =>
-                                                {
-                                                    var wrapper = track as INativeObject;
-                                                    return wrapper == null ? IntPtr.Zero : wrapper.Handle;
-                                                },
-                                                track.Session,
-                                                h => Spotify.sp_link_create_from_track(h, (int)offset.TotalMilliseconds));
+            return CreateLink<ITrackAndOffset>(
+                () =>
+                {
+                    var wrapper = track as INativeObject;
+                    return wrapper == null ? IntPtr.Zero : wrapper.Handle;
+                },
+                track.Session,
+                h => Spotify.sp_link_create_from_track(h, (int)offset.TotalMilliseconds));
         }
 
         public static ILink<IAlbum> ToLink(this IAlbum album)
@@ -51,24 +53,26 @@ namespace Torshify
 
         public static ILink<IImage> AlbumCoverToLink(this IAlbum album)
         {
-            return CreateLink<IImage>(() =>
-                                          {
-                                              var wrapper = album as INativeObject;
-                                              return wrapper == null ? IntPtr.Zero : wrapper.Handle;
-                                          },
-                                          album.Session,
-                                          Spotify.sp_link_create_from_album_cover);
+            return CreateLink<IImage>(
+                () =>
+                {
+                    var wrapper = album as INativeObject;
+                    return wrapper == null ? IntPtr.Zero : wrapper.Handle;
+                },
+                album.Session,
+                Spotify.sp_link_create_from_album_cover);
         }
 
         public static ILink<IImage> ArtistPortraitToLink(this IArtistBrowse artistBrowse, int artistIndex)
         {
-            return CreateLink<IImage>(() =>
-                                        {
-                                            var wrapper = artistBrowse as INativeObject;
-                                            return wrapper == null ? IntPtr.Zero : wrapper.Handle;
-                                        },
-                                        artistBrowse.Session,
-                                        h => Spotify.sp_link_create_from_artist_portrait(h, artistIndex));
+            return CreateLink<IImage>(
+                () =>
+                {
+                    var wrapper = artistBrowse as INativeObject;
+                    return wrapper == null ? IntPtr.Zero : wrapper.Handle;
+                },
+                artistBrowse.Session,
+                h => Spotify.sp_link_create_from_artist_portrait(h, artistIndex));
         }
 
         public static ILink<IPlaylist> ToLink(this IPlaylist playlist)
@@ -97,7 +101,7 @@ namespace Torshify
                 linkPtr = Spotify.sp_link_create_from_search(wrapper.Handle);
             }
 
-            return (ILink<ISearch>) LinkManager.Get(wrapper.Session, linkPtr, search);
+            return (ILink<ISearch>)LinkManager.Get(wrapper.Session, linkPtr, search);
         }
 
         private static ILink<T> CreateLink<T>(T instance, Func<IntPtr, IntPtr> create)

@@ -42,7 +42,7 @@ namespace Torshify.Core
 
         internal void Execute()
         {
-            if(_handler != null)
+            if (_handler != null)
             {
                 _handler.DynamicInvoke(_args);
             }

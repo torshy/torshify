@@ -4,9 +4,28 @@ namespace Torshify
 {
     public class TrackCreatedChangedEventArgs : EventArgs
     {
-        public TrackCreatedChangedEventArgs(ITrack track, DateTime dtWhen)
+        #region Constructors
+
+        public TrackCreatedChangedEventArgs(ITrack track, DateTime when)
         {
-            
+            Track = track;
+            When = when;
         }
+
+        #endregion Constructors
+
+        #region Properties
+
+        public ITrack Track
+        {
+            get; private set;
+        }
+
+        public DateTime When
+        {
+            get; private set;
+        }
+
+        #endregion Properties
     }
 }

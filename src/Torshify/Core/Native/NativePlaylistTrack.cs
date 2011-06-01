@@ -71,11 +71,20 @@ namespace Torshify.Core.Native
         public override bool Equals(object obj)
         {
             if (obj == null)
+            {
                 return false;
+            }
+
             if (obj.GetType() == typeof(NativeTrack))
+            {
                 return base.Equals(obj);
+            }
+
             if (obj.GetType() != typeof(NativePlaylistTrack))
+            {
                 return false;
+            }
+
             NativePlaylistTrack pt = (NativePlaylistTrack)obj;
             return pt._playlist == _playlist && pt._position == _position;
         }

@@ -52,7 +52,7 @@ namespace Torshify.Core.Managers
 
         internal static void RemoveAll(ISession session)
         {
-            lock(_instanceLock)
+            lock (_instanceLock)
             {
                 List<KeyGen> keysToRemove = new List<KeyGen>();
 
@@ -69,7 +69,9 @@ namespace Torshify.Core.Managers
                     var i = _instances[keyGen];
 
                     if (keyGen.Item3 != PlaylistType.StartFolder || keyGen.Item3 != PlaylistType.EndFolder)
+                    {
                         i.Dispose();
+                    }
 
                     _instances.Remove(keyGen);
                 }

@@ -19,7 +19,6 @@ namespace Torshify.Core.Managers
             NativeSession session = new NativeSession(applicationKey, cacheLocation, settingsLocation, userAgent);
             session.Initialize();
             _sessions.Add(session.Handle, session);
-            //return new ManagedSession(session);
             return session;
         }
 

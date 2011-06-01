@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+
 using Torshify.Core.Native;
 
 namespace Torshify.Core.Managers
@@ -8,10 +9,13 @@ namespace Torshify.Core.Managers
     {
         #region Fields
 
-        private static Dictionary<IntPtr, NativeAlbum> _instances = new Dictionary<IntPtr, NativeAlbum>();
         private static readonly object _instanceLock = new object();
 
+        private static Dictionary<IntPtr, NativeAlbum> _instances = new Dictionary<IntPtr, NativeAlbum>();
+
         #endregion Fields
+
+        #region Internal Static Methods
 
         internal static IAlbum Get(ISession session, IntPtr handle)
         {
@@ -42,5 +46,7 @@ namespace Torshify.Core.Managers
                 }
             }
         }
+
+        #endregion Internal Static Methods
     }
 }

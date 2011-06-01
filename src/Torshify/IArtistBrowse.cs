@@ -4,15 +4,59 @@ namespace Torshify
 {
     public interface IArtistBrowse : ISessionObject
     {
-        bool IsLoaded { get; }
-        Error Error { get; }
-        IArtist Artist { get; }
-        IArray<IImage> Portraits { get; }
-        IArray<ITrack> Tracks { get; }
-        IArray<IAlbum> Albums { get; }
-        IArray<IArtist> SimilarArtists { get; }
-        string Biography { get; }
-        bool IsComplete { get; }
+        #region Events
+
         event EventHandler Completed;
+
+        #endregion Events
+
+        #region Properties
+
+        IArray<IAlbum> Albums
+        {
+            get;
+        }
+
+        IArtist Artist
+        {
+            get;
+        }
+
+        string Biography
+        {
+            get;
+        }
+
+        Error Error
+        {
+            get;
+        }
+
+        bool IsComplete
+        {
+            get;
+        }
+
+        bool IsLoaded
+        {
+            get;
+        }
+
+        IArray<IImage> Portraits
+        {
+            get;
+        }
+
+        IArray<IArtist> SimilarArtists
+        {
+            get;
+        }
+
+        IArray<ITrack> Tracks
+        {
+            get;
+        }
+
+        #endregion Properties
     }
 }
