@@ -139,6 +139,11 @@ namespace Torshify.Shell
                 .Search(query, 0, 25, 0, 25, 0, 25)
                 .WaitForCompletion();
 
+            if (!string.IsNullOrEmpty(search.DidYouMean))
+            {
+                ConsoleEx.WriteLine("Maybe you ment " + search.DidYouMean + "?", ConsoleColor.Magenta);
+            }
+
             for (int i = 0; i < search.Tracks.Count; i++)
             {
                 ITrack track = search.Tracks[i];
