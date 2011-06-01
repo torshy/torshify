@@ -23,7 +23,7 @@ namespace Torshify.Core.Native
 
                 lock(Spotify.Mutex)
                 {
-                    return Spotify.sp_user_canonical_name(Handle);
+                    return Spotify.GetString(Spotify.sp_user_canonical_name(Handle), string.Empty);
                 }
             }
         }
@@ -36,7 +36,7 @@ namespace Torshify.Core.Native
 
                 lock(Spotify.Mutex)
                 {
-                    return Spotify.sp_user_display_name(Handle);
+                    return Spotify.GetString(Spotify.sp_user_display_name(Handle), string.Empty);
                 }
             }
         }
@@ -62,7 +62,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.sp_user_full_name(Handle);
+                    return Spotify.GetString(Spotify.sp_user_full_name(Handle), string.Empty);
                 }
             }
         }
