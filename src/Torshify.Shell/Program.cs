@@ -132,11 +132,11 @@ namespace Torshify.Shell
         {
             ConsoleEx.WriteLine("=== Search ===", ConsoleColor.Cyan);
             ConsoleEx.Write("Query >> ", ConsoleColor.Green);
-            string queary = Console.ReadLine();
+            string query = Console.ReadLine();
 
             ConsoleEx.WriteLine("Searching..", ConsoleColor.Yellow);
             ISearch search = Session
-                .Search(queary, 0, 25, 0, 25, 0, 25)
+                .Search(query, 0, 25, 0, 25, 0, 25)
                 .WaitForCompletion();
 
             for (int i = 0; i < search.Tracks.Count; i++)
