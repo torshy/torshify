@@ -61,6 +61,7 @@ namespace Torshify.Shell
                     Console.WriteLine("2: Toplists");
                     Console.WriteLine("3: Playlists");
                     Console.WriteLine("4: Friends");
+                    Console.WriteLine("5: Radio");
                     Console.WriteLine("=================");
                 }
 
@@ -81,6 +82,9 @@ namespace Torshify.Shell
                         break;
                     case ConsoleKey.D4:
                         FriendsMenu();
+                        break;
+                    case ConsoleKey.D5:
+                        RadioMenu();
                         break;
                 }
 
@@ -181,6 +185,42 @@ namespace Torshify.Shell
                 ConsoleEx.Write("{0:00} : {1,-20}", ConsoleColor.White, (i + 1), ConsoleEx.Truncate(user.CanonicalName, 20));
                 ConsoleEx.Write(" {0,-16}", ConsoleColor.Gray, ConsoleEx.Truncate(user.DisplayName, 15));
                 ConsoleEx.WriteLine(" {0,-16}", ConsoleColor.DarkGray, ConsoleEx.Truncate(user.FullName, 15));
+            }
+        }
+
+        protected void RadioMenu()
+        {
+            ConsoleEx.WriteLine("=== Radio ===", ConsoleColor.Cyan);
+
+            string[] genres = Enum.GetNames(typeof (RadioGenre));
+            
+            for (int i = 0; i < genres.Length; i++)
+            {
+                string genre = genres[i];
+
+                ConsoleEx.WriteLine("{0:00} : {1,-20}", ConsoleColor.Cyan, (i + 1), genre);
+            }
+
+            ConsoleEx.Write("Choose radio genre >> ", ConsoleColor.Green);
+            var keyInfo = Console.ReadKey();
+            Console.Write(Environment.NewLine);
+
+            int index = int.Parse(keyInfo.KeyChar.ToString());
+            RadioGenre radioGenre;
+            RadioGenre.TryParse(genres[index], out radioGenre);
+
+            ISearch search = 
+                Session
+                    .Search(1990, DateTime.Now.Year, radioGenre)
+                    .WaitForCompletion();
+
+            for (int i = 0; i < search.Tracks.Count; i++)
+            {
+                ITrack track = search.Tracks[i];
+
+                ConsoleEx.Write("{0:00} : {1,-20}", ConsoleColor.White, (i + 1), ConsoleEx.Truncate(track.Name, 20));
+                ConsoleEx.Write(" {0,-16}", ConsoleColor.Gray, ConsoleEx.Truncate(track.Album.Artist.Name, 15));
+                ConsoleEx.WriteLine(" {0,-16}", ConsoleColor.DarkGray, ConsoleEx.Truncate(track.Album.Name, 15));
             }
         }
 
