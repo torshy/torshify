@@ -333,12 +333,12 @@ namespace Torshify.Core.Native
                 var numberOfSubscribers = Spotify.sp_playlist_num_subscribers(Handle);
 
                 var arrayPtr = IntPtr.Add(subscribersPtr, sizeof (uint));
-                var arrayPtrs = new IntPtr[numberOfSubscribers];
+                var arrayPtrs = new IntPtr[Math.Min(numberOfSubscribers, 500)];
                 Marshal.Copy(arrayPtr, arrayPtrs, 0, arrayPtrs.Length);
 
                 _subscribers.Clear();
 
-                for (int i = 0; i < Math.Min(numberOfSubscribers, 500); i++)
+                for (int i = 0; i < arrayPtrs.Length; i++)
                 {
                     string userName = Spotify.GetString(arrayPtrs[i], string.Empty);
 
