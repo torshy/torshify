@@ -37,7 +37,7 @@ namespace Torshify.Core.Native
         internal static extern IntPtr sp_toplistbrowse_create(
             IntPtr sessionPtr,
             ToplistType toplistType,
-            int toplistRegion, 
+            int toplistRegion,
             string userName,
             ToplistBrowseCompleteCallback completeCallback,
             IntPtr userDataPtr);

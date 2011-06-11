@@ -74,7 +74,7 @@ namespace Torshify.Core.Native
         /// <returns>Artist object</returns>
         [DllImport("libspotify")]
         internal static extern IntPtr sp_artistbrowse_artist(IntPtr artistBrowsePtr);
-        
+
         /// <summary>
         /// Given an artist browse object, return number of portraits available
         /// </summary>

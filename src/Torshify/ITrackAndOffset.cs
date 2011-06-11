@@ -4,7 +4,14 @@ namespace Torshify
 {
     public interface ITrackAndOffset
     {
-        ITrack Track { get; }
-        TimeSpan Offset { get; }
+        ITrack Track
+        {
+            get;
+        }
+
+        TimeSpan Offset
+        {
+            get;
+        }
     }
 }

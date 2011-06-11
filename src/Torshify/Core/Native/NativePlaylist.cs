@@ -13,7 +13,7 @@ namespace Torshify.Core.Native
         #region Fields
 
         private NativePlaylistCallbacks _callbacks;
-        private Lazy<DelegateList<IPlaylistTrack>> _tracks;
+        private Lazy<NativePlaylistTrackList> _tracks;
         private List<string> _subscribers;
 
         #endregion Fields
@@ -177,7 +177,7 @@ namespace Torshify.Core.Native
             }
         }
 
-        public IEditableArray<IPlaylistTrack> Tracks
+        public IPlaylistTrackList Tracks
         {
             get
             {
@@ -215,10 +215,11 @@ namespace Torshify.Core.Native
         public override void Initialize()
         {
             _callbacks = new NativePlaylistCallbacks(this);
-            _tracks = new Lazy<DelegateList<IPlaylistTrack>>(() => new DelegateList<IPlaylistTrack>(
+            _tracks = new Lazy<NativePlaylistTrackList>(() => new NativePlaylistTrackList(
                 GetNumberOfTracks,
                 GetTrackIndex,
                 AddTrack,
+                AddNewTrack,
                 RemoveTrack,
                 () => false));
 
@@ -408,6 +409,11 @@ namespace Torshify.Core.Native
         }
 
         private void AddTrack(IPlaylistTrack track, int index)
+        {
+            AddNewTrack(track, index);
+        }
+
+        private void AddNewTrack(ITrack arg1, int index)
         {
             IntPtr[] ptrArray = new IntPtr[1];
             IntPtr trackArrayPtr = Marshal.AllocHGlobal(Marshal.SizeOf(ptrArray));

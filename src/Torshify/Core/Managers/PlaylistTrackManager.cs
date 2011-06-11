@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Torshify.Core.Native;
 
 namespace Torshify.Core.Managers

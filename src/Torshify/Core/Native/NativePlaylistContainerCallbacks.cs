@@ -33,10 +33,10 @@ namespace Torshify.Core.Native
             lock (Spotify.Mutex)
             {
                 _callbacks = new PlaylistContainerCallbacks();
-                _callbacks.container_loaded = Marshal.GetFunctionPointerForDelegate(_containerLoaded);
-                _callbacks.playlist_added = Marshal.GetFunctionPointerForDelegate(_playlistAdded);
-                _callbacks.playlist_moved = Marshal.GetFunctionPointerForDelegate(_playlistMoved);
-                _callbacks.playlist_removed = Marshal.GetFunctionPointerForDelegate(_playlistRemoved);
+                _callbacks.ContainerLoaded = Marshal.GetFunctionPointerForDelegate(_containerLoaded);
+                _callbacks.PlaylistAdded = Marshal.GetFunctionPointerForDelegate(_playlistAdded);
+                _callbacks.PlaylistMoved = Marshal.GetFunctionPointerForDelegate(_playlistMoved);
+                _callbacks.PlaylistRemoved = Marshal.GetFunctionPointerForDelegate(_playlistRemoved);
 
                 Spotify.sp_playlistcontainer_add_callbacks(container.Handle, ref _callbacks, IntPtr.Zero);
             }
@@ -141,10 +141,10 @@ namespace Torshify.Core.Native
         [StructLayout(LayoutKind.Sequential)]
         internal struct PlaylistContainerCallbacks
         {
-            internal IntPtr playlist_added;
-            internal IntPtr playlist_removed;
-            internal IntPtr playlist_moved;
-            internal IntPtr container_loaded;
+            internal IntPtr PlaylistAdded;
+            internal IntPtr PlaylistRemoved;
+            internal IntPtr PlaylistMoved;
+            internal IntPtr ContainerLoaded;
         }
 
         #endregion Nested Types

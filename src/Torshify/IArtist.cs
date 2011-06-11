@@ -2,7 +2,18 @@ namespace Torshify
 {
     public interface IArtist : ISessionObject
     {
-        string Name { get; }
-        bool IsLoaded { get; }
+        #region Properties
+
+        bool IsLoaded
+        {
+            get;
+        }
+
+        string Name
+        {
+            get;
+        }
+
+        #endregion Properties
     }
 }

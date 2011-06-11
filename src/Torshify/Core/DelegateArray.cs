@@ -165,6 +165,7 @@ namespace Torshify.Core
                     _currentIndex = int.MaxValue;
                     return false;
                 }
+
                 return true;
             }
 

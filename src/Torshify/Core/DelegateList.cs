@@ -97,7 +97,7 @@ namespace Torshify.Core
         {
             bool found = false;
             int i = 0, size = GetLength();
-            
+
             while (!found && i < size)
             {
                 if (!this[i].Equals(item))
@@ -121,17 +121,17 @@ namespace Torshify.Core
         public override IArray<TResult> Cast<TResult>()
         {
             return new DelegateList<TResult>(
-                GetLength, 
+                GetLength,
                 index =>
                 {
                     object obj = GetIndex(index);
                     return (TResult)obj;
-                }, 
+                },
                 (value, index) =>
                 {
                     throw new InvalidOperationException();
-                }, 
-                _removeFunc, 
+                },
+                _removeFunc,
                 _readonlyFunc);
         }
 

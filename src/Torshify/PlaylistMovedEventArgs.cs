@@ -4,6 +4,8 @@ namespace Torshify
 {
     public class PlaylistMovedEventArgs : EventArgs
     {
+        #region Constructors
+
         public PlaylistMovedEventArgs(IPlaylist playlist, int oldIndex, int newIndex)
         {
             Playlist = playlist;
@@ -11,8 +13,25 @@ namespace Torshify
             NewIndex = newIndex;
         }
 
-        public IPlaylist Playlist { get; private set; }
-        public int OldIndex { get; private set; }
-        public int NewIndex { get; private set; }
+        #endregion Constructors
+
+        #region Properties
+
+        public IPlaylist Playlist
+        {
+            get; private set;
+        }
+
+        public int OldIndex
+        {
+            get; private set;
+        }
+
+        public int NewIndex
+        {
+            get; private set;
+        }
+
+        #endregion Properties
     }
 }

@@ -4,8 +4,24 @@ namespace Torshify
 {
     public interface IArray<T> : IEnumerable<T>
     {
-        int Count { get; }
-        T this[int index] { get; }
+        #region Properties
+
+        int Count
+        {
+            get;
+        }
+
+        T this[int index]
+        {
+            get;
+        }
+
+        #endregion Properties
+
+        #region Methods
+
         IArray<TResult> Cast<TResult>();
+
+        #endregion Methods
     }
 }

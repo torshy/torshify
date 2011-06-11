@@ -88,6 +88,7 @@
     <Compile Include="Core\Native\ErroneousArtist.cs" />
     <Compile Include="Core\Native\ErroneousTrack.cs" />
     <Compile Include="Core\Native\NativeImageLink.cs" />
+    <Compile Include="Core\Native\NativePlaylistTrackList.cs" />
     <Compile Include="Core\Native\NativeRadioSearch.cs" />
     <Compile Include="Core\Native\NativeSearchLink.cs" />
     <Compile Include="Core\Native\NativeUser.cs" />
@@ -117,44 +118,59 @@
     <Compile Include="Core\SessionExtensions.cs" />
     <Compile Include="Core\Native\Spotify.Toplists.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
+    <ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
     </Compile>
     <Compile Include="Core\Native\Spotify.Album.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
+    <ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
     </Compile>
     <Compile Include="Core\Native\Spotify.Artist.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
+    <ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
     </Compile>
-    <Compile Include="Core\Native\Spotify.cs" />
+    <Compile Include="Core\Native\Spotify.cs" >
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Core\Native\Spotify.Error.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Core\Native\Spotify.Image.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Core\Native\Spotify.Links.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Core\Native\Spotify.Playlist.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Core\Native\Spotify.PlaylistContainer.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Core\Native\Spotify.Search.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Core\Native\Spotify.Session.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Core\Native\Spotify.Tracks.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Core\Native\Spotify.Users.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="IArtistBrowse.cs" />
     <Compile Include="IInbox.cs" />
     <Compile Include="ILink of T.cs" />
+    <Compile Include="IPlaylistTrackList.cs" />
     <Compile Include="IToplistBrowse.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="OfflineSyncStatus.cs" />
@@ -217,7 +233,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\tools\StyleCop\StyleCop.Targets" />
-
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

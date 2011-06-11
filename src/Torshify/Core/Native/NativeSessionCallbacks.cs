@@ -9,8 +9,7 @@ namespace Torshify.Core.Native
 
         internal static readonly int CallbacksSize = Marshal.SizeOf(typeof(Spotify.SpotifySessionCallbacks));
 
-        internal readonly Spotify.SpotifySessionCallbacks _callbacks;
-
+        private readonly Spotify.SpotifySessionCallbacks _callbacks;
         private readonly NativeSession _session;
         private readonly ConnectionErrorDelegate _connectionError;
         private readonly EndOfTrackDelegate _endOfTrack;

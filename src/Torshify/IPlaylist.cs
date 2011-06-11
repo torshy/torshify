@@ -98,7 +98,7 @@ namespace Torshify
         /// <summary>
         /// Gets the tracks for this playlist
         /// </summary>
-        IEditableArray<IPlaylistTrack> Tracks
+        IPlaylistTrackList Tracks
         {
             get;
         }
