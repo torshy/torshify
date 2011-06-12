@@ -791,7 +791,7 @@ namespace Torshify.Core.Native
                         {
                             if (IsInvalid)
                             {
-                                throw new Exception();
+                                break;
                             }
 
                             Spotify.sp_session_process_events(Handle, out waitTime);
