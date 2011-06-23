@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Torshify.Core.Managers;
 
 namespace Torshify.Core.Native
 {
@@ -104,7 +105,7 @@ namespace Torshify.Core.Native
             _container.QueueThis<NativePlaylistContainer, PlaylistEventArgs>(
                 pc => pc.OnPlaylistAdded,
                 _container,
-                new PlaylistEventArgs(null, position));
+                new PlaylistEventArgs(PlaylistManager.Get(_container.Session, playlistptr), position));
         }
 
         private void OnPlaylistRemovedCallback(IntPtr containerPointer, IntPtr playlistptr, int position, IntPtr userdataptr)
@@ -117,7 +118,7 @@ namespace Torshify.Core.Native
             _container.QueueThis<NativePlaylistContainer, PlaylistEventArgs>(
                 pc => pc.OnPlaylistRemoved,
                 _container,
-                new PlaylistEventArgs(null, position));
+                new PlaylistEventArgs(PlaylistManager.Get(_container.Session, playlistptr), position));
         }
 
         private void OnPlaylistMovedCallback(IntPtr containerPointer, IntPtr playlistptr, int position, int newposition, IntPtr userdataptr)
@@ -127,11 +128,10 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            IContainerPlaylist playlist = _container.Playlists.FirstOrDefault(p => p.GetHandle() == playlistptr);
             _container.QueueThis<NativePlaylistContainer, PlaylistMovedEventArgs>(
                 pc => pc.OnPlaylistMoved,
                 _container,
-                new PlaylistMovedEventArgs(playlist, position, newposition));
+                new PlaylistMovedEventArgs(PlaylistManager.Get(_container.Session, playlistptr), position, newposition));
         }
 
         #endregion Private Methods
