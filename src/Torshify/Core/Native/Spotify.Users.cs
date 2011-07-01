@@ -26,8 +26,12 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="user">The Spotify user whose canonical username you would like a string representation of</param>
         /// <returns> A string representing the canonical username.</returns>
+        //[DllImport("libspotify")]
+        //internal static extern IntPtr sp_user_canonical_name(IntPtr user);
+
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_user_canonical_name(IntPtr user);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_user_canonical_name(IntPtr user);
 
         /// <summary>
         /// Get a pointer to a string representing the user's displayable username.
@@ -37,7 +41,8 @@ namespace Torshify.Core.Native
         /// <param name="user">The Spotify user whose displayable username you would like a string representation of</param>
         /// <returns>A string</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_user_display_name(IntPtr user);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_user_display_name(IntPtr user);
 
         /// <summary>
         /// Get load status for a user object. Before it is loaded, only the user's canonical username is known.
@@ -53,7 +58,8 @@ namespace Torshify.Core.Native
         /// <param name="user">The Spotify user whose displayable username you would like a string representation of</param>
         /// <returns>A string, NULL if the full name is not known.</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_user_full_name(IntPtr user);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_user_full_name(IntPtr user);
 
         /// <summary>
         /// Get a pointer to an URL for an picture representing the user

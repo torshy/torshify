@@ -22,7 +22,8 @@ namespace Torshify.Core.Native
         /// <returns>Name of artist. Returned string is valid as long as the artist object stays allocated
         /// and no longer than the next call to <c>sp_session_process_events()</c>.</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_artist_name(IntPtr artistPtr);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_artist_name(IntPtr artistPtr);
 
         /// <summary>
         /// Increase the reference count of an artist.

@@ -283,10 +283,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            this.QueueThis<NativeArtistBrowse, EventArgs>(
-                image => image.OnBrowseComplete,
-                this,
-                EventArgs.Empty);
+            this.QueueThis(() => OnBrowseComplete(new UserDataEventArgs(EventArgs.Empty)));
         }
 
         private void OnBrowseComplete(EventArgs e)

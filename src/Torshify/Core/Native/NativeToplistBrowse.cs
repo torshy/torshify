@@ -261,10 +261,7 @@ namespace Torshify.Core.Native
                 }
             }
 
-            this.QueueThis<NativeToplistBrowse, UserDataEventArgs>(
-                browse => browse.OnBrowseComplete,
-                this,
-                new UserDataEventArgs(userData));
+            this.QueueThis(() => OnBrowseComplete(new UserDataEventArgs(userData)));
         }
 
         private void OnBrowseComplete(UserDataEventArgs args)

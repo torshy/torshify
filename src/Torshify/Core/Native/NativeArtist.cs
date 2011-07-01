@@ -25,7 +25,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_artist_name(Handle), string.Empty);
+                    return Spotify.sp_artist_name(Handle);
                 }
             }
         }

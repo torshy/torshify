@@ -157,10 +157,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _session.QueueThis<NativeSession, SessionEventArgs>(
-                pc => pc.OnConnectionError,
-                _session,
-                new SessionEventArgs(error));
+            _session.Queue(new DelegateInvoker(() => _session.OnConnectionError(new SessionEventArgs(error))));
         }
 
         private void EndOfTrackCallback(IntPtr sessionPtr)
@@ -170,10 +167,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _session.QueueThis<NativeSession, SessionEventArgs>(
-                pc => pc.OnEndOfTrack,
-                _session,
-                new SessionEventArgs("End of track"));
+            _session.Queue(new DelegateInvoker(() => _session.OnEndOfTrack(new SessionEventArgs("End of track"))));
         }
 
         private void GetAudioBufferStatsCallback(IntPtr sessionPtr, IntPtr statsPtr)
@@ -191,10 +185,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _session.QueueThis<NativeSession, SessionEventArgs>(
-                pc => pc.OnLoginComplete,
-                _session,
-                new SessionEventArgs(error));
+            _session.Queue(new DelegateInvoker(() => _session.OnLoginComplete(new SessionEventArgs(error))));
         }
 
         private void LoggedOutCallback(IntPtr sessionPtr)
@@ -204,10 +195,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _session.QueueThis<NativeSession, SessionEventArgs>(
-                pc => pc.OnLogoutComplete,
-                _session,
-                new SessionEventArgs("Logged out"));
+            _session.Queue(new DelegateInvoker(() => _session.OnLogoutComplete(new SessionEventArgs("Logged out"))));
         }
 
         private void LogMessageCallback(IntPtr sessionPtr, string data)
@@ -217,10 +205,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _session.QueueThis<NativeSession, SessionEventArgs>(
-                pc => pc.OnLogMessage,
-                _session,
-                new SessionEventArgs(data));
+            _session.Queue(new DelegateInvoker(() => _session.OnLogMessage(new SessionEventArgs(data))));
         }
 
         private void MessageToUserCallback(IntPtr sessionPtr, string message)
@@ -230,10 +215,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _session.QueueThis<NativeSession, SessionEventArgs>(
-                pc => pc.OnMessageToUser,
-                _session,
-                new SessionEventArgs(message));
+            _session.Queue(new DelegateInvoker(() => _session.OnMessageToUser(new SessionEventArgs(message))));
         }
 
         private void MetadataUpdatedCallback(IntPtr sessionPtr)
@@ -243,10 +225,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _session.QueueThis<NativeSession, SessionEventArgs>(
-                pc => pc.OnMetadataUpdated,
-                _session,
-                new SessionEventArgs("Metadata updated"));
+            _session.Queue(new DelegateInvoker(() => _session.OnMetadataUpdated(new SessionEventArgs("Metadata updated"))));
         }
 
         private int MusicDeliveryCallback(IntPtr sessionPtr, IntPtr formatPtr, IntPtr framesPtr, int numFrames)
@@ -288,10 +267,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _session.QueueThis<NativeSession, SessionEventArgs>(
-                pc => pc.OnPlayTokenLost,
-                _session,
-                new SessionEventArgs("Player token lost"));
+            _session.Queue(new DelegateInvoker(() => _session.OnPlayTokenLost(new SessionEventArgs("Player token lost"))));
         }
 
         private void StartPlaybackCallback(IntPtr sessionPtr)
@@ -301,10 +277,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _session.QueueThis<NativeSession, SessionEventArgs>(
-                pc => pc.OnStartPlayback,
-                _session,
-                new SessionEventArgs("Playback started"));
+            _session.Queue(new DelegateInvoker(() => _session.OnStartPlayback(new SessionEventArgs(Error.OK))));
         }
 
         private void StopPlaybackCallback(IntPtr sessionPtr)
@@ -314,10 +287,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _session.QueueThis<NativeSession, SessionEventArgs>(
-                pc => pc.OnStopPlayback,
-                _session,
-                new SessionEventArgs("Playback stopped"));
+            _session.Queue(new DelegateInvoker(() => _session.OnStopPlayback(new SessionEventArgs(Error.OK))));
         }
 
         private void StreamingErrorCallback(IntPtr sessionPtr, Error error)
@@ -327,10 +297,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _session.QueueThis<NativeSession, SessionEventArgs>(
-                pc => pc.OnStreamingError,
-                _session,
-                new SessionEventArgs(error));
+            _session.Queue(new DelegateInvoker(() => _session.OnStreamingError(new SessionEventArgs(error))));
         }
 
         private void UserinfoUpdatedCallback(IntPtr sessionPtr)
@@ -340,10 +307,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _session.QueueThis<NativeSession, SessionEventArgs>(
-                pc => pc.OnUserinfoUpdated,
-                _session,
-                new SessionEventArgs("User info updated"));
+            _session.Queue(new DelegateInvoker(() => _session.OnUserinfoUpdated(new SessionEventArgs(Error.OK))));
         }
 
         private void OfflineStatusUpdatedCallback(IntPtr sessionPtr)
@@ -353,10 +317,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _session.QueueThis<NativeSession, SessionEventArgs>(
-                pc => pc.OnOfflineStatusUpdated,
-                _session,
-                new SessionEventArgs("Offline status updated"));
+           _session.Queue(new DelegateInvoker(() => _session.OnOfflineStatusUpdated(new SessionEventArgs(Error.OK))));
         }
 
         #endregion Private Methods

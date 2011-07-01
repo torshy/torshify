@@ -1,8 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
 
-using Torshify.Core;
-
 namespace Torshify.Core.Native
 {
     internal class NativeSearchCallbacks : IDisposable
@@ -89,10 +87,7 @@ namespace Torshify.Core.Native
                 }
             }
 
-            _search.QueueThis<NativeSearch, SearchEventArgs>(
-                s => s.OnComplete,
-                _search,
-                new SearchEventArgs(userData));
+            _search.QueueThis(() => _search.OnComplete(new SearchEventArgs(userData)));
         }
 
         #endregion Private Methods

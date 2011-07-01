@@ -70,9 +70,7 @@
     <Compile Include="Core\DelegateInvoker.cs" />
     <Compile Include="Core\DelegateList.cs" />
     <Compile Include="Core\EventExtensions.cs" />
-    <Compile Include="Core\IManagedObject.cs" />
     <Compile Include="Core\INativeObject.cs" />
-    <Compile Include="Core\ManagedObject.cs" />
     <Compile Include="Core\Managers\AlbumManager.cs" />
     <Compile Include="Core\Managers\ArtistManager.cs" />
     <Compile Include="Core\Managers\ContainerPlaylistManager.cs" />
@@ -118,17 +116,17 @@
     <Compile Include="Core\SessionExtensions.cs" />
     <Compile Include="Core\Native\Spotify.Toplists.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
-    <ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Core\Native\Spotify.Album.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
-    <ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Core\Native\Spotify.Artist.cs">
       <DependentUpon>Spotify.cs</DependentUpon>
-    <ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Core\Native\Spotify.cs" >
+    <Compile Include="Core\Native\Spotify.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Core\Native\Spotify.Error.cs">

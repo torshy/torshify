@@ -107,10 +107,7 @@ namespace Torshify.Core.Native
 
             string imageId = Spotify.ImageIdToString(imgidptr);
 
-            _playlist.QueueThis<NativePlaylist, ImageEventArgs>(
-                    pc => pc.OnImageChanged,
-                    _playlist,
-                    new ImageEventArgs(imageId));
+            _playlist.QueueThis(() => _playlist.OnImageChanged(new ImageEventArgs(imageId)));
         }
 
         private void OnDescriptionChangedCallback(IntPtr playlistPtr, IntPtr descptr, IntPtr userdataptr)
@@ -122,10 +119,7 @@ namespace Torshify.Core.Native
 
             string description = Spotify.GetString(descptr, string.Empty);
 
-            _playlist.QueueThis<NativePlaylist, DescriptionEventArgs>(
-                    pc => pc.OnDescriptionChanged,
-                    _playlist,
-                    new DescriptionEventArgs(description));
+            _playlist.QueueThis(() => _playlist.OnDescriptionChanged(new DescriptionEventArgs(description)));
         }
 
         private void OnTrackSeenChangedCallback(IntPtr playlistPtr, int position, bool seen, IntPtr userdataptr)
@@ -137,10 +131,7 @@ namespace Torshify.Core.Native
 
             ITrack track = TrackManager.Get(_playlist.Session, Spotify.sp_playlist_track(playlistPtr, position));
 
-            _playlist.QueueThis<NativePlaylist, TrackSeenEventArgs>(
-                    pc => pc.OnTrackSeenChanged,
-                    _playlist,
-                    new TrackSeenEventArgs(track, seen));
+            _playlist.QueueThis(() => _playlist.OnTrackSeenChanged(new TrackSeenEventArgs(track, seen)));
         }
 
         private void OnTrackCreatedChangedCallback(IntPtr playlistPtr, int position, IntPtr userptr, int when, IntPtr userdataptr)
@@ -153,10 +144,7 @@ namespace Torshify.Core.Native
             ITrack track = TrackManager.Get(_playlist.Session, Spotify.sp_playlist_track(playlistPtr, position));
             DateTime dtWhen = new DateTime(TimeSpan.FromSeconds(when).Ticks, DateTimeKind.Utc);
 
-            _playlist.QueueThis<NativePlaylist, TrackCreatedChangedEventArgs>(
-                    pc => pc.OnTrackCreatedChanged,
-                    _playlist,
-                    new TrackCreatedChangedEventArgs(track, dtWhen));
+            _playlist.QueueThis(() => _playlist.OnTrackCreatedChanged(new TrackCreatedChangedEventArgs(track, dtWhen)));
         }
 
         private void OnMetadataUpdatedCallback(IntPtr playlistPtr, IntPtr userdataptr)
@@ -166,10 +154,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _playlist.QueueThis<NativePlaylist, EventArgs>(
-                    pc => pc.OnMetadataUpdated,
-                    _playlist,
-                    EventArgs.Empty);
+            _playlist.QueueThis(() => _playlist.OnMetadataUpdated(EventArgs.Empty));
         }
 
         private void OnUpdateInProgressCallback(IntPtr playlistPtr, bool done, IntPtr userdataptr)
@@ -179,10 +164,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _playlist.QueueThis<NativePlaylist, PlaylistUpdateEventArgs>(
-                    pc => pc.OnUpdateInProgress,
-                    _playlist,
-                    new PlaylistUpdateEventArgs(done));
+            _playlist.QueueThis(() => _playlist.OnUpdateInProgress(new PlaylistUpdateEventArgs(done)));
         }
 
         private void OnStateChangedCallback(IntPtr playlistPtr, IntPtr userdataptr)
@@ -192,10 +174,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _playlist.QueueThis<NativePlaylist, EventArgs>(
-                    pc => pc.OnStateChanged,
-                    _playlist,
-                    EventArgs.Empty);
+            _playlist.QueueThis(() => _playlist.OnStateChanged(EventArgs.Empty));
         }
 
         private void OnRenamedCallback(IntPtr playlistPtr, IntPtr userdataptr)
@@ -205,10 +184,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _playlist.QueueThis<NativePlaylist, EventArgs>(
-                    pc => pc.OnRenamed,
-                    _playlist,
-                    EventArgs.Empty);
+            _playlist.QueueThis(() => _playlist.OnRenamed(EventArgs.Empty));
         }
 
         private void OnTracksMovedCallback(IntPtr playlistPtr, IntPtr trackIndicesPtr, int numTracks, int newPosition, IntPtr userdataptr)
@@ -221,10 +197,7 @@ namespace Torshify.Core.Native
             int[] trackIndices = new int[numTracks];
             Marshal.Copy(trackIndicesPtr, trackIndices, 0, numTracks);
 
-            _playlist.QueueThis<NativePlaylist, TracksMovedEventArgs>(
-                    pc => pc.OnTracksMoved,
-                    _playlist,
-                    new TracksMovedEventArgs(trackIndices, newPosition));
+            _playlist.QueueThis(() => _playlist.OnTracksMoved(new TracksMovedEventArgs(trackIndices, newPosition)));
         }
 
         private void OnTracksRemovedCallback(IntPtr playlistPtr, IntPtr trackIndicesPtr, int numTracks, IntPtr userdataptr)
@@ -237,10 +210,7 @@ namespace Torshify.Core.Native
             int[] trackIndices = new int[numTracks];
             Marshal.Copy(trackIndicesPtr, trackIndices, 0, numTracks);
 
-            _playlist.QueueThis<NativePlaylist, TracksRemovedEventArgs>(
-                    pc => pc.OnTracksRemoved,
-                    _playlist,
-                    new TracksRemovedEventArgs(trackIndices));
+            _playlist.QueueThis(() => _playlist.OnTracksRemoved(new TracksRemovedEventArgs(trackIndices)));
         }
 
         private void OnTracksAddedCallback(IntPtr playlistPtr, IntPtr tracksPtr, int numTracks, int position, IntPtr userdataptr)
@@ -261,10 +231,7 @@ namespace Torshify.Core.Native
                 tracks[i] = TrackManager.Get(_playlist.Session, trackPtrs[i]);
             }
 
-            _playlist.QueueThis<NativePlaylist, TracksAddedEventArgs>(
-                    pc => pc.OnTracksAdded,
-                    _playlist,
-                    new TracksAddedEventArgs(trackIndices, tracks));
+            _playlist.QueueThis(() => _playlist.OnTracksAdded(new TracksAddedEventArgs(trackIndices, tracks)));
         }
 
         private void OnSubscribersChangedCallback(IntPtr playlistPtr, IntPtr userdataptr)
@@ -274,10 +241,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _playlist.QueueThis<NativePlaylist, EventArgs>(
-                    pc => pc.OnSubscribersChanged,
-                    _playlist,
-                    EventArgs.Empty);
+            _playlist.QueueThis(() => _playlist.OnSubscribersChanged(EventArgs.Empty));
         }
 
         #endregion Private Methods

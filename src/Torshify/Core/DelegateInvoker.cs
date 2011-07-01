@@ -1,5 +1,4 @@
 using System;
-using System.Linq.Expressions;
 
 namespace Torshify.Core
 {
@@ -7,47 +6,29 @@ namespace Torshify.Core
     {
         #region Fields
 
-        private readonly object[] _args;
-        private readonly Delegate _handler;
+        private readonly Action _invoker;
 
         #endregion Fields
 
         #region Constructors
 
-        internal DelegateInvoker(Delegate handler, params object[] args)
+        internal DelegateInvoker(Action invoker)
         {
-            _handler = handler;
-            _args = args;
+            _invoker = invoker;
         }
 
         #endregion Constructors
 
-        #region Public Static Methods
+        #region Methods
 
-        public static Delegate CreateDelegate<T, TEventArgs>(Expression<Func<T, Action<TEventArgs>>> expr, T s)
-            where TEventArgs : EventArgs
+        internal virtual void Execute()
         {
-            return expr.Compile().Invoke(s);
-        }
-
-        public static DelegateInvoker CreateInvoker<T, TEventArgs>(Expression<Func<T, Action<TEventArgs>>> expr, T s, params object[] args)
-            where TEventArgs : EventArgs
-        {
-            return new DelegateInvoker(CreateDelegate(expr, s), args);
-        }
-
-        #endregion Public Static Methods
-
-        #region Internal Methods
-
-        internal void Execute()
-        {
-            if (_handler != null)
+            if (_invoker != null)
             {
-                _handler.DynamicInvoke(_args);
+                _invoker();
             }
         }
 
-        #endregion Internal Methods
+        #endregion Methods
     }
 }

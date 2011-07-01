@@ -63,6 +63,63 @@ namespace Torshify.Core.Native
             return string.Empty;
         }
 
+        public class MarshalPtrToUtf8 : ICustomMarshaler
+        {
+            static MarshalPtrToUtf8 marshaler = new MarshalPtrToUtf8();
+
+            public void CleanUpManagedData(object ManagedObj)
+            {
+
+            }
+
+            public void CleanUpNativeData(IntPtr pNativeData)
+            {
+                Marshal.Release(pNativeData);
+            }
+
+            public int GetNativeDataSize()
+            {
+                return Marshal.SizeOf(typeof(byte));
+            }
+
+            public int GetNativeDataSize(IntPtr ptr)
+            {
+                int size = 0;
+                for (size = 0; Marshal.ReadByte(ptr, size) > 0; size++)
+                    ;
+                return size;
+            }
+
+            public IntPtr MarshalManagedToNative(object ManagedObj)
+            {
+                if (ManagedObj == null)
+                    return IntPtr.Zero;
+                if (ManagedObj.GetType() != typeof(string))
+                    throw new ArgumentException("ManagedObj", "Can only marshal type of System.String");
+                byte[] array = Encoding.UTF8.GetBytes((string)ManagedObj);
+                int size = Marshal.SizeOf(array[0]) * array.Length + Marshal.SizeOf(array[0]);
+                IntPtr ptr = Marshal.AllocHGlobal(size);
+                Marshal.Copy(array, 0, ptr, array.Length);
+                Marshal.WriteByte(ptr, size - 1, 0);
+                return ptr;
+            }
+
+            public object MarshalNativeToManaged(IntPtr pNativeData)
+            {
+                if (pNativeData == IntPtr.Zero)
+                    return null;
+                int size = GetNativeDataSize(pNativeData);
+                byte[] array = new byte[size - 1];
+                Marshal.Copy(pNativeData, array, 0, size - 1);
+                return Encoding.UTF8.GetString(array);
+            }
+
+            public static ICustomMarshaler GetInstance(string cookie)
+            {
+                return marshaler;
+            }
+        }
+
         internal static string ImageIdToString(IntPtr idPtr)
         {
             if (idPtr == IntPtr.Zero)

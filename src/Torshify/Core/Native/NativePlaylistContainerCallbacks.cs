@@ -1,6 +1,6 @@
 using System;
-using System.Linq;
 using System.Runtime.InteropServices;
+
 using Torshify.Core.Managers;
 
 namespace Torshify.Core.Native
@@ -89,10 +89,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _container.QueueThis<NativePlaylistContainer, EventArgs>(
-                pc => pc.OnLoaded,
-                _container,
-                EventArgs.Empty);
+            _container.QueueThis(() => _container.OnLoaded(EventArgs.Empty));
         }
 
         private void OnPlaylistAddedCallback(IntPtr containerPointer, IntPtr playlistptr, int position, IntPtr userdataptr)
@@ -102,10 +99,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _container.QueueThis<NativePlaylistContainer, PlaylistEventArgs>(
-                pc => pc.OnPlaylistAdded,
-                _container,
-                new PlaylistEventArgs(PlaylistManager.Get(_container.Session, playlistptr), position));
+            _container.QueueThis(() => _container.OnPlaylistAdded(new PlaylistEventArgs(PlaylistManager.Get(_container.Session, playlistptr), position)));
         }
 
         private void OnPlaylistRemovedCallback(IntPtr containerPointer, IntPtr playlistptr, int position, IntPtr userdataptr)
@@ -115,10 +109,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _container.QueueThis<NativePlaylistContainer, PlaylistEventArgs>(
-                pc => pc.OnPlaylistRemoved,
-                _container,
-                new PlaylistEventArgs(PlaylistManager.Get(_container.Session, playlistptr), position));
+            _container.QueueThis(() => _container.OnPlaylistRemoved(new PlaylistEventArgs(PlaylistManager.Get(_container.Session, playlistptr), position)));
         }
 
         private void OnPlaylistMovedCallback(IntPtr containerPointer, IntPtr playlistptr, int position, int newposition, IntPtr userdataptr)
@@ -128,10 +119,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _container.QueueThis<NativePlaylistContainer, PlaylistMovedEventArgs>(
-                pc => pc.OnPlaylistMoved,
-                _container,
-                new PlaylistMovedEventArgs(PlaylistManager.Get(_container.Session, playlistptr), position, newposition));
+            _container.QueueThis(() => _container.OnPlaylistMoved(new PlaylistMovedEventArgs(PlaylistManager.Get(_container.Session, playlistptr), position, newposition)));
         }
 
         #endregion Private Methods

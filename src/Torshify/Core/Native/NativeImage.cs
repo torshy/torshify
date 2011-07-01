@@ -238,10 +238,7 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            this.QueueThis<NativeImage, EventArgs>(
-                image => image.OnImageLoaded,
-                this,
-                EventArgs.Empty);
+            this.QueueThis(() => OnImageLoaded(EventArgs.Empty));
         }
 
         #endregion Protected Methods

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
 
 using Torshify.Core.Native;
 
@@ -7,35 +6,20 @@ namespace Torshify.Core
 {
     internal static class SessionExtensions
     {
-        public static void QueueThis<T, TEventArgs>(this NativeSession session, Expression<Func<T, Action<TEventArgs>>> expr, T s, params object[] args)
-            where TEventArgs : EventArgs
+        public static void QueueThis(this INativeObject nativeObject, Action action)
         {
-            session.Queue(DelegateInvoker.CreateInvoker(expr, s, args));
+            QueueThis(nativeObject, new DelegateInvoker(action));
         }
 
-        public static void QueueThis<T, TEventArgs>(this INativeObject nativeObject, Expression<Func<T, Action<TEventArgs>>> expr, T s, params object[] args)
-            where TEventArgs : EventArgs
+        public static void QueueThis(this INativeObject nativeObject, DelegateInvoker invoker)
         {
-            NativeSession nativeSession = nativeObject.Session as NativeSession;
-            nativeSession.QueueThis(expr, s, args);
-        }
-
-        public static void QueueThis<T, TEventArgs>(this IManagedObject managedObject, Expression<Func<T, Action<TEventArgs>>> expr, T s, params object[] args)
-            where TEventArgs : EventArgs
-        {
-            NativeSession nativeSession = managedObject.NativeObject.Session as NativeSession;
-            nativeSession.QueueThis(expr, s, args);
+            NativeSession nativeSession = (NativeSession)nativeObject.Session;
+            nativeSession.Queue(invoker);
         }
 
         public static IntPtr GetHandle(this ISession session)
         {
             INativeObject nativeObject = session as INativeObject;
-            IManagedObject managedObject = session as IManagedObject;
-
-            if (managedObject != null)
-            {
-                return managedObject.NativeObject.Handle;
-            }
 
             if (nativeObject != null)
             {
@@ -48,12 +32,6 @@ namespace Torshify.Core
         public static IntPtr GetHandle(this ISessionObject sessionObject)
         {
             INativeObject nativeObject = sessionObject as INativeObject;
-            IManagedObject managedObject = sessionObject as IManagedObject;
-
-            if (managedObject != null)
-            {
-                return managedObject.NativeObject.Handle;
-            }
 
             if (nativeObject != null)
             {
