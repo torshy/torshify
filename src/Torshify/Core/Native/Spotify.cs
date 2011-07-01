@@ -67,6 +67,8 @@ namespace Torshify.Core.Native
         {
             static MarshalPtrToUtf8 marshaler = new MarshalPtrToUtf8();
 
+            private bool _allocated;
+
             public void CleanUpManagedData(object ManagedObj)
             {
 
@@ -74,12 +76,15 @@ namespace Torshify.Core.Native
 
             public void CleanUpNativeData(IntPtr pNativeData)
             {
-                Marshal.FreeHGlobal(pNativeData);
+                if (_allocated)
+                {
+                    Marshal.FreeHGlobal(pNativeData);
+                }
             }
 
             public int GetNativeDataSize()
             {
-                return Marshal.SizeOf(typeof(byte));
+                return -1;
             }
 
             public int GetNativeDataSize(IntPtr ptr)
@@ -104,7 +109,7 @@ namespace Torshify.Core.Native
 
                 Marshal.Copy(array, 0, ptr, array.Length);
                 Marshal.WriteByte(ptr, array.Length, 0);
-
+                _allocated = true;
                 return ptr;
             }
 
