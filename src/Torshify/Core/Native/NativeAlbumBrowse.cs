@@ -40,7 +40,8 @@ namespace Torshify.Core.Native
 
         public bool IsComplete
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public IAlbum Album
@@ -165,14 +166,11 @@ namespace Torshify.Core.Native
                     lock (Spotify.Mutex)
                     {
                         Spotify.sp_albumbrowse_release(Handle);
+                        Handle = IntPtr.Zero;
                     }
                 }
                 catch
                 {
-                }
-                finally
-                {
-                    Handle = IntPtr.Zero;
                 }
             }
 

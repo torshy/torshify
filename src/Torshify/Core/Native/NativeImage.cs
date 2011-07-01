@@ -67,9 +67,16 @@ namespace Torshify.Core.Native
             {
                 AssertHandle();
 
-                lock (Spotify.Mutex)
+                try
                 {
-                    return Spotify.sp_image_error(Handle);
+                    lock (Spotify.Mutex)
+                    {
+                        return Spotify.sp_image_error(Handle);
+                    }
+                }
+                catch
+                {
+                    return Error.OtherTransient;
                 }
             }
         }
