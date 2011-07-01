@@ -126,7 +126,8 @@ namespace Torshify.Core.Native
         /// <param name="searchPtr">A search object.</param>
         /// <returns>The search query for the given search object.</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_search_query(IntPtr searchPtr);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_search_query(IntPtr searchPtr);
 
         /// <summary>
         /// Return the "Did you mean" query for the given search object.
@@ -134,7 +135,8 @@ namespace Torshify.Core.Native
         /// <param name="searchPtr">A search object.</param>
         /// <returns>The "Did you mean" query for the given search object, or the empty string if no such info is available.</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_search_did_you_mean(IntPtr searchPtr);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_search_did_you_mean(IntPtr searchPtr);
 
         /// <summary>
         /// Return the total number of tracks for the search query - regardless of the interval requested at creation.

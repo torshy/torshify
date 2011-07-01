@@ -1485,15 +1485,6 @@
     <milliseconds>830</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="NativeAlbum.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>811</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="ArtistExtensions.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2011 19:39:51</timestamp>
@@ -1557,15 +1548,6 @@
     <milliseconds>653</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="NativeAlbumBrowse.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>07/01/2011 21:09:17</timestamp>
-    <milliseconds>21</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="NativePlaylistContainerCallbacks.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2011 19:39:51</timestamp>
@@ -1620,24 +1602,6 @@
     <milliseconds>602</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="NativeSearch.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>828</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="NativePlaylist.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/30/2011 20:22:02</timestamp>
-    <milliseconds>129</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="NativeTrackAndOffsetLink.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2011 19:39:51</timestamp>
@@ -1654,15 +1618,6 @@
     </settings>
     <timestamp>06/21/2011 19:39:51</timestamp>
     <milliseconds>838</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="NativeTrack.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>835</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="NativeToplistBrowse.cs" parser="StyleCop.CSharp.CsParser">
@@ -1906,15 +1861,6 @@
     </settings>
     <timestamp>06/21/2011 19:39:51</timestamp>
     <milliseconds>880</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="NativeArtistBrowse.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>07/01/2011 21:11:26</timestamp>
-    <milliseconds>506</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="LinkExtensions.cs" parser="StyleCop.CSharp.CsParser">
@@ -2223,9 +2169,6 @@
     <milliseconds>261</milliseconds>
     <violations />
   </sourcecode>
-  <project key="1403417745">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="NativeUser.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2011 19:39:51</timestamp>
@@ -2235,6 +2178,54 @@
     <milliseconds>950</milliseconds>
     <violations />
   </sourcecode>
+  <sourcecode name="NativeAlbum.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/01/2011 21:47:26</timestamp>
+    <milliseconds>675</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeAlbumBrowse.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/01/2011 21:50:00</timestamp>
+    <milliseconds>754</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeArtistBrowse.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/01/2011 21:49:59</timestamp>
+    <milliseconds>850</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="1403417745">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="NativeSearch.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/01/2011 21:56:37</timestamp>
+    <milliseconds>96</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativePlaylist.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/01/2011 21:55:55</timestamp>
+    <milliseconds>467</milliseconds>
+    <violations />
+  </sourcecode>
   <sourcecode name="SessionExtensions.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2011 19:39:51</timestamp>
@@ -2242,6 +2233,15 @@
     </settings>
     <timestamp>07/01/2011 18:14:28</timestamp>
     <milliseconds>886</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeTrack.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/01/2011 21:56:56</timestamp>
+    <milliseconds>9</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

@@ -85,7 +85,7 @@ namespace Torshify.Core.Native
             public int GetNativeDataSize(IntPtr ptr)
             {
                 int size = 0;
-                for (size = 0; Marshal.ReadByte(ptr, size) > 0; size++)
+                for (size = 0; Marshal.ReadByte(ptr, size) != 0; size++)
                     ;
                 return size;
             }
@@ -100,7 +100,7 @@ namespace Torshify.Core.Native
                 int size = Marshal.SizeOf(array[0]) * array.Length + Marshal.SizeOf(array[0]);
                 IntPtr ptr = Marshal.AllocHGlobal(size);
                 Marshal.Copy(array, 0, ptr, array.Length);
-                Marshal.WriteByte(ptr, size - 1, 0);
+                Marshal.WriteByte(ptr, size, 0);
                 return ptr;
             }
 
@@ -109,8 +109,8 @@ namespace Torshify.Core.Native
                 if (pNativeData == IntPtr.Zero)
                     return null;
                 int size = GetNativeDataSize(pNativeData);
-                byte[] array = new byte[size - 1];
-                Marshal.Copy(pNativeData, array, 0, size - 1);
+                byte[] array = new byte[size];
+                Marshal.Copy(pNativeData, array, 0, size);
                 return Encoding.UTF8.GetString(array);
             }
 

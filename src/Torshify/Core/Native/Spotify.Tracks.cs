@@ -114,7 +114,8 @@ namespace Torshify.Core.Native
         /// no longer than the next call to <c>sp_session_process_events()</c>.
         /// If no metadata is available for the track yet, this function returns empty string. </returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_track_name(IntPtr trackPtr);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_track_name(IntPtr trackPtr);
 
         /// <summary>
         /// The duration, in milliseconds, of the specified track.

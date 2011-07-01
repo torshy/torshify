@@ -152,7 +152,8 @@ namespace Torshify.Core.Native
         /// <param name="browsePtr">Artist browse object</param>
         /// <returns>Biography string in UTF-8 format. Returned string is valid as long as the album object stays allocated and no longer than the next call to sp_session_process_events()</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_artistbrowse_biography(IntPtr browsePtr);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_artistbrowse_biography(IntPtr browsePtr);
 
         /// <summary>
         /// Increase the reference count of an artist browse result

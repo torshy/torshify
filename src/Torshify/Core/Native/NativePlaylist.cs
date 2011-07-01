@@ -79,7 +79,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_playlist_get_description(Handle), string.Empty);
+                    return Spotify.sp_playlist_get_description(Handle);
                 }
             }
         }
@@ -145,7 +145,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_playlist_name(Handle), string.Empty);
+                    return Spotify.sp_playlist_name(Handle);
                 }
             }
             set

@@ -74,7 +74,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_album_name(Handle), "Unknown album");
+                    return Spotify.sp_album_name(Handle);
                 }
             }
         }

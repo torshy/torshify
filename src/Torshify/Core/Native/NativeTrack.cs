@@ -152,7 +152,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_track_name(Handle), "Unknown name");
+                    return Spotify.sp_track_name(Handle);
                 }
             }
         }

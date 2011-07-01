@@ -50,7 +50,8 @@ namespace Torshify.Core.Native
         /// <returns>Name of album. Returned string is valid as long as the album object stays allocated
         /// and no longer than the next call to <c>sp_session_process_events()</c>.</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_album_name(IntPtr albumPtr);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_album_name(IntPtr albumPtr);
 
         /// <summary>
         /// Return release year of specified album.
@@ -137,7 +138,8 @@ namespace Torshify.Core.Native
         /// <param name="index">The index for the copyright string. Should be in the interval [0, sp_albumbrowse_num_copyrights() - 1]</param>
         /// <returns>Copyright string in UTF-8 format, or NULL if the index is invalid.</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_albumbrowse_copyright(IntPtr browsePtr, int index);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_albumbrowse_copyright(IntPtr browsePtr, int index);
 
         /// <summary>
         /// Given an album browse object, return number of tracks
@@ -162,7 +164,8 @@ namespace Torshify.Core.Native
         /// <param name="browsePtr"> Album browse object.</param>
         /// <returns>Review string in UTF-8 format.</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_albumbrowse_review(IntPtr browsePtr);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_albumbrowse_review(IntPtr browsePtr);
 
         /// <summary>
         /// Increase the reference count of an album browse result

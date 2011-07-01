@@ -27,3 +27,4 @@ _ReSharper*/
 Torshify.sln.docstates
 src/Torshify/StyleCop.Cache
 *.vsp
+src/Torshify/StyleCop.Cache

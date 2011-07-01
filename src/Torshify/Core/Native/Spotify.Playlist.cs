@@ -113,7 +113,8 @@ namespace Torshify.Core.Native
         /// <param name="playlistPtr">Playlist object.</param>
         /// <returns>The name of the given playlist.</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_playlist_name(IntPtr playlistPtr);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_playlist_name(IntPtr playlistPtr);
 
         /// <summary>
         /// Rename the given playlist The name must not consist of only spaces and it must be shorter than 256 characters.
@@ -165,7 +166,8 @@ namespace Torshify.Core.Native
         /// <param name="playlistPtr">Playlist object.</param>
         /// <returns>Description</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_playlist_get_description(IntPtr playlistPtr);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_playlist_get_description(IntPtr playlistPtr);
 
         /// <summary>
         /// Get image for a playlist.

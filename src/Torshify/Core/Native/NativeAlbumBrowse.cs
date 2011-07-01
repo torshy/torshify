@@ -103,7 +103,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_albumbrowse_review(Handle), string.Empty);
+                    return Spotify.sp_albumbrowse_review(Handle);
                 }
             }
         }
@@ -187,7 +187,7 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                return Spotify.GetString(Spotify.sp_albumbrowse_copyright(Handle, index), string.Empty);
+                return Spotify.sp_albumbrowse_copyright(Handle, index);
             }
         }
 

@@ -86,7 +86,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_search_did_you_mean(Handle), string.Empty);
+                    return Spotify.sp_search_did_you_mean(Handle);
                 }
             }
         }
@@ -112,7 +112,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_search_query(Handle), string.Empty);
+                    return Spotify.sp_search_query(Handle);
                 }
             }
         }

@@ -129,7 +129,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.GetString(Spotify.sp_artistbrowse_biography(Handle), string.Empty);
+                    return Spotify.sp_artistbrowse_biography(Handle);
                 }
             }
         }
