@@ -74,7 +74,7 @@ namespace Torshify.Core.Native
 
             public void CleanUpNativeData(IntPtr pNativeData)
             {
-                Marshal.Release(pNativeData);
+                Marshal.FreeHGlobal(pNativeData);
             }
 
             public int GetNativeDataSize()
