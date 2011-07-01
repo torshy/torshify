@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -22,10 +23,10 @@ namespace Torshify.Core.Native
         private Thread _mainThread;
         private Thread _eventThread;
         private AutoResetEvent _mainThreadNotification;
-        private AutoResetEvent _eventThreadNotification;
         private Queue<DelegateInvoker> _eventQueue;
         private NativeSessionCallbacks _callbacks;
         private IArray<IUser> _friends;
+        private object _eventQueueLock = new object();
 
         #endregion Fields
 
@@ -564,9 +565,8 @@ namespace Torshify.Core.Native
             _mainThread.IsBackground = true;
             _mainThread.Start();
 
-            _eventQueue = new Queue<DelegateInvoker>(2000);
+            _eventQueue = new Queue<DelegateInvoker>();
 
-            _eventThreadNotification = new AutoResetEvent(false);
             _eventThread = new Thread(EventThreadLoop);
             _eventThread.Name = "EventLoop";
             _eventThread.IsBackground = true;
@@ -581,17 +581,11 @@ namespace Torshify.Core.Native
 
         internal void Queue(DelegateInvoker delegateInvoker)
         {
-            ThreadPool.QueueUserWorkItem(state =>
+            lock (_eventQueueLock)
             {
-                try
-                {
-                    delegateInvoker.Execute();
-                }
-                catch (Exception ex)
-                {
-                    OnException(new SessionEventArgs(ex.ToString()));
-                }
-            });
+                _eventQueue.Enqueue(delegateInvoker);
+                Monitor.Pulse(_eventQueueLock);
+            }
         }
 
         internal void OnNotifyMainThread()
@@ -696,7 +690,11 @@ namespace Torshify.Core.Native
                 try
                 {
                     _mainThreadNotification.Set();
-                    _eventThreadNotification.Set();
+
+                    lock (_eventQueueLock)
+                    {
+                        Monitor.Pulse(_eventQueueLock);
+                    }
 
                     if (_callbacks != null)
                     {
@@ -810,32 +808,34 @@ namespace Torshify.Core.Native
 
         private void EventThreadLoop()
         {
-            var localList = new List<DelegateInvoker>();
-
             while (!IsInvalid)
             {
-                _eventThreadNotification.WaitOne();
-                lock (_eventQueue)
+                DelegateInvoker invoker = null;
+
+                lock (_eventQueueLock)
                 {
-                    while (_eventQueue.Count > 0)
+                    if (_eventQueue.Count == 0)
                     {
-                        localList.Add(_eventQueue.Dequeue());
+                        Monitor.Wait(_eventQueueLock);
+                    }
+
+                    if (_eventQueue.Count > 0)
+                    {
+                        invoker = _eventQueue.Dequeue();
                     }
                 }
 
-                foreach (var workerItem in localList)
+                if (invoker != null)
                 {
                     try
                     {
-                        workerItem.Execute();
+                        invoker.Execute();
                     }
                     catch (Exception ex)
                     {
                         OnException(new SessionEventArgs(ex.ToString()));
                     }
                 }
-
-                localList.Clear();
             }
 
             Debug.WriteLine("Event loop exiting");
