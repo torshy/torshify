@@ -90,17 +90,21 @@ namespace Torshify.Core.Native
                 return size;
             }
 
-            public IntPtr MarshalManagedToNative(object ManagedObj)
+            public IntPtr MarshalManagedToNative(object managedObj)
             {
-                if (ManagedObj == null)
+                if (managedObj == null)
                     return IntPtr.Zero;
-                if (ManagedObj.GetType() != typeof(string))
-                    throw new ArgumentException("ManagedObj", "Can only marshal type of System.String");
-                byte[] array = Encoding.UTF8.GetBytes((string)ManagedObj);
-                int size = Marshal.SizeOf(array[0]) * array.Length + Marshal.SizeOf(array[0]);
+                if (managedObj.GetType() != typeof(string))
+                    throw new ArgumentException("ManagedObj", "Can only marshal type of System.string");
+
+                byte[] array = Encoding.UTF8.GetBytes((string)managedObj);
+                int size = Marshal.SizeOf(typeof(byte)) * (array.Length + 1);
+
                 IntPtr ptr = Marshal.AllocHGlobal(size);
+
                 Marshal.Copy(array, 0, ptr, array.Length);
-                Marshal.WriteByte(ptr, size, 0);
+                Marshal.WriteByte(ptr, array.Length, 0);
+
                 return ptr;
             }
 
@@ -108,9 +112,14 @@ namespace Torshify.Core.Native
             {
                 if (pNativeData == IntPtr.Zero)
                     return null;
-                int size = GetNativeDataSize(pNativeData);
+
+                int size = 0;
+                while (Marshal.ReadByte(pNativeData, size) > 0)
+                    size++;
+
                 byte[] array = new byte[size];
                 Marshal.Copy(pNativeData, array, 0, size);
+
                 return Encoding.UTF8.GetString(array);
             }
 
