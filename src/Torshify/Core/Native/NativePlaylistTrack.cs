@@ -1,5 +1,7 @@
 using System;
 
+using Torshify.Core.Managers;
+
 namespace Torshify.Core.Native
 {
     internal class NativePlaylistTrack : NativeTrack, IPlaylistTrack
@@ -38,6 +40,14 @@ namespace Torshify.Core.Native
             }
         }
 
+        public IPlaylist Playlist
+        {
+            get
+            {
+                return _playlist;
+            }
+        }
+
         public bool Seen
         {
             get
@@ -51,22 +61,9 @@ namespace Torshify.Core.Native
             }
         }
 
-        public IPlaylist Playlist
-        {
-            get
-            {
-                return _playlist;
-            }
-        }
-
         #endregion Properties
 
-        #region Public Methods
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+        #region Methods
 
         public override bool Equals(object obj)
         {
@@ -89,6 +86,21 @@ namespace Torshify.Core.Native
             return pt._playlist == _playlist && pt._position == _position;
         }
 
-        #endregion Public Methods
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                PlaylistTrackManager.Remove(Playlist, _position);
+            }
+
+            base.Dispose(disposing);
+        }
+
+        #endregion Methods
     }
 }

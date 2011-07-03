@@ -1,5 +1,5 @@
 using System;
-using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Torshify.Core.Native
 {
@@ -98,31 +98,27 @@ namespace Torshify.Core.Native
         {
             int index = _container.Playlists.IndexOf(this);
             int bufferSize = Spotify.STRINGBUFFER_SIZE;
-            IntPtr bufferPtr = IntPtr.Zero;
 
             try
             {
-                bufferPtr = Marshal.AllocHGlobal(bufferSize);
                 Error error;
+                StringBuilder builder = new StringBuilder(bufferSize);
+                
                 lock (Spotify.Mutex)
                 {
-                    error = Spotify.sp_playlistcontainer_playlist_folder_name(_container.GetHandle(), index, bufferPtr, bufferSize);
+                    error = Spotify.sp_playlistcontainer_playlist_folder_name(_container.GetHandle(), index, builder, bufferSize);
                 }
 
-                return error == Error.OK ? Spotify.GetString(bufferPtr, string.Empty) : string.Empty;
-            }
-            finally
-            {
-                if (bufferPtr != IntPtr.Zero)
+                if (error == Error.OK)
                 {
-                    try
-                    {
-                        Marshal.FreeHGlobal(bufferPtr);
-                    }
-                    catch
-                    {
-                    }
+                    return builder.ToString();
                 }
+
+                return error.GetMessage();
+            }
+            catch
+            {
+                return "Folder";
             }
         }
 

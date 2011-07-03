@@ -269,39 +269,28 @@ namespace Torshify.Core.Native
             if (disposing)
             {
                 // Dispose managed
-                if (_artistsLazyLoad.IsValueCreated)
-                {
-                }
-
-                if (_albumsLazyLoad.IsValueCreated)
-                {
-                }
-
-                if (_tracksLazyLoad.IsValueCreated)
-                {
-                }
             }
 
-            // Dispose unmanaged
-            try
+            if (!IsInvalid)
             {
-                if (_callbacks != null)
+                // Dispose unmanaged
+                try
                 {
-                    _callbacks.Dispose();
-                    _callbacks = null;
-                }
+                    if (_callbacks != null)
+                    {
+                        _callbacks.Dispose();
+                        _callbacks = null;
+                    }
 
-                lock (Spotify.Mutex)
-                {
-                    Spotify.sp_search_release(Handle);
+                    lock (Spotify.Mutex)
+                    {
+                        Spotify.sp_search_release(Handle);
+                        Handle = IntPtr.Zero;
+                    }
                 }
-            }
-            catch
-            {
-            }
-            finally
-            {
-                Handle = IntPtr.Zero;
+                catch
+                {
+                }
             }
 
             base.Dispose(disposing);

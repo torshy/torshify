@@ -46,6 +46,21 @@ namespace Torshify.Core.Managers
             }
         }
 
+        internal static void Remove(IPlaylist playlist, int position)
+        {
+            KeyGen key = new KeyGen(playlist, position);
+
+            lock (_tracksLock)
+            {
+                IPlaylistTrack instance;
+
+                if (_instances.TryGetValue(key, out instance))
+                {
+                    _instances.Remove(key);
+                }
+            }
+        }
+
         internal static void RemoveAll(IPlaylist playlist)
         {
             lock (_tracksLock)

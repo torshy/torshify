@@ -207,7 +207,7 @@ namespace Torshify.Core.Native
                                                   }
                                               }
 
-                                              return null;
+                                              throw new InvalidOperationException("Track not loaded yet");
                                           });
         }
 

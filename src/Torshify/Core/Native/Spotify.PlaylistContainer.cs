@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Torshify.Core.Native
 {
@@ -83,7 +84,11 @@ namespace Torshify.Core.Native
         /// <param name="bufferSize">Size of the buffer.</param>
         /// <returns></returns>
         [DllImport("libspotify")]
-        internal static extern Error sp_playlistcontainer_playlist_folder_name(IntPtr pcPtr, int index, IntPtr buffer, int bufferSize);
+        internal static extern Error sp_playlistcontainer_playlist_folder_name(
+            IntPtr pcPtr, 
+            int index, 
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Utf8StringBuilderMarshaler))]StringBuilder buffer, 
+            int bufferSize);
 
         /// <summary>
         /// Return the folder id at index.

@@ -197,6 +197,16 @@ namespace Torshify.Core.Native
             int[] trackIndices = new int[numTracks];
             Marshal.Copy(trackIndicesPtr, trackIndices, 0, numTracks);
 
+            // HACK: For some reason the 'newPosition' is always off by 1 when moving tracks down
+            for (int i = 0; i < trackIndices.Length; i++)
+            {
+                if (trackIndices[i] > newPosition)
+                {
+                    newPosition++;
+                    break;
+                }
+            }
+
             _playlist.QueueThis(() => _playlist.OnTracksMoved(new TracksMovedEventArgs(trackIndices, newPosition)));
         }
 
@@ -209,6 +219,12 @@ namespace Torshify.Core.Native
 
             int[] trackIndices = new int[numTracks];
             Marshal.Copy(trackIndicesPtr, trackIndices, 0, numTracks);
+
+            for (int i = 0; i < trackIndices.Length; i++)
+            {
+                int trackIndex = trackIndices[i];
+                PlaylistTrackManager.Remove(_playlist, trackIndex);
+            }
 
             _playlist.QueueThis(() => _playlist.OnTracksRemoved(new TracksRemovedEventArgs(trackIndices)));
         }
@@ -228,7 +244,7 @@ namespace Torshify.Core.Native
             for (int i = 0; i < numTracks; i++)
             {
                 trackIndices[i] = position + i;
-                tracks[i] = TrackManager.Get(_playlist.Session, trackPtrs[i]);
+                tracks[i] = PlaylistTrackManager.Get(_playlist.Session, _playlist, trackPtrs[i], trackIndices[i]);
             }
 
             _playlist.QueueThis(() => _playlist.OnTracksAdded(new TracksAddedEventArgs(trackIndices, tracks)));

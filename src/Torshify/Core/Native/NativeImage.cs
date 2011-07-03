@@ -149,13 +149,10 @@ namespace Torshify.Core.Native
                 lock (Spotify.Mutex)
                 {
                     Handle = Spotify.sp_image_create(Session.GetHandle(), idArray);
-                }
 
-                _dataLoadLazy = new Lazy<byte[]>(GetImageData);
-                _imageLoaded = OnImageLoadedCallback;
+                    _dataLoadLazy = new Lazy<byte[]>(GetImageData);
+                    _imageLoaded = OnImageLoadedCallback;
 
-                lock (Spotify.Mutex)
-                {
                     Spotify.sp_image_add_ref(Handle);
                     Spotify.sp_image_add_load_callback(Handle, _imageLoaded, IntPtr.Zero);
                 }
@@ -206,6 +203,11 @@ namespace Torshify.Core.Native
                 IntPtr dataPtr = IntPtr.Zero;
                 lock (Spotify.Mutex)
                 {
+                    if (IsInvalid)
+                    {
+                        return new byte[0];
+                    }
+
                     dataPtr = Spotify.sp_image_data(Handle, out lengthPtr);
                 }
 

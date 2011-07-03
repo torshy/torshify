@@ -134,6 +134,107 @@ namespace Torshify.Core.Native
             }
         }
 
+        public class Utf8StringBuilderMarshaler : ICustomMarshaler
+        {
+            public static ICustomMarshaler GetInstance(String cookie)
+            {
+                return new Utf8StringBuilderMarshaler();
+            }
+
+            public virtual Object MarshalNativeToManaged(IntPtr pNativeData)
+            {
+                String stringData = GetString(pNativeData);
+                StringBuilder stringBuilder = GetStringBuilder(pNativeData);
+                if (stringBuilder != null)
+                {
+                    stringBuilder.Clear();
+                    if (stringData != null)
+                    {
+                        stringBuilder.Append(stringData);
+                    }
+                }
+
+                return stringData;
+            }
+
+            public virtual IntPtr MarshalManagedToNative(Object ManagedObj)
+            {
+                return AllocStringBuffer(ManagedObj as StringBuilder);
+            }
+
+            public virtual void CleanUpNativeData(IntPtr pNativeData)
+            {
+                FreeStringBuffer(pNativeData);
+            }
+
+            public virtual void CleanUpManagedData(Object ManagedObj)
+            { }
+
+            public Int32 GetNativeDataSize()
+            {
+                return -1;
+            }
+
+            protected IntPtr AllocStringBuffer(StringBuilder stringBuilder)
+            {
+                int bufferSize = GetNativeDataSize() + IntPtr.Size;
+                IntPtr bufferPtr = Marshal.AllocHGlobal(bufferSize);
+
+                if (stringBuilder != null)
+                {
+                    GCHandle stringBuilderHandle = GCHandle.Alloc(stringBuilder, GCHandleType.Normal);
+                    IntPtr stringBuilderPtr = GCHandle.ToIntPtr(stringBuilderHandle);
+                    Marshal.WriteIntPtr(bufferPtr, stringBuilderPtr);
+                }
+                else
+                {
+                    Marshal.WriteIntPtr(bufferPtr, IntPtr.Zero);
+                }
+
+                bufferPtr = IntPtr.Add(bufferPtr, IntPtr.Size);
+                return bufferPtr;
+            }
+
+            protected void FreeStringBuffer(IntPtr stringBuffer)
+            {
+                stringBuffer = IntPtr.Add(stringBuffer, -IntPtr.Size);
+                IntPtr stringBuilderPtr = Marshal.ReadIntPtr(stringBuffer);
+                if (stringBuilderPtr != IntPtr.Zero)
+                {
+                    GCHandle stringBuilderHandle = GCHandle.FromIntPtr(stringBuilderPtr);
+                    stringBuilderHandle.Free();
+                }
+
+                //Marshal.FreeHGlobal(stringBuffer);
+            }
+
+            protected String GetString(IntPtr stringBuffer)
+            {
+                if (stringBuffer == IntPtr.Zero)
+                    return null;
+
+                int size = 0;
+                while (Marshal.ReadByte(stringBuffer, size) > 0)
+                    size++;
+
+                byte[] array = new byte[size];
+                Marshal.Copy(stringBuffer, array, 0, size);
+
+                return Encoding.UTF8.GetString(array);
+            }
+
+            protected StringBuilder GetStringBuilder(IntPtr stringBuffer)
+            {
+                IntPtr stringBuilderPtr = Marshal.ReadIntPtr(stringBuffer, -IntPtr.Size);
+                if (stringBuilderPtr != IntPtr.Zero)
+                {
+                    GCHandle stringBuilderHandle = GCHandle.FromIntPtr(stringBuilderPtr);
+                    return stringBuilderHandle.IsAllocated ? (StringBuilder)stringBuilderHandle.Target : null;
+                }
+                return null;
+            }
+        }
+
         internal static string ImageIdToString(IntPtr idPtr)
         {
             if (idPtr == IntPtr.Zero)
