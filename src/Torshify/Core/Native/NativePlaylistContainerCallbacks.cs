@@ -119,6 +119,12 @@ namespace Torshify.Core.Native
                 return;
             }
 
+            // HACK : The indices are wrong when moving playlists up
+            if (position < newposition)
+            {
+                newposition--;
+            }
+
             _container.QueueThis(() => _container.OnPlaylistMoved(new PlaylistMovedEventArgs(PlaylistManager.Get(_container.Session, playlistptr), position, newposition)));
         }
 
