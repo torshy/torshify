@@ -165,6 +165,8 @@
       <DependentUpon>Spotify.cs</DependentUpon>
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Core\WeakHandleDictionary.cs" />
+    <Compile Include="Core\WeakReference of T.cs" />
     <Compile Include="IArtistBrowse.cs" />
     <Compile Include="IInbox.cs" />
     <Compile Include="ILink of T.cs" />

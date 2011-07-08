@@ -63,6 +63,7 @@ namespace Torshify.Shell
                     Console.WriteLine("4: Friends");
                     Console.WriteLine("5: Radio");
                     Console.WriteLine("6: Current user info");
+                    Console.WriteLine("7: Run GC");
                     Console.WriteLine("=================");
                 }
 
@@ -89,6 +90,11 @@ namespace Torshify.Shell
                         break;
                     case ConsoleKey.D6:
                         CurrentUserInfoMenu();
+                        break;
+                    case ConsoleKey.D7:
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                        GC.Collect();
                         break;
                 }
 

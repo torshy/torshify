@@ -220,40 +220,26 @@ namespace Torshify.Core.Native
             if (disposing)
             {
                 // Dispose managed
-                if (_artists.IsValueCreated)
-                {
-                    foreach (var artist in _artists.Value)
-                    {
-                        artist.Dispose();
-                    }
-
-                    _artists = null;
-                }
-
-                if (_album.IsValueCreated)
-                {
-                    _album.Value.Dispose();
-                }
             }
 
             // Dispose unmanaged
             if (!IsInvalid)
             {
-                try
+                lock (Spotify.Mutex)
                 {
-                    lock (Spotify.Mutex)
+                    try
                     {
                         Spotify.sp_track_release(Handle);
+                        TrackManager.Remove(Handle);
                     }
-                }
-                catch
-                {
-                }
-                finally
-                {
-                    TrackManager.Remove(Handle);
-                    Handle = IntPtr.Zero;
-                    Debug.WriteLine("Track disposed");
+                    catch
+                    {
+                    }
+                    finally
+                    {
+                        Handle = IntPtr.Zero;
+                        Debug.WriteLine("Track disposed");
+                    }
                 }
             }
 

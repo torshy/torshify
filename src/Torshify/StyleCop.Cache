@@ -1314,15 +1314,6 @@
     <milliseconds>796</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="AlbumManager.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>799</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="ConnectionType.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2011 19:39:51</timestamp>
@@ -1332,15 +1323,6 @@
     <milliseconds>793</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="ArtistManager.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>800</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="INativeObject.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2011 19:39:51</timestamp>
@@ -1348,69 +1330,6 @@
     </settings>
     <timestamp>06/21/2011 19:39:51</timestamp>
     <milliseconds>797</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="PlaylistContainerManager.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>803</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="LinkManager.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>802</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="PlaylistManager.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>803</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ContainerPlaylistManager.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>801</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="PlaylistTrackManager.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>804</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="TrackManager.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>806</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="UserManager.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>807</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="NativeObject.cs" parser="StyleCop.CSharp.CsParser">
@@ -1467,15 +1386,6 @@
     <milliseconds>794</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="SessionManager.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>805</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="NativeSearchLink.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2011 19:39:51</timestamp>
@@ -1521,15 +1431,6 @@
     <milliseconds>827</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="NativeContainerPlaylist.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>816</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="NativeLink.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2011 19:39:51</timestamp>
@@ -1539,43 +1440,7 @@
     <milliseconds>819</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="NativeImage.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>07/01/2011 21:14:50</timestamp>
-    <milliseconds>653</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="NativePlaylistContainerCallbacks.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>07/01/2011 21:11:18</timestamp>
-    <milliseconds>739</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="NativePlaylistCallbacks.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>07/01/2011 21:14:18</timestamp>
-    <milliseconds>597</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="NativePlaylistLink.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>825</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="NativePlaylistTrack.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2011 19:39:51</timestamp>
       <milliseconds>898</milliseconds>
@@ -1627,15 +1492,6 @@
     </settings>
     <timestamp>07/01/2011 21:11:26</timestamp>
     <milliseconds>501</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="NativeSession.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>07/01/2011 18:28:13</timestamp>
-    <milliseconds>429</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="IInbox.cs" parser="StyleCop.CSharp.CsParser">
@@ -2205,18 +2061,6 @@
     <milliseconds>850</milliseconds>
     <violations />
   </sourcecode>
-  <project key="1403417745">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
-  <sourcecode name="NativeSearch.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>07/01/2011 21:56:37</timestamp>
-    <milliseconds>96</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="NativePlaylist.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2011 19:39:51</timestamp>
@@ -2224,6 +2068,600 @@
     </settings>
     <timestamp>07/01/2011 21:55:55</timestamp>
     <milliseconds>467</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AlbumManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 16:17:23</timestamp>
+    <milliseconds>5</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ContainerPlaylistManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 16:17:34</timestamp>
+    <milliseconds>5</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PlaylistContainerManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 16:17:46</timestamp>
+    <milliseconds>642</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LinkManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 16:17:42</timestamp>
+    <milliseconds>336</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PlaylistManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 16:17:49</timestamp>
+    <milliseconds>712</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PlaylistTrackManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 16:17:53</timestamp>
+    <milliseconds>501</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ArtistManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 16:17:28</timestamp>
+    <milliseconds>426</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="UserManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 16:17:57</timestamp>
+    <milliseconds>47</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeImage.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/07/2011 20:24:26</timestamp>
+    <milliseconds>33</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativePlaylistTrack.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/03/2011 11:20:54</timestamp>
+    <milliseconds>905</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="SessionManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 08:10:14</timestamp>
+    <milliseconds>411</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativePlaylistContainerCallbacks.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/03/2011 12:21:30</timestamp>
+    <milliseconds>915</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeSearch.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/07/2011 21:30:33</timestamp>
+    <milliseconds>435</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeContainerPlaylist.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/03/2011 12:02:34</timestamp>
+    <milliseconds>26</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativePlaylistCallbacks.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 16:31:16</timestamp>
+    <milliseconds>777</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeSession.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 16:50:52</timestamp>
+    <milliseconds>457</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="WeakDictionary.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 16:40:43</timestamp>
+    <milliseconds>561</milliseconds>
+    <violations>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="SingleLineCommentsMustNotBeFollowedByBlankLine" ruleCheckId="SA1512">
+        <context>A single-line comment must not be followed by a blank line. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
+        <line>5</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All internal classes must be placed after all public classes.</context>
+        <line>153</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All internal classes must be placed after all public classes.</context>
+        <line>371</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>18</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustAppearInTheCorrectOrder" ruleCheckId="SA1201">
+        <context>All methods must be placed after all constructors.</context>
+        <line>15</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustAppearInTheCorrectOrder" ruleCheckId="SA1201">
+        <context>All methods must be placed after all properties.</context>
+        <line>15</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.MaintainabilityRules" rule="FileMayOnlyContainASingleClass" ruleCheckId="SA1402">
+        <context>A C# document may only contain a single class at the root level unless all of the classes are partial and are of the same type.</context>
+        <line>36</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="OpeningCurlyBracketsMustNotBeFollowedByBlankLine" ruleCheckId="SA1505">
+        <context>An opening curly bracket must not be followed by a blank line.</context>
+        <line>72</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="AdvancedNamingRules" ruleCheckId="SP0100">
+        <context>Instance field (private) name comparer doesn't conform the specified style: _sampleName.</context>
+        <line>74</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>79</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>87</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>116</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>119</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="ClosingCurlyBracketMustBeFollowedByBlankLine" ruleCheckId="SP1513">
+        <context>Statements or elements wrapped in curly brackets must be followed by a blank line.</context>
+        <line>137</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="AdvancedNamingRules" ruleCheckId="SP0100">
+        <context>Instance field (private) name keys doesn't conform the specified style: _sampleName.</context>
+        <line>158</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="AdvancedNamingRules" ruleCheckId="SP0100">
+        <context>Instance field (private) name values doesn't conform the specified style: _sampleName.</context>
+        <line>159</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustAppearInTheCorrectOrder" ruleCheckId="SA1201">
+        <context>All methods must be placed after all properties.</context>
+        <line>172</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustAppearInTheCorrectOrder" ruleCheckId="SA1201">
+        <context>All methods must be placed after all properties.</context>
+        <line>177</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustAppearInTheCorrectOrder" ruleCheckId="SA1201">
+        <context>All methods must be placed after all properties.</context>
+        <line>188</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustAppearInTheCorrectOrder" ruleCheckId="SA1201">
+        <context>All methods must be placed after all indexers.</context>
+        <line>199</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="ElementsMustBeSeparatedByBlankLine" ruleCheckId="SP1516">
+        <context>Adjacent elements must be separated by a blank line.</context>
+        <line>164</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="ElementsMustBeSeparatedByBlankLine" ruleCheckId="SP1516">
+        <context>Adjacent elements must be separated by a blank line.</context>
+        <line>165</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="ElementsMustBeSeparatedByBlankLine" ruleCheckId="SP1516">
+        <context>Adjacent elements must be separated by a blank line.</context>
+        <line>166</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="ElementsMustBeSeparatedByBlankLine" ruleCheckId="SP1516">
+        <context>Adjacent elements must be separated by a blank line.</context>
+        <line>167</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="ElementsMustBeSeparatedByBlankLine" ruleCheckId="SP1516">
+        <context>Adjacent elements must be separated by a blank line.</context>
+        <line>168</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="ElementsMustBeSeparatedByBlankLine" ruleCheckId="SP1516">
+        <context>Adjacent elements must be separated by a blank line.</context>
+        <line>169</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All protected methods must be placed after all public methods.</context>
+        <line>215</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All protected methods must be placed after all public methods.</context>
+        <line>220</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All protected methods must be placed after all public methods.</context>
+        <line>229</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All protected methods must be placed after all public methods.</context>
+        <line>234</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All protected methods must be placed after all public methods.</context>
+        <line>242</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="ElementsMustBeSeparatedByBlankLine" ruleCheckId="SP1516">
+        <context>Adjacent elements must be separated by a blank line.</context>
+        <line>170</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>182</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>193</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>205</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>224</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>237</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustAppearInTheCorrectOrder" ruleCheckId="SA1201">
+        <context>All classes must be placed after all methods.</context>
+        <line>338</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="AdvancedNamingRules" ruleCheckId="SP0100">
+        <context>Instance field (protected) name dictionary doesn't conform the specified style: _sampleName.</context>
+        <line>249</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the foreach statement must be wrapped in opening and closing curly brackets.</context>
+        <line>274</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>275</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the foreach statement must be wrapped in opening and closing curly brackets.</context>
+        <line>282</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All protected methods must be placed after all public methods.</context>
+        <line>287</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All protected methods must be placed after all public methods.</context>
+        <line>292</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All protected methods must be placed after all public methods.</context>
+        <line>297</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All protected methods must be placed after all public methods.</context>
+        <line>302</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All protected methods must be placed after all public methods.</context>
+        <line>319</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="ClosingCurlyBracketMustBeFollowedByBlankLine" ruleCheckId="SP1513">
+        <context>Statements or elements wrapped in curly brackets must be followed by a blank line.</context>
+        <line>318</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="ElementsMustBeSeparatedByBlankLine" ruleCheckId="SP1516">
+        <context>Adjacent elements must be separated by a blank line.</context>
+        <line>319</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>341</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>344</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>347</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the foreach statement must be wrapped in opening and closing curly brackets.</context>
+        <line>350</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="OpeningCurlyBracketsMustNotBeFollowedByBlankLine" ruleCheckId="SA1505">
+        <context>An opening curly bracket must not be followed by a blank line.</context>
+        <line>374</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="AdvancedNamingRules" ruleCheckId="SP0100">
+        <context>Instance field (private) name dictionary doesn't conform the specified style: _sampleName.</context>
+        <line>376</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="AdvancedNamingRules" ruleCheckId="SP0100">
+        <context>Instance field (private) name comparer doesn't conform the specified style: _sampleName.</context>
+        <line>377</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>405</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="ClosingCurlyBracketMustBeFollowedByBlankLine" ruleCheckId="SP1513">
+        <context>Statements or elements wrapped in curly brackets must be followed by a blank line.</context>
+        <line>428</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All protected methods must be placed after all public methods.</context>
+        <line>439</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All protected methods must be placed after all public methods.</context>
+        <line>444</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
+        <context>All protected methods must be placed after all public methods.</context>
+        <line>461</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>453</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.MaintainabilityRules" rule="StatementMustNotUseUnnecessaryParenthesis" ruleCheckId="SA1119">
+        <context>The line contains unnecessary parenthesis.</context>
+        <line>448</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>472</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the foreach statement must be wrapped in opening and closing curly brackets.</context>
+        <line>480</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.MaintainabilityRules" rule="StatementMustNotUseUnnecessaryParenthesis" ruleCheckId="SA1119">
+        <context>The line contains unnecessary parenthesis.</context>
+        <line>466</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="WeakHashtable.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 16:53:46</timestamp>
+    <milliseconds>513</milliseconds>
+    <violations>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
+        <context>The code must not contain multiple blank lines in a row.</context>
+        <line>314</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="ClosingCurlyBracketsMustNotBePrecededByBlankLine" ruleCheckId="SA1508">
+        <context>A closing curly bracket must not be preceded by a blank line.</context>
+        <line>315</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="AdvancedNamingRules" ruleCheckId="SP0100">
+        <context>Static field (private) name equalityComparer doesn't conform the specified style: _sampleName.</context>
+        <line>16</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="AdvancedNamingRules" ruleCheckId="SP0100">
+        <context>Instance field (private) name lastGlobalMem doesn't conform the specified style: _sampleName.</context>
+        <line>18</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="AdvancedNamingRules" ruleCheckId="SP0100">
+        <context>Instance field (private) name lastHashCount doesn't conform the specified style: _sampleName.</context>
+        <line>19</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustAppearInTheCorrectOrder" ruleCheckId="SA1201">
+        <context>All methods must be placed after all indexers.</context>
+        <line>47</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CurlyBracketsMustNotBeOmitted" ruleCheckId="SA1503">
+        <context>The body of the if statement must be wrapped in opening and closing curly brackets.</context>
+        <line>53</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="AllAccessorsMustBeMultiLineOrSingleLine" ruleCheckId="SA1504">
+        <context>An accessor can only be placed on a single line if all of the accessors in the indexer are placed on a single line.</context>
+        <line>56</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="AdvancedNamingRules" ruleCheckId="SP0100">
+        <context>Instance field (private) name hashCode doesn't conform the specified style: _sampleName.</context>
+        <line>214</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="AdvancedNamingRules" ruleCheckId="SP0100">
+        <context>Instance field (private) name weakRef doesn't conform the specified style: _sampleName.</context>
+        <line>215</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="OpeningCurlyBracketsMustNotBeFollowedByBlankLine" ruleCheckId="SA1505">
+        <context>An opening curly bracket must not be followed by a blank line.</context>
+        <line>292</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.SpacingRules" rule="SingleLineCommentsMustBeginWithSingleSpace" ruleCheckId="SA1005">
+        <context>The comment must start with a single space. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
+        <line>279</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.SpacingRules" rule="SingleLineCommentsMustBeginWithSingleSpace" ruleCheckId="SA1005">
+        <context>The comment must start with a single space. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
+        <line>280</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCopPlus.StyleCopPlusRules" rule="AdvancedNamingRules" ruleCheckId="SP0100">
+        <context>Local variable name wY doesn't conform the specified style: sampleName.</context>
+        <line>277</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="TrackManager.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 17:08:01</timestamp>
+    <milliseconds>910</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="WeakReference of T.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 17:08:07</timestamp>
+    <milliseconds>902</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="1403417745">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="WeakHandleDictionary.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>07/08/2011 17:09:55</timestamp>
+    <milliseconds>724</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="SessionExtensions.cs" parser="StyleCop.CSharp.CsParser">
@@ -2240,8 +2678,8 @@
       <timestamp>06/21/2011 19:39:51</timestamp>
       <milliseconds>898</milliseconds>
     </settings>
-    <timestamp>07/01/2011 21:56:56</timestamp>
-    <milliseconds>9</milliseconds>
+    <timestamp>07/08/2011 17:10:26</timestamp>
+    <milliseconds>174</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

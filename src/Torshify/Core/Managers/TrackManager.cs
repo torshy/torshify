@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using Torshify.Core.Native;
 
 namespace Torshify.Core.Managers
@@ -10,8 +9,7 @@ namespace Torshify.Core.Managers
         #region Fields
 
         private static readonly object _instanceLock = new object();
-
-        private static Dictionary<IntPtr, NativeTrack> _instances = new Dictionary<IntPtr, NativeTrack>();
+        private static WeakHandleDictionary<NativeTrack> _instances = new WeakHandleDictionary<NativeTrack>();
 
         #endregion Fields
 
@@ -21,16 +19,17 @@ namespace Torshify.Core.Managers
         {
             lock (_instanceLock)
             {
-                NativeTrack instance;
+                NativeTrack track;
 
-                if (!_instances.TryGetValue(handle, out instance))
+                if (_instances.TryGetValue(handle, out track))
                 {
-                    instance = new NativeTrack(session, handle);
-                    _instances.Add(handle, instance);
-                    instance.Initialize();
+                    return track;
                 }
 
-                return instance;
+                track = new NativeTrack(session, handle);
+                track.Initialize();
+                _instances.SetValue(handle, track);
+                return track;
             }
         }
 
@@ -38,27 +37,28 @@ namespace Torshify.Core.Managers
         {
             lock (_instanceLock)
             {
-                NativeTrack instance;
-
-                if (_instances.TryGetValue(handle, out instance))
-                {
-                    _instances.Remove(handle);
-                }
+                _instances.Remove(handle);
             }
         }
 
-        internal static void RemoveAll(ISession session)
+        internal static void DisposeAll(ISession session)
         {
             lock (_instanceLock)
             {
-                List<IntPtr> toRemove = (from nativeTrack in _instances where nativeTrack.Value.Session == session select nativeTrack.Key).Cast<IntPtr>().ToList();
-
-                foreach (var track in toRemove)
+                foreach (var key in _instances.Keys)
                 {
-                    var t = _instances[track];
-                    t.Dispose();
-                    _instances.Remove(track);
+                    NativeTrack track;
+
+                    if (_instances.TryGetValue(key, out track))
+                    {
+                        if (track != null)
+                        {
+                            track.Dispose();
+                        }
+                    }
                 }
+
+                _instances.Clear();
             }
         }
 

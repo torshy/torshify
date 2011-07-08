@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -703,7 +702,7 @@ namespace Torshify.Core.Native
                     }
 
                     PlaylistTrackManager.RemoveAll(this);
-                    TrackManager.RemoveAll(this);
+                    TrackManager.DisposeAll(this);
 
                     LinkManager.RemoveAll(this);
                     UserManager.RemoveAll(this);
