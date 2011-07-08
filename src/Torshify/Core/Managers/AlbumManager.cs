@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 using Torshify.Core.Native;
 
@@ -11,7 +10,7 @@ namespace Torshify.Core.Managers
 
         private static readonly object _instanceLock = new object();
 
-        private static Dictionary<IntPtr, NativeAlbum> _instances = new Dictionary<IntPtr, NativeAlbum>();
+        private static WeakHandleDictionary<NativeAlbum> _instances = new WeakHandleDictionary<NativeAlbum>();
 
         #endregion Fields
 
@@ -21,16 +20,17 @@ namespace Torshify.Core.Managers
         {
             lock (_instanceLock)
             {
-                NativeAlbum instance;
+                NativeAlbum album;
 
-                if (!_instances.TryGetValue(handle, out instance))
+                if (_instances.TryGetValue(handle, out album))
                 {
-                    instance = new NativeAlbum(session, handle);
-                    _instances.Add(handle, instance);
-                    instance.Initialize();
+                    return album;
                 }
 
-                return instance;
+                album = new NativeAlbum(session, handle);
+                album.Initialize();
+                _instances.SetValue(handle, album);
+                return album;
             }
         }
 
@@ -38,12 +38,7 @@ namespace Torshify.Core.Managers
         {
             lock (_instanceLock)
             {
-                NativeAlbum instance;
-
-                if (_instances.TryGetValue(handle, out instance))
-                {
-                    _instances.Remove(handle);
-                }
+                _instances.Remove(handle);
             }
         }
 
