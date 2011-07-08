@@ -129,7 +129,11 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            ITrack track = TrackManager.Get(_playlist.Session, Spotify.sp_playlist_track(playlistPtr, position));
+            ITrack track = PlaylistTrackManager.Get(
+                _playlist.Session, 
+                _playlist, 
+                Spotify.sp_playlist_track(playlistPtr, position),
+                position);
 
             _playlist.QueueThis(() => _playlist.OnTrackSeenChanged(new TrackSeenEventArgs(track, seen)));
         }
@@ -141,7 +145,12 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            ITrack track = TrackManager.Get(_playlist.Session, Spotify.sp_playlist_track(playlistPtr, position));
+            ITrack track = PlaylistTrackManager.Get(
+                _playlist.Session,
+                _playlist, 
+                Spotify.sp_playlist_track(playlistPtr, position),
+                position);
+
             DateTime dtWhen = new DateTime(TimeSpan.FromSeconds(when).Ticks, DateTimeKind.Utc);
 
             _playlist.QueueThis(() => _playlist.OnTrackCreatedChanged(new TrackCreatedChangedEventArgs(track, dtWhen)));
@@ -244,7 +253,11 @@ namespace Torshify.Core.Native
             for (int i = 0; i < numTracks; i++)
             {
                 trackIndices[i] = position + i;
-                tracks[i] = PlaylistTrackManager.Get(_playlist.Session, _playlist, trackPtrs[i], trackIndices[i]);
+                tracks[i] = PlaylistTrackManager.Get(
+                    _playlist.Session, 
+                    _playlist, 
+                    trackPtrs[i], 
+                    trackIndices[i]);
             }
 
             _playlist.QueueThis(() => _playlist.OnTracksAdded(new TracksAddedEventArgs(trackIndices, tracks)));
