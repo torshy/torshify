@@ -89,7 +89,8 @@ namespace Torshify.Core.Native
                 GetPlaylistAtIndex,
                 AddPlaylist,
                 RemovePlaylist,
-                () => false));
+                () => false,
+                MovePlaylists));
         }
 
         #endregion Public Methods
@@ -211,6 +212,16 @@ namespace Torshify.Core.Native
                     Spotify.sp_playlistcontainer_playlist(Handle, index),
                     Spotify.sp_playlistcontainer_playlist_folder_id(Handle, index),
                     Spotify.sp_playlistcontainer_playlist_type(Handle, index));
+            }
+        }
+
+        private void MovePlaylists(int oldIndex, int newIndex)
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                Spotify.sp_playlistcontainer_move_playlist(Handle, oldIndex, newIndex);
             }
         }
 

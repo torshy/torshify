@@ -10,17 +10,25 @@ namespace Torshify.Core
         private readonly Action<T, int> _addFunc;
         private readonly Action<int> _removeFunc;
         private readonly Func<bool> _readonlyFunc;
+        private readonly Action<int, int> _moveFunc;
 
         #endregion Fields
 
         #region Constructors
 
-        public DelegateList(Func<int> getLength, Func<int, T> getIndex, Action<T, int> addFunc, Action<int> removeFunc, Func<bool> readonlyFunc)
+        public DelegateList(
+            Func<int> getLength, 
+            Func<int, T> getIndex, 
+            Action<T, int> addFunc, 
+            Action<int> removeFunc, 
+            Func<bool> readonlyFunc,
+            Action<int, int> moveFunc)
             : base(getLength, getIndex)
         {
             _addFunc = addFunc;
             _removeFunc = removeFunc;
             _readonlyFunc = readonlyFunc;
+            _moveFunc = moveFunc;
         }
 
         #endregion Constructors
@@ -93,6 +101,11 @@ namespace Torshify.Core
             return true;
         }
 
+        public void Move(int oldIndex, int newIndex)
+        {
+            _moveFunc(oldIndex, newIndex);
+        }
+
         public int IndexOf(T item)
         {
             bool found = false;
@@ -132,7 +145,8 @@ namespace Torshify.Core
                     throw new InvalidOperationException();
                 },
                 _removeFunc,
-                _readonlyFunc);
+                _readonlyFunc,
+                _moveFunc);
         }
 
         #endregion Public Methods

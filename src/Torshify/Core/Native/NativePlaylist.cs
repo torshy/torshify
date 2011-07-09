@@ -13,8 +13,8 @@ namespace Torshify.Core.Native
         #region Fields
 
         private NativePlaylistCallbacks _callbacks;
-        private Lazy<NativePlaylistTrackList> _tracks;
         private List<string> _subscribers;
+        private Lazy<NativePlaylistTrackList> _tracks;
 
         #endregion Fields
 
@@ -57,19 +57,6 @@ namespace Torshify.Core.Native
         #endregion Events
 
         #region Properties
-
-        public bool IsLoaded
-        {
-            get
-            {
-                AssertHandle();
-
-                lock (Spotify.Mutex)
-                {
-                    return Spotify.sp_playlist_is_loaded(Handle);
-                }
-            }
-        }
 
         public string Description
         {
@@ -137,6 +124,19 @@ namespace Torshify.Core.Native
             }
         }
 
+        public bool IsLoaded
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return Spotify.sp_playlist_is_loaded(Handle);
+                }
+            }
+        }
+
         public virtual string Name
         {
             get
@@ -164,29 +164,6 @@ namespace Torshify.Core.Native
             }
         }
 
-        public bool PendingChanges
-        {
-            get
-            {
-                AssertHandle();
-
-                lock (Spotify.Mutex)
-                {
-                    return Spotify.sp_playlist_has_pending_changes(Handle);
-                }
-            }
-        }
-
-        public IPlaylistTrackList Tracks
-        {
-            get
-            {
-                AssertHandle();
-
-                return _tracks.Value;
-            }
-        }
-
         public PlaylistOfflineStatus OfflineStatus
         {
             get
@@ -200,6 +177,19 @@ namespace Torshify.Core.Native
             }
         }
 
+        public bool PendingChanges
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return Spotify.sp_playlist_has_pending_changes(Handle);
+                }
+            }
+        }
+
         public ReadOnlyCollection<string> Subscribers
         {
             get
@@ -208,27 +198,19 @@ namespace Torshify.Core.Native
             }
         }
 
-        #endregion Properties
-
-        #region Public Methods
-
-        public override void Initialize()
+        public IPlaylistTrackList Tracks
         {
-            _callbacks = new NativePlaylistCallbacks(this);
-            _tracks = new Lazy<NativePlaylistTrackList>(() => new NativePlaylistTrackList(
-                GetNumberOfTracks,
-                GetTrackIndex,
-                AddTrack,
-                AddNewTrack,
-                RemoveTrack,
-                () => false));
-
-            lock (Spotify.Mutex)
+            get
             {
-                Spotify.sp_playlist_add_ref(Handle);
-                Spotify.sp_playlist_update_subscribers(Session.GetHandle(), Handle);
+                AssertHandle();
+
+                return _tracks.Value;
             }
         }
+
+        #endregion Properties
+
+        #region Methods
 
         public void AutoLinkTracks(bool autoLink)
         {
@@ -237,16 +219,6 @@ namespace Torshify.Core.Native
             lock (Spotify.Mutex)
             {
                 Spotify.sp_playlist_set_autolink_tracks(Handle, autoLink);
-            }
-        }
-
-        public void SetOfflineMode(bool offline)
-        {
-            AssertHandle();
-
-            lock (Spotify.Mutex)
-            {
-                Spotify.sp_playlist_set_offline_mode(Session.GetHandle(), Handle, offline);
             }
         }
 
@@ -260,9 +232,81 @@ namespace Torshify.Core.Native
             }
         }
 
-        #endregion Public Methods
+        public override void Initialize()
+        {
+            _callbacks = new NativePlaylistCallbacks(this);
+            _tracks = new Lazy<NativePlaylistTrackList>(() => new NativePlaylistTrackList(
+                GetNumberOfTracks,
+                GetTrackIndex,
+                AddTrack,
+                AddNewTrack,
+                RemoveTrack,
+                () => false,
+                MoveTrack,
+                MoveMultipleTracks));
 
-        #region Internal Methods
+            lock (Spotify.Mutex)
+            {
+                Spotify.sp_playlist_add_ref(Handle);
+                Spotify.sp_playlist_update_subscribers(Session.GetHandle(), Handle);
+            }
+        }
+
+        public void SetOfflineMode(bool offline)
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                Spotify.sp_playlist_set_offline_mode(Session.GetHandle(), Handle, offline);
+            }
+        }
+
+        internal void OnDescriptionChanged(DescriptionEventArgs e)
+        {
+            DescriptionChanged.RaiseEvent(this, e);
+        }
+
+        internal void OnImageChanged(ImageEventArgs e)
+        {
+            ImageChanged.RaiseEvent(this, e);
+        }
+
+        internal void OnMetadataUpdated(EventArgs e)
+        {
+            MetadataUpdated.RaiseEvent(this, e);
+        }
+
+        internal void OnRenamed(EventArgs e)
+        {
+            Renamed.RaiseEvent(this, e);
+        }
+
+        internal void OnStateChanged(EventArgs e)
+        {
+            StateChanged.RaiseEvent(this, e);
+        }
+
+        internal void OnSubscribersChanged(EventArgs e)
+        {
+            GetSubscribers();
+            SubscribersChanged.RaiseEvent(this, e);
+        }
+
+        internal void OnTrackCreatedChanged(TrackCreatedChangedEventArgs e)
+        {
+            TrackCreatedChanged.RaiseEvent(this, e);
+        }
+
+        internal void OnTracksAdded(TracksAddedEventArgs e)
+        {
+            TracksAdded.RaiseEvent(this, e);
+        }
+
+        internal void OnTrackSeenChanged(TrackSeenEventArgs e)
+        {
+            TrackSeenChanged.RaiseEvent(this, e);
+        }
 
         internal void OnTracksMoved(TracksMovedEventArgs e)
         {
@@ -274,60 +318,10 @@ namespace Torshify.Core.Native
             TracksRemoved.RaiseEvent(this, e);
         }
 
-        internal void OnTracksAdded(TracksAddedEventArgs e)
-        {
-            TracksAdded.RaiseEvent(this, e);
-        }
-
         internal void OnUpdateInProgress(PlaylistUpdateEventArgs e)
         {
             UpdateInProgress.RaiseEvent(this, e);
         }
-
-        internal void OnStateChanged(EventArgs e)
-        {
-            StateChanged.RaiseEvent(this, e);
-        }
-
-        internal void OnRenamed(EventArgs e)
-        {
-            Renamed.RaiseEvent(this, e);
-        }
-
-        internal void OnDescriptionChanged(DescriptionEventArgs e)
-        {
-            DescriptionChanged.RaiseEvent(this, e);
-        }
-
-        internal void OnTrackSeenChanged(TrackSeenEventArgs e)
-        {
-            TrackSeenChanged.RaiseEvent(this, e);
-        }
-
-        internal void OnTrackCreatedChanged(TrackCreatedChangedEventArgs e)
-        {
-            TrackCreatedChanged.RaiseEvent(this, e);
-        }
-
-        internal void OnMetadataUpdated(EventArgs e)
-        {
-            MetadataUpdated.RaiseEvent(this, e);
-        }
-
-        internal void OnImageChanged(ImageEventArgs e)
-        {
-            ImageChanged.RaiseEvent(this, e);
-        }
-
-        internal void OnSubscribersChanged(EventArgs e)
-        {
-            GetSubscribers();
-            SubscribersChanged.RaiseEvent(this, e);
-        }
-
-        #endregion Internal Methods
-
-        #region Protected Methods
 
         protected override void Dispose(bool disposing)
         {
@@ -365,9 +359,36 @@ namespace Torshify.Core.Native
             base.Dispose(disposing);
         }
 
-        #endregion Protected Methods
+        private void AddNewTrack(ITrack track, int index)
+        {
+            IntPtr[] ptrArray = new[] { track.GetHandle() };
+            IntPtr trackArrayPtr = Marshal.AllocHGlobal(Marshal.SizeOf(ptrArray));
+            Marshal.Copy(ptrArray, 0, trackArrayPtr, 1);
 
-        #region Private Methods
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                Spotify.sp_playlist_add_tracks(Handle, trackArrayPtr, 1, index, Session.GetHandle());
+            }
+
+            Marshal.FreeHGlobal(trackArrayPtr);
+        }
+
+        private void AddTrack(IPlaylistTrack track, int index)
+        {
+            AddNewTrack(track, index);
+        }
+
+        private int GetNumberOfTracks()
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                return Spotify.sp_playlist_num_tracks(Handle);
+            }
+        }
 
         private void GetSubscribers()
         {
@@ -398,37 +419,6 @@ namespace Torshify.Core.Native
             }
         }
 
-        private void RemoveTrack(int index)
-        {
-            AssertHandle();
-
-            lock (Spotify.Mutex)
-            {
-                Spotify.sp_playlist_remove_tracks(Handle, new[] { index }, 1);
-            }
-        }
-
-        private void AddTrack(IPlaylistTrack track, int index)
-        {
-            AddNewTrack(track, index);
-        }
-
-        private void AddNewTrack(ITrack track, int index)
-        {
-            IntPtr[] ptrArray = new[] { track.GetHandle() };
-            IntPtr trackArrayPtr = Marshal.AllocHGlobal(Marshal.SizeOf(ptrArray));
-            Marshal.Copy(ptrArray, 0, trackArrayPtr, 1);
-
-            AssertHandle();
-
-            lock (Spotify.Mutex)
-            {
-                Spotify.sp_playlist_add_tracks(Handle, trackArrayPtr, 1, index, Session.GetHandle());
-            }
-
-            Marshal.FreeHGlobal(trackArrayPtr);
-        }
-
         private IPlaylistTrack GetTrackIndex(int index)
         {
             AssertHandle();
@@ -439,16 +429,36 @@ namespace Torshify.Core.Native
             }
         }
 
-        private int GetNumberOfTracks()
+        private void MoveMultipleTracks(int[] indices, int newIndex)
         {
             AssertHandle();
 
             lock (Spotify.Mutex)
             {
-                return Spotify.sp_playlist_num_tracks(Handle);
+                Spotify.sp_playlist_reorder_tracks(Handle, indices, indices.Length, newIndex);
             }
         }
 
-        #endregion Private Methods
+        private void MoveTrack(int oldIndex, int newIndex)
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                Spotify.sp_playlist_reorder_tracks(Handle, new[] { oldIndex }, 1, newIndex);
+            }
+        }
+
+        private void RemoveTrack(int index)
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                Spotify.sp_playlist_remove_tracks(Handle, new[] { index }, 1);
+            }
+        }
+
+        #endregion Methods
     }
 }

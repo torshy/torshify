@@ -60,7 +60,7 @@ namespace Torshify.Core
 
         public override bool Equals(object obj)
         {
-            return obj != null && _handle.Equals(((WeakReference<T>) obj)._handle);
+            return obj != null && _handle.Equals(((WeakReference<T>)obj)._handle);
         }
 
         public override int GetHashCode()

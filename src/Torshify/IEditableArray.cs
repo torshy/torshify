@@ -25,6 +25,8 @@
 
         bool Remove(T item);
 
+        void Move(int oldIndex, int newIndex);
+
         #endregion Methods
     }
 }

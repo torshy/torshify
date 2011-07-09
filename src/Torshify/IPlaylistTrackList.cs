@@ -8,6 +8,8 @@
 
         void Add(int index, ITrack item);
 
+        void Move(int[] indices, int newIndex);
+
         #endregion Methods
     }
 }

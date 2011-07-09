@@ -207,6 +207,11 @@ namespace Torshify.Core.Native
                                                   }
                                               }
 
+                                              if (Error == Error.OtherPermanent)
+                                              {
+                                                  return null;
+                                              }
+
                                               throw new InvalidOperationException("Track not loaded yet");
                                           });
         }
