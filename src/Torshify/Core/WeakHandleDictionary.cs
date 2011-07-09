@@ -77,7 +77,7 @@ namespace Torshify.Core
             {
                 // Perform a scavenge through our keys, looking
                 // for dead references.
-                ArrayList cleanupList = null;
+                List<IntPtr> cleanupList = null;
                 foreach (IntPtr o in Keys)
                 {
                     WeakReference<T> wr = base[o];
@@ -85,10 +85,10 @@ namespace Torshify.Core
                     {
                         if (cleanupList == null)
                         {
-                            cleanupList = new ArrayList();
+                            cleanupList = new List<IntPtr>();
                         }
 
-                        cleanupList.Add(wr);
+                        cleanupList.Add(o);
                     }
                 }
 
