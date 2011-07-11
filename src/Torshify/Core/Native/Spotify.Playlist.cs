@@ -140,6 +140,7 @@ namespace Torshify.Core.Native
         /// <param name="playlistPtr">Playlist object.</param>
         /// <returns>true if playlist is collaborative, otherwise false.</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_playlist_is_collaborative(IntPtr playlistPtr);
 
         /// <summary>
