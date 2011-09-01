@@ -104,6 +104,18 @@ namespace Torshify
             return (ILink<ISearch>)LinkManager.Get(wrapper.Session, linkPtr, search);
         }
 
+        public static ILink<T> FromLink<T>(this ISession session, string link)
+        {
+            IntPtr linkHandle;
+
+            lock (Spotify.Mutex)
+            {
+                linkHandle = Spotify.sp_link_create_from_string(link);
+            }
+
+            return LinkManager.Get(session, linkHandle) as ILink<T>;
+        }
+
         private static ILink<T> CreateLink<T>(T instance, Func<IntPtr, IntPtr> create)
         {
             var wrapper = instance as INativeObject;

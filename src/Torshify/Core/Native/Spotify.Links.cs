@@ -6,6 +6,14 @@ namespace Torshify.Core.Native
     internal partial class Spotify
     {
         /// <summary>
+        /// Create a Spotify link given a string
+        /// </summary>
+        /// <remarks>You need to release the link when you are done with it.</remarks>
+        /// <param name="link">A string representation of a Spotify link</param>
+        /// <returns>A link representation of the given string representation. If the link could not be parsed, this function returns NULL.</returns>
+        [DllImport("libspotify")]
+        internal static extern IntPtr sp_link_create_from_string(string link);
+        /// <summary>
         /// Creates a link object from an artist.
         /// </summary>
         /// <remarks>You need to release the link when you are done with it.</remarks>
