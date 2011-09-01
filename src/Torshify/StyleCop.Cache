@@ -2463,24 +2463,6 @@
     <milliseconds>790</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="ConnectionState.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>792</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="Error.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>06/21/2011 19:39:51</timestamp>
-    <milliseconds>857</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="ImageFormat.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2011 19:39:51</timestamp>
@@ -2580,15 +2562,6 @@
     <milliseconds>890</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="NativeSession.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>07/08/2011 17:10:34</timestamp>
-    <milliseconds>894</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="TracksMovedEventArgs.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2011 19:39:51</timestamp>
@@ -2661,6 +2634,42 @@
     <milliseconds>883</milliseconds>
     <violations />
   </sourcecode>
+  <sourcecode name="Error.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>09/01/2011 20:17:50</timestamp>
+    <milliseconds>85</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ConnectionState.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>09/01/2011 20:18:12</timestamp>
+    <milliseconds>557</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NativeSession.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>09/01/2011 20:36:22</timestamp>
+    <milliseconds>76</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LinkExtensions.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2011 19:39:51</timestamp>
+      <milliseconds>898</milliseconds>
+    </settings>
+    <timestamp>09/01/2011 20:43:47</timestamp>
+    <milliseconds>339</milliseconds>
+    <violations />
+  </sourcecode>
   <project key="1403417745">
     <configuration>DEBUG;TRACE</configuration>
   </project>
@@ -2669,17 +2678,8 @@
       <timestamp>06/21/2011 19:39:51</timestamp>
       <milliseconds>898</milliseconds>
     </settings>
-    <timestamp>07/01/2011 21:30:14</timestamp>
-    <milliseconds>117</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="LinkExtensions.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2011 19:39:51</timestamp>
-      <milliseconds>898</milliseconds>
-    </settings>
-    <timestamp>08/30/2011 20:13:44</timestamp>
-    <milliseconds>3</milliseconds>
+    <timestamp>07/01/2011 18:14:28</timestamp>
+    <milliseconds>886</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

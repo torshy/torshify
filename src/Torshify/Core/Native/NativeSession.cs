@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -205,12 +206,7 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                Error result = Spotify.sp_session_login(Handle, userName, password);
-
-                if (result != Error.OK)
-                {
-                    throw new Exception(result.GetMessage());
-                }
+                Spotify.sp_session_login(Handle, userName, password, false);
             }
         }
 
@@ -515,6 +511,8 @@ namespace Torshify.Core.Native
         public override void Initialize()
         {
             _callbacks = new NativeSessionCallbacks(this);
+
+            Directory.CreateDirectory(_settingsLocation);
 
             var sessionConfig = new Spotify.SpotifySessionConfig
             {

@@ -8,7 +8,6 @@ namespace Torshify
         BadApiVersion = 1,
         ApiInitializationFailed = 2,
         TrackNotPlayable = 3,
-        ResourceNotLoaded = 4,
         BadApplicationKey = 5,
         BadUsernameOrPassword = 6,
         UserBanned = 7,
@@ -27,6 +26,7 @@ namespace Torshify
         InboxIsFull = 20, 
         NoCache = 21, 
         NoSuchUser = 22,
+        NoCredentials = 23
     }
 
     public static class ErrorExtensions

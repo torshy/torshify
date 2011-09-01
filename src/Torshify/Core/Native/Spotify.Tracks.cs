@@ -10,7 +10,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="albumPtr">The track whose load status you are interested in.</param>
         /// <returns>True if track is loaded, otherwise false.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern bool sp_track_is_loaded(IntPtr trackPtr);
 
         /// <summary>
@@ -18,7 +18,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="albumPtr">The track.</param>
         /// <returns>Error code.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern Error sp_track_error(IntPtr trackPtr);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Torshify.Core.Native
         /// <seealso cref="libspotify.sp_track_is_loaded"/>
         /// </remarks>
         /// <returns>True if track is available for playback, otherwise false.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern bool sp_track_is_available(IntPtr sessionPtr, IntPtr trackPtr);
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Torshify.Core.Native
         /// <seealso cref="libspotify.sp_track_is_loaded"/>
         /// </remarks>
         /// <returns>True if track is a local file, otherwise false.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern bool sp_track_is_local(IntPtr sessionPtr, IntPtr trackPtr);
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Torshify.Core.Native
         /// <seealso cref="libspotify.sp_track_is_loaded"/>
         /// </remarks>
         /// <returns>True if track is autolinked, otherwise false.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern bool sp_track_is_autolinked(IntPtr sessionPtr, IntPtr trackPtr);
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Torshify.Core.Native
         /// <seealso cref="libspotify.sp_track_is_loaded"/>
         /// </remarks>
         /// <returns>True if track is a starred file, otherwise false.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_track_is_starred(IntPtr sessionPtr, IntPtr trackPtr);
 
@@ -77,7 +77,7 @@ namespace Torshify.Core.Native
         /// <param name="trackArrayPtr">An array of pointer to tracks.</param>
         /// <param name="num_tracks">Count of <c>trackArray</c>.</param>
         /// <param name="star">Starred status of the track.</param>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern void sp_track_set_starred(IntPtr sessionPtr, IntPtr trackArrayPtr, int num_tracks, bool star);
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="albumPtr">The track whose number of participating artists you are interested in.</param>
         /// <returns>The number of artists performing on the specified track. If no metadata is available for the track yet, this function returns 0.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern int sp_track_num_artists(IntPtr trackPtr);
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Torshify.Core.Native
         /// <param name="albumPtr">The track whose participating artist you are interested in.</param>
         /// <param name="index">The index for the participating artist. Should be in the interval [0, <c>sp_track_num_artists()</c> - 1]</param>
         /// <returns>The participating artist, or NULL if invalid index.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern IntPtr sp_track_artist(IntPtr trackPtr, int index);
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="albumPtr">A track object.</param>
         /// <returns>The album of the given track. You need to increase the refcount if you want to keep the pointer around. If no metadata is available for the track yet, this function returns 0.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern IntPtr sp_track_album(IntPtr trackPtr);
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Torshify.Core.Native
         /// Returned string is valid as long as the album object stays allocated and
         /// no longer than the next call to <c>sp_session_process_events()</c>.
         /// If no metadata is available for the track yet, this function returns empty string. </returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
         internal static extern string sp_track_name(IntPtr trackPtr);
 
@@ -122,7 +122,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="albumPtr">A track object.</param>
         /// <returns>The duration of the specified track, in milliseconds If no metadata is available for the track yet, this function returns 0.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern int sp_track_duration(IntPtr trackPtr);
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Torshify.Core.Native
         /// <param name="albumPtr">A track object.</param>
         /// <returns>Popularity in range 0 to 100, 0 if undefined.
         /// If no metadata is available for the track yet, this function returns 0.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern int sp_track_popularity(IntPtr trackPtr);
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace Torshify.Core.Native
         /// <param name="albumPtr">A track object.</param>
         /// <returns>Disc index. Possible values are [1, total number of discs on album].
         /// This function returns valid data only for tracks appearing in a browse artist or browse album result (otherwise returns 0).</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern int sp_track_disc(IntPtr trackPtr);
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace Torshify.Core.Native
         /// <param name="albumPtr">A track object.</param>
         /// <returns>Track position, starts at 1 (relative the corresponding disc).
         /// This function returns valid data only for tracks appearing in a browse artist or browse album result (otherwise returns 0).</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern int sp_track_index(IntPtr trackPtr);
 
         /// <summary>
@@ -160,21 +160,21 @@ namespace Torshify.Core.Native
         /// <param name="album">Name of the album, or an empty string if not available.</param>
         /// <param name="length">Count in MS, or -1 if not available.</param>
         /// <returns>A track.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern IntPtr sp_localtrack_create(string artist, string title, string album, int length);
 
         /// <summary>
         /// Increase the reference count of a track.
         /// </summary>
         /// <param name="albumPtr">The track object.</param>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern void sp_track_add_ref(IntPtr trackPtr);
 
         /// <summary>
         /// Decrease the reference count of a track.
         /// </summary>
         /// <param name="albumPtr">The track object.</param>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern void sp_track_release(IntPtr trackPtr);
     }
 }

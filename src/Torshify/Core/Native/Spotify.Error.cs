@@ -10,7 +10,7 @@ namespace Torshify.Core.Native
       /// </summary>
       /// <param name="error">The error code.</param>
       /// <returns>The text-representation of the error.</returns>
-      [DllImport("libspotify")]
+      [DllImport("spotify")]
       public static extern string sp_error_message(Error error);
   }
 }

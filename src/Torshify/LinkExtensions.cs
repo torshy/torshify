@@ -72,7 +72,7 @@ namespace Torshify
                     return wrapper == null ? IntPtr.Zero : wrapper.Handle;
                 },
                 artistBrowse.Session,
-                h => Spotify.sp_link_create_from_artist_portrait(h, artistIndex));
+                h => Spotify.sp_link_create_from_artistbrowse_portrait(h, artistIndex));
         }
 
         public static ILink<IPlaylist> ToLink(this IPlaylist playlist)

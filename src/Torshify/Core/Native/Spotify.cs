@@ -9,7 +9,7 @@ namespace Torshify.Core.Native
     {
         #region Fields
 
-        public const int SPOTIFY_API_VERSION = 8;
+        public const int SPOTIFY_API_VERSION = 9;
         public const int STRINGBUFFER_SIZE = 256;
 
         internal static readonly object Mutex = new object();
@@ -23,7 +23,8 @@ namespace Torshify.Core.Native
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("torshify uses SPOTIFY(R) CORE");
             Console.ForegroundColor = ConsoleColor.Gray;
-            SpotifyLibExtractor.ExtractResourceToFile("Torshify.Core.libspotify.dll", "libspotify.dll");
+            SpotifyLibExtractor.ExtractResourceToFile("Torshify.Core.spotify.dll", "spotify.dll");
+            Console.WriteLine(Spotify.sp_build_id());
         }
 
         #endregion Constructors

@@ -11,14 +11,14 @@ namespace Torshify.Core.Native
         /// Increase the reference count of an toplist browse result
         /// </summary>
         /// <param name="browsePtr"> toplist browse object.</param>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern void sp_toplistbrowse_add_ref(IntPtr browsePtr);
 
         /// <summary>
         /// Decrease the reference count of an toplist browse result
         /// </summary>
         /// <param name="browsePtr"> toplist browse object.</param>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern void sp_toplistbrowse_release(IntPtr browsePtr);
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Torshify.Core.Native
         /// <param name="completeCallback"> Callback to be invoked when browsing has been completed. Pass NULL if you are not interested in this event.</param>
         /// <param name="userDataPtr">Userdata passed to callback.</param>
         /// <returns>Toplist browse object</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern IntPtr sp_toplistbrowse_create(
             IntPtr sessionPtr,
             ToplistType toplistType,
@@ -46,14 +46,14 @@ namespace Torshify.Core.Native
         /// Check if an toplist browse request is completed
         /// </summary>
         /// <param name="browsePtr"> toplist browse object.</param>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern bool sp_toplistbrowse_is_loaded(IntPtr browsePtr);
 
         /// <summary>
         /// Check if browsing returned an error code.
         /// </summary>
         /// <param name="browsePtr"> toplist browse object.</param>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern Error sp_toplistbrowse_error(IntPtr browsePtr);
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="browsePtr"> toplist browse object.</param>
         /// <returns>Number of tracks on toplist</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern int sp_toplistbrowse_num_tracks(IntPtr browsePtr);
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Torshify.Core.Native
         /// <param name="browsePtr"> toplist browse object.</param>
         /// <param name="index">The index for the track. Should be in the interval [0, sp_toplistbrowse_num_tracks() - 1]</param>
         /// <returns>A track.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern IntPtr sp_toplistbrowse_track(IntPtr browsePtr, int index);
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="browsePtr"> toplist browse object.</param>
         /// <returns>Number of artists on toplist</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern int sp_toplistbrowse_num_artists(IntPtr browsePtr);
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Torshify.Core.Native
         /// <param name="browsePtr"> toplist browse object.</param>
         /// <param name="index">The index for the artists. Should be in the interval [0, sp_toplistbrowse_num_artists() - 1]</param>
         /// <returns>A track.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern IntPtr sp_toplistbrowse_artist(IntPtr browsePtr, int index);
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="browsePtr"> toplist browse object.</param>
         /// <returns>Number of albums on toplist</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern int sp_toplistbrowse_num_albums(IntPtr browsePtr);
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Torshify.Core.Native
         /// <param name="browsePtr"> toplist browse object.</param>
         /// <param name="index">The index for the albums. Should be in the interval [0, sp_toplistbrowse_num_albums() - 1]</param>
         /// <returns>A track.</returns>
-        [DllImport("libspotify")]
+        [DllImport("spotify")]
         internal static extern IntPtr sp_toplistbrowse_album(IntPtr browsePtr, int index);
     }
 }
