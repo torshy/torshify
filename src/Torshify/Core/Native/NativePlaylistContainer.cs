@@ -187,7 +187,7 @@ namespace Torshify.Core.Native
             {
                 lock (Spotify.Mutex)
                 {
-                    Spotify.sp_playlistcontainer_move_playlist(Handle, newIndex, index);
+                    Spotify.sp_playlistcontainer_move_playlist(Handle, newIndex, index, false);
                 }
             }
         }
@@ -221,7 +221,7 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_playlistcontainer_move_playlist(Handle, oldIndex, newIndex);
+                Spotify.sp_playlistcontainer_move_playlist(Handle, oldIndex, newIndex, false);
             }
         }
 

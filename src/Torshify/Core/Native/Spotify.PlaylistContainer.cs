@@ -132,9 +132,10 @@ namespace Torshify.Core.Native
         /// <param name="pcPtr">Playlist container.</param>
         /// <param name="index">Index of playlist to be moved.</param>
         /// <param name="newPosition">New position for the playlist.</param>
+        /// <param name="dryRun">Do not execute the move, only check if it possible</param>
         /// <returns>Error code.</returns>
         [DllImport("libspotify")]
-        internal static extern Error sp_playlistcontainer_move_playlist(IntPtr pcPtr, int index, int newPosition);
+        internal static extern Error sp_playlistcontainer_move_playlist(IntPtr pcPtr, int index, int newPosition, bool dryRun);
 
         /// <summary>
         /// Returns a pointer to the user object of the owner.

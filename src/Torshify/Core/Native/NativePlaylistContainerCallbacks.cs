@@ -99,7 +99,16 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _container.QueueThis(() => _container.OnPlaylistAdded(new PlaylistEventArgs(PlaylistManager.Get(_container.Session, playlistptr), position)));
+            var containerPlaylist = ContainerPlaylistManager.Get(
+                _container.Session,
+                _container,
+                playlistptr,
+                Spotify.sp_playlistcontainer_playlist_folder_id(containerPointer, position),
+                Spotify.sp_playlistcontainer_playlist_type(containerPointer, position));
+
+            var args = new PlaylistEventArgs(containerPlaylist, position);
+
+            _container.QueueThis(() => _container.OnPlaylistAdded(args));
         }
 
         private void OnPlaylistRemovedCallback(IntPtr containerPointer, IntPtr playlistptr, int position, IntPtr userdataptr)
@@ -109,7 +118,16 @@ namespace Torshify.Core.Native
                 return;
             }
 
-            _container.QueueThis(() => _container.OnPlaylistRemoved(new PlaylistEventArgs(PlaylistManager.Get(_container.Session, playlistptr), position)));
+            var containerPlaylist = ContainerPlaylistManager.Get(
+                _container.Session,
+                _container,
+                playlistptr,
+                Spotify.sp_playlistcontainer_playlist_folder_id(containerPointer, position),
+                Spotify.sp_playlistcontainer_playlist_type(containerPointer, position));
+
+            var args = new PlaylistEventArgs(containerPlaylist, position);
+
+            _container.QueueThis(() => _container.OnPlaylistRemoved(args));
         }
 
         private void OnPlaylistMovedCallback(IntPtr containerPointer, IntPtr playlistptr, int position, int newposition, IntPtr userdataptr)
@@ -125,7 +143,16 @@ namespace Torshify.Core.Native
                 newposition--;
             }
 
-            _container.QueueThis(() => _container.OnPlaylistMoved(new PlaylistMovedEventArgs(PlaylistManager.Get(_container.Session, playlistptr), position, newposition)));
+            var containerPlaylist = ContainerPlaylistManager.Get(
+                _container.Session,
+                _container,
+                playlistptr,
+                Spotify.sp_playlistcontainer_playlist_folder_id(containerPointer, position),
+                Spotify.sp_playlistcontainer_playlist_type(containerPointer, position));
+
+            var args = new PlaylistMovedEventArgs(containerPlaylist, position, newposition);
+
+            _container.QueueThis(() => _container.OnPlaylistMoved(args));
         }
 
         #endregion Private Methods
