@@ -348,7 +348,7 @@ namespace Torshify.Core.Native
         internal struct SpotifySubscribers
         {
             [MarshalAs(UnmanagedType.U4)]
-            internal uint Count; // Count is never correct. Using sp_playlist_num_subscribers instead
+            internal uint Count;
             internal IntPtr Subscribers;
         }
 

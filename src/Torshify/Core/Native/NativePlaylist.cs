@@ -396,26 +396,28 @@ namespace Torshify.Core.Native
             {
                 // NOTE: Something isn't correct with the sp_playlist_subscribers marshalling. The 'count' field is not correct at all, but the array of user pointers are.
                 var subscribersPtr = Spotify.sp_playlist_subscribers(Handle);
-                var numberOfSubscribers = Spotify.sp_playlist_num_subscribers(Handle);
-
-                var arrayPtr = IntPtr.Add(subscribersPtr, sizeof(uint));
-                var arrayPtrs = new IntPtr[Math.Min(numberOfSubscribers, 500)];
-                Marshal.Copy(arrayPtr, arrayPtrs, 0, arrayPtrs.Length);
+                var subscribers = (Spotify.SpotifySubscribers)Marshal.PtrToStructure(subscribersPtr, typeof (Spotify.SpotifySubscribers));
 
                 _subscribers.Clear();
 
-                for (int i = 0; i < arrayPtrs.Length; i++)
+                if (subscribers.Count > 0)
                 {
-                    string userName = Spotify.GetString(arrayPtrs[i], string.Empty);
+                    var arrayPtr = IntPtr.Add(subscribersPtr, sizeof (uint));
+                    var arrayPtrs = new IntPtr[subscribers.Count];
+                    Marshal.Copy(arrayPtr, arrayPtrs, 0, arrayPtrs.Length);
 
-                    if (!string.IsNullOrEmpty(userName))
+                    for (int i = 0; i < arrayPtrs.Length; i++)
                     {
-                        _subscribers.Add(userName);
+                        string userName = Spotify.GetString(arrayPtrs[i], string.Empty);
+
+                        if (!string.IsNullOrEmpty(userName))
+                        {
+                            _subscribers.Add(userName);
+                        }
                     }
                 }
 
-                // TODO : Throws AccessViolationException.
-                // Spotify.sp_playlist_subscribers_free(subscribersPtr);
+                Spotify.sp_playlist_subscribers_free(subscribersPtr);
             }
         }
 
