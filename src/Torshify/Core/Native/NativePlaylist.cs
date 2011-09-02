@@ -395,13 +395,13 @@ namespace Torshify.Core.Native
             lock (Spotify.Mutex)
             {
                 var subscribersPtr = Spotify.sp_playlist_subscribers(Handle);
-                var subscribers = (Spotify.SpotifySubscribers)Marshal.PtrToStructure(subscribersPtr, typeof (Spotify.SpotifySubscribers));
+                var subscribers = (Spotify.SpotifySubscribers)Marshal.PtrToStructure(subscribersPtr, typeof(Spotify.SpotifySubscribers));
 
                 _subscribers.Clear();
 
                 if (subscribers.Count > 0)
                 {
-                    var arrayPtr = IntPtr.Add(subscribersPtr, sizeof (uint));
+                    var arrayPtr = IntPtr.Add(subscribersPtr, sizeof(uint));
                     var arrayPtrs = new IntPtr[subscribers.Count];
                     Marshal.Copy(arrayPtr, arrayPtrs, 0, arrayPtrs.Length);
 
