@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Torshify.Core.Native
 {
@@ -57,7 +58,10 @@ namespace Torshify.Core.Native
         /// <param name="buffer_size">The max size of the buffer that will hold the username. The resulting string is guaranteed to always be null terminated if buffer_size > 0</param>
         /// <returns> The number of characters in the username. If value is greater or equal than \p buffer_size, output was truncated. If returned value is -1 no credentials are stored in libspotify.*/</returns>
         [DllImport("spotify")]
-        internal static extern int sp_session_remembered_user(IntPtr sessionPtr, IntPtr bufferPtr, int bufferSize);
+        internal static extern int sp_session_remembered_user(
+            IntPtr sessionPtr, 
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Utf8StringBuilderMarshaler))]StringBuilder buffer,
+            int bufferSize);
 
         /// <summary>
         /// Remove stored credentials in libspotify. If no credentials are currently stored, nothing will happen.

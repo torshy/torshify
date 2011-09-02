@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Authentication;
+using System.Text;
 using System.Threading;
 
 using Torshify.Core.Managers;
@@ -233,6 +234,35 @@ namespace Torshify.Core.Native
             lock (Spotify.Mutex)
             {
                 Spotify.sp_session_forget_me(Handle);
+            }
+        }
+
+        public string GetRememberedUser()
+        {
+            AssertHandle();
+
+            int bufferSize = Spotify.STRINGBUFFER_SIZE;
+
+            try
+            {
+                int userNameLength;
+                StringBuilder builder = new StringBuilder(bufferSize);
+
+                lock (Spotify.Mutex)
+                {
+                    userNameLength = Spotify.sp_session_remembered_user(Handle, builder, bufferSize);
+                }
+
+                if (userNameLength == -1)
+                {
+                    return string.Empty;
+                }
+
+                return builder.ToString();
+            }
+            catch
+            {
+                return string.Empty;
             }
         }
 

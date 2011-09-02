@@ -88,7 +88,16 @@ namespace Torshify
         /// </summary>
         void Relogin();
 
+        /// <summary>
+        /// Remove stored credentials in libspotify. If no credentials are currently stored, nothing will happen.
+        /// </summary>
         void ForgetStoredLogin();
+
+        /// <summary>
+        /// Get username of the user that will be logged in via ISession.Relogin()
+        /// </summary>
+        /// <returns>Username of user which will be used in Relogin. If no login stored, it will return an empty string</returns>
+        string GetRememberedUser();
 
         void Logout();
 
