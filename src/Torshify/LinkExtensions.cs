@@ -101,7 +101,7 @@ namespace Torshify
                 linkPtr = Spotify.sp_link_create_from_search(wrapper.Handle);
             }
 
-            return (ILink<ISearch>)LinkManager.Get(wrapper.Session, linkPtr, search);
+            return (ILink<ISearch>)LinkManager.Get(wrapper.Session, linkPtr, search.Query);
         }
 
         public static ILink<T> FromLink<T>(this ISession session, string link)
@@ -118,7 +118,7 @@ namespace Torshify
                 linkHandle = Spotify.sp_link_create_from_string(link);
             }
 
-            return LinkManager.Get(session, linkHandle);
+            return LinkManager.Get(session, linkHandle, link);
         }
 
         private static ILink<T> CreateLink<T>(T instance, Func<IntPtr, IntPtr> create)

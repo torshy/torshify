@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Torshify.Core.Native
 {
@@ -119,7 +120,10 @@ namespace Torshify.Core.Native
         /// <returns>The number of characters in the string representation of the link.
         /// If this value is greater or equal than buffer_size, output was truncated.</returns>
         [DllImport("spotify")]
-        internal static extern int sp_link_as_string(IntPtr linkPtr, IntPtr bufferPtr, int buffer_size);
+        internal static extern int sp_link_as_string(
+            IntPtr linkPtr,
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Utf8StringBuilderMarshaler))]StringBuilder buffer,
+            int bufferSize);
 
         /// <summary>
         /// Gets the link type of the specified link.

@@ -13,5 +13,7 @@ namespace Torshify
         {
             get;
         }
+
+        string GetStringLink();
     }
 }

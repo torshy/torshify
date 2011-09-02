@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 using Torshify.Core.Managers;
 
 namespace Torshify.Core.Native
@@ -47,6 +48,11 @@ namespace Torshify.Core.Native
             }
         }
 
+        public string GetStringLink()
+        {
+            return ToString();
+        }
+
         public override string ToString()
         {
             if (IsInvalid)
@@ -54,27 +60,28 @@ namespace Torshify.Core.Native
                 return string.Empty;
             }
 
-            IntPtr bufferPtr = IntPtr.Zero;
+            int bufferSize = Spotify.STRINGBUFFER_SIZE;
+
             try
             {
-                int size = Spotify.STRINGBUFFER_SIZE;
-                bufferPtr = Marshal.AllocHGlobal(size);
+                int length;
+                StringBuilder builder = new StringBuilder(bufferSize);
+
                 lock (Spotify.Mutex)
                 {
-                    Spotify.sp_link_as_string(Handle, bufferPtr, size);
+                    length = Spotify.sp_link_as_string(Handle, builder, bufferSize);
                 }
 
-                return Spotify.GetString(bufferPtr, string.Empty);
+                if (length == -1)
+                {
+                    return string.Empty;
+                }
+
+                return builder.ToString().Replace("%3a", ":");
             }
-            finally
+            catch
             {
-                try
-                {
-                    Marshal.FreeHGlobal(bufferPtr);
-                }
-                catch
-                {
-                }
+                return string.Empty;
             }
         }
 

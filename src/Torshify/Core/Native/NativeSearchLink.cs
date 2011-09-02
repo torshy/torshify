@@ -6,16 +6,17 @@ namespace Torshify.Core.Native
     {
         #region Fields
 
-        private ISearch _search;
+        private Lazy<ISearch> _search;
+        private string _searchLink;
 
         #endregion Fields
 
         #region Constructors
 
-        public NativeSearchLink(ISession session, IntPtr handle, ISearch search)
+        public NativeSearchLink(ISession session, IntPtr handle, string searchLink)
             : base(session, handle)
         {
-            _search = search;
+            _searchLink = searchLink.Replace("spotify:search:", string.Empty);
         }
 
         #endregion Constructors
@@ -24,7 +25,7 @@ namespace Torshify.Core.Native
 
         public override object Object
         {
-            get { return _search; }
+            get { return _search.Value; }
         }
 
         ISearch ILink<ISearch>.Object
@@ -38,6 +39,15 @@ namespace Torshify.Core.Native
 
         public override void Initialize()
         {
+            _search = new Lazy<ISearch>(() =>
+                                            {
+                                                AssertHandle();
+
+                                                lock (Spotify.Mutex)
+                                                {
+                                                    return Session.Search(_searchLink, 0, 250, 0, 250, 0, 250);
+                                                }
+                                            });
         }
 
         #endregion Public Methods
