@@ -1,7 +1,7 @@
 ##About torshify
 A C# libspotify wrapper (based on https://github.com/Alxandr/SpotiFire)
 
-torshify implements most of the libspotify 9.1.45 features such as: 
+torshify implements most of the libspotify 9.1.45 features such as:  
 * Offline syncing  
 * Artist browse  
 * Album browse  

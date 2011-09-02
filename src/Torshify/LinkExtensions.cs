@@ -106,6 +106,11 @@ namespace Torshify
 
         public static ILink<T> FromLink<T>(this ISession session, string link)
         {
+            return FromLink(session, link) as ILink<T>;
+        }
+
+        public static ILink FromLink(this ISession session, string link)
+        {
             IntPtr linkHandle;
 
             lock (Spotify.Mutex)
@@ -113,7 +118,7 @@ namespace Torshify
                 linkHandle = Spotify.sp_link_create_from_string(link);
             }
 
-            return LinkManager.Get(session, linkHandle) as ILink<T>;
+            return LinkManager.Get(session, linkHandle);
         }
 
         private static ILink<T> CreateLink<T>(T instance, Func<IntPtr, IntPtr> create)
