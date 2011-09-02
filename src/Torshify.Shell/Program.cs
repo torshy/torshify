@@ -46,7 +46,7 @@ namespace Torshify.Shell
 
             ConsoleEx.WriteLine("Logging in..");
 
-            Session.Login(userName, password);
+            Session.Login(userName, password, rememberMe: false);
 
             _logInEvent.Wait(5000);
 
@@ -207,7 +207,7 @@ namespace Torshify.Shell
         {
             ConsoleEx.WriteLine("=== Radio ===", ConsoleColor.Cyan);
 
-            string[] genres = Enum.GetNames(typeof (RadioGenre));
+            string[] genres = Enum.GetNames(typeof(RadioGenre));
 
             for (int i = 0; i < genres.Length; i++)
             {

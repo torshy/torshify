@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Security.Authentication;
 using System.Threading;
 
 using Torshify.Core.Managers;
@@ -200,13 +201,38 @@ namespace Torshify.Core.Native
 
         #region Public Methods
 
-        public void Login(string userName, string password)
+        public void Login(string userName, string password, bool rememberMe = false)
         {
             AssertHandle();
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_login(Handle, userName, password, false);
+                Spotify.sp_session_login(Handle, userName, password, rememberMe);
+            }
+        }
+
+        public void Relogin()
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                var error = Spotify.sp_session_relogin(Handle);
+
+                if (error != Error.OK)
+                {
+                    throw new AuthenticationException(error.GetMessage());
+                }
+            }
+        }
+
+        public void ForgetStoredLogin()
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                Spotify.sp_session_forget_me(Handle);
             }
         }
 

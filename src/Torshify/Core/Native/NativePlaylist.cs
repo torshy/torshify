@@ -394,7 +394,6 @@ namespace Torshify.Core.Native
         {
             lock (Spotify.Mutex)
             {
-                // NOTE: Something isn't correct with the sp_playlist_subscribers marshalling. The 'count' field is not correct at all, but the array of user pointers are.
                 var subscribersPtr = Spotify.sp_playlist_subscribers(Handle);
                 var subscribers = (Spotify.SpotifySubscribers)Marshal.PtrToStructure(subscribersPtr, typeof (Spotify.SpotifySubscribers));
 

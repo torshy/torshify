@@ -1,4 +1,5 @@
 using System;
+using System.Security.Authentication;
 
 namespace Torshify
 {
@@ -80,7 +81,14 @@ namespace Torshify
 
         #region Methods
 
-        void Login(string userName, string password);
+        void Login(string userName, string password, bool rememberMe = false);
+
+        /// <summary>
+        /// <exception cref="AuthenticationException">Thrown when no credentials are stored.</exception>
+        /// </summary>
+        void Relogin();
+
+        void ForgetStoredLogin();
 
         void Logout();
 
