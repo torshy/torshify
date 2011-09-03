@@ -237,14 +237,15 @@ namespace Torshify.Core.Native
                         Spotify.sp_track_release(Handle);
                     }
                 }
-                catch{ }
+                catch
+                {
+                }
                 finally
                 {
                     TrackManager.Remove(Handle);
                     Handle = IntPtr.Zero;
                     Debug.WriteLine("Track disposed");
                 }
-
             }
 
             base.Dispose(disposing);
