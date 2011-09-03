@@ -25,8 +25,5 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 Torshify.sln.docstates
-src/Torshify/StyleCop.Cache
-*.vsp
-src/Torshify/StyleCop.Cache
 *StyleCop.Cache
-src/Torshify/StyleCop.Cache
+*.vsp

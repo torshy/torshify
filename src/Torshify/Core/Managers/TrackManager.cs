@@ -1,6 +1,7 @@
 using System;
-
+using System.Collections.Generic;
 using Torshify.Core.Native;
+using System.Linq;
 
 namespace Torshify.Core.Managers
 {
@@ -17,20 +18,25 @@ namespace Torshify.Core.Managers
 
         internal static ITrack Get(ISession session, IntPtr handle)
         {
+            NativeTrack track;
+
             lock (_instanceLock)
             {
-                NativeTrack track;
-
                 if (_instances.TryGetValue(handle, out track))
                 {
                     return track;
                 }
-
-                track = new NativeTrack(session, handle);
-                track.Initialize();
-                _instances.SetValue(handle, track);
-                return track;
             }
+
+            track = new NativeTrack(session, handle);
+            track.Initialize();
+
+            lock (_instanceLock)
+            {
+                _instances.SetValue(handle, track);
+            }
+
+            return track;
         }
 
         internal static void Remove(IntPtr handle)
@@ -43,22 +49,25 @@ namespace Torshify.Core.Managers
 
         internal static void DisposeAll(ISession session)
         {
+            var tracksToDispose = new List<NativeTrack>();
+
             lock (_instanceLock)
             {
                 foreach (var key in _instances.Keys)
                 {
                     NativeTrack track;
-
                     if (_instances.TryGetValue(key, out track))
                     {
-                        if (track != null)
-                        {
-                            track.Dispose();
-                        }
+                        tracksToDispose.Add(track);
                     }
                 }
 
                 _instances.Clear();
+            }
+
+            foreach (var track in tracksToDispose)
+            {
+                track.Dispose();
             }
         }
 

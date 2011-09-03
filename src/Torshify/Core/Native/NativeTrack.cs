@@ -230,22 +230,21 @@ namespace Torshify.Core.Native
             // Dispose unmanaged
             if (!IsInvalid)
             {
-                lock (Spotify.Mutex)
+                try
                 {
-                    try
+                    lock (Spotify.Mutex)
                     {
                         Spotify.sp_track_release(Handle);
-                        TrackManager.Remove(Handle);
-                    }
-                    catch
-                    {
-                    }
-                    finally
-                    {
-                        Handle = IntPtr.Zero;
-                        Debug.WriteLine("Track disposed");
                     }
                 }
+                catch{ }
+                finally
+                {
+                    TrackManager.Remove(Handle);
+                    Handle = IntPtr.Zero;
+                    Debug.WriteLine("Track disposed");
+                }
+
             }
 
             base.Dispose(disposing);
