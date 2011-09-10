@@ -1,5 +1,5 @@
 using System;
-
+using System.Collections.Generic;
 using Torshify.Core.Native;
 
 namespace Torshify.Core.Managers
@@ -39,6 +39,30 @@ namespace Torshify.Core.Managers
             lock (_instanceLock)
             {
                 _instances.Remove(handle);
+            }
+        }
+
+        internal static void RemoveAll()
+        {
+            var toDispose = new List<NativeAlbum>();
+
+            lock (_instanceLock)
+            {
+                foreach (var key in _instances.Keys)
+                {
+                    NativeAlbum instance;
+                    if (_instances.TryGetValue(key, out instance))
+                    {
+                        toDispose.Add(instance);
+                    }
+                }
+
+                _instances.Clear();
+            }
+
+            foreach (var instance in toDispose)
+            {
+                instance.Dispose();
             }
         }
 

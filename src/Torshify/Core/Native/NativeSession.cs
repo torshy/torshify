@@ -764,6 +764,8 @@ namespace Torshify.Core.Native
                     PlaylistContainerManager.RemoveAll(this);
                     PlaylistManager.RemoveAll(this);
                     ContainerPlaylistManager.RemoveAll(this);
+                    ArtistManager.RemoveAll();
+                    AlbumManager.RemoveAll();
 
                     SessionManager.Remove(Handle);
 
