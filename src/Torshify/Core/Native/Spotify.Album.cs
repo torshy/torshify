@@ -24,6 +24,7 @@ namespace Torshify.Core.Native
         /// <seealso cref="sp_album_is_loaded"/>
         /// </remarks>
         [DllImport("spotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_album_is_available(IntPtr albumPtr);
 
         /// <summary>
