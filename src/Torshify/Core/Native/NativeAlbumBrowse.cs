@@ -72,6 +72,19 @@ namespace Torshify.Core.Native
             }
         }
 
+        public TimeSpan BackendRequestDuration
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return TimeSpan.FromMilliseconds(Spotify.sp_albumbrowse_backend_request_duration(Handle));
+                }
+            }
+        }
+
         public IArray<string> Copyrights
         {
             get

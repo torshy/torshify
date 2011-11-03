@@ -190,6 +190,6 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="browsePtr"> artist browse object.</param>
         [DllImport("libspotify")]
-        internal static extern int sp_albumbrowse_backend_request_duration(IntPtr browsePtr);
+        internal static extern int sp_artistbrowse_backend_request_duration(IntPtr browsePtr);
     }
 }

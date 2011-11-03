@@ -42,6 +42,11 @@ namespace Torshify
             get;
         }
 
+        TimeSpan BackendRequestDuration
+        {
+            get;
+        }
+
         #endregion Properties
     }
 }

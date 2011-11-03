@@ -181,5 +181,15 @@ namespace Torshify.Core.Native
         /// <param name="browsePtr"> Album browse object.</param>
         [DllImport("libspotify")]
         internal static extern void sp_albumbrowse_release(IntPtr browsePtr);
+
+        /// <summary>
+        /// Return the time (in ms) that was spent waiting for the Spotify backend to serve the request
+        /// 
+        /// -1 if the request was served from the local cache
+        /// If the result is not yet loaded the return value is undefined
+        /// </summary>
+        /// <param name="browsePtr"> album browse object.</param>
+        [DllImport("libspotify")]
+        internal static extern int sp_albumbrowse_backend_request_duration(IntPtr browsePtr);
     }
 }

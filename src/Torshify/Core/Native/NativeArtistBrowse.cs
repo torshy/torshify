@@ -136,6 +136,19 @@ namespace Torshify.Core.Native
             }
         }
 
+        public TimeSpan BackendRequestDuration
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return TimeSpan.FromMilliseconds(Spotify.sp_artistbrowse_backend_request_duration(Handle));
+                }
+            }
+        }
+
         #endregion Properties
 
         #region Public Methods
