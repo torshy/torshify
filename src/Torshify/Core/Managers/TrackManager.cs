@@ -30,9 +30,12 @@ namespace Torshify.Core.Managers
             track = new NativeTrack(session, handle);
             track.Initialize();
 
-            lock (_instanceLock)
+            if (SessionFactory.IsInternalCachingEnabled)
             {
-                _instances.SetValue(handle, track);
+                lock (_instanceLock)
+                {
+                    _instances.SetValue(handle, track);
+                }
             }
 
             return track;

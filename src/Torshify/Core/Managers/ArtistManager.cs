@@ -29,7 +29,12 @@ namespace Torshify.Core.Managers
 
                 artist = new NativeArtist(session, handle);
                 artist.Initialize();
-                _instances.SetValue(handle, artist);
+
+                if (SessionFactory.IsInternalCachingEnabled)
+                {
+                    _instances.SetValue(handle, artist);
+                }
+
                 return artist;
             }
         }

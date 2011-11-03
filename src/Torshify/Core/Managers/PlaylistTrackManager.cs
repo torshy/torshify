@@ -29,7 +29,12 @@ namespace Torshify.Core.Managers
                 if (!_instances.TryGetValue(key, out instance))
                 {
                     var newInstance = new NativePlaylistTrack(session, trackPointer, playlist, position);
-                    _instances.Add(key, newInstance);
+
+                    if (SessionFactory.IsInternalCachingEnabled)
+                    {
+                        _instances.Add(key, newInstance);
+                    }
+
                     newInstance.Initialize();
                     instance = newInstance;
 
@@ -38,7 +43,11 @@ namespace Torshify.Core.Managers
                     {
                         instance.Dispose();
                         instance = null;
-                        _instances[key] = instance = new ErroneousTrack(session, trackPointer, error, playlist);
+                        
+                        if (SessionFactory.IsInternalCachingEnabled)
+                        {
+                            _instances[key] = instance = new ErroneousTrack(session, trackPointer, error, playlist);
+                        }
                     }
                 }
 

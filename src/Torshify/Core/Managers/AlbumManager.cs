@@ -29,7 +29,12 @@ namespace Torshify.Core.Managers
 
                 album = new NativeAlbum(session, handle);
                 album.Initialize();
-                _instances.SetValue(handle, album);
+
+                if (SessionFactory.IsInternalCachingEnabled)
+                {
+                    _instances.SetValue(handle, album);
+                }
+
                 return album;
             }
         }

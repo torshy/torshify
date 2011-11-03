@@ -26,7 +26,12 @@ namespace Torshify.Core.Managers
                 if (!_instances.TryGetValue(handle, out instance))
                 {
                     instance = new NativeUser(session, handle);
-                    _instances.Add(handle, instance);
+
+                    if (SessionFactory.IsInternalCachingEnabled)
+                    {
+                        _instances.Add(handle, instance);
+                    }
+
                     instance.Initialize();
                 }
 

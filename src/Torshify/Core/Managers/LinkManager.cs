@@ -66,7 +66,11 @@ namespace Torshify.Core.Managers
                             throw new ArgumentException("Invalid link.");
                     }
 
-                    _instances.Add(handle, instance);
+                    if (SessionFactory.IsInternalCachingEnabled)
+                    {
+                        _instances.Add(handle, instance);
+                    }
+
                     instance.Initialize();
                 }
 
