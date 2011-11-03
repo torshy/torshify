@@ -14,6 +14,11 @@ namespace Torshify
             get;
         }
 
+        string PortraitId
+        {
+            get;
+        }
+
         #endregion Properties
     }
 }

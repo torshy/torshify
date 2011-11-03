@@ -20,6 +20,11 @@ namespace Torshify.Core.Native
             get { return string.Empty; }
         }
 
+        public string PortraitId
+        {
+            get { return string.Empty; }
+        }
+
         public bool IsLoaded
         {
             get { return false; }

@@ -30,6 +30,19 @@ namespace Torshify.Core.Native
             }
         }
 
+        public string PortraitId
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return Spotify.ImageIdToString(Spotify.sp_artist_portrait(Handle));
+                }
+            }
+        }
+
         public bool IsLoaded
         {
             get
