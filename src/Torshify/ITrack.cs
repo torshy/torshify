@@ -36,7 +36,12 @@ namespace Torshify
             get;
         }
 
-        bool IsAvailable
+        TrackAvailablity Availability
+        {
+            get;
+        }
+
+        TrackOfflineStatus OfflineStatus
         {
             get;
         }

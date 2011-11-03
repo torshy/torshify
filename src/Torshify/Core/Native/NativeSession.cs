@@ -176,6 +176,28 @@ namespace Torshify.Core.Native
             }
         }
 
+        public bool IsVolumeNormalizationEnabled
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return Spotify.sp_session_get_volume_normalization(Handle);
+                }
+            }
+            set
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    Spotify.sp_session_set_volume_normalization(Handle, value);
+                }
+            }
+        }
+
         public override ISession Session
         {
             get

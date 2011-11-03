@@ -93,7 +93,7 @@ namespace Torshify.Core.Native
             }
         }
 
-        public bool IsAvailable
+        public TrackAvailablity Availability
         {
             get
             {
@@ -101,7 +101,20 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.sp_track_get_availability(Session.GetHandle(), Handle) == TrackAvailablity.Available;
+                    return Spotify.sp_track_get_availability(Session.GetHandle(), Handle);
+                }
+            }
+        }
+
+        public TrackOfflineStatus OfflineStatus
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return Spotify.sp_track_offline_get_status(Handle);
                 }
             }
         }

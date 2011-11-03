@@ -60,9 +60,14 @@ namespace Torshify.Core.Native
             get { return 0; }
         }
 
-        public bool IsAvailable
+        public TrackAvailablity Availability
         {
-            get { return false; }
+            get { return TrackAvailablity.Unavailable; }
+        }
+
+        public TrackOfflineStatus OfflineStatus
+        {
+            get { return TrackOfflineStatus.No; }
         }
 
         public bool IsStarred

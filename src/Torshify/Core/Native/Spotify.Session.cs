@@ -304,7 +304,7 @@ namespace Torshify.Core.Native
         /// <param name="sessionPtr">Session object</param>
         /// <returns>true if volume normalization is enabled</returns>
         [DllImport("libspotify")]
-        internal static extern int sp_session_get_volume_normalization(IntPtr sessionPtr);
+        internal static extern bool sp_session_get_volume_normalization(IntPtr sessionPtr);
 
         /// <summary>
         /// Set volume normalization

@@ -74,6 +74,15 @@ namespace Torshify
             get;
         }
 
+        /// <summary>
+        /// Get/sets whether volume normalization should be enabled
+        /// </summary>
+        bool IsVolumeNormalizationEnabled
+        {
+            get; 
+            set;
+        }
+
         #endregion Properties
 
         #region Methods
