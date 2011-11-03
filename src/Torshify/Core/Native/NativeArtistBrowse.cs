@@ -9,6 +9,7 @@ namespace Torshify.Core.Native
         #region Fields
 
         private readonly IntPtr _artistToBrowse;
+        private readonly ArtistBrowseType _browseType;
 
         private Spotify.ArtistBrowseCompleteCallback _browseCompleteCallback;
         private DelegateArray<ITrack> _tracks;
@@ -20,10 +21,11 @@ namespace Torshify.Core.Native
 
         #region Constructors
 
-        public NativeArtistBrowse(ISession session, IntPtr artistToBrowse)
+        public NativeArtistBrowse(ISession session, IntPtr artistToBrowse, ArtistBrowseType browseType)
             : base(session, IntPtr.Zero)
         {
             _artistToBrowse = artistToBrowse;
+            _browseType = browseType;
         }
 
         #endregion Constructors
@@ -151,7 +153,7 @@ namespace Torshify.Core.Native
                 Handle = Spotify.sp_artistbrowse_create(
                             Session.GetHandle(),
                             _artistToBrowse,
-                            ArtistBrowseType.Full,
+                            _browseType,
                             _browseCompleteCallback,
                             IntPtr.Zero);
             }

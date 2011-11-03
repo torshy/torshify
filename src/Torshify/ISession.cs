@@ -130,6 +130,8 @@ namespace Torshify
 
         IArtistBrowse Browse(IArtist artist, object userData = null);
 
+        IArtistBrowse Browse(IArtist artist, ArtistBrowseType browseType, object userData = null);
+
         IToplistBrowse Browse(ToplistType type, object userData = null);
 
         IToplistBrowse Browse(ToplistType type, int encodedCountryCode, object userData = null);

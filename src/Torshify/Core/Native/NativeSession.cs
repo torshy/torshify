@@ -399,6 +399,11 @@ namespace Torshify.Core.Native
 
         public IArtistBrowse Browse(IArtist artist, object userData = null)
         {
+            return Browse(artist, ArtistBrowseType.Full, userData);
+        }
+
+        public IArtistBrowse Browse(IArtist artist, ArtistBrowseType browseType, object userData = null)
+        {
             if (!(artist is INativeObject))
             {
                 throw new ArgumentException("Invalid type");
@@ -406,7 +411,7 @@ namespace Torshify.Core.Native
 
             AssertHandle();
 
-            var browse = new NativeArtistBrowse(this, artist.GetHandle());
+            var browse = new NativeArtistBrowse(this, artist.GetHandle(), browseType);
             browse.Initialize();
             return browse;
         }
