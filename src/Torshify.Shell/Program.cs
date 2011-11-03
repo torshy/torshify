@@ -60,7 +60,6 @@ namespace Torshify.Shell
                     Console.WriteLine("1: Search");
                     Console.WriteLine("2: Toplists");
                     Console.WriteLine("3: Playlists");
-                    Console.WriteLine("4: Friends");
                     Console.WriteLine("5: Radio");
                     Console.WriteLine("6: Current user info");
                     Console.WriteLine("7: Run GC");
@@ -81,9 +80,6 @@ namespace Torshify.Shell
                         break;
                     case ConsoleKey.D3:
                         PlaylistsMenu();
-                        break;
-                    case ConsoleKey.D4:
-                        FriendsMenu();
                         break;
                     case ConsoleKey.D5:
                         RadioMenu();
@@ -189,20 +185,6 @@ namespace Torshify.Shell
             }
         }
 
-        protected void FriendsMenu()
-        {
-            ConsoleEx.WriteLine("=== Friends ===", ConsoleColor.Cyan);
-
-            for (int i = 0; i < Session.Friends.Count; i++)
-            {
-                IUser user = Session.Friends[i];
-
-                ConsoleEx.Write("{0:00} : {1,-20}", ConsoleColor.White, (i + 1), ConsoleEx.Truncate(user.CanonicalName, 20));
-                ConsoleEx.Write(" {0,-16}", ConsoleColor.Gray, ConsoleEx.Truncate(user.DisplayName, 15));
-                ConsoleEx.WriteLine(" {0,-16}", ConsoleColor.DarkGray, ConsoleEx.Truncate(user.FullName, 15));
-            }
-        }
-
         protected void RadioMenu()
         {
             ConsoleEx.WriteLine("=== Radio ===", ConsoleColor.Cyan);
@@ -248,12 +230,6 @@ namespace Torshify.Shell
 
             ConsoleEx.Write("Display name: ", ConsoleColor.DarkYellow);
             ConsoleEx.WriteLine(Session.LoggedInUser.DisplayName, ConsoleColor.White);
-
-            ConsoleEx.Write("Full name:    ", ConsoleColor.DarkYellow);
-            ConsoleEx.WriteLine(Session.LoggedInUser.FullName, ConsoleColor.White);
-
-            ConsoleEx.Write("Picture ID:   ", ConsoleColor.DarkYellow);
-            ConsoleEx.WriteLine(Session.LoggedInUser.Picture, ConsoleColor.White);
 
             ConsoleEx.Write("Country code: ", ConsoleColor.DarkYellow);
             ConsoleEx.WriteLine(Session.LoggedInUserCountry.ToString(), ConsoleColor.White);

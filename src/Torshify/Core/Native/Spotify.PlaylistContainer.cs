@@ -11,14 +11,14 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="pcPtr">Playlist container.</param>
         /// <returns></returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern void sp_playlistcontainer_add_ref(IntPtr pcPtr);
 
         /// <summary>
         /// Release reference count on playlistconatiner object
         /// </summary>
         /// <param name="pcPtr">Playlist container.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern void sp_playlistcontainer_release(IntPtr pcPtr);
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="pcPtr">Playlist container</param>
         /// <returns>True if container is loaded</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern bool sp_playlistcontainer_is_loaded(IntPtr pcPtr);
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Torshify.Core.Native
         /// <param name="pcPtr">Playlist container.</param>
         /// <param name="callbacksPtr">Callbacks, see sp_playlistcontainer_callbacks.</param>
         /// <param name="userdataPtr">Opaque value passed to callbacks.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern void sp_playlistcontainer_add_callbacks(IntPtr pcPtr, ref NativePlaylistContainerCallbacks.PlaylistContainerCallbacks callbacksPtr, IntPtr userdataPtr);
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Torshify.Core.Native
         /// <param name="pcPtr">Playlist container.</param>
         /// <param name="callbacksPtr">Callbacks, see sp_playlistcontainer_callbacks</param>
         /// <param name="userdataPtr">Opaque value passed to callbacks.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern void sp_playlistcontainer_remove_callbacks(IntPtr pcPtr, ref NativePlaylistContainerCallbacks.PlaylistContainerCallbacks callbacksPtr, IntPtr userdataPtr);
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="pcPtr">Playlist container.</param>
         /// <returns>Number of playlists, -1 if undefined.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern int sp_playlistcontainer_num_playlists(IntPtr pcPtr);
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Torshify.Core.Native
         /// <param name="pcPtr">Playlist container.</param>
         /// <param name="index">Index in playlist container. Should be in the interval [0, sp_playlistcontainer_num_playlists() - 1].</param>
         /// <returns>Number of playlists.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_playlistcontainer_playlist(IntPtr pcPtr, int index);
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Torshify.Core.Native
         /// <param name="pcPtr">Playlist container.</param>
         /// <param name="index">Index in playlist container. Should be in the interval [0, sp_playlistcontainer_num_playlists() - 1].</param>
         /// <returns>Type of the playlist.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern PlaylistType sp_playlistcontainer_playlist_type(IntPtr pcPtr, int index);
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Torshify.Core.Native
         /// <param name="buffer">Pointer to name-buffer.</param>
         /// <param name="bufferSize">Size of the buffer.</param>
         /// <returns></returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern Error sp_playlistcontainer_playlist_folder_name(
             IntPtr pcPtr, 
             int index, 
@@ -96,7 +96,7 @@ namespace Torshify.Core.Native
         /// <param name="pcPtr">Playlist container.</param>
         /// <param name="index">Index in playlist container. Should be in the interval [0, sp_playlistcontainer_num_playlists() - 1].</param>
         /// <returns>The group ID.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_playlistcontainer_playlist_folder_id(IntPtr pcPtr, int index);
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Torshify.Core.Native
         /// <param name="pcPtr">Playlist container.</param>
         /// <param name="name">Name of new playlist.</param>
         /// <returns>Pointer to the new playlist. Can be null if the operation fails.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_playlistcontainer_add_new_playlist(IntPtr pcPtr, string name);
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Torshify.Core.Native
         /// <param name="pcPtr">Playlist container.</param>
         /// <param name="linkPtr">Link object pointing to a playlist.</param>
         /// <returns>Pointer to the new playlist. Will be null if the playlist already exists.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_playlistcontainer_add_playlist(IntPtr pcPtr, IntPtr linkPtr);
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Torshify.Core.Native
         /// <param name="pcPtr">Playlist container.</param>
         /// <param name="index">Index of playlist to be removed.</param>
         /// <returns>Error code.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern Error sp_playlistcontainer_remove_playlist(IntPtr pcPtr, int index);
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace Torshify.Core.Native
         /// <param name="newPosition">New position for the playlist.</param>
         /// <param name="dryRun">Do not execute the move, only check if it possible</param>
         /// <returns>Error code.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern Error sp_playlistcontainer_move_playlist(IntPtr pcPtr, int index, int newPosition, bool dryRun);
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="pcPtr">Playlist container.</param>
         /// <returns>The user object or null if unknown or none.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_playlistcontainer_owner(IntPtr pcPtr);
     }
 }

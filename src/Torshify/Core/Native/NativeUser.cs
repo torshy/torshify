@@ -54,45 +54,6 @@ namespace Torshify.Core.Native
             }
         }
 
-        public string FullName
-        {
-            get
-            {
-                AssertHandle();
-
-                lock (Spotify.Mutex)
-                {
-                    return Spotify.sp_user_full_name(Handle);
-                }
-            }
-        }
-
-        public string Picture
-        {
-            get
-            {
-                AssertHandle();
-
-                lock (Spotify.Mutex)
-                {
-                    return Spotify.sp_user_picture(Handle);
-                }
-            }
-        }
-
-        public RelationType Relation
-        {
-            get
-            {
-                AssertHandle();
-
-                lock (Spotify.Mutex)
-                {
-                    return Spotify.sp_user_relation_type(Session.GetHandle(), Handle);
-                }
-            }
-        }
-
         #endregion Properties
 
         #region Public Methods

@@ -20,7 +20,7 @@ namespace Torshify.Core.Native
         /// Pass null if you are not interested in this event.</param>
         /// <param name="userdataPtr">Opaque pointer passed to callback.</param>
         /// <returns>Pointer to a search object. To free the object, use <c>sp_search_release()</c></returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_search_create(
             IntPtr sessionPtr, 
             string query, 
@@ -44,7 +44,7 @@ namespace Torshify.Core.Native
         /// Pass null if you are not interested in this event.</param>
         /// <param name="userdataPtr">Opaque pointer passed to callback.</param>
         /// <returns>Pointer to a search object. To free the object, use <c>sp_search_release()</c></returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_radio_search_create(
             IntPtr sessionPtr,
             uint fromYear,
@@ -58,7 +58,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="searchPtr">A search object.</param>
         /// <returns>True if search is loaded, otherwise false.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern bool sp_search_is_loaded(IntPtr searchPtr);
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="searchPtr">A search object.</param>
         /// <returns>Error code.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern Error sp_search_error(IntPtr searchPtr);
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="searchPtr">A serach object.</param>
         /// <returns>The number of tracks for the specified search.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern int sp_search_num_tracks(IntPtr searchPtr);
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Torshify.Core.Native
         /// <param name="searchPtr">A search object.</param>
         /// <param name="index">Index of the wanted track. Should be in the interval [0, <c>sp_search_num_tracks()</c> - 1]</param>
         /// <returns>The track at the given index in the given search object.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_search_track(IntPtr searchPtr, int index);
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="searchPtr">A serach object.</param>
         /// <returns>The number of albums for the specified search.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern int sp_search_num_albums(IntPtr searchPtr);
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Torshify.Core.Native
         /// <param name="searchPtr">A search object.</param>
         /// <param name="index">Index of the wanted album. Should be in the interval [0, <c>sp_search_num_albums()</c> - 1]</param>
         /// <returns>The album at the given index in the given search object.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_search_album(IntPtr searchPtr, int index);
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="searchPtr">A serach object.</param>
         /// <returns>The number of artists for the specified search.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern int sp_search_num_artists(IntPtr searchPtr);
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Torshify.Core.Native
         /// <param name="searchPtr">A search object.</param>
         /// <param name="index">Index of the wanted artist. Should be in the interval [0, <c>sp_search_num_artists()</c> - 1]</param>
         /// <returns>The artist at the given index in the given search object.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_search_artist(IntPtr searchPtr, int index);
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="searchPtr">A search object.</param>
         /// <returns>The search query for the given search object.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
         internal static extern string sp_search_query(IntPtr searchPtr);
 
@@ -134,7 +134,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="searchPtr">A search object.</param>
         /// <returns>The "Did you mean" query for the given search object, or the empty string if no such info is available.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
         internal static extern string sp_search_did_you_mean(IntPtr searchPtr);
 
@@ -145,7 +145,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="searchPtr">A search object.</param>
         /// <returns>The total number of tracks matching the original query.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern int sp_search_total_tracks(IntPtr searchPtr);
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="searchPtr">A search object.</param>
         /// <returns>The total number of albums matching the original query.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern int sp_search_total_albums(IntPtr searchPtr);
 
         /// <summary>
@@ -165,21 +165,21 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="searchPtr">A search object.</param>
         /// <returns>The total number of artists matching the original query.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern int sp_search_total_artists(IntPtr searchPtr);
 
         /// <summary>
         /// Increase the reference count of a search result.
         /// </summary>
         /// <param name="searchPtr">A serach object.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern void sp_search_add_ref(IntPtr searchPtr);
 
         /// <summary>
         /// Decrease the reference count of a search result.
         /// </summary>
         /// <param name="searchPtr">A search object.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern void sp_search_release(IntPtr searchPtr);
     }
 }

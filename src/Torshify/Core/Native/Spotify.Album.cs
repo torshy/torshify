@@ -12,7 +12,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="albumPtr">The album object.</param>
         /// <returns>True if metadata is present, false if not.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern bool sp_album_is_loaded(IntPtr albumPtr);
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace Torshify.Core.Native
         /// <remarks>The album must be loaded or this function will always return false.
         /// <seealso cref="sp_album_is_loaded"/>
         /// </remarks>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_album_is_available(IntPtr albumPtr);
 
@@ -32,7 +32,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="albumPtr">Album object.</param>
         /// <returns>A reference to the artist. null if the metadata has not been loaded yet.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_album_artist(IntPtr albumPtr);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Torshify.Core.Native
         /// <param name="albumPtr">Album object.</param>
         /// <returns>ID byte sequence that can be passed to <c>sp_image_create()</c>.
         /// If the album has no image or the metadata for the album is not loaded yet, this function returns null.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_album_cover(IntPtr albumPtr);
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Torshify.Core.Native
         /// <param name="albumPtr">Album object.</param>
         /// <returns>Name of album. Returned string is valid as long as the album object stays allocated
         /// and no longer than the next call to <c>sp_session_process_events()</c>.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
         internal static extern string sp_album_name(IntPtr albumPtr);
 
@@ -59,7 +59,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="albumPtr">The album.</param>
         /// <returns>Release year.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern int sp_album_year(IntPtr albumPtr);
 
         /// <summary>
@@ -67,21 +67,21 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="albumPtr">Album object.</param>
         /// <returns>The album type.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern AlbumType sp_album_type(IntPtr albumPtr);
 
         /// <summary>
         /// Increase the reference count of an album.
         /// </summary>
         /// <param name="albumPtr">The album.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern void sp_album_add_ref(IntPtr albumPtr);
 
         /// <summary>
         /// Decrease the reference count of an album.
         /// </summary>
         /// <param name="albumPtr">The album.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern void sp_album_release(IntPtr albumPtr);
 
         /// <summary>
@@ -94,42 +94,42 @@ namespace Torshify.Core.Native
         /// <param name="callback">Callback to be invoked when browsing has been completed. Pass NULL if you are not interested in this event.</param>
         /// <param name="userdataPtr">Userdata passed to callback.</param>
         /// <returns>Album browse object</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_albumbrowse_create(IntPtr sessionPtr, IntPtr albumPtr, AlbumBrowseCompleteCallback callback, IntPtr userdataPtr);
 
         /// <summary>
         /// Check if an album browse request is completed
         /// </summary>
         /// <param name="browsePtr"> Album browse object.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern bool sp_albumbrowse_is_loaded(IntPtr browsePtr);
 
         /// <summary>
         /// Check if browsing returned an error code.
         /// </summary>
         /// <param name="browsePtr"> Album browse object.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern Error sp_albumbrowse_error(IntPtr browsePtr);
 
         /// <summary>
         /// Given an album browse object, return the pointer to its album object
         /// </summary>
         /// <param name="browsePtr"> Album browse object.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_albumbrowse_album(IntPtr browsePtr);
 
         /// <summary>
         ///  Given an album browse object, return the pointer to its artist object
         /// </summary>
         /// <param name="browsePtr"> Album browse object.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_albumbrowse_artist(IntPtr browsePtr);
 
         /// <summary>
         /// Given an album browse object, return number of copyright strings
         /// </summary>
         /// <param name="browsePtr"> Album browse object.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern int sp_albumbrowse_num_copyrights(IntPtr browsePtr);
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace Torshify.Core.Native
         /// <param name="browsePtr"> Album browse object.</param>
         /// <param name="index">The index for the copyright string. Should be in the interval [0, sp_albumbrowse_num_copyrights() - 1]</param>
         /// <returns>Copyright string in UTF-8 format, or NULL if the index is invalid.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
         internal static extern string sp_albumbrowse_copyright(IntPtr browsePtr, int index);
 
@@ -147,7 +147,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="browsePtr"> Album browse object.</param>
         /// <returns>Number of tracks on album</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern int sp_albumbrowse_num_tracks(IntPtr browsePtr);
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace Torshify.Core.Native
         /// <param name="browsePtr"> Album browse object.</param>
         /// <param name="index">The index for the track. Should be in the interval [0, sp_albumbrowse_num_tracks() - 1]</param>
         /// <returns>A track.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_albumbrowse_track(IntPtr browsePtr, int index);
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="browsePtr"> Album browse object.</param>
         /// <returns>Review string in UTF-8 format.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
         internal static extern string sp_albumbrowse_review(IntPtr browsePtr);
 
@@ -172,14 +172,14 @@ namespace Torshify.Core.Native
         /// Increase the reference count of an album browse result
         /// </summary>
         /// <param name="browsePtr"> Album browse object.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern void sp_albumbrowse_add_ref(IntPtr browsePtr);
 
         /// <summary>
         /// Decrease the reference count of an album browse result
         /// </summary>
         /// <param name="browsePtr"> Album browse object.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern void sp_albumbrowse_release(IntPtr browsePtr);
     }
 }

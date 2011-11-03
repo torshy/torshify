@@ -26,7 +26,17 @@ namespace Torshify
         InboxIsFull = 20, 
         NoCache = 21, 
         NoSuchUser = 22,
-        NoCredentials = 23
+        NoCredentials = 23,
+        NetworkDisabled = 24,
+        InvalidDeviceID = 25,
+        CantOpenTraceFile = 26,
+        ApplicationBanned = 27,
+        OfflineTooManyTracks = 31,
+        OfflineDiskCache = 32,
+        OfflineExpired = 33,
+        OfflineNotAllowed = 34,
+        OfflineLicenseLost = 35,
+        OfflineLicenseError = 36
     }
 
     public static class ErrorExtensions

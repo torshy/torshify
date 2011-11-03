@@ -27,7 +27,6 @@ namespace Torshify.Core.Native
         private AutoResetEvent _mainThreadNotification;
         private Queue<DelegateInvoker> _eventQueue;
         private NativeSessionCallbacks _callbacks;
-        private IArray<IUser> _friends;
         private object _eventQueueLock = new object();
 
         #endregion Fields
@@ -76,6 +75,8 @@ namespace Torshify.Core.Native
         public event EventHandler<SessionEventArgs> UserinfoUpdated;
 
         public event EventHandler<SessionEventArgs> OfflineStatusUpdated;
+
+        public event EventHandler<SessionEventArgs> OfflineError;
 
         #endregion Events
 
@@ -143,22 +144,7 @@ namespace Torshify.Core.Native
                 return ConnectionState.Undefined;
             }
         }
-
-        public IArray<IUser> Friends
-        {
-            get
-            {
-                if (ConnectionState != ConnectionState.LoggedIn)
-                {
-                    return null;
-                }
-
-                AssertHandle();
-
-                return _friends;
-            }
-        }
-
+        
         public IUser LoggedInUser
         {
             get
@@ -610,8 +596,6 @@ namespace Torshify.Core.Native
                 }
             }
 
-            _friends = new DelegateArray<IUser>(GetNumberOfFriends, GetFriendAtIndex);
-
             _mainThreadNotification = new AutoResetEvent(false);
             _mainThread = new Thread(MainThreadLoop);
             _mainThread.Name = "MainLoop";
@@ -726,6 +710,11 @@ namespace Torshify.Core.Native
             OfflineStatusUpdated.RaiseEvent(this, e);
         }
 
+        internal void OnOfflineError(SessionEventArgs e)
+        {
+            OfflineError.RaiseEvent(this, e);
+        }
+
         #endregion Internal Methods
 
         #region Protected Methods
@@ -806,26 +795,6 @@ namespace Torshify.Core.Native
         private void OnHostProcessExit(object sender, EventArgs e)
         {
             Dispose();
-        }
-
-        private IUser GetFriendAtIndex(int index)
-        {
-            AssertHandle();
-
-            lock (Spotify.Mutex)
-            {
-                return UserManager.Get(this, Spotify.sp_session_friend(Handle, index));
-            }
-        }
-
-        private int GetNumberOfFriends()
-        {
-            AssertHandle();
-
-            lock (Spotify.Mutex)
-            {
-                return Spotify.sp_session_num_friends(Handle);
-            }
         }
 
         private void MainThreadLoop()

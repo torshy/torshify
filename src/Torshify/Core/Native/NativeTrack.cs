@@ -101,7 +101,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.sp_track_is_available(Session.GetHandle(), Handle);
+                    return Spotify.sp_track_get_availability(Session.GetHandle(), Handle) == TrackAvailablity.Available;
                 }
             }
         }

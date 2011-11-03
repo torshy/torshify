@@ -27,6 +27,7 @@ namespace Torshify.Core.Native
         private readonly StreamingErrorDelegate _streamingError;
         private readonly UserinfoUpdatedDelegate _userinfoUpdated;
         private readonly OfflineStatusUpdated _offlineStatusUpdated;
+        private readonly OfflineError _offlineError;
 
         private IntPtr _callbacksHandle;
 
@@ -54,6 +55,7 @@ namespace Torshify.Core.Native
             _streamingError = StreamingErrorCallback;
             _userinfoUpdated = UserinfoUpdatedCallback;
             _offlineStatusUpdated = OfflineStatusUpdatedCallback;
+            _offlineError = OfflineErrorCallback;
 
             _callbacks = new Spotify.SpotifySessionCallbacks();
             _callbacks.LoggedIn = Marshal.GetFunctionPointerForDelegate(_loggedIn);
@@ -72,6 +74,7 @@ namespace Torshify.Core.Native
             _callbacks.StopPlayback = Marshal.GetFunctionPointerForDelegate(_stopPlayback);
             _callbacks.GetAudioBufferStats = Marshal.GetFunctionPointerForDelegate(_getAudioBufferStats);
             _callbacks.OfflineStatusUpdated = Marshal.GetFunctionPointerForDelegate(_offlineStatusUpdated);
+            _callbacks.OfflineError = Marshal.GetFunctionPointerForDelegate(_offlineError);
 
             _callbacksHandle = Marshal.AllocHGlobal(CallbacksSize);
             Marshal.StructureToPtr(_callbacks, _callbacksHandle, true);
@@ -112,6 +115,8 @@ namespace Torshify.Core.Native
         private delegate void UserinfoUpdatedDelegate(IntPtr sessionPtr);
 
         private delegate void OfflineStatusUpdated(IntPtr sessionPtr);
+
+        private delegate void OfflineError(IntPtr sessionPtr, Error error);
 
         #endregion Delegates
 
@@ -315,6 +320,16 @@ namespace Torshify.Core.Native
             }
 
            _session.Queue(new DelegateInvoker(() => _session.OnOfflineStatusUpdated(new SessionEventArgs(Error.OK))));
+        }
+
+        private void OfflineErrorCallback(IntPtr sessionPtr, Error error)
+        {
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
+
+            _session.Queue(new DelegateInvoker(() => _session.OnOfflineError(new SessionEventArgs(error))));
         }
 
         #endregion Private Methods

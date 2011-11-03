@@ -36,6 +36,8 @@ namespace Torshify
         event EventHandler<SessionEventArgs> UserinfoUpdated;
 
         event EventHandler<SessionEventArgs> OfflineStatusUpdated;
+        
+        event EventHandler<SessionEventArgs> OfflineError;
 
         #endregion Events
 
@@ -52,11 +54,6 @@ namespace Torshify
         }
 
         ConnectionState ConnectionState
-        {
-            get;
-        }
-
-        IArray<IUser> Friends
         {
             get;
         }

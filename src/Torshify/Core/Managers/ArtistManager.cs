@@ -42,7 +42,6 @@ namespace Torshify.Core.Managers
             }
         }
 
-
         internal static void RemoveAll()
         {
             var toDispose = new List<NativeArtist>();

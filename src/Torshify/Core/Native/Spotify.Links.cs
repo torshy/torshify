@@ -12,7 +12,7 @@ namespace Torshify.Core.Native
         /// <remarks>You need to release the link when you are done with it.</remarks>
         /// <param name="link">A string representation of a Spotify link</param>
         /// <returns>A link representation of the given string representation. If the link could not be parsed, this function returns NULL.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_create_from_string(string link);
         /// <summary>
         /// Creates a link object from an artist.
@@ -20,7 +20,7 @@ namespace Torshify.Core.Native
         /// <remarks>You need to release the link when you are done with it.</remarks>
         /// <param name="artistPtr">The artist.</param>
         /// <returns>A link object representing the artist.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_create_from_artist(IntPtr artistPtr);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Torshify.Core.Native
         /// <param name="trackPtr">The track.</param>
         /// <param name="offset">The offset</param>
         /// <returns>A link object representing the track.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_create_from_track(IntPtr trackPtr, int offset);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Torshify.Core.Native
         /// <remarks>You need to release the link when you are done with it.</remarks>
         /// <param name="albumPtr">The album.</param>
         /// <returns>A link object representing the track.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_create_from_album(IntPtr albumPtr);
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Torshify.Core.Native
         /// <remarks>You need to release the link when you are done with it.</remarks>
         /// <param name="searchPtr">The search.</param>
         /// <returns>A link object representing the search.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_create_from_search(IntPtr searchPtr);
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Torshify.Core.Native
         /// <remarks>You need to release the link when you are done with it.</remarks>
         /// <param name="playlistPtr">The playlist.</param>
         /// <returns>A link object representing the playlist.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_create_from_playlist(IntPtr playlistPtr);
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Torshify.Core.Native
         /// <remarks>You need to release the link when you are done with it.</remarks>
         /// <param name="userPtr">The user.</param>
         /// <returns>A link object representing the user.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_create_from_user(IntPtr userPtr);
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="albumPtr">An album object</param>
         /// <returns>A link representing the album cover. Type is set to SP_LINKTYPE_IMAGE</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_create_from_album_cover(IntPtr albumPtr);
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Torshify.Core.Native
         /// <param name="artistBrowsePtr">Artist browse object</param>
         /// <param name="index">The index of the portrait. Should be in the interval [0, sp_artistbrowse_num_portraits() - 1]</param>
         /// <returns> A link object representing an image</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_create_from_artistbrowse_portrait(IntPtr artistBrowsePtr, int index);
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="artistPtr">Artist browse object</param>
         /// <returns>A link object representing an image</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_create_from_artist_portrait(IntPtr artistPtr);
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="imagePtr">Image object</param>
         /// <returns></returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_create_from_image(IntPtr imagePtr);
 
         /// <summary>
@@ -119,12 +119,12 @@ namespace Torshify.Core.Native
         /// The resulting string is guaranteed to always be null terminated if buffer_size &gt; 0.</param>
         /// <returns>The number of characters in the string representation of the link.
         /// If this value is greater or equal than buffer_size, output was truncated.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern int sp_link_as_string(
             IntPtr linkPtr,
             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Utf8StringBuilderMarshaler))]StringBuilder buffer,
             int bufferSize);
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern int sp_link_as_string(
             IntPtr linkPtr,
             IntPtr buffer,
@@ -135,7 +135,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="linkPtr">The link.</param>
         /// <returns>The link type of the specified link - see the SpotifyLinkType enum for possible values.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern LinkType sp_link_type(IntPtr linkPtr);
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Torshify.Core.Native
         /// <param name="linkPtr">The Spotify link whose track you are interested in.</param>
         /// <returns>The track representation of the given track link.
         /// If the link is not of track type then NULL is returned.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_as_track(IntPtr linkPtr);
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Torshify.Core.Native
         /// <param name="linkPtr">The Spotify link whose track you are interested in.</param>
         /// <param name="offsetPtr">The offset into track (in seconds). If the link does not contain an offset this will be set to 0.</param>
         /// <returns>The track representation of the given track link If the link is not of track type then NULL is returned.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_as_track_and_offset(IntPtr linkPtr, out int offsetPtr);
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace Torshify.Core.Native
         /// <param name="linkPtr">The Spotify link whose album you are interested in.</param>
         /// <returns>The album representation of the given album link.
         /// If the link is not of album type then NULL is returned.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_as_album(IntPtr linkPtr);
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Torshify.Core.Native
         /// <param name="linkPtr">The Spotify link whose artist you are interested in.</param>
         /// <returns>The artist representation of the given link.
         /// If the link is not of artist type then NULL is returned.</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_as_artist(IntPtr linkPtr);
 
         /// <summary>
@@ -179,21 +179,21 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="linkPtr">The Spotify link whose user you are interested in</param>
         /// <returns>The user representation of the given link</returns>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern IntPtr sp_link_as_user(IntPtr linkPtr);
 
         /// <summary>
         /// Adds a reference to the specified link.
         /// </summary>
         /// <param name="linkPtr">The link.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern void sp_link_add_ref(IntPtr linkPtr);
 
         /// <summary>
         /// Releases the specified link.
         /// </summary>
         /// <param name="linkPtr">The link.</param>
-        [DllImport("spotify")]
+        [DllImport("libspotify")]
         internal static extern void sp_link_release(IntPtr linkPtr);
     }
 }

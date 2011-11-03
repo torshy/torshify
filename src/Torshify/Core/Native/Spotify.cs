@@ -9,7 +9,7 @@ namespace Torshify.Core.Native
     {
         #region Fields
 
-        public const int SPOTIFY_API_VERSION = 9;
+        public const int SPOTIFY_API_VERSION = 10;
         public const int STRINGBUFFER_SIZE = 256;
 
         internal static readonly object Mutex = new object();
@@ -23,7 +23,7 @@ namespace Torshify.Core.Native
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("torshify uses SPOTIFY(R) CORE");
             Console.ForegroundColor = ConsoleColor.Gray;
-            SpotifyLibExtractor.ExtractResourceToFile("Torshify.Core.spotify.dll", "spotify.dll");
+            SpotifyLibExtractor.ExtractResourceToFile("Torshify.Core.libspotify.dll", "libspotify.dll");
             Console.WriteLine(Spotify.sp_build_id());
         }
 
@@ -326,6 +326,7 @@ namespace Torshify.Core.Native
             internal IntPtr StopPlayback;
             internal IntPtr GetAudioBufferStats;
             internal IntPtr OfflineStatusUpdated;
+            internal IntPtr OfflineError;
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -342,6 +343,8 @@ namespace Torshify.Core.Native
             internal bool CompressPlaylists;
             internal bool DontSaveMetadataForPlaylists;
             internal bool InitiallyUnloadPlaylists;
+            internal string DeviceID;
+            internal string TraceFile;
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]

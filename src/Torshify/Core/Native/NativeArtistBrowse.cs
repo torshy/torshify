@@ -151,6 +151,7 @@ namespace Torshify.Core.Native
                 Handle = Spotify.sp_artistbrowse_create(
                             Session.GetHandle(),
                             _artistToBrowse,
+                            ArtistBrowseType.Full,
                             _browseCompleteCallback,
                             IntPtr.Zero);
             }

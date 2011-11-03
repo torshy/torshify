@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlbumExtensions.cs" />
+    <Compile Include="ArtistBrowseType.cs" />
     <Compile Include="ArtistExtensions.cs" />
     <Compile Include="ConnectionRule.cs" />
     <Compile Include="ConnectionType.cs" />
@@ -217,8 +218,10 @@
     <Compile Include="SessionEventArgs.cs" />
     <Compile Include="ToplistRegion.cs" />
     <Compile Include="ToplistType.cs" />
+    <Compile Include="TrackAvailablity.cs" />
     <Compile Include="TrackCreatedChangedEventArgs.cs" />
     <Compile Include="TrackExtensions.cs" />
+    <Compile Include="TrackOfflineStatus.cs" />
     <Compile Include="TracksAddedEventArgs.cs" />
     <Compile Include="TrackSeenEventArgs.cs" />
     <Compile Include="TracksMovedEventArgs.cs" />
@@ -227,8 +230,8 @@
     <Compile Include="UserExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\lib\Spotify\spotify.dll">
-      <Link>Core\spotify.dll</Link>
+    <EmbeddedResource Include="..\..\lib\Spotify\libspotify.dll">
+      <Link>Core\libspotify.dll</Link>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
