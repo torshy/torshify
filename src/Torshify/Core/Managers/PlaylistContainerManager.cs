@@ -27,11 +27,11 @@ namespace Torshify.Core.Managers
                 if (!_instances.TryGetValue(handle, out instance))
                 {
                     instance = new NativePlaylistContainer(session, handle);
-                    _instances.Add(handle, instance);
+                    instance.Initialize();
 
                     if (SessionFactory.IsInternalCachingEnabled)
                     {
-                        instance.Initialize();
+                        _instances.Add(handle, instance);
                     }
                 }
 
