@@ -90,9 +90,10 @@ namespace Torshify.Core.Native
         /// <param name="browsePtr">Artist object</param>
         /// <param name="index">The index of the portrait. Should be in the interval [0, sp_artistbrowse_num_portraits() - 1]</param>
         /// <returns>ID byte sequence that can be passed to sp_image_create()</returns>
+        //[DllImport("spotify")]
+        //internal static extern byte[] sp_artistbrowse_portrait(IntPtr browsePtr, int index);
         [DllImport("spotify")]
-        internal static extern byte[] sp_artistbrowse_portrait(IntPtr browsePtr, int index);
-
+        internal static extern IntPtr sp_artistbrowse_portrait(IntPtr browsePtr, int index);
         /// <summary>
         /// Given an artist browse object, return number of tracks
         /// </summary>

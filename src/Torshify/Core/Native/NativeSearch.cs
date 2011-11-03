@@ -244,8 +244,6 @@ namespace Torshify.Core.Native
                     _artistCount,
                     _callbacks.CallbackHandle,
                     _callbacks.UserDataHandle);
-
-                Spotify.sp_search_add_ref(Handle);
             }
         }
 

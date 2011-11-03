@@ -57,10 +57,6 @@ namespace Torshify.Core.Native
         {
             if (disposing)
             {
-                if (_playlist.IsValueCreated)
-                {
-                    _playlist.Value.Dispose();
-                }
             }
 
             base.Dispose(disposing);

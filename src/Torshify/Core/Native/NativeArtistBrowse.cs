@@ -8,7 +8,7 @@ namespace Torshify.Core.Native
     {
         #region Fields
 
-        private readonly IArtist _artistToBrowse;
+        private readonly IntPtr _artistToBrowse;
 
         private Spotify.ArtistBrowseCompleteCallback _browseCompleteCallback;
         private DelegateArray<ITrack> _tracks;
@@ -20,7 +20,7 @@ namespace Torshify.Core.Native
 
         #region Constructors
 
-        public NativeArtistBrowse(ISession session, IArtist artistToBrowse)
+        public NativeArtistBrowse(ISession session, IntPtr artistToBrowse)
             : base(session, IntPtr.Zero)
         {
             _artistToBrowse = artistToBrowse;
@@ -150,11 +150,9 @@ namespace Torshify.Core.Native
             {
                 Handle = Spotify.sp_artistbrowse_create(
                             Session.GetHandle(),
-                            _artistToBrowse.GetHandle(),
+                            _artistToBrowse,
                             _browseCompleteCallback,
                             IntPtr.Zero);
-
-                Spotify.sp_artistbrowse_add_ref(Handle);
             }
         }
 
@@ -200,7 +198,7 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                byte[] id = Spotify.sp_artistbrowse_portrait(Handle, index);
+                IntPtr id = Spotify.sp_artistbrowse_portrait(Handle, index);
                 string stringId = Spotify.ImageIdToString(id);
                 return Session.GetImage(stringId);
             }

@@ -49,8 +49,6 @@ namespace Torshify.Core.Native
                     _genre,
                     Callbacks.CallbackHandle,
                     Callbacks.UserDataHandle);
-
-                Spotify.sp_search_add_ref(Handle);
             }
         }
 

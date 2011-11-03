@@ -420,7 +420,7 @@ namespace Torshify.Core.Native
 
             AssertHandle();
 
-            var browse = new NativeArtistBrowse(this, artist);
+            var browse = new NativeArtistBrowse(this, artist.GetHandle());
             browse.Initialize();
             return browse;
         }

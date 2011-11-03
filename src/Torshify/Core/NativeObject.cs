@@ -56,6 +56,21 @@ namespace Torshify.Core
             return Handle.GetHashCode();
         }
 
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj == null)
+            {
+                return false;
+            }
+
+            return GetHashCode() == obj.GetHashCode();
+        }
+
         public void Dispose()
         {
             Dispose(true);

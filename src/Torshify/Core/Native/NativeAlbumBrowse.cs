@@ -143,8 +143,6 @@ namespace Torshify.Core.Native
                             _albumToBrowse.GetHandle(),
                             _browseComplete,
                              _userDataHandle.IsAllocated ? GCHandle.ToIntPtr(_userDataHandle) : IntPtr.Zero);
-
-                Spotify.sp_albumbrowse_add_ref(Handle);
             }
         }
 

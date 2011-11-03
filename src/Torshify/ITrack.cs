@@ -52,6 +52,11 @@ namespace Torshify
             set;
         }
 
+        bool IsLocal
+        {
+            get;
+        }
+
         string Name
         {
             get;

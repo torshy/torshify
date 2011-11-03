@@ -146,14 +146,12 @@ namespace Torshify.Core.Native
 
             try
             {
+                _dataLoadLazy = new Lazy<byte[]>(GetImageData);
+                _imageLoaded = OnImageLoadedCallback;
+
                 lock (Spotify.Mutex)
                 {
                     Handle = Spotify.sp_image_create(Session.GetHandle(), idArray);
-
-                    _dataLoadLazy = new Lazy<byte[]>(GetImageData);
-                    _imageLoaded = OnImageLoadedCallback;
-
-                    Spotify.sp_image_add_ref(Handle);
                     Spotify.sp_image_add_load_callback(Handle, _imageLoaded, IntPtr.Zero);
                 }
             }

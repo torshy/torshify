@@ -71,6 +71,11 @@ namespace Torshify.Core.Native
             set { }
         }
 
+        public bool IsLocal
+        {
+            get { return false; }
+        }
+
         public string Name
         {
             get { return Error.GetMessage(); }

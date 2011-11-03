@@ -59,10 +59,6 @@ namespace Torshify.Core.Native
         {
             if (disposing)
             {
-                if (_album.IsValueCreated)
-                {
-                    _album.Value.Dispose();
-                }
             }
 
             base.Dispose(disposing);

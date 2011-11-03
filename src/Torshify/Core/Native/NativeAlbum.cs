@@ -135,11 +135,6 @@ namespace Torshify.Core.Native
         {
             if (disposing)
             {
-                // Dispose managed
-                if (_artist.IsValueCreated)
-                {
-                    _artist.Value.Dispose();
-                }
             }
 
             // Dispose unmanaged

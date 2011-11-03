@@ -124,6 +124,11 @@ namespace Torshify.Core.Native
             IntPtr linkPtr,
             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Utf8StringBuilderMarshaler))]StringBuilder buffer,
             int bufferSize);
+        [DllImport("spotify")]
+        internal static extern int sp_link_as_string(
+            IntPtr linkPtr,
+            IntPtr buffer,
+            int bufferSize);
 
         /// <summary>
         /// Gets the link type of the specified link.

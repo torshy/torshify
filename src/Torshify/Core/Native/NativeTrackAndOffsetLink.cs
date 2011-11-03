@@ -62,10 +62,6 @@ namespace Torshify.Core.Native
         {
             if (disposing)
             {
-                if (_track.IsValueCreated)
-                {
-                    _track.Value.Track.Dispose();
-                }
             }
 
             base.Dispose(disposing);

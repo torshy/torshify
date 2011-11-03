@@ -85,7 +85,6 @@ namespace Torshify.Core.Native
 
                     lock (Spotify.Mutex)
                     {
-                        Spotify.sp_image_add_ref(Handle);
                         Spotify.sp_image_add_load_callback(Handle, ImageLoaded, IntPtr.Zero);
                     }
                 }

@@ -144,6 +144,19 @@ namespace Torshify.Core.Native
             }
         }
 
+        public bool IsLocal
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return Spotify.sp_track_is_local(Session.GetHandle(), Handle);
+                }
+            }
+        }
+
         public string Name
         {
             get

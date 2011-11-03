@@ -55,26 +55,23 @@ namespace Torshify.Core.Native
             _userinfoUpdated = UserinfoUpdatedCallback;
             _offlineStatusUpdated = OfflineStatusUpdatedCallback;
 
-            lock (Spotify.Mutex)
-            {
-                _callbacks = new Spotify.SpotifySessionCallbacks();
-                _callbacks.LoggedIn = Marshal.GetFunctionPointerForDelegate(_loggedIn);
-                _callbacks.LoggedOut = Marshal.GetFunctionPointerForDelegate(_loggedOut);
-                _callbacks.MetadataUpdated = Marshal.GetFunctionPointerForDelegate(_metadataUpdated);
-                _callbacks.ConnectionError = Marshal.GetFunctionPointerForDelegate(_connectionError);
-                _callbacks.MessageToUser = Marshal.GetFunctionPointerForDelegate(_messageToUser);
-                _callbacks.NotifyMainThread = Marshal.GetFunctionPointerForDelegate(_notifyMainThread);
-                _callbacks.MusicDelivery = Marshal.GetFunctionPointerForDelegate(_musicDelivery);
-                _callbacks.PlayTokenLost = Marshal.GetFunctionPointerForDelegate(_playTokenLost);
-                _callbacks.LogMessage = Marshal.GetFunctionPointerForDelegate(_logMessage);
-                _callbacks.EndOfTrack = Marshal.GetFunctionPointerForDelegate(_endOfTrack);
-                _callbacks.StreamingError = Marshal.GetFunctionPointerForDelegate(_streamingError);
-                _callbacks.UserinfoUpdated = Marshal.GetFunctionPointerForDelegate(_userinfoUpdated);
-                _callbacks.StartPlayback = Marshal.GetFunctionPointerForDelegate(_startPlayback);
-                _callbacks.StopPlayback = Marshal.GetFunctionPointerForDelegate(_stopPlayback);
-                _callbacks.GetAudioBufferStats = Marshal.GetFunctionPointerForDelegate(_getAudioBufferStats);
-                _callbacks.OfflineStatusUpdated = Marshal.GetFunctionPointerForDelegate(_offlineStatusUpdated);
-            }
+            _callbacks = new Spotify.SpotifySessionCallbacks();
+            _callbacks.LoggedIn = Marshal.GetFunctionPointerForDelegate(_loggedIn);
+            _callbacks.LoggedOut = Marshal.GetFunctionPointerForDelegate(_loggedOut);
+            _callbacks.MetadataUpdated = Marshal.GetFunctionPointerForDelegate(_metadataUpdated);
+            _callbacks.ConnectionError = Marshal.GetFunctionPointerForDelegate(_connectionError);
+            _callbacks.MessageToUser = Marshal.GetFunctionPointerForDelegate(_messageToUser);
+            _callbacks.NotifyMainThread = Marshal.GetFunctionPointerForDelegate(_notifyMainThread);
+            _callbacks.MusicDelivery = Marshal.GetFunctionPointerForDelegate(_musicDelivery);
+            _callbacks.PlayTokenLost = Marshal.GetFunctionPointerForDelegate(_playTokenLost);
+            _callbacks.LogMessage = Marshal.GetFunctionPointerForDelegate(_logMessage);
+            _callbacks.EndOfTrack = Marshal.GetFunctionPointerForDelegate(_endOfTrack);
+            _callbacks.StreamingError = Marshal.GetFunctionPointerForDelegate(_streamingError);
+            _callbacks.UserinfoUpdated = Marshal.GetFunctionPointerForDelegate(_userinfoUpdated);
+            _callbacks.StartPlayback = Marshal.GetFunctionPointerForDelegate(_startPlayback);
+            _callbacks.StopPlayback = Marshal.GetFunctionPointerForDelegate(_stopPlayback);
+            _callbacks.GetAudioBufferStats = Marshal.GetFunctionPointerForDelegate(_getAudioBufferStats);
+            _callbacks.OfflineStatusUpdated = Marshal.GetFunctionPointerForDelegate(_offlineStatusUpdated);
 
             _callbacksHandle = Marshal.AllocHGlobal(CallbacksSize);
             Marshal.StructureToPtr(_callbacks, _callbacksHandle, true);

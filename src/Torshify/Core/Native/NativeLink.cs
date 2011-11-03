@@ -60,28 +60,28 @@ namespace Torshify.Core.Native
                 return string.Empty;
             }
 
-            int bufferSize = Spotify.STRINGBUFFER_SIZE;
-
+            IntPtr bufferPtr = IntPtr.Zero;
             try
             {
-                int length;
-                StringBuilder builder = new StringBuilder(bufferSize);
+                int size = Spotify.STRINGBUFFER_SIZE;
+                bufferPtr = Marshal.AllocHGlobal(size);
 
                 lock (Spotify.Mutex)
                 {
-                    length = Spotify.sp_link_as_string(Handle, builder, bufferSize);
+                    Spotify.sp_link_as_string(Handle, bufferPtr, size);
                 }
 
-                if (length == -1)
-                {
-                    return string.Empty;
-                }
-
-                return builder.ToString().Replace("%3a", ":");
+                return Spotify.GetString(bufferPtr, string.Empty);
             }
-            catch
+            finally
             {
-                return string.Empty;
+                try
+                {
+                    Marshal.FreeHGlobal(bufferPtr);
+                }
+                catch
+                {
+                }
             }
         }
 

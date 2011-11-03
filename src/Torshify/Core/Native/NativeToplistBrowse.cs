@@ -139,8 +139,6 @@ namespace Torshify.Core.Native
                             _userName,
                             _browseComplete,
                             _userDataHandle.IsAllocated ? GCHandle.ToIntPtr(_userDataHandle) : IntPtr.Zero);
-
-                Spotify.sp_toplistbrowse_add_ref(Handle);
             }
         }
 
