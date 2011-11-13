@@ -76,7 +76,7 @@ namespace Torshify
                 albumOffset,
                 albumCount,
                 artistOffset,
-                artistOffset,
+                artistCount,
                 userData);
             search.Completed += (sender, args) => tcs.SetResult(search);
             return tcs.Task;
