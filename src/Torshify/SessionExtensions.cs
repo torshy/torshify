@@ -174,5 +174,16 @@ namespace Torshify
             browse.Completed += (sender, args) => tcs.SetResult(browse);
             return tcs.Task;
         }
+
+        public static Task<IImage> GetImageAsync(
+            this ISession session,
+            string id)
+        {
+            var tcs = new TaskCompletionSource<IImage>();
+            
+            var image = session.GetImage(id);
+            image.Loaded += (sender, args) => tcs.SetResult(image);
+            return tcs.Task;
+        }
     }
 }
