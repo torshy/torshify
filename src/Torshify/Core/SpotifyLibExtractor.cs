@@ -7,11 +7,13 @@ namespace Torshify.Core
     {
         internal static void ExtractResourceToFile(string resourceName, string filename)
         {
-            if (!File.Exists(filename))
+            var baseDirectory = Path.GetDirectoryName(typeof (SpotifyLibExtractor).Assembly.Location);
+            var libspotifyLocation = Path.Combine(baseDirectory, filename);
+            if (!File.Exists(libspotifyLocation))
             {
                 using (Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
                 {
-                    using (FileStream fs = new FileStream(filename, FileMode.Create))
+                    using (FileStream fs = new FileStream(libspotifyLocation, FileMode.Create))
                     {
                         byte[] b = new byte[s.Length];
                         s.Read(b, 0, b.Length);
