@@ -81,6 +81,11 @@ namespace Torshify.Core.Native
             get { return false; }
         }
 
+        public bool IsAutolinked
+        {
+            get { return false; }
+        }
+
         public string Name
         {
             get { return Error.GetMessage(); }

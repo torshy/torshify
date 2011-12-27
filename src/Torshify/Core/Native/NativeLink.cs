@@ -115,7 +115,7 @@ namespace Torshify.Core.Native
                     Handle = IntPtr.Zero;
                 }
 
-#if DEBUG
+#if DEBUG_VERBOSE
                 Console.WriteLine("Link disposed");
 #endif
             }

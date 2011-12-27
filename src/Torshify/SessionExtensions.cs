@@ -183,9 +183,14 @@ namespace Torshify
             
             var image = session.GetImage(id);
             if (image.IsLoaded)
+            {
                 tcs.SetResult(image);
+            }
             else
+            {
                 image.Loaded += (sender, args) => tcs.SetResult(image);
+            }
+
             return tcs.Task;
         }
     }

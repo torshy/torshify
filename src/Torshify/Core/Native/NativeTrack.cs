@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-
+using System.Threading;
 using Torshify.Core.Managers;
 
 namespace Torshify.Core.Native
@@ -170,6 +170,19 @@ namespace Torshify.Core.Native
             }
         }
 
+        public bool IsAutolinked
+        {
+            get 
+            { 
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return Spotify.sp_track_is_autolinked(Session.GetHandle(), Handle);
+                }
+            }
+        }
+
         public string Name
         {
             get
@@ -224,6 +237,21 @@ namespace Torshify.Core.Native
             _album = new Lazy<IAlbum>(() =>
                                           {
                                               AssertHandle();
+
+                                              var complete = Error != Error.IsLoading;
+                                              var startTime = DateTime.Now;
+                                              var timeout = new TimeSpan(0, 0, 10);
+
+                                              while (!complete && DateTime.Now < startTime.Add(timeout))
+                                              {
+                                                  if (Error != Error.IsLoading)
+                                                  {
+                                                      complete = true;
+                                                      break;
+                                                  }
+
+                                                  Thread.Yield();
+                                              }
 
                                               lock (Spotify.Mutex)
                                               {

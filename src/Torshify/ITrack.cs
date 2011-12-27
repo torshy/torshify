@@ -62,6 +62,11 @@ namespace Torshify
             get;
         }
 
+        bool IsAutolinked
+        {
+            get;
+        }
+
         string Name
         {
             get;
