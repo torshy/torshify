@@ -130,10 +130,14 @@ namespace Torshify
                 return null;
             }
 
-            return CreateLink<T>(() => wrapper.GetHandle(), wrapper.Session, create);
+            return CreateLink<T>(wrapper.GetHandle, wrapper.Session, create);
         }
 
-        private static ILink<T> CreateLink<T>(Func<IntPtr> getInstanceHandle, ISession session, Func<IntPtr, IntPtr> create)
+        private static ILink<T> CreateLink<T>(
+            Func<IntPtr> getInstanceHandle, 
+            ISession session, 
+            Func<IntPtr, IntPtr> create,
+            TimeSpan? trackLinkOffset = null)
         {
             IntPtr handle = getInstanceHandle();
 
@@ -149,7 +153,7 @@ namespace Torshify
                 linkPtr = create(handle);
             }
 
-            return (ILink<T>)LinkManager.Get(session, linkPtr);
+            return (ILink<T>)LinkManager.Get(session, linkPtr, trackLinkOffset: trackLinkOffset);
         }
     }
 }

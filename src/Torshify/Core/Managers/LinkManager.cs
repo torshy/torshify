@@ -19,7 +19,11 @@ namespace Torshify.Core.Managers
 
         #region Internal Static Methods
 
-        internal static ILink Get(ISession session, IntPtr handle, string linkAsString = null)
+        internal static ILink Get(
+            ISession session,
+            IntPtr handle,
+            string linkAsString = null,
+            TimeSpan? trackLinkOffset = null)
         {
             lock (_instanceLock)
             {
@@ -36,7 +40,20 @@ namespace Torshify.Core.Managers
                     switch (type)
                     {
                         case LinkType.Track:
-                            instance = new NativeTrackAndOffsetLink(session, handle);
+                        case LinkType.LocalTrack:
+                            if (!string.IsNullOrEmpty(linkAsString))
+                            {
+                                instance = new NativeTrackAndOffsetLink(session, handle, linkAsString);
+                            }
+                            else if (trackLinkOffset.HasValue)
+                            {
+                                instance = new NativeTrackAndOffsetLink(session, handle, trackLinkOffset);
+                            }
+                            else
+                            {
+                                instance = new NativeTrackAndOffsetLink(session, handle);
+                            }
+
                             break;
                         case LinkType.Album:
                             instance = new NativeAlbumLink(session, handle);
@@ -55,9 +72,6 @@ namespace Torshify.Core.Managers
                             break;
                         case LinkType.Starred:
                             instance = new NativePlaylistLink(session, handle);
-                            break;
-                        case LinkType.LocalTrack:
-                            instance = new NativeTrackAndOffsetLink(session, handle);
                             break;
                         case LinkType.Image:
                             instance = new NativeImageLink(session, handle);
