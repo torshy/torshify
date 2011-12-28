@@ -202,15 +202,7 @@ namespace Torshify.Core.Native
         /// <param name="username">Canonical username.</param>
         /// <returns>Playlist container object, null if not logged in or not found. </returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_session_publishedcontainer_for_user(IntPtr sessionPtr, string username);
-
-        /// <summary>
-        /// Releases the playlistcontainer for canonical_username.
-        /// </summary>
-        /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
-        /// <param name="username">Canonical username.</param>
-        [DllImport("libspotify")]
-        internal static extern void sp_session_publishedcontainer_for_user_release(IntPtr sessionPtr, string username);
+        internal static extern IntPtr sp_session_publishedcontainer_for_user_create(IntPtr sessionPtr, string username);
 
         /// <summary>
         /// Set preferred bitrate for music streaming.

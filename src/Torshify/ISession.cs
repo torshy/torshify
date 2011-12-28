@@ -210,6 +210,14 @@ namespace Torshify
         /// <returns> A playlist or NULL if no user is logged in</returns>
         IPlaylist GetStarredForUser(string canonicalUserName);
 
+        /// <summary>
+        /// Return the published container for given a canonical username,
+        /// or the currently logged in user if canonicalUsername is NULL.
+        /// </summary>
+        /// <param name="canonicalUsername"></param>
+        /// <returns>Playlist container object, NULL if not logged in.</returns>
+        IPlaylistContainer GetPlaylistContainerForUser(string canonicalUsername);
+
         #endregion Methods
     }
 }

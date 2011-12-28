@@ -593,6 +593,22 @@ namespace Torshify.Core.Native
             }
         }
 
+        public IPlaylistContainer GetPlaylistContainerForUser(string canonicalUsername)
+        {
+            if (ConnectionState != ConnectionState.LoggedIn)
+            {
+                return null;
+            }
+
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                IntPtr containerPtr = Spotify.sp_session_publishedcontainer_for_user_create(Handle, canonicalUsername);
+                return PlaylistContainerManager.Get(this, containerPtr);
+            }
+        }
+
         public override void Initialize()
         {
             _callbacks = new NativeSessionCallbacks(this);
