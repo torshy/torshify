@@ -577,8 +577,13 @@ namespace Torshify.Core.Native
             return syncStatus;
         }
 
-        public IPlaylist GetStarredPlaylistForUser(string canonicalUserName)
+        public IPlaylist GetStarredForUser(string canonicalUserName)
         {
+            if (ConnectionState != ConnectionState.LoggedIn)
+            {
+                return null;
+            }
+
             AssertHandle();
 
             lock (Spotify.Mutex)
