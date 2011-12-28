@@ -203,6 +203,13 @@ namespace Torshify
         /// <returns>Sync status</returns>
         OfflineSyncStatus GetOfflineSyncStatus();
 
+        /// <summary>
+        /// Returns the starred list for a user
+        /// </summary>
+        /// <param name="canonicalUserName">Canonical username</param>
+        /// <returns> A playlist or NULL if no user is logged in</returns>
+        IPlaylist GetStarredForUser(string canonicalUserName);
+
         #endregion Methods
     }
 }

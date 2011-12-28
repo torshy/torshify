@@ -577,6 +577,17 @@ namespace Torshify.Core.Native
             return syncStatus;
         }
 
+        public IPlaylist GetStarredPlaylistForUser(string canonicalUserName)
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                IntPtr starredPtr = Spotify.sp_session_starred_for_user_create(Handle, canonicalUserName);
+                return PlaylistManager.Get(this, starredPtr);
+            }
+        }
+
         public override void Initialize()
         {
             _callbacks = new NativeSessionCallbacks(this);
