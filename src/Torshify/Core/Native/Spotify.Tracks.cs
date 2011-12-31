@@ -54,6 +54,7 @@ namespace Torshify.Core.Native
         /// <param name="trackPtr"></param>
         /// <returns>True if track is a placeholder</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_track_is_placeholder(IntPtr trackPtr);
 
         /// <summary>
@@ -66,6 +67,7 @@ namespace Torshify.Core.Native
         /// </remarks>
         /// <returns>True if track is a local file, otherwise false.</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_track_is_local(IntPtr sessionPtr, IntPtr trackPtr);
 
         /// <summary>
@@ -78,6 +80,7 @@ namespace Torshify.Core.Native
         /// </remarks>
         /// <returns>True if track is autolinked, otherwise false.</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_track_is_autolinked(IntPtr sessionPtr, IntPtr trackPtr);
 
         /// <summary>

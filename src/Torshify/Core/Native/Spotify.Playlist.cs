@@ -106,6 +106,7 @@ namespace Torshify.Core.Native
         /// <param name="index">Index into playlist container. Should be in the interval [0, sp_playlist_num_tracks() - 1].</param>
         /// <returns>Seen state.</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_playlist_track_seen(IntPtr playlistPtr, int index);
 
         /// <summary>
@@ -178,6 +179,7 @@ namespace Torshify.Core.Native
         /// <param name="imageId">[out] 20 byte image id.</param>
         /// <returns>True if playlist has an image, otherwise false.</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_playlist_get_image(IntPtr playlistPtr, IntPtr imageId);
 
         /// <summary>
@@ -187,6 +189,7 @@ namespace Torshify.Core.Native
         /// <param name="playlistPtr">Playlist object.</param>
         /// <returns>A flag representing if there are pending changes or not.</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_playlist_has_pending_changes(IntPtr playlistPtr);
 
         /// <summary>
