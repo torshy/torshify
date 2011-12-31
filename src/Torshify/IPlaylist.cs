@@ -127,9 +127,12 @@ namespace Torshify
         #region Methods
 
         /// <summary>
-        /// Autoes the link tracks.
+        /// Set autolinking state for the playlist
+        /// 
+        /// If a playlist is autolinked, unplayable tracks will be made playable
+        /// by linking them to other Spotify tracks, where possible.
         /// </summary>
-        /// <param name="autoLink">if set to <c>true</c> [auto link].</param>
+        /// <param name="autoLink">if set to <c>true</c> auto linking is enabled.</param>
         void AutoLinkTracks(bool autoLink);
 
         /// <summary>
