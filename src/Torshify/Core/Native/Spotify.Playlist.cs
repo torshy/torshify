@@ -42,6 +42,7 @@ namespace Torshify.Core.Native
         /// <param name="playlistPtr">Playlist object.</param>
         /// <returns>True if playlist is loaded, otherwise false.</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_playlist_is_loaded(IntPtr playlistPtr);
 
         /// <summary>

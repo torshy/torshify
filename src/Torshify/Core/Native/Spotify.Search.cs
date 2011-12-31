@@ -59,6 +59,7 @@ namespace Torshify.Core.Native
         /// <param name="searchPtr">A search object.</param>
         /// <returns>True if search is loaded, otherwise false.</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_search_is_loaded(IntPtr searchPtr);
 
         /// <summary>

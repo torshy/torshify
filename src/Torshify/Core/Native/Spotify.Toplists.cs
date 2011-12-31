@@ -47,6 +47,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="browsePtr"> toplist browse object.</param>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_toplistbrowse_is_loaded(IntPtr browsePtr);
 
         /// <summary>

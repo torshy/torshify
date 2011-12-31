@@ -50,6 +50,7 @@ namespace Torshify.Core.Native
         /// <param name="imagePtr">Image object.</param>
         /// <returns>True if image is loaded, false otherwise.</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_image_is_loaded(IntPtr imagePtr);
 
         /// <summary>

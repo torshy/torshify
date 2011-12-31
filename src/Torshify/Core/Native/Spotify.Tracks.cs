@@ -11,6 +11,7 @@ namespace Torshify.Core.Native
         /// <param name="albumPtr">The track whose load status you are interested in.</param>
         /// <returns>True if track is loaded, otherwise false.</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_track_is_loaded(IntPtr trackPtr);
 
         /// <summary>

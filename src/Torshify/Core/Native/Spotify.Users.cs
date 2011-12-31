@@ -50,6 +50,7 @@ namespace Torshify.Core.Native
         /// <param name="user">Spotify user object</param>
         /// <returns>True if user object is loaded, otherwise false</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_user_is_loaded(IntPtr user);
 
         /// <summary>

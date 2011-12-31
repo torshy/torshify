@@ -13,6 +13,7 @@ namespace Torshify.Core.Native
         /// <param name="albumPtr">The album object.</param>
         /// <returns>True if metadata is present, false if not.</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_album_is_loaded(IntPtr albumPtr);
 
         /// <summary>
@@ -102,6 +103,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="browsePtr"> Album browse object.</param>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_albumbrowse_is_loaded(IntPtr browsePtr);
 
         /// <summary>

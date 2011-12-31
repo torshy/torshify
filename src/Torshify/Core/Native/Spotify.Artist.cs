@@ -13,6 +13,7 @@ namespace Torshify.Core.Native
         /// <param name="artistPtr">The artist object.</param>
         /// <returns>True if metadata is present, false if not.</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_artist_is_loaded(IntPtr artistPtr);
 
         /// <summary>
@@ -70,6 +71,7 @@ namespace Torshify.Core.Native
         /// <param name="artistBrowsePtr"Artist browse object</param>
         /// <returns>True if browsing is completed, false if not</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_artistbrowse_is_loaded(IntPtr artistBrowsePtr);
 
         /// <summary>
