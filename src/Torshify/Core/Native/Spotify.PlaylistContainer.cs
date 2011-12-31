@@ -29,6 +29,7 @@ namespace Torshify.Core.Native
         /// <param name="pcPtr">Playlist container</param>
         /// <returns>True if container is loaded</returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool sp_playlistcontainer_is_loaded(IntPtr pcPtr);
 
         /// <summary>
