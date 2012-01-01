@@ -256,22 +256,50 @@ namespace Torshify.Core.Native
 
         private void RemovePlaylist(int index)
         {
-            AssertHandle();
-
-            lock (Spotify.Mutex)
-            {
-                Spotify.sp_playlistcontainer_remove_playlist(Handle, index);
-            }
+            RemovePlaylistAt(index);
         }
 
         private Error RemovePlaylistAt(int index)
         {
             AssertHandle();
 
+            PlaylistType playlistType;
+            Error status;
+
             lock (Spotify.Mutex)
             {
-                return Spotify.sp_playlistcontainer_remove_playlist(Handle, index);
+                playlistType = Spotify.sp_playlistcontainer_playlist_type(Handle, index);
             }
+
+            lock (Spotify.Mutex)
+            {
+                status = Spotify.sp_playlistcontainer_remove_playlist(Handle, index);
+            }
+
+            if (playlistType == PlaylistType.StartFolder)
+            {
+                for (int i = index; i < Playlists.Count; i++)
+                {
+                    PlaylistType currentPlaylistType;
+
+                    lock (Spotify.Mutex)
+                    {
+                        currentPlaylistType = Spotify.sp_playlistcontainer_playlist_type(Handle, i);
+                    }
+
+                    if (currentPlaylistType == PlaylistType.EndFolder || currentPlaylistType == PlaylistType.Placeholder)
+                    {
+                        lock (Spotify.Mutex)
+                        {
+                            status = Spotify.sp_playlistcontainer_remove_playlist(Handle, i);
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            return status;
         }
 
         #endregion Methods
