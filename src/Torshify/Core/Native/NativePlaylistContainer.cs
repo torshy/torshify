@@ -269,10 +269,6 @@ namespace Torshify.Core.Native
             lock (Spotify.Mutex)
             {
                 playlistType = Spotify.sp_playlistcontainer_playlist_type(Handle, index);
-            }
-
-            lock (Spotify.Mutex)
-            {
                 status = Spotify.sp_playlistcontainer_remove_playlist(Handle, index);
             }
 
