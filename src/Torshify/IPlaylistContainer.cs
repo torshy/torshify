@@ -28,7 +28,7 @@ namespace Torshify
             get;
         }
 
-        IEditableArray<IContainerPlaylist> Playlists
+        IPlaylistList Playlists
         {
             get;
         }

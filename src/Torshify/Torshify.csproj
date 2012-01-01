@@ -88,6 +88,7 @@
     <Compile Include="Core\Native\ErroneousArtist.cs" />
     <Compile Include="Core\Native\ErroneousTrack.cs" />
     <Compile Include="Core\Native\NativeImageLink.cs" />
+    <Compile Include="Core\Native\NativePlaylistList.cs" />
     <Compile Include="Core\Native\NativePlaylistTrackList.cs" />
     <Compile Include="Core\Native\NativeRadioSearch.cs" />
     <Compile Include="Core\Native\NativeSearchLink.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="IArtistBrowse.cs" />
     <Compile Include="IInbox.cs" />
     <Compile Include="ILink of T.cs" />
+    <Compile Include="IPlaylistList.cs" />
     <Compile Include="IPlaylistTrackList.cs" />
     <Compile Include="IToplistBrowse.cs" />
     <Compile Include="IUser.cs" />

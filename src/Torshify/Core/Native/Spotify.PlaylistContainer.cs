@@ -110,6 +110,21 @@ namespace Torshify.Core.Native
         internal static extern IntPtr sp_playlistcontainer_add_new_playlist(IntPtr pcPtr, string name);
 
         /// <summary>
+        /// Add a playlist folder
+        /// 
+        /// This operation will actually create two playlists. One of type SP_PLAYLIST_TYPE_START_FOLDER and immediately following a SP_PLAYLIST_TYPE_END_FOLDER one.
+        /// 
+        /// To remove a playlist folder both of these must be deleted or the list will be left in an inconsistant state.
+        /// 
+        /// There is no way to rename a playlist folder. Instead you need to remove the folder and recreate it again.
+        /// </summary>
+        /// <param name="pcPtr">Playlist container.</param>
+        /// <param name="name">Name of new playlist.</param>
+        /// <returns>Pointer to the new playlist. Can be null if the operation fails.</returns>
+        [DllImport("libspotify")]
+        internal static extern Error sp_playlistcontainer_add_folder(IntPtr pcPtr, int index, string name);
+
+        /// <summary>
         /// Add an existing playlist at the end of the given playlist container.
         /// </summary>
         /// <param name="pcPtr">Playlist container.</param>

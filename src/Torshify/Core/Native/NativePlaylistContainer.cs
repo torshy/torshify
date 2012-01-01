@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+
 using Torshify.Core.Managers;
 
 namespace Torshify.Core.Native
@@ -8,8 +9,8 @@ namespace Torshify.Core.Native
     {
         #region Fields
 
-        private Lazy<DelegateList<IContainerPlaylist>> _playlists;
         private NativePlaylistContainerCallbacks _callbacks;
+        private Lazy<NativePlaylistList> _playlists;
 
         #endregion Fields
 
@@ -36,19 +37,6 @@ namespace Torshify.Core.Native
 
         #region Properties
 
-        public IUser Owner
-        {
-            get
-            {
-                AssertHandle();
-
-                lock (Spotify.Mutex)
-                {
-                    return UserManager.Get(Session, Spotify.sp_playlistcontainer_owner(Handle));
-                }
-            }
-        }
-
         public bool IsLoaded
         {
             get
@@ -62,7 +50,20 @@ namespace Torshify.Core.Native
             }
         }
 
-        public IEditableArray<IContainerPlaylist> Playlists
+        public IUser Owner
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return UserManager.Get(Session, Spotify.sp_playlistcontainer_owner(Handle));
+                }
+            }
+        }
+
+        public IPlaylistList Playlists
         {
             get
             {
@@ -74,7 +75,7 @@ namespace Torshify.Core.Native
 
         #endregion Properties
 
-        #region Public Methods
+        #region Methods
 
         public override void Initialize()
         {
@@ -84,18 +85,18 @@ namespace Torshify.Core.Native
             }
 
             _callbacks = new NativePlaylistContainerCallbacks(this);
-            _playlists = new Lazy<DelegateList<IContainerPlaylist>>(() => new DelegateList<IContainerPlaylist>(
+            _playlists = new Lazy<NativePlaylistList>(() => new NativePlaylistList(
                 GetContainerLength,
                 GetPlaylistAtIndex,
+                AddNewPlaylist,
+                AddExistingPlaylist,
+                AddFolder,
                 AddPlaylist,
                 RemovePlaylist,
+                RemovePlaylistAt,
                 () => false,
                 MovePlaylists));
         }
-
-        #endregion Public Methods
-
-        #region Internal Methods
 
         internal virtual void OnLoaded(EventArgs e)
         {
@@ -116,10 +117,6 @@ namespace Torshify.Core.Native
         {
             PlaylistRemoved.RaiseEvent(this, e);
         }
-
-        #endregion Internal Methods
-
-        #region Protected Methods
 
         protected override void Dispose(bool disposing)
         {
@@ -157,17 +154,49 @@ namespace Torshify.Core.Native
             base.Dispose(disposing);
         }
 
-        #endregion Protected Methods
+        private IContainerPlaylist AddExistingPlaylist(ILink<IPlaylist> link)
+        {
+            INativeObject nativeObject = (INativeObject)link;
 
-        #region Private Methods
+            AssertHandle();
 
-        private void RemovePlaylist(int index)
+            lock (Spotify.Mutex)
+            {
+                IntPtr playlistPtr = Spotify.sp_playlistcontainer_add_playlist(Handle, nativeObject.Handle);
+
+                return ContainerPlaylistManager.Get(
+                    Session,
+                    this,
+                    playlistPtr,
+                    IntPtr.Zero,
+                    PlaylistType.Playlist);
+            }
+        }
+
+        private Error AddFolder(int index, string name)
         {
             AssertHandle();
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_playlistcontainer_remove_playlist(Handle, index);
+                return Spotify.sp_playlistcontainer_add_folder(Handle, index, name);
+            }
+        }
+
+        private IContainerPlaylist AddNewPlaylist(string name)
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                IntPtr playlistPtr = Spotify.sp_playlistcontainer_add_new_playlist(Handle, name);
+
+                return ContainerPlaylistManager.Get(
+                    Session,
+                    this,
+                    playlistPtr,
+                    IntPtr.Zero,
+                    PlaylistType.Playlist);
             }
         }
 
@@ -225,6 +254,26 @@ namespace Torshify.Core.Native
             }
         }
 
-        #endregion Private Methods
+        private void RemovePlaylist(int index)
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                Spotify.sp_playlistcontainer_remove_playlist(Handle, index);
+            }
+        }
+
+        private Error RemovePlaylistAt(int index)
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                return Spotify.sp_playlistcontainer_remove_playlist(Handle, index);
+            }
+        }
+
+        #endregion Methods
     }
 }
