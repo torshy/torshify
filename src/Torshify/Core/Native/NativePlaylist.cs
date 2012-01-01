@@ -362,7 +362,7 @@ namespace Torshify.Core.Native
         private void AddNewTrack(ITrack track, int index)
         {
             IntPtr[] ptrArray = new[] { track.GetHandle() };
-            IntPtr trackArrayPtr = Marshal.AllocHGlobal(Marshal.SizeOf(ptrArray));
+            IntPtr trackArrayPtr = Marshal.AllocHGlobal(Marshal.SizeOf(ptrArray[0]));
             Marshal.Copy(ptrArray, 0, trackArrayPtr, 1);
 
             AssertHandle();

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace Torshify.Core.Native
 {
@@ -36,14 +37,23 @@ namespace Torshify.Core.Native
 
         #endregion Constructors
 
+        #region Indexers
+
+        public IContainerPlaylist this[string name]
+        {
+            get { return this.FirstOrDefault(p => name.Equals(p.Name, StringComparison.InvariantCultureIgnoreCase)); }
+        }
+
+        #endregion Indexers
+
         #region Methods
 
-        public IPlaylist Add(string name)
+        public IContainerPlaylist Add(string name)
         {
             return _addNew(name);
         }
 
-        public IPlaylist Add(ILink<IPlaylist> playlist)
+        public IContainerPlaylist Add(ILink<IPlaylist> playlist)
         {
             return _addExisting(playlist);
         }

@@ -2,11 +2,20 @@ namespace Torshify
 {
     public interface IPlaylistList : IEditableArray<IContainerPlaylist>
     {
+        #region Properties
+
+        IContainerPlaylist this[string name]
+        {
+            get;
+        }
+
+        #endregion Properties
+
         #region Methods
 
-        IPlaylist Add(string name);
+        IContainerPlaylist Add(string name);
 
-        IPlaylist Add(ILink<IPlaylist> playlist);
+        IContainerPlaylist Add(ILink<IPlaylist> playlist);
 
         Error AddFolder(int index, string name);
 
