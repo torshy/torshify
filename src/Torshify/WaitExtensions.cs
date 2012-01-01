@@ -45,66 +45,65 @@ namespace Torshify
             return browse;
         }
 
-        public static IPlaylistContainer WaitUntilLoaded(this IPlaylistContainer source, int millisecondsTimeout = 10000)
+        public static bool WaitUntilLoaded(this IPlaylistContainer source, int millisecondsTimeout = 10000)
         {
             var reset = new ManualResetEvent(source.IsLoaded);
             EventHandler handler = (s, e) => reset.Set();
             source.Loaded += handler;
-            reset.WaitOne(millisecondsTimeout);
+            bool result = reset.WaitOne(millisecondsTimeout);
             source.Loaded -= handler;
-            return source;
+            return result;
         }
 
-        public static IPlaylist WaitUntilLoaded(this IPlaylist source, int millisecondsTimeout = 10000)
+        public static bool WaitUntilLoaded(this IPlaylist source, int millisecondsTimeout = 10000)
         {
-            WaitUntilLoaded(() => source.IsLoaded, millisecondsTimeout);
-            return source;
+            return WaitUntilLoaded(() => source.IsLoaded, millisecondsTimeout);
         }
 
-        public static ITrack WaitUntilLoaded(this ITrack source, int millisecondsTimeout = 10000)
+        public static bool WaitUntilLoaded(this ITrack source, int millisecondsTimeout = 10000)
         {
-            WaitUntilLoaded(() => source.IsLoaded, millisecondsTimeout);
-            return source;
+            return WaitUntilLoaded(() => source.IsLoaded, millisecondsTimeout);
         }
 
-        public static IAlbum WaitUntilLoaded(this IAlbum source, int millisecondsTimeout = 10000)
+        public static bool WaitUntilLoaded(this IAlbum source, int millisecondsTimeout = 10000)
         {
-            WaitUntilLoaded(() => source.IsLoaded, millisecondsTimeout);
-            return source;
+            return WaitUntilLoaded(() => source.IsLoaded, millisecondsTimeout);
         }
 
-        public static IArtist WaitUntilLoaded(this IArtist source, int millisecondsTimeout = 10000)
+        public static bool WaitUntilLoaded(this IArtist source, int millisecondsTimeout = 10000)
         {
-            WaitUntilLoaded(() => source.IsLoaded, millisecondsTimeout);
-            return source;
+            return WaitUntilLoaded(() => source.IsLoaded, millisecondsTimeout);
         }
 
-        public static IUser WaitUntilLoaded(this IUser source, int millisecondsTimeout = 10000)
+        public static bool WaitUntilLoaded(this IUser source, int millisecondsTimeout = 10000)
         {
-            WaitUntilLoaded(() => source.IsLoaded, millisecondsTimeout);
-            return source;
+            return WaitUntilLoaded(() => source.IsLoaded, millisecondsTimeout);
         }
 
-        public static IImage WaitUntilLoaded(this IImage source, int millisecondsTimeout = 10000)
+        public static bool WaitUntilLoaded(this IImage source, int millisecondsTimeout = 10000)
         {
             var reset = new ManualResetEvent(source.IsLoaded);
             EventHandler handler = (s, e) => reset.Set();
             source.Loaded += handler;
-            reset.WaitOne(millisecondsTimeout);
+            bool result = reset.WaitOne(millisecondsTimeout);
             source.Loaded -= handler;
-            return source;
+            return result;
         }
 
-        private static void WaitUntilLoaded(Func<bool> isLoaded, int millisecondsTimeout)
+        private static bool WaitUntilLoaded(Func<bool> isLoaded, int millisecondsTimeout)
         {
             var timeout = TimeSpan.FromMilliseconds(millisecondsTimeout);
             var startTime = DateTime.UtcNow;
             var endTime = startTime.Add(timeout);
+            var complete = isLoaded();
 
-            while (!isLoaded() && DateTime.UtcNow < endTime)
+            while (!complete && DateTime.UtcNow < endTime)
             {
+                complete = isLoaded();
                 Thread.Yield();
             }
+
+            return complete;
         }
     }
 }
