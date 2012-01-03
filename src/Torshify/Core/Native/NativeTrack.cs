@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Threading;
+
 using Torshify.Core.Managers;
 
 namespace Torshify.Core.Native
@@ -238,26 +238,14 @@ namespace Torshify.Core.Native
                                           {
                                               AssertHandle();
 
-                                              var complete = Error != Error.IsLoading;
-                                              var startTime = DateTime.Now;
-                                              var timeout = new TimeSpan(0, 0, 10);
-
-                                              while (!complete && DateTime.Now < startTime.Add(timeout))
+                                              if (this.WaitUntilLoaded())
                                               {
-                                                  if (Error != Error.IsLoading)
+                                                  lock (Spotify.Mutex)
                                                   {
-                                                      complete = true;
-                                                      break;
-                                                  }
-
-                                                  Thread.Yield();
-                                              }
-
-                                              lock (Spotify.Mutex)
-                                              {
-                                                  if (Error == Error.OK)
-                                                  {
-                                                      return AlbumManager.Get(Session, Spotify.sp_track_album(Handle));
+                                                      if (Error == Error.OK)
+                                                      {
+                                                          return AlbumManager.Get(Session, Spotify.sp_track_album(Handle));
+                                                      }
                                                   }
                                               }
 

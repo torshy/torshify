@@ -318,6 +318,25 @@ namespace Torshify.Core.Native
         [DllImport("libspotify")]
         internal static extern int sp_playlist_get_offline_download_completed(IntPtr sessionPtr, IntPtr playlistPtr);
 
+        /// <summary>
+        /// Return whether a playlist is loaded in RAM (as opposed to onl stored on disk)
+        /// </summary>
+        /// <param name="sessionPtr"> </param>
+        /// <param name="playlistPtr">Playlist object.</param>
+        [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        internal static extern bool sp_playlist_is_in_ram(IntPtr sessionPtr, IntPtr playlistPtr);
+
+        /// <summary>
+        ///Set whether a playlist is loaded in RAM (as opposed to only stored on disk)
+        /// </summary>
+        /// <param name="sessionPtr"> </param>
+        /// <param name="playlistPtr">Playlist object.</param>
+        ///<param name="inRam"> </param>
+        [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        internal static extern bool sp_playlist_set_in_ram(IntPtr sessionPtr, IntPtr playlistPtr, bool inRam);
+
         #endregion Internal Static Methods
 
         #region Nested Types

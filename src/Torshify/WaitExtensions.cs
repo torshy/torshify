@@ -57,7 +57,19 @@ namespace Torshify
 
         public static bool WaitUntilLoaded(this IPlaylist source, int millisecondsTimeout = 10000)
         {
-            return WaitUntilLoaded(() => source.IsLoaded, millisecondsTimeout);
+            var reset = new ManualResetEvent(source.IsLoaded);
+            EventHandler handler = (s, e) =>
+                                   {
+                                       IPlaylist p = (IPlaylist) s;
+                                       if (p.IsLoaded)
+                                       {
+                                           reset.Set();
+                                       }
+                                   };
+            source.StateChanged += handler;
+            bool result = reset.WaitOne(millisecondsTimeout);
+            source.StateChanged -= handler;
+            return result;
         }
 
         public static bool WaitUntilLoaded(this ITrack source, int millisecondsTimeout = 10000)

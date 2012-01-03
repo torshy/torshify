@@ -122,6 +122,23 @@ namespace Torshify
             get;
         }
 
+        /// <summary>
+        /// Returns the owner of the playlist
+        /// </summary>
+        IUser Owner
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Return whether a playlist is loaded in RAM (as opposed to only stored on disk)
+        /// </summary>
+        bool IsInRam
+        {
+            get; 
+            set;
+        }
+
         #endregion Properties
 
         #region Methods
@@ -146,6 +163,11 @@ namespace Torshify
         /// </summary>
         /// <returns>Value from 0 - 100 that indicates amount of playlist that is downloaded</returns>
         int GetOfflineDownloadCompleted();
+
+        /// <summary>
+        /// Ask library to update the subscription count for a playlist
+        /// </summary>
+        void UpdateSubscribers();
 
         #endregion Methods
     }

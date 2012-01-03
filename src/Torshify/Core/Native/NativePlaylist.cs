@@ -198,6 +198,42 @@ namespace Torshify.Core.Native
             }
         }
 
+        public IUser Owner
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    var userHandle = Spotify.sp_playlist_owner(Handle);
+                    return UserManager.Get(Session, userHandle);
+                }
+            }
+        }
+
+        public bool IsInRam
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return Spotify.sp_playlist_is_in_ram(Session.GetHandle(), Handle);
+                }
+            }
+            set
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    Spotify.sp_playlist_set_in_ram(Session.GetHandle(), Handle, value);
+                }
+            }
+        }
+
         public IPlaylistTrackList Tracks
         {
             get
@@ -229,6 +265,14 @@ namespace Torshify.Core.Native
             lock (Spotify.Mutex)
             {
                 return Spotify.sp_playlist_get_offline_download_completed(Session.GetHandle(), Handle);
+            }
+        }
+
+        public void UpdateSubscribers()
+        {
+            lock (Spotify.Mutex)
+            {
+                Spotify.sp_playlist_update_subscribers(Session.GetHandle(), Handle);
             }
         }
 

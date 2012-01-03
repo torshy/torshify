@@ -16,9 +16,7 @@ namespace Torshify.Core.Native
         #region Fields
 
         private readonly byte[] _applicationKey;
-        private readonly string _cacheLocation;
-        private readonly string _settingsLocation;
-        private readonly string _userAgent;
+        private readonly SessionOptions _options;
 
         private IPlaylistContainer _playlistContainer;
         private IPlaylist _starredPlaylist;
@@ -33,13 +31,11 @@ namespace Torshify.Core.Native
 
         #region Constructors
 
-        public NativeSession(byte[] applicationKey, string cacheLocation, string settingsLocation, string userAgent)
+        public NativeSession(byte[] applicationKey, SessionOptions options)
             : base(null, IntPtr.Zero)
         {
             _applicationKey = applicationKey;
-            _cacheLocation = cacheLocation;
-            _settingsLocation = settingsLocation;
-            _userAgent = userAgent;
+            _options = options;
         }
 
         #endregion Constructors
@@ -613,20 +609,25 @@ namespace Torshify.Core.Native
         {
             _callbacks = new NativeSessionCallbacks(this);
 
-            Directory.CreateDirectory(_settingsLocation);
+            if (!string.IsNullOrEmpty(_options.SettingsLocation))
+            {
+                Directory.CreateDirectory(_options.SettingsLocation);
+            }
 
             var sessionConfig = new Spotify.SpotifySessionConfig
             {
                 ApiVersion = Spotify.SPOTIFY_API_VERSION,
-                CacheLocation = _cacheLocation,
-                SettingsLocation = _settingsLocation,
-                UserAgent = _userAgent,
-                CompressPlaylists = false,
-                DontSaveMetadataForPlaylists = false,
-                InitiallyUnloadPlaylists = false,
+                CacheLocation = _options.CacheLocation,
+                SettingsLocation = _options.SettingsLocation,
+                UserAgent = _options.UserAgent,
+                CompressPlaylists = _options.CompressPlaylists,
+                DontSaveMetadataForPlaylists = _options.DontSavePlaylistMetadata,
+                InitiallyUnloadPlaylists = _options.InitiallyUnloadPlaylists,
                 ApplicationKey = Marshal.AllocHGlobal(_applicationKey.Length),
                 ApplicationKeySize = _applicationKey.Length,
-                Callbacks = _callbacks.CallbackHandle
+                Callbacks = _callbacks.CallbackHandle,
+                DeviceID = _options.DeviceID,
+                TraceFile = _options.TraceFileLocation
             };
 
             try

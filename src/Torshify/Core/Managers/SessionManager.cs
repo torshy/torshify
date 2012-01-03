@@ -14,9 +14,12 @@ namespace Torshify.Core.Managers
 
         #region Internal Static Methods
 
-        internal static ISession Create(byte[] applicationKey, string cacheLocation, string settingsLocation, string userAgent)
+        internal static ISession Create(
+            byte[] applicationKey, 
+            SessionOptions options)
         {
-            NativeSession session = new NativeSession(applicationKey, cacheLocation, settingsLocation, userAgent);
+            NativeSession session = new NativeSession(applicationKey, options);
+
             session.Initialize();
             
             if (SessionFactory.IsInternalCachingEnabled)

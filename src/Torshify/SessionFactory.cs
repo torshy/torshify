@@ -25,9 +25,25 @@ namespace Torshify
 
         #region Methods
 
-        public static ISession CreateSession(byte[] applicationKey, string cacheLocation, string settingsLocation, string userAgent)
+        public static ISession CreateSession(
+            byte[] applicationKey, 
+            string cacheLocation, 
+            string settingsLocation, 
+            string userAgent)
         {
-            return SessionManager.Create(applicationKey, cacheLocation, settingsLocation, userAgent);
+            return CreateSession(
+                applicationKey,
+                new SessionOptions
+                {
+                    CacheLocation = cacheLocation,
+                    SettingsLocation = settingsLocation,
+                    UserAgent = userAgent
+                });
+        }
+
+        public static ISession CreateSession(byte[] applicationKey, SessionOptions options)
+        {
+            return SessionManager.Create(applicationKey, options);
         }
 
         #endregion Methods
