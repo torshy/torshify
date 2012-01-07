@@ -172,7 +172,7 @@ namespace Torshify
         /// <remarks>Used in conjunction with SetConnectionRules to control
         /// how libspotify should behave in respect to network activity and offline synchronization.</remarks>
         /// <param name="connectionType">Connection type</param>
-        /// <returns></returns>
+        /// <returns>Current session</returns>
         ISession SetConnectionType(ConnectionType connectionType);
 
         /// <summary>
@@ -183,6 +183,14 @@ namespace Torshify
         /// <param name="connectionRule">Connection rules</param>
         /// <returns>Current session</returns>
         ISession SetConnectionRules(ConnectionRule connectionRule);
+
+        /// <summary>
+        /// Set maximum cache size in megabytes.
+        /// Setting it to 0 (the default) will let libspotify automatically resize the cache (10% of disk free space)
+        /// </summary>
+        /// <param name="megabytes">Maximum cache size in megabytes.</param>
+        /// <returns>Current session</returns>
+        ISession SetCacheSize(uint megabytes);
 
         /// <summary>
         /// Get total number of tracks that needs download before everything

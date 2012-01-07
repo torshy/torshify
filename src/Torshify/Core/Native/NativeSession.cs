@@ -529,6 +529,16 @@ namespace Torshify.Core.Native
             return this;
         }
 
+        public ISession SetCacheSize(uint megabytes)
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                Spotify.sp_session_set_cache_size(Handle, megabytes);
+            }
+        }
+
         public int GetNumberOfOfflineTracksRemainingToSync()
         {
             AssertHandle();
