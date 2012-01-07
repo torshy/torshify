@@ -537,6 +537,8 @@ namespace Torshify.Core.Native
             {
                 Spotify.sp_session_set_cache_size(Handle, megabytes);
             }
+
+            return this;
         }
 
         public int GetNumberOfOfflineTracksRemainingToSync()
