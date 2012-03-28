@@ -26,6 +26,12 @@ namespace Torshify
                 artistOffset,
                 artistCount,
                 userData);
+
+            if(search.IsComplete)
+            {
+                tcs.SetResult(search);
+            }
+
             search.Completed += (sender, args) => tcs.SetResult(search);
             return tcs.Task;
         }
@@ -44,6 +50,12 @@ namespace Torshify
                 toYear,
                 genre,
                 userData);
+
+            if (search.IsComplete)
+            {
+                tcs.SetResult(search);
+            }
+
             search.Completed += (sender, args) => tcs.SetResult(search);
             return tcs.Task;
         }
@@ -57,6 +69,12 @@ namespace Torshify
             var tcs = new TaskCompletionSource<IArtistBrowse>();
 
             var browse = session.Browse(artist, type, userState);
+            
+            if (browse.IsComplete)
+            {
+                tcs.SetResult(browse);
+            }
+
             browse.Completed += (sender, args) => tcs.SetResult(browse);
             return tcs.Task;
         }
@@ -69,6 +87,12 @@ namespace Torshify
             var tcs = new TaskCompletionSource<IAlbumBrowse>();
 
             var browse = session.Browse(album, userState);
+
+            if (browse.IsComplete)
+            {
+                tcs.SetResult(browse);
+            }
+
             browse.Completed += (sender, args) => tcs.SetResult(browse);
             return tcs.Task;
         }
@@ -81,6 +105,12 @@ namespace Torshify
             var tcs = new TaskCompletionSource<IToplistBrowse>();
 
             var browse = session.Browse(toplist, state);
+
+            if (browse.IsComplete)
+            {
+                tcs.SetResult(browse);
+            }
+
             browse.Completed += (sender, args) => tcs.SetResult(browse);
             return tcs.Task;
         }
@@ -94,6 +124,12 @@ namespace Torshify
             var tcs = new TaskCompletionSource<IToplistBrowse>();
 
             var browse = session.Browse(type, encodedCountryCode, userData);
+
+            if (browse.IsComplete)
+            {
+                tcs.SetResult(browse);
+            }
+
             browse.Completed += (sender, args) => tcs.SetResult(browse);
             return tcs.Task;
         }
@@ -107,6 +143,12 @@ namespace Torshify
             var tcs = new TaskCompletionSource<IToplistBrowse>();
 
             var browse = session.Browse(type, userName, userData);
+
+            if (browse.IsComplete)
+            {
+                tcs.SetResult(browse);
+            }
+
             browse.Completed += (sender, args) => tcs.SetResult(browse);
             return tcs.Task;
         }
@@ -119,6 +161,12 @@ namespace Torshify
             var tcs = new TaskCompletionSource<IToplistBrowse>();
 
             var browse = session.BrowseCurrentUser(type, userData);
+
+            if (browse.IsComplete)
+            {
+                tcs.SetResult(browse);
+            }
+
             browse.Completed += (sender, args) => tcs.SetResult(browse);
             return tcs.Task;
         }

@@ -60,7 +60,7 @@ namespace Torshify
             var reset = new ManualResetEvent(source.IsLoaded);
             EventHandler handler = (s, e) =>
                                    {
-                                       IPlaylist p = (IPlaylist) s;
+                                       IPlaylist p = (IPlaylist)s;
                                        if (p.IsLoaded)
                                        {
                                            reset.Set();
