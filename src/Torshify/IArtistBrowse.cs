@@ -57,6 +57,11 @@ namespace Torshify
             get;
         }
 
+        IArray<ITrack> TopHitTracks
+        {
+            get;
+        }
+
         TimeSpan BackendRequestDuration
         {
             get;

@@ -193,5 +193,24 @@ namespace Torshify.Core.Native
         /// <param name="browsePtr"> artist browse object.</param>
         [DllImport("libspotify")]
         internal static extern int sp_artistbrowse_backend_request_duration(IntPtr browsePtr);
+
+        /// <summary>
+        /// Given an artist browse object, return number of tophit tracks
+        /// This is a set of tracks for the artist with highest popularity
+        /// </summary>
+        /// <param name="browsePtr"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern int sp_artistbrowse_num_tophit_tracks(IntPtr browsePtr);
+
+        /// <summary>
+        /// Given an artist browse object, return one of its tophit tracks
+        /// This is a set of tracks for the artist with highest popularity
+        /// </summary>
+        /// <param name="browsePtr"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern IntPtr sp_artistbrowse_tophit_track(IntPtr browsePtr, int index);
     }
 }

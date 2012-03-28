@@ -13,6 +13,7 @@ namespace Torshify.Core.Native
 
         private Spotify.ArtistBrowseCompleteCallback _browseCompleteCallback;
         private DelegateArray<ITrack> _tracks;
+        private DelegateArray<ITrack> _topHitTracks;
         private DelegateArray<IAlbum> _albums;
         private DelegateArray<IArtist> _similarArtists;
         private DelegateArray<IImage> _portraits;
@@ -103,6 +104,16 @@ namespace Torshify.Core.Native
             }
         }
 
+        public IArray<ITrack> TopHitTracks
+        {
+            get
+            {
+                AssertHandle();
+
+                return _topHitTracks;
+            }
+        }
+
         public IArray<IAlbum> Albums
         {
             get
@@ -157,6 +168,7 @@ namespace Torshify.Core.Native
         {
             _browseCompleteCallback = OnBrowseCompleteCallback;
             _tracks = new DelegateArray<ITrack>(GetNumberOfTracks, GetTrackAtIndex);
+            _topHitTracks = new DelegateArray<ITrack>(GetNumberOfTopHitTracks, GetTopHitTrackAtIndex);
             _albums = new DelegateArray<IAlbum>(GetNumberOfAlbums, GetAlbumAtIndex);
             _similarArtists = new DelegateArray<IArtist>(GetNumberOfSimilarArtists, GetSimilarArtistAtIndex);
             _portraits = new DelegateArray<IImage>(GetNumberOfPortraits, GetPortraitAtIndex);
@@ -286,7 +298,27 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                return Spotify.sp_albumbrowse_num_tracks(Handle);
+                return Spotify.sp_artistbrowse_num_tracks(Handle);
+            }
+        }
+
+        private ITrack GetTopHitTrackAtIndex(int index)
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                return TrackManager.Get(Session, Spotify.sp_artistbrowse_tophit_track(Handle, index));
+            }
+        }
+
+        private int GetNumberOfTopHitTracks()
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                return Spotify.sp_artistbrowse_num_tophit_tracks(Handle);
             }
         }
 
