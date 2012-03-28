@@ -5,8 +5,8 @@ torshify implements most of the libspotify 11.1.56 features such as:
 * Offline syncing  
 * Artist browse  
 * Album browse  
-* Artist top hits
-* Unseen playlist tracks
+* Artist top hits  
+* Unseen playlist tracks  
 * Toplists  
 * Search  
 * Playlists  
