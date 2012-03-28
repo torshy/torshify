@@ -170,6 +170,7 @@
     </Compile>
     <Compile Include="Core\WeakHandleDictionary.cs" />
     <Compile Include="Core\WeakReference of T.cs" />
+    <Compile Include="CredentialsBlobEventArgs.cs" />
     <Compile Include="IArtistBrowse.cs" />
     <Compile Include="IInbox.cs" />
     <Compile Include="ILink of T.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="IPlaylistTrackList.cs" />
     <Compile Include="IToplistBrowse.cs" />
     <Compile Include="IUser.cs" />
+    <Compile Include="SearchType.cs" />
     <Compile Include="SessionOptions.cs" />
     <Compile Include="WaitExtensions.cs" />
     <Compile Include="OfflineSyncStatus.cs" />

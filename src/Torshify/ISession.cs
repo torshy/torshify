@@ -39,6 +39,8 @@ namespace Torshify
         
         event EventHandler<SessionEventArgs> OfflineError;
 
+        event EventHandler<CredentialsBlobEventArgs> CredentialsBlobUpdated;
+
         #endregion Events
 
         #region Properties

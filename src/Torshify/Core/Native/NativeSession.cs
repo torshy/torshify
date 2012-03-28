@@ -74,6 +74,8 @@ namespace Torshify.Core.Native
 
         public event EventHandler<SessionEventArgs> OfflineError;
 
+        public event EventHandler<CredentialsBlobEventArgs> CredentialsBlobUpdated;
+
         #endregion Events
 
         #region Properties
@@ -785,6 +787,11 @@ namespace Torshify.Core.Native
         internal void OnOfflineError(SessionEventArgs e)
         {
             OfflineError.RaiseEvent(this, e);
+        }
+
+        internal void OnCredentialsBlobUpdated(CredentialsBlobEventArgs e)
+        {
+            CredentialsBlobUpdated.RaiseEvent(this, e);
         }
 
         #endregion Internal Methods

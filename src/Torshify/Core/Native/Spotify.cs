@@ -9,7 +9,7 @@ namespace Torshify.Core.Native
     {
         #region Fields
 
-        public const int SPOTIFY_API_VERSION = 10;
+        public const int SPOTIFY_API_VERSION = 11;
         public const int STRINGBUFFER_SIZE = 256;
 
         internal static readonly object Mutex = new object();
@@ -327,6 +327,7 @@ namespace Torshify.Core.Native
             internal IntPtr GetAudioBufferStats;
             internal IntPtr OfflineStatusUpdated;
             internal IntPtr OfflineError;
+            internal IntPtr CredentialsBlobUpdated;
         }
 
         [StructLayout(LayoutKind.Sequential)]

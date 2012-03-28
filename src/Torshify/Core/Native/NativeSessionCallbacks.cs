@@ -28,6 +28,7 @@ namespace Torshify.Core.Native
         private readonly UserinfoUpdatedDelegate _userinfoUpdated;
         private readonly OfflineStatusUpdated _offlineStatusUpdated;
         private readonly OfflineError _offlineError;
+        private readonly CredentialsBlobUpdated _credentialsBlobUpdated;
 
         private IntPtr _callbacksHandle;
 
@@ -56,7 +57,8 @@ namespace Torshify.Core.Native
             _userinfoUpdated = UserinfoUpdatedCallback;
             _offlineStatusUpdated = OfflineStatusUpdatedCallback;
             _offlineError = OfflineErrorCallback;
-
+            _credentialsBlobUpdated = CredentialsBlobUpdatedCallback;
+            
             _callbacks = new Spotify.SpotifySessionCallbacks();
             _callbacks.LoggedIn = Marshal.GetFunctionPointerForDelegate(_loggedIn);
             _callbacks.LoggedOut = Marshal.GetFunctionPointerForDelegate(_loggedOut);
@@ -75,6 +77,7 @@ namespace Torshify.Core.Native
             _callbacks.GetAudioBufferStats = Marshal.GetFunctionPointerForDelegate(_getAudioBufferStats);
             _callbacks.OfflineStatusUpdated = Marshal.GetFunctionPointerForDelegate(_offlineStatusUpdated);
             _callbacks.OfflineError = Marshal.GetFunctionPointerForDelegate(_offlineError);
+            _callbacks.CredentialsBlobUpdated = Marshal.GetFunctionPointerForDelegate(_credentialsBlobUpdated);
 
             _callbacksHandle = Marshal.AllocHGlobal(CallbacksSize);
             Marshal.StructureToPtr(_callbacks, _callbacksHandle, true);
@@ -117,6 +120,8 @@ namespace Torshify.Core.Native
         private delegate void OfflineStatusUpdated(IntPtr sessionPtr);
 
         private delegate void OfflineError(IntPtr sessionPtr, Error error);
+
+        private delegate void CredentialsBlobUpdated(IntPtr sessionPtr, string blob);
 
         #endregion Delegates
 
@@ -330,6 +335,17 @@ namespace Torshify.Core.Native
             }
 
             _session.Queue(new DelegateInvoker(() => _session.OnOfflineError(new SessionEventArgs(error))));
+        }
+
+
+        private void CredentialsBlobUpdatedCallback(IntPtr sessionPtr, string blob)
+        {
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
+
+            _session.Queue(new DelegateInvoker(() => _session.OnCredentialsBlobUpdated(new CredentialsBlobEventArgs(blob))));
         }
 
         #endregion Private Methods
