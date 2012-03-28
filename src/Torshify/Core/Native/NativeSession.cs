@@ -398,21 +398,6 @@ namespace Torshify.Core.Native
             return search;
         }
 
-        public ISearch Search(int fromYear, int toYear, RadioGenre genre, object userData = null)
-        {
-            AssertHandle();
-
-            var search = new NativeRadioSearch(
-                this,
-                fromYear,
-                toYear,
-                genre,
-                userData);
-
-            search.Initialize();
-            return search;
-        }
-
         public IAlbumBrowse Browse(IAlbum album, object userData = null)
         {
             if (!(album is INativeObject))

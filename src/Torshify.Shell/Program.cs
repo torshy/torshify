@@ -60,7 +60,6 @@ namespace Torshify.Shell
                     Console.WriteLine("1: Search");
                     Console.WriteLine("2: Toplists");
                     Console.WriteLine("3: Playlists");
-                    Console.WriteLine("5: Radio");
                     Console.WriteLine("6: Current user info");
                     Console.WriteLine("7: Run GC");
                     Console.WriteLine("=================");
@@ -80,9 +79,6 @@ namespace Torshify.Shell
                         break;
                     case ConsoleKey.D3:
                         PlaylistsMenu();
-                        break;
-                    case ConsoleKey.D5:
-                        RadioMenu();
                         break;
                     case ConsoleKey.D6:
                         CurrentUserInfoMenu();
@@ -182,42 +178,6 @@ namespace Torshify.Shell
                 IPlaylist playlist = Session.PlaylistContainer.Playlists[i];
 
                 ConsoleEx.WriteLine("{0:00} : {1,-20}", ConsoleColor.White, (i + 1), playlist.Name);
-            }
-        }
-
-        protected void RadioMenu()
-        {
-            ConsoleEx.WriteLine("=== Radio ===", ConsoleColor.Cyan);
-
-            string[] genres = Enum.GetNames(typeof(RadioGenre));
-
-            for (int i = 0; i < genres.Length; i++)
-            {
-                string genre = genres[i];
-
-                ConsoleEx.WriteLine("{0:00} : {1,-20}", ConsoleColor.Cyan, (i + 1), genre);
-            }
-
-            ConsoleEx.Write("Choose radio genre >> ", ConsoleColor.Green);
-            var keyInfo = Console.ReadKey();
-            Console.Write(Environment.NewLine);
-
-            int index = int.Parse(keyInfo.KeyChar.ToString());
-            RadioGenre radioGenre;
-            Enum.TryParse(genres[index], out radioGenre);
-
-            ISearch search =
-                Session
-                    .Search(1990, DateTime.Now.Year, radioGenre)
-                    .WaitForCompletion();
-
-            for (int i = 0; i < search.Tracks.Count; i++)
-            {
-                ITrack track = search.Tracks[i];
-
-                ConsoleEx.Write("{0:00} : {1,-20}", ConsoleColor.White, (i + 1), ConsoleEx.Truncate(track.Name, 20));
-                ConsoleEx.Write(" {0,-16}", ConsoleColor.Gray, ConsoleEx.Truncate(track.Album.Artist.Name, 15));
-                ConsoleEx.WriteLine(" {0,-16}", ConsoleColor.DarkGray, ConsoleEx.Truncate(track.Album.Name, 15));
             }
         }
 

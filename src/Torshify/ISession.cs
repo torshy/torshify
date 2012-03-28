@@ -133,12 +133,6 @@ namespace Torshify
             int artistCount,
             object userData = null);
 
-        ISearch Search(
-            int fromYear,
-            int toYear,
-            RadioGenre genre,
-            object userData = null);
-
         IAlbumBrowse Browse(IAlbum album, object userData = null);
 
         IArtistBrowse Browse(IArtist artist, object userData = null);

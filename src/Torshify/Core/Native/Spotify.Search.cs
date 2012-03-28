@@ -34,26 +34,6 @@ namespace Torshify.Core.Native
             IntPtr userdataPtr);
 
         /// <summary>
-        /// Create a search object from the radio channel.
-        /// </summary>
-        /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
-        /// <param name="fromYear">Include tracks starting from this year.</param>
-        /// <param name="toYear">Include tracks up to this year.</param>
-        /// <param name="genres">Bitmask of genres to include.</param>
-        /// <param name="callbackPtr">Callback that will be called once the search operation is complete.
-        /// Pass null if you are not interested in this event.</param>
-        /// <param name="userdataPtr">Opaque pointer passed to callback.</param>
-        /// <returns>Pointer to a search object. To free the object, use <c>sp_search_release()</c></returns>
-        [DllImport("libspotify")]
-        internal static extern IntPtr sp_radio_search_create(
-            IntPtr sessionPtr,
-            uint fromYear,
-            uint toYear,
-            RadioGenre genres, 
-            IntPtr callbackPtr,
-            IntPtr userdataPtr);
-
-        /// <summary>
         /// Get load status for the specified search. Before it is loaded, it will behave as an empty search result.
         /// </summary>
         /// <param name="searchPtr">A search object.</param>

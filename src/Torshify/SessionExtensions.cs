@@ -36,30 +36,6 @@ namespace Torshify
             return tcs.Task;
         }
 
-        public static Task<ISearch> SearchAsync(
-            this ISession session, 
-            int fromYear,
-            int toYear,
-            RadioGenre genre,
-            object userData = null)
-        {
-            var tcs = new TaskCompletionSource<ISearch>();
-
-            var search = session.Search(
-                fromYear,
-                toYear,
-                genre,
-                userData);
-
-            if (search.IsComplete)
-            {
-                tcs.SetResult(search);
-            }
-
-            search.Completed += (sender, args) => tcs.SetResult(search);
-            return tcs.Task;
-        }
-
         public static Task<IArtistBrowse> BrowseAsync(
             this ISession session, 
             IArtist artist, 

@@ -90,7 +90,6 @@
     <Compile Include="Core\Native\NativeImageLink.cs" />
     <Compile Include="Core\Native\NativePlaylistList.cs" />
     <Compile Include="Core\Native\NativePlaylistTrackList.cs" />
-    <Compile Include="Core\Native\NativeRadioSearch.cs" />
     <Compile Include="Core\Native\NativeSearchLink.cs" />
     <Compile Include="Core\Native\NativeUser.cs" />
     <Compile Include="Core\Native\NativeAlbum.cs" />
@@ -221,7 +220,6 @@
     <Compile Include="ImageFormat.cs" />
     <Compile Include="LinkType.cs" />
     <Compile Include="PlaylistType.cs" />
-    <Compile Include="RadioGenre.cs" />
     <Compile Include="SessionEventArgs.cs" />
     <Compile Include="ToplistRegion.cs" />
     <Compile Include="ToplistType.cs" />
