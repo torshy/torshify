@@ -202,5 +202,12 @@ namespace Torshify.Core.Native
         /// <param name="albumPtr">The track object.</param>
         [DllImport("libspotify")]
         internal static extern void sp_track_release(IntPtr trackPtr);
+
+        /// <summary>
+        /// Return the actual track that will be played if the given track is played
+        /// </summary>
+        /// <returns>A track.</returns>
+        [DllImport("libspotify")]
+        internal static extern IntPtr sp_track_get_playable(IntPtr sessionPtr, IntPtr trackPtr);
     }
 }

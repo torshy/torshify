@@ -39,7 +39,7 @@ namespace Torshify.Core.Native
         /// <param name="rememberMe">If set, the username / password will be remembered by libspotify</param>
         /// <returns>Error code.</returns>
         [DllImport("libspotify")]
-        internal static extern void sp_session_login(IntPtr sessionPtr, string username, string password, [MarshalAs(UnmanagedType.I1)]bool rememberMe);
+        internal static extern void sp_session_login(IntPtr sessionPtr, string username, string password, [MarshalAs(UnmanagedType.I1)]bool rememberMe, string blob);
 
         /// <summary>
         /// Log in the remembered user if last user that logged in logged in with remember_me set.
@@ -306,5 +306,15 @@ namespace Torshify.Core.Native
         /// <param name="on">True if volume normalization should be enabled</param>
         [DllImport("libspotify")]
         internal static extern void sp_session_set_volume_normalization(IntPtr sessionPtr, bool on);
+
+        /// <summary>
+        /// This will make libspotify write all data that is meant to be stored
+        /// on disk to the disk immediately. libspotify does this periodically
+        /// by itself and also on logout. So under normal conditions this
+        /// should never need to be used.
+        /// </summary>
+        /// <param name="sessionPtr"></param>
+        [DllImport("libspotify")]
+        internal static extern void sp_session_flush_caches(IntPtr sessionPtr);
     }
 }

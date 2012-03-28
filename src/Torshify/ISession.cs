@@ -91,6 +91,8 @@ namespace Torshify
 
         void Login(string userName, string password, bool rememberMe = false);
 
+        void LoginWithBlob(string userName, string blob);
+
         /// <summary>
         /// <exception cref="AuthenticationException">Thrown when no credentials are stored.</exception>
         /// </summary>
@@ -227,6 +229,13 @@ namespace Torshify
         /// <param name="canonicalUsername"></param>
         /// <returns>Playlist container object, NULL if not logged in.</returns>
         IPlaylistContainer GetPlaylistContainerForUser(string canonicalUsername);
+
+        /// <summary>
+        ///  This will make libspotify write all data that is meant to be stored
+        /// on disk to the disk immediately. libspotify does this periodically
+        /// by itself and also on logout. So under normal conditions this should never need to be used.
+        /// </summary>
+        void FlushCaches();
 
         #endregion Methods
     }

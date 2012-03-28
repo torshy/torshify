@@ -77,6 +77,11 @@ namespace Torshify
             get;
         }
 
+        ITrack AutolinkedTrack
+        {
+            get;
+        }
+
         #endregion Properties
     }
 }

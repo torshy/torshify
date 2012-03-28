@@ -96,6 +96,11 @@ namespace Torshify.Core.Native
             get { return 0; }
         }
 
+        public ITrack AutolinkedTrack
+        {
+            get { return null; }
+        }
+
         public bool IsLoaded
         {
             get { return false; }

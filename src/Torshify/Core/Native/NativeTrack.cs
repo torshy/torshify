@@ -209,6 +209,19 @@ namespace Torshify.Core.Native
             }
         }
 
+        public ITrack AutolinkedTrack
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return TrackManager.Get(Session, Spotify.sp_track_get_playable(Session.GetHandle(), Handle));
+                }
+            }
+        }
+
         public bool IsLoaded
         {
             get

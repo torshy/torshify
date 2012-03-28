@@ -214,7 +214,17 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_login(Handle, userName, password, rememberMe);
+                Spotify.sp_session_login(Handle, userName, password, rememberMe, null);
+            }
+        }
+
+        public void LoginWithBlob(string userName, string blob)
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                Spotify.sp_session_login(Handle, userName, null, false, blob);
             }
         }
 
@@ -616,6 +626,14 @@ namespace Torshify.Core.Native
             {
                 IntPtr containerPtr = Spotify.sp_session_publishedcontainer_for_user_create(Handle, canonicalUsername);
                 return PlaylistContainerManager.Get(this, containerPtr);
+            }
+        }
+
+        public void FlushCaches()
+        {
+            lock (Spotify.Mutex)
+            {
+                Spotify.sp_session_flush_caches(Handle);
             }
         }
 
