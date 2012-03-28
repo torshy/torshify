@@ -164,7 +164,6 @@ namespace Torshify.Core.Native
 
         /// <summary>
         /// Returns an inbox playlist for the currently logged in user.
-        /// <seealso cref="libspotify.sp_playlist_release"/>
         /// </summary>
         /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
         /// <returns>A playlist.</returns>
@@ -174,7 +173,6 @@ namespace Torshify.Core.Native
 
         /// <summary>
         /// Returns the starred list for the current user.
-        /// <seealso cref="libspotify.sp_playlist_release"/>
         /// </summary>
         /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
         /// <returns>A playlist.</returns>
@@ -184,7 +182,6 @@ namespace Torshify.Core.Native
 
         /// <summary>
         /// Returns the starred list for a user.
-        /// <seealso cref="libspotify.sp_playlist_release"/>
         /// </summary>
         /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
         /// <param name="username">Canonical username.</param>

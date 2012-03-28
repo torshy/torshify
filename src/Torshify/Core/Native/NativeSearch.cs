@@ -8,19 +8,23 @@ namespace Torshify.Core.Native
     {
         #region Fields
 
-        private readonly string _query;
-        private readonly int _trackOffset;
-        private readonly int _trackCount;
-        private readonly int _albumOffset;
         private readonly int _albumCount;
-        private readonly int _artistOffset;
+        private readonly int _albumOffset;
         private readonly int _artistCount;
+        private readonly int _artistOffset;
+        private readonly int _playlistCount;
+        private readonly int _playlistOffset;
+        private readonly string _query;
+        private readonly SearchType _searchType;
+        private readonly int _trackCount;
+        private readonly int _trackOffset;
         private readonly object _userData;
 
-        private NativeSearchCallbacks _callbacks;
-        private Lazy<DelegateArray<IArtist>> _artistsLazyLoad;
-        private Lazy<DelegateArray<ITrack>> _tracksLazyLoad;
         private Lazy<DelegateArray<IAlbum>> _albumsLazyLoad;
+        private Lazy<DelegateArray<IArtist>> _artistsLazyLoad;
+        private NativeSearchCallbacks _callbacks;
+        private Lazy<DelegateArray<IPlaylistSearchResult>> _playlistsLazyLoad;
+        private Lazy<DelegateArray<ITrack>> _tracksLazyLoad;
 
         #endregion Fields
 
@@ -35,6 +39,9 @@ namespace Torshify.Core.Native
             int albumCount,
             int artistOffset,
             int artistCount,
+            int playlistOffset,
+            int playlistCount,
+            SearchType searchType,
             object userData)
             : base(session, IntPtr.Zero)
         {
@@ -45,6 +52,9 @@ namespace Torshify.Core.Native
             _albumCount = albumCount;
             _artistOffset = artistOffset;
             _artistCount = artistCount;
+            _playlistOffset = playlistOffset;
+            _playlistCount = playlistCount;
+            _searchType = searchType;
             _userData = userData;
         }
 
@@ -75,6 +85,16 @@ namespace Torshify.Core.Native
                 AssertHandle();
 
                 return _artistsLazyLoad.Value;
+            }
+        }
+
+        public IArray<IPlaylistSearchResult> Playlists
+        {
+            get
+            {
+                AssertHandle();
+
+                return _playlistsLazyLoad.Value;
             }
         }
 
@@ -222,7 +242,7 @@ namespace Torshify.Core.Native
 
         #endregion Properties
 
-        #region Public Methods
+        #region Methods
 
         public override void Initialize()
         {
@@ -230,6 +250,7 @@ namespace Torshify.Core.Native
             _tracksLazyLoad = new Lazy<DelegateArray<ITrack>>(() => new DelegateArray<ITrack>(GetNumberOfTracks, GetTrackIndex));
             _albumsLazyLoad = new Lazy<DelegateArray<IAlbum>>(() => new DelegateArray<IAlbum>(GetNumberOfAlbums, GetAlbumIndex));
             _artistsLazyLoad = new Lazy<DelegateArray<IArtist>>(() => new DelegateArray<IArtist>(GetNumberOfArtists, GetArtistIndex));
+            _playlistsLazyLoad = new Lazy<DelegateArray<IPlaylistSearchResult>>(() => new DelegateArray<IPlaylistSearchResult>(GetNumberOfPlaylists, GetPlaylistAtIndex));
 
             lock (Spotify.Mutex)
             {
@@ -242,14 +263,13 @@ namespace Torshify.Core.Native
                     _albumCount,
                     _artistOffset,
                     _artistCount,
+                    _playlistOffset,
+                    _playlistCount,
+                    _searchType,
                     _callbacks.CallbackHandle,
                     _callbacks.UserDataHandle);
             }
         }
-
-        #endregion Public Methods
-
-        #region Internal Methods
 
         internal void OnComplete(SearchEventArgs e)
         {
@@ -257,10 +277,6 @@ namespace Torshify.Core.Native
 
             Completed.RaiseEvent(this, e);
         }
-
-        #endregion Internal Methods
-
-        #region Protected Methods
 
         protected override void Dispose(bool disposing)
         {
@@ -354,6 +370,31 @@ namespace Torshify.Core.Native
             }
         }
 
-        #endregion Protected Methods
+        private IPlaylistSearchResult GetPlaylistAtIndex(int index)
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                return new NativePlaylistSearchResult
+                {
+                    Name = Spotify.sp_search_playlist_name(Handle, index),
+                    ImageUri = Spotify.sp_search_playlist_image_uri(Handle, index),
+                    Uri = Spotify.sp_search_playlist_uri(Handle, index)
+                };
+            }
+        }
+
+        private int GetNumberOfPlaylists()
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                return Spotify.sp_search_num_playlists(Handle);
+            }
+        }
+
+        #endregion Methods
     }
 }

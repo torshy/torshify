@@ -134,7 +134,7 @@ namespace Torshify.Shell
 
             ConsoleEx.WriteLine("Searching..", ConsoleColor.Yellow);
             ISearch search = Session
-                .Search(query, 0, 25, 0, 25, 0, 25)
+                .Search(query, 0, 25, 0, 25, 0, 25, 0, 25, SearchType.Standard)
                 .WaitForCompletion();
 
             if (!string.IsNullOrEmpty(search.DidYouMean))
@@ -149,6 +149,15 @@ namespace Torshify.Shell
                 ConsoleEx.Write("{0:00} : {1,-20}", ConsoleColor.White, (i + 1), ConsoleEx.Truncate(track.Name, 20));
                 ConsoleEx.Write(" {0,-16}", ConsoleColor.Gray, ConsoleEx.Truncate(track.Album.Artist.Name, 15));
                 ConsoleEx.WriteLine(" {0,-16}", ConsoleColor.DarkGray, ConsoleEx.Truncate(track.Album.Name, 15));
+            }
+
+            for (int i = 0; i < search.Playlists.Count; i++)
+            {
+                IPlaylistSearchResult playlist = search.Playlists[i];
+
+                ConsoleEx.Write("{0:00} : {1,-20}", ConsoleColor.White, (i + 1), ConsoleEx.Truncate(playlist.Name, 20));
+                ConsoleEx.Write(" {0,-16}", ConsoleColor.Gray, ConsoleEx.Truncate(playlist.Uri, 15));
+                ConsoleEx.WriteLine(" {0,-16}", ConsoleColor.DarkGray, ConsoleEx.Truncate(playlist.ImageUri, 15));
             }
         }
 

@@ -131,6 +131,9 @@ namespace Torshify
             int albumCount, 
             int artistOffset, 
             int artistCount,
+            int playlistOffset,
+            int playlistCount,
+            SearchType searchType,
             object userData = null);
 
         IAlbumBrowse Browse(IAlbum album, object userData = null);

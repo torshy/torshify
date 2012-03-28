@@ -160,5 +160,29 @@ namespace Torshify.Core.Native
         /// <returns>The user object or null if unknown or none.</returns>
         [DllImport("libspotify")]
         internal static extern IntPtr sp_playlistcontainer_owner(IntPtr pcPtr);
+
+        /// <summary>
+        /// Get the number of new tracks in a playlist since the corresponding
+        /// function sp_playlistcontainer_clear_unseen_tracks() was called. The
+        /// function always returns the number of new tracks, and fills the
+        /// tracks array with the new tracks, but not more than specified in
+        /// num_tracks. The function will return a negative value on failure.
+        /// </summary>
+        /// <param name="pcPtr"></param>
+        /// <param name="playlistPtr"></param>
+        /// <param name="tracks"></param>
+        /// <param name="maxNumberOfTracks"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern int sp_playlistcontainer_get_unseen_tracks(IntPtr pcPtr, IntPtr playlistPtr, IntPtr[] tracks, int maxNumberOfTracks);
+
+        /// <summary>
+        /// Clears a playlist from unseen tracks, so that next call to sp_playlistcontainer_get_unseen_tracks() will return 0 until a new track is added to the \p playslist.
+        /// </summary>
+        /// <param name="pcPtr"></param>
+        /// <param name="playlistPtr"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern int sp_playlistcontainer_clear_unseen_tracks(IntPtr pcPtr, IntPtr playlistPtr);
     }
 }

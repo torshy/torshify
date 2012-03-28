@@ -76,7 +76,6 @@ namespace Torshify.Core.Native
         /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
         /// <param name="albumPtr">The track.</param>
         /// <remarks>The track must be loaded or this function will always return false.
-        /// <seealso cref="libspotify.sp_track_is_loaded"/>
         /// </remarks>
         /// <returns>True if track is autolinked, otherwise false.</returns>
         [DllImport("libspotify")]
@@ -89,7 +88,6 @@ namespace Torshify.Core.Native
         /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
         /// <param name="albumPtr">The track.</param>
         /// <remarks>The track must be loaded or this function will always return false.
-        /// <seealso cref="libspotify.sp_track_is_loaded"/>
         /// </remarks>
         /// <returns>True if track is a starred file, otherwise false.</returns>
         [DllImport("libspotify")]

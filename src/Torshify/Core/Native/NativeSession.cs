@@ -379,6 +379,9 @@ namespace Torshify.Core.Native
             int albumCount,
             int artistOffset,
             int artistCount,
+            int playlistOffset,
+            int playlistCount,
+            SearchType searchType,
             object userData = null)
         {
             AssertHandle();
@@ -392,6 +395,9 @@ namespace Torshify.Core.Native
                 albumCount,
                 artistOffset,
                 artistCount,
+                playlistOffset,
+                playlistCount,
+                searchType,
                 userData);
 
             search.Initialize();

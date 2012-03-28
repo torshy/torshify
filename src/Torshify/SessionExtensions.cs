@@ -13,6 +13,9 @@ namespace Torshify
             int albumCount,
             int artistOffset,
             int artistCount,
+            int playlistOffset,
+            int playlistCount,
+            SearchType searchType,
             object userData = null)
         {
             var tcs = new TaskCompletionSource<ISearch>(userData);
@@ -25,9 +28,12 @@ namespace Torshify
                 albumCount,
                 artistOffset,
                 artistCount,
+                playlistOffset,
+                playlistCount,
+                searchType,
                 userData);
 
-            if(search.IsComplete)
+            if (search.IsComplete)
             {
                 tcs.SetResult(search);
             }
@@ -37,15 +43,15 @@ namespace Torshify
         }
 
         public static Task<IArtistBrowse> BrowseAsync(
-            this ISession session, 
-            IArtist artist, 
+            this ISession session,
+            IArtist artist,
             ArtistBrowseType type,
             object userState = null)
         {
             var tcs = new TaskCompletionSource<IArtistBrowse>();
 
             var browse = session.Browse(artist, type, userState);
-            
+
             if (browse.IsComplete)
             {
                 tcs.SetResult(browse);
@@ -56,7 +62,7 @@ namespace Torshify
         }
 
         public static Task<IAlbumBrowse> BrowseAsync(
-            this ISession session, 
+            this ISession session,
             IAlbum album,
             object userState = null)
         {
@@ -92,9 +98,9 @@ namespace Torshify
         }
 
         public static Task<IToplistBrowse> BrowseAsync(
-            this ISession session, 
+            this ISession session,
             ToplistType type,
-            int encodedCountryCode, 
+            int encodedCountryCode,
             object userData = null)
         {
             var tcs = new TaskCompletionSource<IToplistBrowse>();
@@ -111,9 +117,9 @@ namespace Torshify
         }
 
         public static Task<IToplistBrowse> BrowseAsync(
-            this ISession session, 
-            ToplistType type, 
-            string userName, 
+            this ISession session,
+            ToplistType type,
+            string userName,
             object userData = null)
         {
             var tcs = new TaskCompletionSource<IToplistBrowse>();
@@ -130,8 +136,8 @@ namespace Torshify
         }
 
         public static Task<IToplistBrowse> BrowseCurrentUserAsync(
-            this ISession session, 
-            ToplistType type, 
+            this ISession session,
+            ToplistType type,
             object userData = null)
         {
             var tcs = new TaskCompletionSource<IToplistBrowse>();
@@ -152,7 +158,7 @@ namespace Torshify
             string id)
         {
             var tcs = new TaskCompletionSource<IImage>();
-            
+
             var image = session.GetImage(id);
             if (image.IsLoaded)
             {

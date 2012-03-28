@@ -16,9 +16,12 @@ namespace Torshify.Core.Native
         /// <param name="album_count">The number of albums to ask for.</param>
         /// <param name="artist_offset">The offset among the artists of the result.</param>
         /// <param name="artist_count">The number of artists to ask for.</param>
+        /// <param name="search_type">Type of search, can be used for suggest searches </param>
         /// <param name="callbackPtr">Callback that will be called once the search operation is complete.
         /// Pass null if you are not interested in this event.</param>
         /// <param name="userdataPtr">Opaque pointer passed to callback.</param>
+        /// <param name="playlist_offset">The offset among the playlists of the results </param>
+        /// <param name="playlist_count">The number of playlists to ask for </param>
         /// <returns>Pointer to a search object. To free the object, use <c>sp_search_release()</c></returns>
         [DllImport("libspotify")]
         internal static extern IntPtr sp_search_create(
@@ -30,6 +33,9 @@ namespace Torshify.Core.Native
             int album_count,
             int artist_offset,
             int artist_count,
+            int playlist_offset, 
+            int playlist_count, 
+            SearchType search_type,
             IntPtr callbackPtr, 
             IntPtr userdataPtr);
 
@@ -162,5 +168,40 @@ namespace Torshify.Core.Native
         /// <param name="searchPtr">A search object.</param>
         [DllImport("libspotify")]
         internal static extern void sp_search_release(IntPtr searchPtr);
+
+        /// <summary>
+        /// Get the number of playlists for the specified search
+        /// </summary>
+        /// <param name="searchPtr"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern int sp_search_num_playlists(IntPtr searchPtr);
+
+        /// <summary>
+        /// Return the playlist at the given index in the given search object
+        /// </summary>
+        /// <param name="searchPtr"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern string sp_search_playlist_name(IntPtr searchPtr, int index);
+
+        /// <summary>
+        /// Return the uri of a playlist at the given index in the given search object
+        /// </summary>
+        /// <param name="searchPtr"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern string sp_search_playlist_uri(IntPtr searchPtr, int index);
+
+        /// <summary>
+        /// Return the image_uri of a playlist at the given index in the given search object
+        /// </summary>
+        /// <param name="searchPtr"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern string sp_search_playlist_image_uri(IntPtr searchPtr, int index);
     }
 }

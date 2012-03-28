@@ -35,7 +35,7 @@ namespace Torshify.Core.Native
         internal static extern void sp_image_add_load_callback(IntPtr imagePtr, NativeImage.ImageLoadedCallback loadedCallback, IntPtr userdataPtr);
 
         /// <summary>
-        /// Remove an image load callback previously added with <see cref="libspotify.sp_image_add_load_callback"/>.
+        /// Remove an image load callback previously added with libspotify.sp_image_add_load_callback.
         /// </summary>
         /// <param name="imagePtr">The image.</param>
         /// <param name="callbackPtr">Callback that will not be called when image has been fetched.</param>

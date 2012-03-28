@@ -29,6 +29,8 @@
     <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <NoWarn>1591,1572,1571,1573,1587,1570</NoWarn>
+    <DocumentationFile>bin\Debug\Torshify.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\Release\</OutputPath>
@@ -45,6 +47,7 @@
     <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <DocumentationFile>bin\Release\Torshify.xml</DocumentationFile>
+    <NoWarn>1591,1572,1571,1573,1587,1570</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugVerbose|x86'">
     <OutputPath>bin\x86\DebugVerbose\</OutputPath>
@@ -89,6 +92,7 @@
     <Compile Include="Core\Native\ErroneousTrack.cs" />
     <Compile Include="Core\Native\NativeImageLink.cs" />
     <Compile Include="Core\Native\NativePlaylistList.cs" />
+    <Compile Include="Core\Native\NativePlaylistSearchResult.cs" />
     <Compile Include="Core\Native\NativePlaylistTrackList.cs" />
     <Compile Include="Core\Native\NativeSearchLink.cs" />
     <Compile Include="Core\Native\NativeUser.cs" />
@@ -174,6 +178,7 @@
     <Compile Include="IInbox.cs" />
     <Compile Include="ILink of T.cs" />
     <Compile Include="IPlaylistList.cs" />
+    <Compile Include="IPlaylistSearchResult.cs" />
     <Compile Include="IPlaylistTrackList.cs" />
     <Compile Include="IToplistBrowse.cs" />
     <Compile Include="IUser.cs" />

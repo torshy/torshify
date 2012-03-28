@@ -22,6 +22,11 @@ namespace Torshify
             get;
         }
 
+        IArray<IPlaylistSearchResult> Playlists
+        {
+            get;
+        }
+
         string DidYouMean
         {
             get;

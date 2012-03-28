@@ -337,7 +337,6 @@ namespace Torshify.Core.Native
             _session.Queue(new DelegateInvoker(() => _session.OnOfflineError(new SessionEventArgs(error))));
         }
 
-
         private void CredentialsBlobUpdatedCallback(IntPtr sessionPtr, string blob)
         {
             if (sessionPtr != _session.Handle)

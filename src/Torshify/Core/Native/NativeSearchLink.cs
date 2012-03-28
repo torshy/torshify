@@ -45,7 +45,7 @@ namespace Torshify.Core.Native
 
                                                 lock (Spotify.Mutex)
                                                 {
-                                                    return Session.Search(_searchLink, 0, 250, 0, 250, 0, 250);
+                                                    return Session.Search(_searchLink, 0, 250, 0, 250, 0, 250, 0, 250, SearchType.Standard);
                                                 }
                                             });
         }
