@@ -270,6 +270,8 @@ namespace Torshify.Core.Native
 
         public void UpdateSubscribers()
         {
+            AssertHandle();
+
             lock (Spotify.Mutex)
             {
                 Spotify.sp_playlist_update_subscribers(Session.GetHandle(), Handle);

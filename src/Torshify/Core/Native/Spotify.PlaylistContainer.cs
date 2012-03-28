@@ -174,7 +174,7 @@ namespace Torshify.Core.Native
         /// <param name="maxNumberOfTracks"></param>
         /// <returns></returns>
         [DllImport("libspotify")]
-        internal static extern int sp_playlistcontainer_get_unseen_tracks(IntPtr pcPtr, IntPtr playlistPtr, IntPtr[] tracks, int maxNumberOfTracks);
+        internal static extern int sp_playlistcontainer_get_unseen_tracks(IntPtr pcPtr, IntPtr playlistPtr, IntPtr tracks, int maxNumberOfTracks);
 
         /// <summary>
         /// Clears a playlist from unseen tracks, so that next call to sp_playlistcontainer_get_unseen_tracks() will return 0 until a new track is added to the \p playslist.

@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
+using Torshify.Core.Managers;
 
 namespace Torshify.Core.Native
 {
@@ -29,7 +32,10 @@ namespace Torshify.Core.Native
 
         public PlaylistType Type
         {
-            get { return _type; }
+            get
+            {
+                return _type;
+            }
         }
 
         public override string Name
@@ -62,6 +68,55 @@ namespace Torshify.Core.Native
         #endregion Properties
 
         #region Public Methods
+
+        public ITrack[] GetUnseenTracks(int maxTracks, out int totalUnseenTracks)
+        {
+            List<ITrack> tracks = new List<ITrack>();
+
+            AssertHandle();
+
+            int intPtrSize = Marshal.SizeOf(typeof(IntPtr));
+            IntPtr trackArrayPtr = Marshal.AllocHGlobal(intPtrSize * maxTracks);
+            IntPtr[] trackArray = new IntPtr[maxTracks];
+
+            lock (Spotify.Mutex)
+            {
+                totalUnseenTracks = Spotify.sp_playlistcontainer_get_unseen_tracks(_container.GetHandle(), Handle, trackArrayPtr, maxTracks);
+
+                try
+                {
+                    Marshal.Copy(trackArrayPtr, trackArray, 0, trackArray.Length);
+
+                    if (totalUnseenTracks > 0)
+                    {
+                        foreach (var trackPtr in trackArray)
+                        {
+                            if (trackPtr != IntPtr.Zero)
+                            {
+                                ITrack track = TrackManager.Get(Session, trackPtr);
+                                tracks.Add(track);
+                            }
+                        }
+                    }
+                }
+                finally
+                {
+                    Marshal.FreeHGlobal(trackArrayPtr);
+                }
+            }
+
+            return tracks.ToArray();
+        }
+
+        public bool TryClearUnseenTracks()
+        {
+            AssertHandle();
+
+            lock (Spotify.Mutex)
+            {
+                return Spotify.sp_playlistcontainer_clear_unseen_tracks(_container.GetHandle(), Handle) == 0;
+            }
+        }
 
         public override int GetHashCode()
         {
@@ -103,7 +158,7 @@ namespace Torshify.Core.Native
             {
                 Error error;
                 StringBuilder builder = new StringBuilder(bufferSize);
-                
+
                 lock (Spotify.Mutex)
                 {
                     error = Spotify.sp_playlistcontainer_playlist_folder_name(_container.GetHandle(), index, builder, bufferSize);
