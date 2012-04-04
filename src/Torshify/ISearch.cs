@@ -62,6 +62,11 @@ namespace Torshify
             get;
         }
 
+        int TotalPlaylists
+        {
+            get;
+        }
+
         IArray<ITrack> Tracks
         {
             get;

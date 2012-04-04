@@ -177,6 +177,17 @@ namespace Torshify.Core.Native
         [DllImport("libspotify")]
         internal static extern int sp_search_num_playlists(IntPtr searchPtr);
 
+
+        /// <summary>
+        /// Return the total number of playlists for the search query - regardless of the interval requested at creation.
+        /// If this value is larger than the interval specified at creation of the search object, more search results are available.
+        /// To fetch these, create a new search object with a new interval.
+        /// </summary>
+        /// <param name="searchPtr"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern int sp_search_total_playlists(IntPtr searchPtr);
+
         /// <summary>
         /// Return the playlist at the given index in the given search object
         /// </summary>

@@ -176,6 +176,19 @@ namespace Torshify.Core.Native
             }
         }
 
+        public int TotalPlaylists
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return Spotify.sp_search_total_playlists(Handle);
+                }
+            }
+        }
+
         public bool IsComplete
         {
             get;
