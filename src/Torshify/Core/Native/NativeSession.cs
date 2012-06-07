@@ -76,6 +76,12 @@ namespace Torshify.Core.Native
 
         public event EventHandler<CredentialsBlobEventArgs> CredentialsBlobUpdated;
 
+        public event EventHandler<SessionEventArgs> ConnectionStateUpdated;
+
+        public event EventHandler<SessionEventArgs> ScrobbleError;
+
+        public event EventHandler<PrivateSessionModeChangedEventArgs> PrivateSessionModeChanged;
+
         #endregion Events
 
         #region Properties
@@ -803,6 +809,21 @@ namespace Torshify.Core.Native
             CredentialsBlobUpdated.RaiseEvent(this, e);
         }
 
+        internal void OnConnectionStateUpdated(SessionEventArgs e)
+        {
+            ConnectionStateUpdated.RaiseEvent(this, e);
+        }
+
+        internal void OnScrobbleError(SessionEventArgs e)
+        {
+            ScrobbleError.RaiseEvent(this, e);
+        }
+
+        internal void OnPrivateSessionModeChanged(PrivateSessionModeChangedEventArgs e)
+        {
+            PrivateSessionModeChanged.RaiseEvent(this, e);
+        }
+
         #endregion Internal Methods
 
         #region Protected Methods
@@ -954,5 +975,7 @@ namespace Torshify.Core.Native
         }
 
         #endregion Private Methods
+
+
     }
 }

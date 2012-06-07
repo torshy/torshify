@@ -41,6 +41,12 @@ namespace Torshify
 
         event EventHandler<CredentialsBlobEventArgs> CredentialsBlobUpdated;
 
+        event EventHandler<SessionEventArgs> ConnectionStateUpdated;
+
+        event EventHandler<SessionEventArgs> ScrobbleError;
+
+        event EventHandler<PrivateSessionModeChangedEventArgs> PrivateSessionModeChanged;
+
         #endregion Events
 
         #region Properties

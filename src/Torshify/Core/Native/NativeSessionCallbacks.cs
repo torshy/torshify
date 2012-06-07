@@ -29,6 +29,10 @@ namespace Torshify.Core.Native
         private readonly OfflineStatusUpdated _offlineStatusUpdated;
         private readonly OfflineError _offlineError;
         private readonly CredentialsBlobUpdated _credentialsBlobUpdated;
+        private readonly ConnectionStateUpdatedDelegate _connectionStateUpdated;
+        private readonly ScrobbleErrorDelegate _scrobbleError;
+        private readonly PrivateSessionModeChangedDelegate _privateSessionModeChanged;
+
 
         private IntPtr _callbacksHandle;
 
@@ -58,6 +62,9 @@ namespace Torshify.Core.Native
             _offlineStatusUpdated = OfflineStatusUpdatedCallback;
             _offlineError = OfflineErrorCallback;
             _credentialsBlobUpdated = CredentialsBlobUpdatedCallback;
+            _connectionStateUpdated = ConnectionStateUpdatedCallback;
+            _scrobbleError = ScrobbleErrorCallback;
+            _privateSessionModeChanged = PrivateSessionModeChangedCallback;
             
             _callbacks = new Spotify.SpotifySessionCallbacks();
             _callbacks.LoggedIn = Marshal.GetFunctionPointerForDelegate(_loggedIn);
@@ -78,6 +85,9 @@ namespace Torshify.Core.Native
             _callbacks.OfflineStatusUpdated = Marshal.GetFunctionPointerForDelegate(_offlineStatusUpdated);
             _callbacks.OfflineError = Marshal.GetFunctionPointerForDelegate(_offlineError);
             _callbacks.CredentialsBlobUpdated = Marshal.GetFunctionPointerForDelegate(_credentialsBlobUpdated);
+            _callbacks.ConnectionStateUpdated = Marshal.GetFunctionPointerForDelegate(_connectionStateUpdated);
+            _callbacks.ScrobbleError = Marshal.GetFunctionPointerForDelegate(_scrobbleError);
+            _callbacks.PrivateSessionModeChanged = Marshal.GetFunctionPointerForDelegate(_privateSessionModeChanged);
 
             _callbacksHandle = Marshal.AllocHGlobal(CallbacksSize);
             Marshal.StructureToPtr(_callbacks, _callbacksHandle, true);
@@ -122,6 +132,12 @@ namespace Torshify.Core.Native
         private delegate void OfflineError(IntPtr sessionPtr, Error error);
 
         private delegate void CredentialsBlobUpdated(IntPtr sessionPtr, string blob);
+
+        private delegate void ConnectionStateUpdatedDelegate(IntPtr sessionPtr);
+
+        private delegate void ScrobbleErrorDelegate(IntPtr sessionPtr, Error error);
+
+        private delegate void PrivateSessionModeChangedDelegate(IntPtr sessionPtr, bool isPrivate);
 
         #endregion Delegates
 
@@ -347,6 +363,37 @@ namespace Torshify.Core.Native
             _session.Queue(new DelegateInvoker(() => _session.OnCredentialsBlobUpdated(new CredentialsBlobEventArgs(blob))));
         }
 
+        private void ConnectionStateUpdatedCallback(IntPtr sessionPtr)
+        {
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
+
+            _session.Queue(new DelegateInvoker(() => _session.OnConnectionStateUpdated(new SessionEventArgs(Error.OK))));
+        }
+
+        private void ScrobbleErrorCallback(IntPtr sessionPtr, Error error)
+        {
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
+
+            _session.Queue(new DelegateInvoker(() => _session.OnScrobbleError(new SessionEventArgs(error))));
+        }
+
+        private void PrivateSessionModeChangedCallback(IntPtr sessionPtr, bool isPrivate)
+        {
+            if (sessionPtr != _session.Handle)
+            {
+                return;
+            }
+
+            _session.Queue(new DelegateInvoker(() => _session.OnPrivateSessionModeChanged(new PrivateSessionModeChangedEventArgs(isPrivate))));
+        }
+
         #endregion Private Methods
     }
+
 }

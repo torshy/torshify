@@ -36,7 +36,10 @@ namespace Torshify
         OfflineExpired = 33,
         OfflineNotAllowed = 34,
         OfflineLicenseLost = 35,
-        OfflineLicenseError = 36
+        OfflineLicenseError = 36,
+        LastFmAuthError = 39,
+        InvalidArgument = 40,
+        SystemFailure = 41
     }
 
     public static class ErrorExtensions
