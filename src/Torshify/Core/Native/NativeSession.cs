@@ -656,7 +656,10 @@ namespace Torshify.Core.Native
                 ApplicationKeySize = _applicationKey.Length,
                 Callbacks = _callbacks.CallbackHandle,
                 DeviceID = _options.DeviceID,
-                TraceFile = _options.TraceFileLocation
+                TraceFile = _options.TraceFileLocation,
+                Proxy = _options.Proxy,
+                ProxyUsername = _options.ProxyUsername,
+                ProxyPassword = _options.ProxyPassword
             };
 
             try

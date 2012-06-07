@@ -349,6 +349,9 @@ namespace Torshify.Core.Native
             internal bool InitiallyUnloadPlaylists;
             internal string DeviceID;
             internal string TraceFile;
+            internal string Proxy;
+            internal string ProxyUsername;
+            internal string ProxyPassword;
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]

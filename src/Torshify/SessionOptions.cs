@@ -79,6 +79,34 @@ namespace Torshify
             set;
         }
 
+        /// <summary>
+        /// Url to the proxy server that should be used.
+        /// The format is protocol://<host>:port (where protocal is http/https/socks4/socks5)
+        /// </summary>
+        public string Proxy
+        {
+            get; 
+            set;
+        }
+
+        /// <summary>
+        /// Username to authenticate with proxy server
+        /// </summary>
+        public string ProxyUsername
+        {
+            get; 
+            set;
+        }
+
+        /// <summary>
+        /// Password to authenticate with proxy server
+        /// </summary>
+        public string ProxyPassword
+        {
+            get; 
+            set;
+        }
+
         #endregion Properties
     }
 }
