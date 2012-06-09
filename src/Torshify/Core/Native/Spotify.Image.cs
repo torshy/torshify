@@ -32,7 +32,7 @@ namespace Torshify.Core.Native
         /// <param name="callbackPtr">Callback that will be called when image has been fetched.</param>
         /// <param name="userdataPtr">Opaque pointer passed to <c>callback</c>.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_image_add_load_callback(IntPtr imagePtr, NativeImage.ImageLoadedCallback loadedCallback, IntPtr userdataPtr);
+        internal static extern Error sp_image_add_load_callback(IntPtr imagePtr, NativeImage.ImageLoadedCallback loadedCallback, IntPtr userdataPtr);
 
         /// <summary>
         /// Remove an image load callback previously added with libspotify.sp_image_add_load_callback.
@@ -41,7 +41,7 @@ namespace Torshify.Core.Native
         /// <param name="callbackPtr">Callback that will not be called when image has been fetched.</param>
         /// <param name="userdataPtr">Opaque pointer passed to <c>callback</c></param>
         [DllImport("libspotify")]
-        internal static extern void sp_image_remove_load_callback(IntPtr imagePtr, NativeImage.ImageLoadedCallback loadedCallback, IntPtr userdataPtr);
+        internal static extern Error sp_image_remove_load_callback(IntPtr imagePtr, NativeImage.ImageLoadedCallback loadedCallback, IntPtr userdataPtr);
 
         /// <summary>
         /// Check if an image is loaded. Before the image is loaded,
@@ -91,13 +91,13 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="imagePtr">The image.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_image_add_ref(IntPtr imagePtr);
+        internal static extern Error sp_image_add_ref(IntPtr imagePtr);
 
         /// <summary>
         /// Decrease the reference count of an image.
         /// </summary>
         /// <param name="imagePtr">The image.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_image_release(IntPtr imagePtr);
+        internal static extern Error sp_image_release(IntPtr imagePtr);
     }
 }

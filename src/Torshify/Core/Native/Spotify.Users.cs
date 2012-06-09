@@ -6,22 +6,6 @@ namespace Torshify.Core.Native
     internal partial class Spotify
     {
         /// <summary>
-        /// Fetches the currently logged in user.
-        /// </summary>
-        /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
-        /// <returns>The logged in user (or null if not logged in).</returns>
-        [DllImport("libspotify")]
-        internal static extern IntPtr sp_session_user(IntPtr sessionPtr);
-
-        /// <summary>
-        /// The userdata associated with the session.
-        /// </summary>
-        /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
-        /// <returns>The userdata that was passed in on session creation.</returns>
-        [DllImport("libspotify")]
-        internal static extern IntPtr sp_session_user_data(IntPtr sessionPtr);
-
-        /// <summary>
         /// Get a pointer to a string representing the user's canonical username.
         /// </summary>
         /// <param name="user">The Spotify user whose canonical username you would like a string representation of</param>
@@ -58,13 +42,13 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="user">The user object</param>
         [DllImport("libspotify")]
-        internal static extern void sp_user_add_ref(IntPtr user);
+        internal static extern Error sp_user_add_ref(IntPtr user);
 
         /// <summary>
         /// Decrease the reference count of an user
         /// </summary>
         /// <param name="user">The user object</param>
         [DllImport("libspotify")]
-        internal static extern void sp_user_release(IntPtr user);
+        internal static extern Error sp_user_release(IntPtr user);
     }
 }

@@ -75,7 +75,7 @@ namespace Torshify.Core.Native
         /// <param name="albumPtr">An album object</param>
         /// <returns>A link representing the album cover. Type is set to SP_LINKTYPE_IMAGE</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_link_create_from_album_cover(IntPtr albumPtr);
+        internal static extern IntPtr sp_link_create_from_album_cover(IntPtr albumPtr, ImageSize imageSize);
 
         /// <summary>
         /// Creates a link object from an artist portrait
@@ -96,7 +96,7 @@ namespace Torshify.Core.Native
         /// <param name="artistPtr">Artist browse object</param>
         /// <returns>A link object representing an image</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_link_create_from_artist_portrait(IntPtr artistPtr);
+        internal static extern IntPtr sp_link_create_from_artist_portrait(IntPtr artistPtr, ImageSize imageSize);
 
         /// <summary>
         /// Create a link object representing the given image
@@ -187,13 +187,13 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="linkPtr">The link.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_link_add_ref(IntPtr linkPtr);
+        internal static extern Error sp_link_add_ref(IntPtr linkPtr);
 
         /// <summary>
         /// Releases the specified link.
         /// </summary>
         /// <param name="linkPtr">The link.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_link_release(IntPtr linkPtr);
+        internal static extern Error sp_link_release(IntPtr linkPtr);
     }
 }

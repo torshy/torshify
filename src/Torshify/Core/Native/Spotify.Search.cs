@@ -160,14 +160,14 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="searchPtr">A serach object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_search_add_ref(IntPtr searchPtr);
+        internal static extern Error sp_search_add_ref(IntPtr searchPtr);
 
         /// <summary>
         /// Decrease the reference count of a search result.
         /// </summary>
         /// <param name="searchPtr">A search object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_search_release(IntPtr searchPtr);
+        internal static extern Error sp_search_release(IntPtr searchPtr);
 
         /// <summary>
         /// Get the number of playlists for the specified search

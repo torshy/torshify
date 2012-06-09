@@ -12,14 +12,14 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="browsePtr"> toplist browse object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_toplistbrowse_add_ref(IntPtr browsePtr);
+        internal static extern Error sp_toplistbrowse_add_ref(IntPtr browsePtr);
 
         /// <summary>
         /// Decrease the reference count of an toplist browse result
         /// </summary>
         /// <param name="browsePtr"> toplist browse object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_toplistbrowse_release(IntPtr browsePtr);
+        internal static extern Error sp_toplistbrowse_release(IntPtr browsePtr);
 
         /// <summary>
         /// Initiate a request for browsing an toplist

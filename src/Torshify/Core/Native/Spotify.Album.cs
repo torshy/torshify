@@ -43,7 +43,7 @@ namespace Torshify.Core.Native
         /// <returns>ID byte sequence that can be passed to <c>sp_image_create()</c>.
         /// If the album has no image or the metadata for the album is not loaded yet, this function returns null.</returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_album_cover(IntPtr albumPtr);
+        internal static extern IntPtr sp_album_cover(IntPtr albumPtr, ImageSize imageSize);
 
         /// <summary>
         /// Return name of album.
@@ -76,14 +76,14 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="albumPtr">The album.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_album_add_ref(IntPtr albumPtr);
+        internal static extern Error sp_album_add_ref(IntPtr albumPtr);
 
         /// <summary>
         /// Decrease the reference count of an album.
         /// </summary>
         /// <param name="albumPtr">The album.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_album_release(IntPtr albumPtr);
+        internal static extern Error sp_album_release(IntPtr albumPtr);
 
         /// <summary>
         /// Initiate a request for browsing an album
@@ -175,14 +175,14 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="browsePtr"> Album browse object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_albumbrowse_add_ref(IntPtr browsePtr);
+        internal static extern Error sp_albumbrowse_add_ref(IntPtr browsePtr);
 
         /// <summary>
         /// Decrease the reference count of an album browse result
         /// </summary>
         /// <param name="browsePtr"> Album browse object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_albumbrowse_release(IntPtr browsePtr);
+        internal static extern Error sp_albumbrowse_release(IntPtr browsePtr);
 
         /// <summary>
         /// Return the time (in ms) that was spent waiting for the Spotify backend to serve the request

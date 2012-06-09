@@ -31,14 +31,14 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="artistPtr">The artist.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_artist_add_ref(IntPtr artistPtr);
+        internal static extern Error sp_artist_add_ref(IntPtr artistPtr);
 
         /// <summary>
         /// Decrease the reference count of an artist.
         /// </summary>
         /// <param name="artistPtr">The artist.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_artist_release(IntPtr artistPtr);
+        internal static extern Error sp_artist_release(IntPtr artistPtr);
 
         /// <summary>
         /// Return portrait for artist
@@ -49,7 +49,7 @@ namespace Torshify.Core.Native
         /// loaded yet, this function returns NULL.
         /// </returns>
         [DllImport("libspotify")]
-        internal static extern IntPtr sp_artist_portrait(IntPtr artistPtr);
+        internal static extern IntPtr sp_artist_portrait(IntPtr artistPtr, ImageSize imageSize);
 
         /// <summary>
         /// Initiate a request for browsing an artist
@@ -175,14 +175,14 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="browsePtr"> Album artist object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_artistbrowse_add_ref(IntPtr browsePtr);
+        internal static extern Error sp_artistbrowse_add_ref(IntPtr browsePtr);
 
         /// <summary>
         /// Decrease the reference count of an artist browse result
         /// </summary>
         /// <param name="browsePtr"> artist browse object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_artistbrowse_release(IntPtr browsePtr);
+        internal static extern Error sp_artistbrowse_release(IntPtr browsePtr);
 
         /// <summary>
         /// Return the time (in ms) that was spent waiting for the Spotify backend to serve the request

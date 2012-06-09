@@ -38,7 +38,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.ImageIdToString(Spotify.sp_artist_portrait(Handle));
+                    return Spotify.ImageIdToString(Spotify.sp_artist_portrait(Handle, ImageSize.Normal));
                 }
             }
         }

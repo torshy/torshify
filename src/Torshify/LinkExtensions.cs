@@ -51,7 +51,7 @@ namespace Torshify
             return CreateLink(album, Spotify.sp_link_create_from_album);
         }
 
-        public static ILink<IImage> AlbumCoverToLink(this IAlbum album)
+        public static ILink<IImage> AlbumCoverToLink(this IAlbum album, ImageSize imageSize = ImageSize.Normal)
         {
             return CreateLink<IImage>(
                 () =>
@@ -60,7 +60,7 @@ namespace Torshify
                     return wrapper == null ? IntPtr.Zero : wrapper.Handle;
                 },
                 album.Session,
-                Spotify.sp_link_create_from_album_cover);
+                handle => Spotify.sp_link_create_from_album_cover(handle, imageSize));
         }
 
         public static ILink<IImage> ArtistPortraitToLink(this IArtistBrowse artistBrowse, int artistIndex)
@@ -134,8 +134,8 @@ namespace Torshify
         }
 
         private static ILink<T> CreateLink<T>(
-            Func<IntPtr> getInstanceHandle, 
-            ISession session, 
+            Func<IntPtr> getInstanceHandle,
+            ISession session,
             Func<IntPtr, IntPtr> create,
             TimeSpan? trackLinkOffset = null)
         {

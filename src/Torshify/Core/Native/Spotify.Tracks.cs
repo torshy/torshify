@@ -102,7 +102,7 @@ namespace Torshify.Core.Native
         /// <param name="num_tracks">Count of <c>trackArray</c>.</param>
         /// <param name="star">Starred status of the track.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_track_set_starred(IntPtr sessionPtr, IntPtr trackArrayPtr, int num_tracks, bool star);
+        internal static extern Error sp_track_set_starred(IntPtr sessionPtr, IntPtr trackArrayPtr, int num_tracks, bool star);
 
         /// <summary>
         /// The number of artists performing on the specified track.
@@ -192,14 +192,14 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="albumPtr">The track object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_track_add_ref(IntPtr trackPtr);
+        internal static extern Error sp_track_add_ref(IntPtr trackPtr);
 
         /// <summary>
         /// Decrease the reference count of a track.
         /// </summary>
         /// <param name="albumPtr">The track object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_track_release(IntPtr trackPtr);
+        internal static extern Error sp_track_release(IntPtr trackPtr);
 
         /// <summary>
         /// Return the actual track that will be played if the given track is played

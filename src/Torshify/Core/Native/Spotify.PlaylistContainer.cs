@@ -12,14 +12,14 @@ namespace Torshify.Core.Native
         /// <param name="pcPtr">Playlist container.</param>
         /// <returns></returns>
         [DllImport("libspotify")]
-        internal static extern void sp_playlistcontainer_add_ref(IntPtr pcPtr);
+        internal static extern Error sp_playlistcontainer_add_ref(IntPtr pcPtr);
 
         /// <summary>
         /// Release reference count on playlistconatiner object
         /// </summary>
         /// <param name="pcPtr">Playlist container.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_playlistcontainer_release(IntPtr pcPtr);
+        internal static extern Error sp_playlistcontainer_release(IntPtr pcPtr);
 
         /// <summary>
         /// Return true if the playlistcontainer is fully loaded
@@ -39,7 +39,7 @@ namespace Torshify.Core.Native
         /// <param name="callbacksPtr">Callbacks, see sp_playlistcontainer_callbacks.</param>
         /// <param name="userdataPtr">Opaque value passed to callbacks.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_playlistcontainer_add_callbacks(IntPtr pcPtr, ref NativePlaylistContainerCallbacks.PlaylistContainerCallbacks callbacksPtr, IntPtr userdataPtr);
+        internal static extern Error sp_playlistcontainer_add_callbacks(IntPtr pcPtr, ref NativePlaylistContainerCallbacks.PlaylistContainerCallbacks callbacksPtr, IntPtr userdataPtr);
 
         /// <summary>
         /// Unregister interest in changes to a playlist container.
@@ -48,7 +48,7 @@ namespace Torshify.Core.Native
         /// <param name="callbacksPtr">Callbacks, see sp_playlistcontainer_callbacks</param>
         /// <param name="userdataPtr">Opaque value passed to callbacks.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_playlistcontainer_remove_callbacks(IntPtr pcPtr, ref NativePlaylistContainerCallbacks.PlaylistContainerCallbacks callbacksPtr, IntPtr userdataPtr);
+        internal static extern Error sp_playlistcontainer_remove_callbacks(IntPtr pcPtr, ref NativePlaylistContainerCallbacks.PlaylistContainerCallbacks callbacksPtr, IntPtr userdataPtr);
 
         /// <summary>
         /// Return the number of playlists in the given playlist container.

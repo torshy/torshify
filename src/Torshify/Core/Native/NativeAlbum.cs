@@ -48,7 +48,7 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    return Spotify.ImageIdToString(Spotify.sp_album_cover(Handle));
+                    return Spotify.ImageIdToString(Spotify.sp_album_cover(Handle, ImageSize.Normal));
                 }
             }
         }

@@ -152,7 +152,7 @@ namespace Torshify.Core.Native
         /// <param name="playlistPtr">Playlist object.</param>
         /// <param name="collaborative">Wheater or not the playlist should be collaborative.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_playlist_set_collaborative(IntPtr playlistPtr, bool collaborative);
+        internal static extern Error sp_playlist_set_collaborative(IntPtr playlistPtr, bool collaborative);
 
         /// <summary>
         /// Set autolinking state for a playlist.
@@ -161,7 +161,7 @@ namespace Torshify.Core.Native
         /// <param name="playlistPtr">Playlist object.</param>
         /// <param name="link">The new value.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_playlist_set_autolink_tracks(IntPtr playlistPtr, bool link);
+        internal static extern Error sp_playlist_set_autolink_tracks(IntPtr playlistPtr, bool link);
 
         /// <summary>
         /// Get description for a playlist.
@@ -248,7 +248,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="subscribersPtr">The Subscribers object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_playlist_subscribers_free(IntPtr subscribersPtr);
+        internal static extern Error sp_playlist_subscribers_free(IntPtr subscribersPtr);
 
         /// <summary>
         /// Ask library to update the subscription count for a playlist
@@ -263,7 +263,7 @@ namespace Torshify.Core.Native
         /// <param name="sessionPtr">The session object</param>
         /// <param name="playlistPtr">Playlist object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_playlist_update_subscribers(IntPtr sessionPtr, IntPtr playlistPtr);
+        internal static extern Error sp_playlist_update_subscribers(IntPtr sessionPtr, IntPtr playlistPtr);
 
         /// <summary>
         /// Load an already existing playlist without adding it to a playlistcontainer.
@@ -279,14 +279,14 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="playlistPtr">Playlist object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_playlist_add_ref(IntPtr playlistPtr);
+        internal static extern Error sp_playlist_add_ref(IntPtr playlistPtr);
 
         /// <summary>
         /// Decrease the reference count of a playlist.
         /// </summary>
         /// <param name="playlistPtr">The playlist object.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_playlist_release(IntPtr playlistPtr);
+        internal static extern Error sp_playlist_release(IntPtr playlistPtr);
 
         /// <summary>
         /// Mark a playlist to be synchronized for offline playback
@@ -295,7 +295,7 @@ namespace Torshify.Core.Native
         /// <param name="playlistPtr">Playlist object</param>
         /// <param name="offline">True if playlist should be offline, false otherwise</param>
         [DllImport("libspotify")]
-        internal static extern void sp_playlist_set_offline_mode(IntPtr sessionPtr, IntPtr playlistPtr, bool offline);
+        internal static extern Error sp_playlist_set_offline_mode(IntPtr sessionPtr, IntPtr playlistPtr, bool offline);
 
         /// <summary>
         /// Get offline status for a playlist
@@ -335,7 +335,7 @@ namespace Torshify.Core.Native
         ///<param name="inRam"> </param>
         [DllImport("libspotify")]
         [return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool sp_playlist_set_in_ram(IntPtr sessionPtr, IntPtr playlistPtr, bool inRam);
+        internal static extern Error sp_playlist_set_in_ram(IntPtr sessionPtr, IntPtr playlistPtr, bool inRam);
 
         #endregion Internal Static Methods
 

@@ -28,7 +28,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_session_release(IntPtr sessionPtr);
+        internal static extern Error sp_session_release(IntPtr sessionPtr);
 
         /// <summary>
         /// Logs in the specified username/password combo. This initiates the download in the background. A callback is called when login is complete.
@@ -39,7 +39,7 @@ namespace Torshify.Core.Native
         /// <param name="rememberMe">If set, the username / password will be remembered by libspotify</param>
         /// <returns>Error code.</returns>
         [DllImport("libspotify")]
-        internal static extern void sp_session_login(IntPtr sessionPtr, string username, string password, [MarshalAs(UnmanagedType.I1)]bool rememberMe, string blob);
+        internal static extern Error sp_session_login(IntPtr sessionPtr, string username, string password, [MarshalAs(UnmanagedType.I1)]bool rememberMe, string blob);
 
         /// <summary>
         /// Log in the remembered user if last user that logged in logged in with remember_me set.
@@ -96,15 +96,15 @@ namespace Torshify.Core.Native
         /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
         /// <param name="size">Maximum cache size in megabytes. Setting it to 0 (the default) will let libspotify automatically resize the cache (10% of disk free space).</param>
         [DllImport("libspotify")]
-        internal static extern void sp_session_set_cache_size(IntPtr sessionPtr, uint size);
+        internal static extern Error sp_session_set_cache_size(IntPtr sessionPtr, uint size);
 
         /// <summary>
         /// Make the specified session process any pending events.
         /// </summary>
         /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
-        /// <param name="next_timeout">Stores the time (in milliseconds) until you should call this function again.</param>
+        /// <param name="nextTimeout">Stores the time (in milliseconds) until you should call this function again.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_session_process_events(IntPtr sessionPtr, out int next_timeout);
+        internal static extern Error sp_session_process_events(IntPtr sessionPtr, out int nextTimeout);
 
         /// <summary>
         /// Loads the specified track.
@@ -125,7 +125,7 @@ namespace Torshify.Core.Native
         /// <param name="offset">Track position, in milliseconds.</param>
         /// <returns>Error code.</returns>
         [DllImport("libspotify")]
-        internal static extern void sp_session_player_seek(IntPtr sessionPtr, int offset);
+        internal static extern Error sp_session_player_seek(IntPtr sessionPtr, int offset);
 
         /// <summary>
         /// PlayerPlay or pause the currently loaded track.
@@ -134,7 +134,7 @@ namespace Torshify.Core.Native
         /// <param name="play">If set to true, playback will occur. If set to false, the playback will be paused.</param>
         /// <returns>Error code.</returns>
         [DllImport("libspotify")]
-        internal static extern void sp_session_player_play(IntPtr sessionPtr, bool play);
+        internal static extern Error sp_session_player_play(IntPtr sessionPtr, bool play);
 
         /// <summary>
         /// Stops the currently playing track.
@@ -207,7 +207,7 @@ namespace Torshify.Core.Native
         /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
         /// <param name="bitrate">Preferred bitrate.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_session_preferred_bitrate(IntPtr sessionPtr, Bitrate bitrate);
+        internal static extern Error sp_session_preferred_bitrate(IntPtr sessionPtr, Bitrate bitrate);
 
         /// <summary>
         /// Set preferred bitrate for offline sync
@@ -216,7 +216,7 @@ namespace Torshify.Core.Native
         /// <param name="bitrate">Preferred bitrate, see ::sp_bitrate for possible values.</param>
         /// <param name="allowResync">Set to true if libspotify should resynchronize already synchronized tracks. Usually you should set this to false.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_session_preferred_offline_bitrate(IntPtr sessionPtr, Bitrate bitrate, bool allowResync);
+        internal static extern Error sp_session_preferred_offline_bitrate(IntPtr sessionPtr, Bitrate bitrate, bool allowResync);
 
         /// <summary>
         /// Set to true if the connection is currently routed over a roamed connectivity
@@ -227,7 +227,7 @@ namespace Torshify.Core.Native
         /// <param name="sessionPtr">Session object</param>
         /// <param name="connectionType">Connection type</param>
         [DllImport("libspotify")]
-        internal static extern void sp_session_set_connection_type(IntPtr sessionPtr, ConnectionType connectionType);
+        internal static extern Error sp_session_set_connection_type(IntPtr sessionPtr, ConnectionType connectionType);
 
         /// <summary>
         /// Set rules for how libspotify connects to Spotify servers and synchronizes offline content.
@@ -238,7 +238,7 @@ namespace Torshify.Core.Native
         /// <param name="sessionPtr"></param>
         /// <param name="connectionRule"></param>
         [DllImport("libspotify")]
-        internal static extern void sp_session_set_connection_rules(IntPtr sessionPtr, ConnectionRule connectionRule);
+        internal static extern Error sp_session_set_connection_rules(IntPtr sessionPtr, ConnectionRule connectionRule);
 
         /// <summary>
         /// Get total number of tracks that needs download before everything
@@ -279,6 +279,31 @@ namespace Torshify.Core.Native
         internal static extern int sp_offline_time_left(IntPtr sessionPtr);
 
         /// <summary>
+        /// Fetches the currently logged in user.
+        /// </summary>
+        /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
+        /// <returns>The logged in user (or null if not logged in).</returns>
+        [DllImport("libspotify")]
+        internal static extern IntPtr sp_session_user(IntPtr sessionPtr);
+
+        /// <summary>
+        /// The userdata associated with the session.
+        /// </summary>
+        /// <param name="sessionPtr">Session object returned from <c>sp_session_create</c>.</param>
+        /// <returns>The userdata that was passed in on session creation.</returns>
+        [DllImport("libspotify")]
+        internal static extern IntPtr sp_session_user_data(IntPtr sessionPtr);
+
+        /// <summary>
+        /// Get a string representing the user's login username
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
+        internal static extern string sp_session_user_name(IntPtr user);
+
+        /// <summary>
         /// Get currently logged in users country
         /// updated the offline_status_updated() callback will be invoked.
         /// </summary>
@@ -312,6 +337,73 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <param name="sessionPtr"></param>
         [DllImport("libspotify")]
-        internal static extern void sp_session_flush_caches(IntPtr sessionPtr);
+        internal static extern Error sp_session_flush_caches(IntPtr sessionPtr);
+
+        /// <summary>
+        /// Set if private session is enabled. This disables sharing what the user is listening to
+        /// to services such as Spotify Social, Facebook and LastFM. The private session will
+        /// last for a time, and then libspotify will revert to the normal state. The private
+        /// session is prolonged by user activity.
+        /// </summary>
+        /// <param name="sessionPtr"></param>
+        /// <param name="enabled"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern Error sp_session_set_private_session(IntPtr sessionPtr,  bool enabled);
+
+        /// <summary>
+        /// Return True if private session is enabled
+        /// </summary>
+        /// <param name="sessionPtr"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern bool sp_session_is_private_session(IntPtr sessionPtr);
+
+        /// <summary>
+        /// Set if scrobbling is enabled. This api allows setting local overrides of the global scrobbling settings.
+        /// Changing the global settings are currently not supported.
+        /// </summary>
+        /// <param name="sessionPtr"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern Error sp_session_set_scrobbling(IntPtr sessionPtr, SocialProvider socialProvider, ScrobblingState scrobblingState);
+
+        /// <summary>
+        /// Return the scrobbling state. This makes it possible to find out if scrobbling is locally overrided or
+        /// if the global setting is used
+        /// </summary>
+        /// <param name="sessionPtr"></param>
+        /// <param name="socialProvider"></param>
+        /// <param name="scrobblingState"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern bool sp_session_is_scrobbling(IntPtr sessionPtr, SocialProvider socialProvider, ScrobblingState scrobblingState);
+
+        /// <summary>
+        /// Return True if scrobbling settings should be shown to the user. Currently this setting is relevant
+        /// only to the facebook provider.
+        /// The returned value may be false if the user is not connected to facebook,
+        /// or if the user has opted out from facebook social graph.
+        /// </summary>
+        /// <param name="sessionPtr"></param>
+        /// <param name="socialProvider"></param>
+        /// <param name="isPossible"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern Error sp_session_is_scrobbling_possible(IntPtr sessionPtr, SocialProvider socialProvider, out bool isPossible);
+
+        /// <summary>
+        /// Set the user's credentials with a social provider.
+        /// Currently this is only relevant for LastFm
+        /// Call sp_session_set_scrobbling to force an authentication attempt
+        /// with the LastFm server. If authentication fails a scrobble_error callback will be sent.
+        /// </summary>
+        /// <param name="sessionPtr"></param>
+        /// <param name="socialProvider"></param>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        [DllImport("libspotify")]
+        internal static extern Error sp_session_set_social_credentials(IntPtr sessionPtr, SocialProvider socialProvider, string userName, string password);
     }
 }
