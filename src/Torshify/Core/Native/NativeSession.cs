@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Security.Authentication;
 using System.Text;
 using System.Threading;
 
@@ -198,6 +197,33 @@ namespace Torshify.Core.Native
                 lock (Spotify.Mutex)
                 {
                     Error error = Spotify.sp_session_set_volume_normalization(Handle, value);
+
+                    if (error != Error.OK)
+                    {
+                        throw new TorshifyException(error.GetMessage(), error);
+                    }
+                }
+            }
+        }
+
+        public bool IsPrivateSessionEnabled
+        {
+            get
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    return Spotify.sp_session_is_private_session(Handle);
+                }
+            }
+            set
+            {
+                AssertHandle();
+
+                lock (Spotify.Mutex)
+                {
+                    Error error = Spotify.sp_session_set_private_session(Handle, value);
 
                     if (error != Error.OK)
                     {

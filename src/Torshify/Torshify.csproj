@@ -188,6 +188,7 @@
     <Compile Include="SearchType.cs" />
     <Compile Include="SessionOptions.cs" />
     <Compile Include="SocialProvider.cs" />
+    <Compile Include="TorshifyException.cs" />
     <Compile Include="WaitExtensions.cs" />
     <Compile Include="OfflineSyncStatus.cs" />
     <Compile Include="PlaylistOfflineStatus.cs" />

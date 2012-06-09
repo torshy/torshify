@@ -91,6 +91,18 @@ namespace Torshify
             set;
         }
 
+        /// <summary>
+        /// Get/set if private session is enabled. This disables sharing what the user is listening to
+        /// to services such as Spotify Social, Facebook and LastFM. The private session will
+        /// last for a time, and then libspotify will revert to the normal state. The private
+        /// session is prolonged by user activity.
+        /// </summary>
+        bool IsPrivateSessionEnabled
+        {
+            get; 
+            set;
+        }
+
         #endregion Properties
 
         #region Methods
