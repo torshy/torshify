@@ -978,7 +978,5 @@ namespace Torshify.Core.Native
         }
 
         #endregion Private Methods
-
-
     }
 }

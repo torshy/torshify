@@ -23,8 +23,7 @@ namespace Torshify.Core.Native
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("torshify uses SPOTIFY(R) CORE");
             Console.ForegroundColor = ConsoleColor.Gray;
-            SpotifyLibExtractor.ExtractResourceToFile("Torshify.Core.libspotify.dll", "libspotify.dll");
-            Console.WriteLine(Spotify.sp_build_id());
+            Console.WriteLine(sp_build_id());
         }
 
         #endregion Constructors
