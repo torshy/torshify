@@ -25,7 +25,7 @@ namespace Torshify.Core.Native
         private AutoResetEvent _mainThreadNotification;
         private Queue<DelegateInvoker> _eventQueue;
         private NativeSessionCallbacks _callbacks;
-        private object _eventQueueLock = new object();
+        private readonly object _eventQueueLock = new object();
 
         #endregion Fields
 
@@ -197,7 +197,12 @@ namespace Torshify.Core.Native
 
                 lock (Spotify.Mutex)
                 {
-                    Spotify.sp_session_set_volume_normalization(Handle, value);
+                    Error error = Spotify.sp_session_set_volume_normalization(Handle, value);
+
+                    if (error != Error.OK)
+                    {
+                        throw new TorshifyException(error.GetMessage(), error);
+                    }
                 }
             }
         }
@@ -220,7 +225,12 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_login(Handle, userName, password, rememberMe, null);
+                Error error = Spotify.sp_session_login(Handle, userName, password, rememberMe, null);
+
+                if (error != Error.OK)
+                {
+                    throw new TorshifyException(error.GetMessage(), error);
+                }
             }
         }
 
@@ -230,7 +240,12 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_login(Handle, userName, null, false, blob);
+                Error error = Spotify.sp_session_login(Handle, userName, null, false, blob);
+
+                if (error != Error.OK)
+                {
+                    throw new TorshifyException(error.GetMessage(), error);
+                }
             }
         }
 
@@ -244,7 +259,7 @@ namespace Torshify.Core.Native
 
                 if (error != Error.OK)
                 {
-                    throw new AuthenticationException(error.GetMessage());
+                    throw new TorshifyException(error.GetMessage(), error);
                 }
             }
         }
@@ -255,7 +270,12 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_forget_me(Handle);
+                Error error = Spotify.sp_session_forget_me(Handle);
+
+                if (error != Error.OK)
+                {
+                    throw new TorshifyException(error.GetMessage(), error);
+                }
             }
         }
 
@@ -294,11 +314,11 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                Error result = Spotify.sp_session_logout(Handle);
+                Error error = Spotify.sp_session_logout(Handle);
 
-                if (result != Error.OK)
+                if (error != Error.OK)
                 {
-                    throw new Exception(result.GetMessage());
+                    throw new TorshifyException(error.GetMessage(), error);
                 }
             }
         }
@@ -337,43 +357,43 @@ namespace Torshify.Core.Native
             }
         }
 
-        public void PlayerPause()
+        public Error PlayerPause()
         {
             AssertHandle();
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_player_play(Handle, false);
+                return Spotify.sp_session_player_play(Handle, false);
             }
         }
 
-        public void PlayerPlay()
+        public Error PlayerPlay()
         {
             AssertHandle();
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_player_play(Handle, true);
+                return Spotify.sp_session_player_play(Handle, true);
             }
         }
 
-        public void PlayerSeek(TimeSpan offset)
+        public Error PlayerSeek(TimeSpan offset)
         {
             AssertHandle();
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_player_seek(Handle, (int)offset.TotalMilliseconds);
+                return Spotify.sp_session_player_seek(Handle, (int)offset.TotalMilliseconds);
             }
         }
 
-        public void PlayerUnload()
+        public Error PlayerUnload()
         {
             AssertHandle();
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_player_unload(Handle);
+                return Spotify.sp_session_player_unload(Handle);
             }
         }
 
@@ -496,7 +516,12 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_preferred_bitrate(Handle, bitrate);
+                Error error = Spotify.sp_session_preferred_bitrate(Handle, bitrate);
+
+                if (error != Error.OK)
+                {
+                    throw new TorshifyException(error.GetMessage(), error);
+                }
             }
 
             return this;
@@ -508,7 +533,12 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_preferred_offline_bitrate(Handle, bitrate, resync);
+                Error error = Spotify.sp_session_preferred_offline_bitrate(Handle, bitrate, resync);
+                
+                if (error != Error.OK)
+                {
+                    throw new TorshifyException(error.GetMessage(), error);
+                }
             }
 
             return this;
@@ -520,7 +550,12 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_set_connection_type(Handle, connectionType);
+                Error error = Spotify.sp_session_set_connection_type(Handle, connectionType);
+
+                if (error != Error.OK)
+                {
+                    throw new TorshifyException(error.GetMessage(), error);
+                }
             }
 
             return this;
@@ -532,7 +567,12 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_set_connection_rules(Handle, connectionRule);
+                Error error = Spotify.sp_session_set_connection_rules(Handle, connectionRule);
+
+                if (error != Error.OK)
+                {
+                    throw new TorshifyException(error.GetMessage(), error);
+                }
             }
 
             return this;
@@ -544,7 +584,12 @@ namespace Torshify.Core.Native
 
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_set_cache_size(Handle, megabytes);
+                Error error = Spotify.sp_session_set_cache_size(Handle, megabytes);
+
+                if (error != Error.OK)
+                {
+                    throw new TorshifyException(error.GetMessage(), error);
+                }
             }
 
             return this;
@@ -626,11 +671,11 @@ namespace Torshify.Core.Native
             }
         }
 
-        public void FlushCaches()
+        public Error FlushCaches()
         {
             lock (Spotify.Mutex)
             {
-                Spotify.sp_session_flush_caches(Handle);
+                return Spotify.sp_session_flush_caches(Handle);
             }
         }
 
@@ -673,7 +718,7 @@ namespace Torshify.Core.Native
 
                     if (res != Error.OK)
                     {
-                        throw new Exception(res.GetMessage());
+                        throw new TorshifyException(res.GetMessage(), res);
                     }
 
                     Handle = sessionPtr;
@@ -872,18 +917,16 @@ namespace Torshify.Core.Native
 
                     lock (Spotify.Mutex)
                     {
+                        Error error = Error.OK;
+
                         if (ConnectionState == ConnectionState.LoggedIn)
                         {
-                            try
-                            {
-                                Spotify.sp_session_logout(Handle);
-                            }
-                            catch
-                            {
-                            }
+                            error = Spotify.sp_session_logout(Handle);
+                            Debug.WriteLineIf(error != Error.OK, error.GetMessage());
                         }
 
-                        Spotify.sp_session_release(Handle);
+                        error = Spotify.sp_session_release(Handle);
+                        Debug.WriteLineIf(error != Error.OK, error.GetMessage());
                         Handle = IntPtr.Zero;
                     }
                 }
@@ -928,7 +971,12 @@ namespace Torshify.Core.Native
                                 break;
                             }
 
-                            Spotify.sp_session_process_events(Handle, out waitTime);
+                            Error error = Spotify.sp_session_process_events(Handle, out waitTime);
+
+                            if (error != Error.OK)
+                            {
+                                Debug.WriteLine(Spotify.sp_error_message(error));
+                            }
                         }
                         catch
                         {

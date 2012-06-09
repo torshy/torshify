@@ -69,7 +69,7 @@ namespace Torshify.Core.Native
         /// <param name="sessionPtr">Your session object</param>
         /// <returns>Error code.</returns>
         [DllImport("libspotify")]
-        internal static extern void sp_session_forget_me(IntPtr sessionPtr);
+        internal static extern Error sp_session_forget_me(IntPtr sessionPtr);
 
         /// <summary>
         /// Logs out the currently logged in user.
@@ -327,7 +327,7 @@ namespace Torshify.Core.Native
         /// <param name="sessionPtr">Session object</param>
         /// <param name="on">True if volume normalization should be enabled</param>
         [DllImport("libspotify")]
-        internal static extern void sp_session_set_volume_normalization(IntPtr sessionPtr, bool on);
+        internal static extern Error sp_session_set_volume_normalization(IntPtr sessionPtr, bool on);
 
         /// <summary>
         /// This will make libspotify write all data that is meant to be stored

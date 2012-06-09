@@ -121,13 +121,13 @@ namespace Torshify
 
         Error PlayerPrefetch(ITrack track);
 
-        void PlayerPause();
+        Error PlayerPause();
 
-        void PlayerPlay();
+        Error PlayerPlay();
 
-        void PlayerSeek(TimeSpan offset);
+        Error PlayerSeek(TimeSpan offset);
 
-        void PlayerUnload();
+        Error PlayerUnload();
 
         ISearch Search(
             string query, 
@@ -238,7 +238,7 @@ namespace Torshify
         /// on disk to the disk immediately. libspotify does this periodically
         /// by itself and also on logout. So under normal conditions this should never need to be used.
         /// </summary>
-        void FlushCaches();
+        Error FlushCaches();
 
         #endregion Methods
     }
