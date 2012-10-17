@@ -4,7 +4,7 @@ namespace Torshify
 {
     public class MusicDeliveryEventArgs : EventArgs
     {
-        internal MusicDeliveryEventArgs(int channels, int rate, byte[] samples, int frames)
+        public MusicDeliveryEventArgs(int channels, int rate, byte[] samples, int frames)
         {
             Channels = channels;
             Rate = rate;
