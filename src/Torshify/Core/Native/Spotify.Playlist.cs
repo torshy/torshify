@@ -52,7 +52,7 @@ namespace Torshify.Core.Native
         /// <param name="callbacksPtr">Callbacks, see sp_playlist_callbacks.</param>
         /// <param name="userdataPtr">Userdata to be passed to callbacks.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_playlist_add_callbacks(IntPtr playlistPtr, ref PlaylistCallbacks callbacksPtr, IntPtr userdataPtr);
+        internal static extern Error sp_playlist_add_callbacks(IntPtr playlistPtr, ref PlaylistCallbacks callbacksPtr, IntPtr userdataPtr);
 
         /// <summary>
         /// Unregister interest in the given playlist.
@@ -62,7 +62,7 @@ namespace Torshify.Core.Native
         /// <param name="callbacksPtr">Callbacks, see sp_playlist_callbacks.</param>
         /// <param name="userdataPtr">Userdata to be passed to callbacks.</param>
         [DllImport("libspotify")]
-        internal static extern void sp_playlist_remove_callbacks(IntPtr playlistPtr, ref PlaylistCallbacks callbacksPtr, IntPtr userdataPtr);
+        internal static extern Error sp_playlist_remove_callbacks(IntPtr playlistPtr, ref PlaylistCallbacks callbacksPtr, IntPtr userdataPtr);
 
         /// <summary>
         /// Return number of tracks in the given playlist.

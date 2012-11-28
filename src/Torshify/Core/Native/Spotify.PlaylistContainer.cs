@@ -88,7 +88,7 @@ namespace Torshify.Core.Native
         internal static extern Error sp_playlistcontainer_playlist_folder_name(
             IntPtr pcPtr, 
             int index, 
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Utf8StringBuilderMarshaler))]StringBuilder buffer, 
+            IntPtr buffer, 
             int bufferSize);
 
         /// <summary>

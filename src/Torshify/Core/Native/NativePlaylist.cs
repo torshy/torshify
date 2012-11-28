@@ -377,28 +377,28 @@ namespace Torshify.Core.Native
 
             if (!IsInvalid)
             {
-                if (_callbacks != null)
+                lock (Spotify.Mutex)
                 {
-                    _callbacks.Dispose();
-                    _callbacks = null;
-                }
+                    if (_callbacks != null)
+                    {
+                        _callbacks.Dispose();
+                        _callbacks = null;
+                    }
 
-                try
-                {
-                    lock (Spotify.Mutex)
+                    try
                     {
                         Spotify.sp_playlist_release(Handle);
                     }
-                }
-                catch
-                {
-                }
-                finally
-                {
-                    PlaylistTrackManager.RemoveAll(this);
-                    PlaylistManager.Remove(Handle);
-                    Handle = IntPtr.Zero;
-                    Debug.WriteLine("Playlist disposed");
+                    catch
+                    {
+                    }
+                    finally
+                    {
+                        PlaylistTrackManager.RemoveAll(this);
+                        PlaylistManager.Remove(Handle);
+                        Handle = IntPtr.Zero;
+                        Debug.WriteLine("Playlist disposed");
+                    }
                 }
             }
 
@@ -440,29 +440,34 @@ namespace Torshify.Core.Native
         {
             lock (Spotify.Mutex)
             {
-                var subscribersPtr = Spotify.sp_playlist_subscribers(Handle);
-                var subscribers = (Spotify.SpotifySubscribers)Marshal.PtrToStructure(subscribersPtr, typeof(Spotify.SpotifySubscribers));
-
-                _subscribers.Clear();
-
-                if (subscribers.Count > 0)
+                if (!IsInvalid)
                 {
-                    var arrayPtr = IntPtr.Add(subscribersPtr, sizeof(uint));
-                    var arrayPtrs = new IntPtr[subscribers.Count];
-                    Marshal.Copy(arrayPtr, arrayPtrs, 0, arrayPtrs.Length);
+                    var subscribersPtr = Spotify.sp_playlist_subscribers(Handle);
+                    var subscribers =
+                        (Spotify.SpotifySubscribers)
+                            Marshal.PtrToStructure(subscribersPtr, typeof(Spotify.SpotifySubscribers));
 
-                    for (int i = 0; i < arrayPtrs.Length; i++)
+                    _subscribers.Clear();
+
+                    if (subscribers.Count > 0)
                     {
-                        string userName = Spotify.GetString(arrayPtrs[i], string.Empty);
+                        var arrayPtr = IntPtr.Add(subscribersPtr, sizeof(uint));
+                        var arrayPtrs = new IntPtr[subscribers.Count];
+                        Marshal.Copy(arrayPtr, arrayPtrs, 0, arrayPtrs.Length);
 
-                        if (!string.IsNullOrEmpty(userName))
+                        for (int i = 0; i < arrayPtrs.Length; i++)
                         {
-                            _subscribers.Add(userName);
+                            string userName = Spotify.GetString(arrayPtrs[i], string.Empty);
+
+                            if (!string.IsNullOrEmpty(userName))
+                            {
+                                _subscribers.Add(userName);
+                            }
                         }
                     }
-                }
 
-                Spotify.sp_playlist_subscribers_free(subscribersPtr);
+                    Spotify.sp_playlist_subscribers_free(subscribersPtr);
+                }
             }
         }
 

@@ -151,22 +151,24 @@ namespace Torshify.Core.Native
 
         private string GetFolderName()
         {
-            int index = _container.Playlists.IndexOf(this);
-            int bufferSize = Spotify.STRINGBUFFER_SIZE;
+            IntPtr ptr = IntPtr.Zero;
 
             try
             {
+                int index = _container.Playlists.IndexOf(this);
+                int bufferSize = Spotify.STRINGBUFFER_SIZE;
+
                 Error error;
-                StringBuilder builder = new StringBuilder(bufferSize);
 
                 lock (Spotify.Mutex)
                 {
-                    error = Spotify.sp_playlistcontainer_playlist_folder_name(_container.GetHandle(), index, builder, bufferSize);
+                    ptr = Marshal.AllocHGlobal(bufferSize);
+                    error = Spotify.sp_playlistcontainer_playlist_folder_name(_container.GetHandle(), index, ptr, bufferSize);
                 }
 
                 if (error == Error.OK)
                 {
-                    return builder.ToString();
+                    return Spotify.GetString(ptr, "Folder");
                 }
 
                 return error.GetMessage();
@@ -174,6 +176,13 @@ namespace Torshify.Core.Native
             catch
             {
                 return "Folder";
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                {
+                    Marshal.FreeHGlobal(ptr);
+                }
             }
         }
 
