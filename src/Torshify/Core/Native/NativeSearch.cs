@@ -312,11 +312,14 @@ namespace Torshify.Core.Native
                     lock (Spotify.Mutex)
                     {
                         Spotify.sp_search_release(Handle);
-                        Handle = IntPtr.Zero;
                     }
                 }
                 catch
                 {
+                }
+                finally
+                {
+                    Handle = IntPtr.Zero;
                 }
             }
 

@@ -203,13 +203,16 @@ namespace Torshify.Core.Native
                     lock (Spotify.Mutex)
                     {
                         Spotify.sp_artistbrowse_release(Handle);
-                        Handle = IntPtr.Zero;
                     }
 
                     GC.KeepAlive(_browseCompleteCallback);
                 }
                 catch
                 {
+                }
+                finally
+                {
+                    Handle = IntPtr.Zero;
                 }
             }
 

@@ -953,7 +953,6 @@ namespace Torshify.Core.Native
 
                         error = Spotify.sp_session_release(Handle);
                         Debug.WriteLineIf(error != Error.OK, error.GetMessage());
-                        Handle = IntPtr.Zero;
                     }
                 }
                 catch
@@ -962,6 +961,7 @@ namespace Torshify.Core.Native
                 }
                 finally
                 {
+                    Handle = IntPtr.Zero;
                     Debug.WriteLine("Session disposed");
                 }
             }
