@@ -103,7 +103,7 @@ namespace Torshify.Core.Native
                 {
                     lock (Spotify.Mutex)
                     {
-                        Spotify.sp_link_release(Handle);
+                        Ensure(() => Spotify.sp_link_release(Handle));
                     }
                 }
                 catch

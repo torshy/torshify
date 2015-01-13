@@ -101,6 +101,17 @@ namespace Torshify.Core
             }
         }
 
+        public void Ensure(Action action)
+        {
+            if ((Session is NativeObject) && !(Session as NativeObject).IsInvalid)
+            {
+                if (action != null)
+                {
+                    action();
+                }
+            }
+        }
+
         #endregion Protected Methods
     }
 }

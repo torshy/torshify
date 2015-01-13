@@ -311,7 +311,7 @@ namespace Torshify.Core.Native
 
                     lock (Spotify.Mutex)
                     {
-                        Spotify.sp_search_release(Handle);
+                        Ensure(() => Spotify.sp_search_release(Handle));
                     }
                 }
                 catch

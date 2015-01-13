@@ -289,7 +289,7 @@ namespace Torshify.Core.Native
                 {
                     lock (Spotify.Mutex)
                     {
-                        Spotify.sp_track_release(Handle);
+                        Ensure(() => Spotify.sp_track_release(Handle));
                     }
                 }
                 catch

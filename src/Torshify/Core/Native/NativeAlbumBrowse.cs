@@ -176,7 +176,7 @@ namespace Torshify.Core.Native
                 {
                     lock (Spotify.Mutex)
                     {
-                        Spotify.sp_albumbrowse_release(Handle);
+                        Ensure(() => Spotify.sp_albumbrowse_release(Handle));
                     }
                 }
                 catch
