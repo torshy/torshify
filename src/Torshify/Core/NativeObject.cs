@@ -89,6 +89,8 @@ namespace Torshify.Core
             }
 
             // get rid of unmanaged resources
+
+            Handle = IntPtr.Zero;
         }
 
         protected void AssertHandle()

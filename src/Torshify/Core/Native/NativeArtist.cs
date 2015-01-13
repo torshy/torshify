@@ -95,7 +95,6 @@ namespace Torshify.Core.Native
                 finally
                 {
                     ArtistManager.Remove(Handle);
-                    Handle = IntPtr.Zero;
                 }
             }
 

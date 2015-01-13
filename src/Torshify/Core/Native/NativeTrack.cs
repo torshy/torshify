@@ -298,7 +298,6 @@ namespace Torshify.Core.Native
                 finally
                 {
                     TrackManager.Remove(Handle);
-                    Handle = IntPtr.Zero;
                     Debug.WriteLine("Track disposed");
                 }
             }

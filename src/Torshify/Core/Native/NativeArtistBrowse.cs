@@ -210,10 +210,6 @@ namespace Torshify.Core.Native
                 catch
                 {
                 }
-                finally
-                {
-                    Handle = IntPtr.Zero;
-                }
             }
 
             base.Dispose(disposing);

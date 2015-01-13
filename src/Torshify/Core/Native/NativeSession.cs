@@ -961,7 +961,6 @@ namespace Torshify.Core.Native
                 }
                 finally
                 {
-                    Handle = IntPtr.Zero;
                     Debug.WriteLine("Session disposed");
                 }
             }

@@ -112,7 +112,6 @@ namespace Torshify.Core.Native
                 finally
                 {
                     LinkManager.Remove(Handle);
-                    Handle = IntPtr.Zero;
                 }
 
 #if DEBUG_VERBOSE

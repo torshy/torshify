@@ -153,7 +153,6 @@ namespace Torshify.Core.Native
                 finally
                 {
                     AlbumManager.Remove(Handle);
-                    Handle = IntPtr.Zero;
                 }
 
                 Debug.WriteLine("Album disposed");
