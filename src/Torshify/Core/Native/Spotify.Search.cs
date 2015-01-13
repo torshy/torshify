@@ -195,6 +195,7 @@ namespace Torshify.Core.Native
         /// <param name="index"></param>
         /// <returns></returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
         internal static extern string sp_search_playlist_name(IntPtr searchPtr, int index);
 
         /// <summary>
@@ -204,6 +205,7 @@ namespace Torshify.Core.Native
         /// <param name="index"></param>
         /// <returns></returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
         internal static extern string sp_search_playlist_uri(IntPtr searchPtr, int index);
 
         /// <summary>
@@ -213,6 +215,7 @@ namespace Torshify.Core.Native
         /// <param name="index"></param>
         /// <returns></returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
         internal static extern string sp_search_playlist_image_uri(IntPtr searchPtr, int index);
     }
 }
