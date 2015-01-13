@@ -132,6 +132,12 @@ namespace Torshify.Shell
             ConsoleEx.Write("Query >> ", ConsoleColor.Green);
             string query = Console.ReadLine();
 
+            if (string.IsNullOrEmpty(query))
+            {
+                ConsoleEx.WriteLine("Query string for search can't be empty", ConsoleColor.Red);
+                return;
+            }
+
             ConsoleEx.WriteLine("Searching..", ConsoleColor.Yellow);
             ISearch search = Session
                 .Search(query, 0, 25, 0, 25, 0, 25, 0, 25, SearchType.Standard)
