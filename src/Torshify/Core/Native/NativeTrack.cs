@@ -289,7 +289,7 @@ namespace Torshify.Core.Native
                 {
                     lock (Spotify.Mutex)
                     {
-                        Spotify.sp_track_release(Handle);
+                        Ensure(() => Spotify.sp_track_release(Handle));
                     }
                 }
                 catch
@@ -298,7 +298,6 @@ namespace Torshify.Core.Native
                 finally
                 {
                     TrackManager.Remove(Handle);
-                    Handle = IntPtr.Zero;
                     Debug.WriteLine("Track disposed");
                 }
             }

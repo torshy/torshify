@@ -146,7 +146,6 @@ namespace Torshify.Core.Native
                 finally
                 {
                     PlaylistContainerManager.Remove(Handle);
-                    Handle = IntPtr.Zero;
                     Debug.WriteLine("Playlist container disposed");
                 }
             }

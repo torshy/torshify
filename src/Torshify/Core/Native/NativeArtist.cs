@@ -86,7 +86,7 @@ namespace Torshify.Core.Native
                 {
                     lock (Spotify.Mutex)
                     {
-                        Spotify.sp_artist_release(Handle);
+                        Ensure(() => Spotify.sp_artist_release(Handle));
                     }
                 }
                 catch
@@ -95,7 +95,6 @@ namespace Torshify.Core.Native
                 finally
                 {
                     ArtistManager.Remove(Handle);
-                    Handle = IntPtr.Zero;
                 }
             }
 

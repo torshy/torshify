@@ -16,18 +16,6 @@ namespace Torshify.Core.Native
 
         #endregion Fields
 
-        #region Constructors
-
-        static Spotify()
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("torshify uses SPOTIFY(R) CORE");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine(sp_build_id());
-        }
-
-        #endregion Constructors
-
         #region Enumerations
 
         internal enum SpotifySampletype

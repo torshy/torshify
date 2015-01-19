@@ -89,6 +89,8 @@ namespace Torshify.Core
             }
 
             // get rid of unmanaged resources
+
+            Handle = IntPtr.Zero;
         }
 
         protected void AssertHandle()
@@ -96,6 +98,17 @@ namespace Torshify.Core
             if (IsInvalid)
             {
                 throw new InvalidOperationException("Handle is invalid");
+            }
+        }
+
+        public void Ensure(Action action)
+        {
+            if ((Session is NativeObject) && !(Session as NativeObject).IsInvalid)
+            {
+                if (action != null)
+                {
+                    action();
+                }
             }
         }
 

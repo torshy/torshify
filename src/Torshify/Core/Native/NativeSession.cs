@@ -951,9 +951,8 @@ namespace Torshify.Core.Native
                             Debug.WriteLineIf(error != Error.OK, error.GetMessage());
                         }
 
-                        error = Spotify.sp_session_release(Handle);
+                        Ensure(() => error = Spotify.sp_session_release(Handle));
                         Debug.WriteLineIf(error != Error.OK, error.GetMessage());
-                        Handle = IntPtr.Zero;
                     }
                 }
                 catch

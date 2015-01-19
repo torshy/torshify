@@ -177,16 +177,14 @@ namespace Torshify.Core.Native
                 {
                     lock (Spotify.Mutex)
                     {
-                        Spotify.sp_image_remove_load_callback(Handle, _imageLoaded, IntPtr.Zero);
-                        Spotify.sp_image_release(Handle);
+                        Ensure(() => {
+                            Spotify.sp_image_remove_load_callback(Handle, _imageLoaded, IntPtr.Zero);
+                            Spotify.sp_image_release(Handle);
+                        });
                     }
                 }
                 catch
                 {
-                }
-                finally
-                {
-                    Handle = IntPtr.Zero;
                 }
             }
 

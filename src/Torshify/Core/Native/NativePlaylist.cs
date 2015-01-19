@@ -387,7 +387,7 @@ namespace Torshify.Core.Native
 
                     try
                     {
-                        Spotify.sp_playlist_release(Handle);
+                        Ensure(() => Spotify.sp_playlist_release(Handle));
                     }
                     catch
                     {
@@ -396,7 +396,6 @@ namespace Torshify.Core.Native
                     {
                         PlaylistTrackManager.RemoveAll(this);
                         PlaylistManager.Remove(Handle);
-                        Handle = IntPtr.Zero;
                         Debug.WriteLine("Playlist disposed");
                     }
                 }

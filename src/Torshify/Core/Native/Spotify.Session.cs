@@ -12,6 +12,7 @@ namespace Torshify.Core.Native
         /// </summary>
         /// <returns></returns>
         [DllImport("libspotify")]
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
         internal static extern string sp_build_id();
 
         /// <summary>

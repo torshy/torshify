@@ -11,6 +11,7 @@ namespace Torshify.Core.Native
       /// <param name="error">The error code.</param>
       /// <returns>The text-representation of the error.</returns>
       [DllImport("libspotify")]
+      [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(MarshalPtrToUtf8))]
       public static extern string sp_error_message(Error error);
   }
 }
